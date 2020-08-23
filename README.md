@@ -10,7 +10,7 @@
 
 
 
-* [날짜와 시간](./Java/날짜와 시간.md)
+* [날짜와 시간](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%82%A0%EC%A7%9C%EC%99%80%20%EC%8B%9C%EA%B0%84.md)
 * 
 
 
