@@ -981,7 +981,7 @@ int i7 = Integer.parseInt("FF", 16); // 16진수로 해석 FF(16) -> 255
 
 ### 4-5 오토박싱 & 언박싱
 
-![image-20200628022418658](./image/image-20200628022418658.png)
+<img src="./image/image-20200628022418658.png" width="550" />
 
 > boxing : 래퍼 클래스의 '감싼다는 의미'
 >

@@ -52,7 +52,7 @@
   * [추상클래스](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%B6%94%EC%83%81%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
   * [인터페이스](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
   * [내부 클래스](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%82%B4%EB%B6%80%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
-  * [예외처리](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.md)
+  * [예외처리](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.pdf)
   * [java.lang](https://github.com/binghe819/TIL/blob/master/JAVA/java.lang.md)
   * [날짜와 시간](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%82%A0%EC%A7%9C%EC%99%80%20%EC%8B%9C%EA%B0%84.md)
 
