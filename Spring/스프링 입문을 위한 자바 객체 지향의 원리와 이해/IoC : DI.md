@@ -48,7 +48,7 @@ class Driver {
   * 의존하는 객체를 전체, 의존되는 객체를 부분이라 볼 수 있다.
   * 전체가 부분에 의존한다는 것과 "프로그래밍"에서 의존 관계는 new로 표현된다
 
-
+ 
 
 > 의존하는 객체(전체)와 의존되는 객체(부분) 사이에 집합 관계와 구성 관계로 구분할 수 있다.
 >
@@ -407,7 +407,7 @@ public class Driver {
     * `AmericaTire`로 타이어를 바꿔야 하더라도 자바 코드를 변경/재컴파일/재배포할 필요가 없다.
 
 * 전체적인 그림
-  * <img src="./image/image-20200810022528685.png" alt="image-20200810022528685" style="zoom:40%;" />
+  * <img src="./image/image-20200810022528685.png" width="600" />
   * `KoreaTire.java`가 XML파일에서 `id=tire`인 bean 태그와 연결돼 있고, 다시 `Driver.java`의 `main()`메서드 안의 코드인 `context.getBean("tire", Tire.class)`와 연결돼 있는 것을 볼 수 있다.
   * `KoreaTire`라고 하는 상품이 `tire`라는 이름으로 진열돼 있고, 구매(`getBean`)할 수 있다.
 
@@ -486,7 +486,7 @@ public class Driver {
   * xml파일은 사용해서 `Car`객체 안에 `koreaTire`객체 의존성을 주입하였다.
 
 * 전체적인 그림
-  * <img src="./image/image-20200810105310483.png" alt="image-20200810105310483" style="zoom:30%;" />
+  * <img src="./image/image-20200810105310483.png" width="600" />
   * `Driver`가 자동차와 타이어를 구매(`getBean`)하고 직접 장착한것과 달리 xml(종합쇼핑몰)을 사용해서 타이어를 장착한 상태로 자동차를 구매할 수 있게 하였다.
 
 
@@ -557,7 +557,7 @@ public class Car {
 
 * 전체적인 그림
 
-  * <img src="./image/CamScanner 08-10-2020 10.52.30_2.png" alt="CamScanner 08-10-2020 10.52.30_2" style="zoom:30%;" />
+  * <img src="./image/CamScanner 08-10-2020 10.52.30_2.png" width="600" />
   * `@Autowired`애노테이션을 이용하면 설정자 메서드를 이용하지 않고도 종합 쇼핑몰인 스프링 프레임워크가 설정 파일을 통해 설정자 메서드 대신 속성을 주입해준다.
 
 
@@ -596,7 +596,7 @@ public class Car {
 
 * `@Autowired`의 속성 매칭 규칙
 
-  * <img src="./image/CamScanner 08-10-2020 10.52.30_3.png" alt="CamScanner 08-10-2020 10.52.30_3" style="zoom:30%;" />
+  * <img src="./image/CamScanner 08-10-2020 10.52.30_3.png" width="600" />
   * `@Autowired`는 `type`을 먼저 체크하고 `id`를 체크한다.
   * ***`type`의 우선순위가 더 높다.***
 
@@ -931,7 +931,7 @@ IoC컨테이너는 싱글톤패턴을 사용해서 의존성을 주입해준다.
 
 ***BeanFactory (Application Context)***
 
-<img src="./image/image-20200812155050150.png" alt="image-20200812155050150" style="zoom:80%;" />
+<img src="./image/image-20200812155050150.png" width="600" />
 
 * IoC컨테이너란?
   * ***빈(bean)을 만들고 빈(bean)들 사이의 의존성을 엮어주며 제공해준다.***
@@ -977,7 +977,7 @@ IoC컨테이너는 싱글톤패턴을 사용해서 의존성을 주입해준다.
 * Bean이란?
   * 스프링 IoC 컨테이너가 관리하는 객체
   * 스프링이 관리하는 `ApplicationContext`에서 해당 객체를 가져온 것이므로 bean이 맞다.
-  * 즉, 스프링이 가지고 있는 객체를 `bean`이라고 한다.ㅣ
+  * 즉, 스프링이 가지고 있는 객체를 `bean`이라고 한다.
 
 ```java
 public void test{
