@@ -247,9 +247,15 @@ public class ApplicationConfig {
 
 ## 3 Bean의 라이프사이클
 
+![img](./image/22107F505693B43E29.png)
 
 
 
+
+
+[Spring Bean Life Cycle](https://javaslave.tistory.com/48)
+
+[Spring bean LifeCycle](http://wonwoo.ml/index.php/post/1820)
 
 
 

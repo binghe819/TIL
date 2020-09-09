@@ -160,7 +160,7 @@ public class Boy {
     try {
       System.out.println("컴퓨터로 게임을 한다"); // 핵심적인 관점
     } catch (Exception e){
-      if(ex.getMessage.equals("집에 불남")){
+      if(e.getMessage.equals("집에 불남")){
         System.out.println("119에 신고한다.");
       }
     } finally {
@@ -179,7 +179,7 @@ public class Girl {
     try {
       System.out.println("요리를 한다."); // 핵심적인 관점
     } catch (Exception e){
-      if(ex.getMessage.equals("집에 불남")){
+      if(e.getMessage.equals("집에 불남")){
         System.out.println("119에 신고한다.");
       }
     } finally {
@@ -437,7 +437,7 @@ public class MyAspect {
 
 
 
-## 4. 프록시 패턴 예시
+## 4. 프록시 예시
 
 
 
