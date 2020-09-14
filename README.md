@@ -47,8 +47,9 @@
 * [데이터베이스 첫걸음]()
 * 데이터 모델링
   * [데이터 모델링 기초 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81%20%EA%B8%B0%EC%B4%88.md)
-  * [정규화 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EC%A0%95%EA%B7%9C%ED%99%94.md)
+  * [정규형](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EC%A0%95%EA%B7%9C%ED%98%95.md)
 * [h2](https://github.com/binghe819/TIL/blob/master/DB/RDB/h2/h2.md)
+* [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5.md)
 
 
 
