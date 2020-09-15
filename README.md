@@ -22,9 +22,13 @@
   * [AOP](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/AOP.md)
   * [PSA](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/PSA.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
-
 * Test
   * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
+* 기타
+  * [DTO, VO](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/DTO%2C%20VO.md)
+  * [DataSource](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/DataSource.md)
+
+
 
 ## 운영체제
 
