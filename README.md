@@ -22,6 +22,8 @@
   * [AOP](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/AOP.md)
   * [PSA](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/PSA.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
+* 트랜잭션
+  * [격리 수준 - Isolation Level]()
 * Test
   * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
 * 기타
@@ -48,7 +50,7 @@
 
 ## 데이터베이스
 
-* [데이터베이스 첫걸음]()
+* [데이터베이스 첫걸음](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EC%B2%AB%EA%B1%B8%EC%9D%8C/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EC%B2%AB%EA%B1%B8%EC%9D%8C.md)
 * 데이터 모델링
   * [데이터 모델링 기초 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81%20%EA%B8%B0%EC%B4%88.md)
   * [정규형](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EC%A0%95%EA%B7%9C%ED%98%95.md)
@@ -78,7 +80,7 @@
   * [네트워킹](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md)
 
 * 모던 자바
-  * [Optional]()
+  * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
 
 
 
