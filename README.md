@@ -78,6 +78,7 @@
   * [Thread](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Thread.md)
   * [Lambda](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Lambda.md)
   * [네트워킹](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md)
+  * [enum]()
 
 * 모던 자바
   * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
