@@ -21,9 +21,9 @@
   * [용어 정리]()
   * [프록시 패턴]()
 * Servlet
-  * [Head First Servlet & First](https://github.com/binghe819/TIL/tree/master/Spring/Head%20First%20Servlets%20%26%20JSP)
+  * [Head First Servlet & First](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/Head%20First%20Servlets%20%26%20JSP)
   * [Servlet Filter](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletFilter.md)
-  * [Servlet Listener]()
+  * [Servlet Listener](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletListener.md)
 * Spring MVC
   * [MVC 개념]()
   * [DispatcherServlet]()
@@ -97,7 +97,12 @@
 
 * [오브젝트 - 코드로 이해하는 객체지향 설계](https://github.com/binghe819/TIL/tree/master/OOP/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
 
-
+* SOLID
+  * [SRP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/SRP.md)
+  * [OCP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/OCP.md)
+  * [LSP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/LSP.md)
+  * [ISP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/ISP.md)
+  * [DIP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/DIP.md)
 
 
 
