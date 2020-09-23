@@ -26,7 +26,7 @@
   * [Servlet Listener](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletListener.md)
 * Spring MVC
   * [MVC 개념]()
-  * [서블릿에 SpringMVC 연동](https://github.com/binghe819/TIL/tree/master/Spring/MVC/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA%E1%84%8B%E1%85%A6%20%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC.md)
+  * [서블릿에 SpringMVC 연동](https://github.com/binghe819/TIL/blob/master/Spring/MVC/%EC%84%9C%EB%B8%94%EB%A6%BF%EC%97%90%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%97%B0%EB%8F%99.md)
   * [DispatcherServlet]()
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
