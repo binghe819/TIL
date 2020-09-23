@@ -26,6 +26,7 @@
   * [Servlet Listener](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletListener.md)
 * Spring MVC
   * [MVC 개념]()
+  * [서블릿에 SpringMVC 연동](https://github.com/binghe819/TIL/tree/master/Spring/MVC/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA%E1%84%8B%E1%85%A6%20%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC%20%E1%84%8B%E1%85%A7%E1%86%AB%E1%84%83%E1%85%A9%E1%86%BC.md)
   * [DispatcherServlet]()
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
@@ -105,7 +106,7 @@
   * [DIP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/DIP.md)
 
 * 디자인 패턴
-  * [Front Controller Pattern](https://github.com/binghe819/TIL/tree/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%20%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
+  * [Front Controller Pattern](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
 
 
 
