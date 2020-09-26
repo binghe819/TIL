@@ -595,7 +595,7 @@ JDK 1.8부터는 `java.util.function`패키지에 수많은 `Functional Interfac
 
 #### 4-1-1. Supplier
 
-![image-20200801202258747](/Users/kimbyeonghwa/Library/Mobile Documents/com~apple~CloudDocs/자료/Java/모던 자바/image/image-20200801202258747.png)
+![image-20200801202258747](./image/image-20200801202258747.png)
 
 * 매개 변수는 없고, 리턴 값만 있는 인터페이스
   * 이 메서드들을 호출한 곳으로 데이터를 리턴(공급)하는 역할을 수행한다.
