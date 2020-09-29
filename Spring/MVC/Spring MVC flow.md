@@ -35,3 +35,10 @@
    * 찾은 뷰에 모델 데이터를 랜더링하고 요청의 응답값을 생성한다.
 
 9. `DispatcherServlet` 은 `View` 로부터 받은 결과를 클라이언트에게 반환한다.
+
+
+
+# 좋은 MVC Flow 참고자료
+
+* https://velog.io/@hanblueblue/%EB%B2%88%EC%97%AD-Spring2-Spring-Web-MVC
+* 

@@ -1,4 +1,4 @@
-# 목차
+# e목차
 
 - [DispatcherServlet](#dispatcherservlet)
   * [1 DispatcherServlet의 상속 계층](#1-dispatcherservlet의-상속-계층)
@@ -67,6 +67,14 @@
 >
 > 하지만 **여러 `Servlet` 에서 공유할 빈이 있다면 이렇게 상속을 만드는 것이 좋다.**
 
+> **DispatcherServlet은 반드시 IoC 컨테이너를 사용한다. (애노테이션 기반의 빈들을 사용해야 하기에)**
+>
+> **반대로, DispatcherServlet를 IoC 컨테이너에 등록할꺼냐 말꺼냐는 선택이다.**
+>
+> **물론 서블릿 컨테이너에는 DispatcherServlet을 반드시 등록해야한다.**
+
+
+
 
 
 ## 2 DispatcherServlet 동작원리
@@ -75,7 +83,8 @@
 
 ### 2-1 DispatcherServlet 초기화
 
-* 다음의 특별한 타입의 빈들을 찾거나, 기본 전략에 해당하는 빈들을 등록한다.
+* **다음의 특별한 타입의 빈들을 찾거나, 기본 전략에 해당하는 빈들을 등록한다.**
+  * **만약 특정 타입의 빈(사용자가 정의한 관련된 빈)이 없으면 기본 전략을 사용한다.** (`DispatcherServlet.properties`)
 * `HandlerMapping` -> `HandlerAdapter` -> (`HandlerExceptionResolver`) -> `ViewResolver` -> ...
   * `HandlerMapping` - 핸들러를 찾아주는 인터페이스
   * `HandlerAdapter` - 핸들러를 실행하는 인터페이스
@@ -202,6 +211,7 @@ public void test(){ // 핸들러가 리턴을 하지 않는다.
 * `FlashMap` 인스턴스를 가져오고 저장하는 인터페이스
 * `FlashMap` 은 **주로 리다이렉션을 사용할 때 요청 매개변수를 사용하지 않고 데이터를 전달하고 정리할 때 사용한다.**
   * URL에 매개변수를 사용하지 않고 보낼 수 있게 해준다.
+  * **즉, 리다이랙션을 할 때 서버에서 클라이언트에게 파라미터를 보낼 때 URL 파라미터를 사용하지 않아도 파라미터를 보낼 수 있게 해준다.**
 
 
 
