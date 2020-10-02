@@ -154,10 +154,6 @@ Spring (정확히는 Spring MVC)에서는 다음과 같은 요청 라이프 사�
 
 
 
-
-
-
-
 ## 3 Spring Security 아키텍처
 
 
@@ -175,33 +171,90 @@ ex) 아이디와 비밀번호를 입력해서 로그인 인증
 <center> 출처 : www.springbootdev.com</center>
 
 1. 클라이언트가 폼을 통해 로그인 정보를 입력하고 인증 요청을 보낸다.
+
 2. `AuthenticationFilter` (정확히는 `AuthenticationProcessingFilter`)를 구현한 `UsernamePasswordAuthenticationFilter` 가 `Request` 에서 사용자가 보낸 아이디와 비밀번호 정보를 이용해서 유효성 검사(`null` 인지)하고 `AuthenticationToken` 을 만들어서 `AuthenticationManager` 에게 넘겨주면서 인증을 위임한다.
-   * `Authentication.authenticate()`
+
+   * `AuthenticationProcessingFilter`는 추상클래스이며, 팩토리 메서드 패턴을 사용해서 인증로직만 하위 클래스에게 위임한다.
+     * 인증 로직 : `public Authentication attemptAuthentication(Request, Response)`
+
+   * 그리고 `AuthenticationManager`에게 인증 (`authenticate`)로직을 위임한다.
+
 3. `AuthenticationManager` (구현체 `ProviderManager`)는 반복문을 돌며 전달 받은 `AuthenticationToken` 를 처리할 수 있는 `AuthenticationProvider` 를 찾는다.
+
    * `provider.support(AuthenticationToken.class)`
+
 4. 처리할 수 있는 `Provider`(`DaoAthenticationProvider`) 를 찾았으면 해당 `Provider` 에게 `Token` 을 넘긴다.
    * `Authentication provider.autheticate(AutheticationToken)`
-   * DB의 사용자 정보와 사용자가 입력한 아이디,비밀번호가 동일한지 확인하고 `Authentication` 을 반환한다.
-     * `Authentication` 은 인증이 되었는지, 안되었는지를 내부적으로 포함하고있다.
-5. DB에서 사용자 인증 정보를 가져올 `UserDetailsService` 객체에게 사용자 아이디(`findByID`)를 넘겨주고 DB에서 인증에 사용할 사용자 정보 (DB에 저장된 사용자 아이디, 비밀번호, 권한등)를 `UserDetails` 라는 객체로 전달받는다.
-   * `UserDetail retrieveUser(String username, AutheticationToken)`
-6. 
+
+   * `Provider`는 `authenticate`메서드를 실행중에 `retrieveUser`를 통해 DB에서 유저 정보를 가져온다.
+     
+     * 이때, 개발자가 커스텀한 `UserDetailsService`를 구현한 객체가 사용된다.
+     * `UserDetail retrieveUser(String username, AutheticationToken)`
+     
+     <img src="image/img.png" width="500" />
+     
+     <center> 출처 : https://springsource.tistory.com/80</center>
+
+5. `Provider`는 `retrieveUser`의 반환 값을 이용해 인증을 진행한다.
+
+  <img src="image/170ADB504F97726605.png" width="600" />
+
+  <center> 출처 : https://springsource.tistory.com/80</center>
+
+  * `AuthenticationProvider`가 credentials의 유효성을 검사한다.
+    * 성공시 - 인증이 성공된  `Authentication` 객체를 반환한다.
+    * 실패시 - `AuthenticationException`을 던진다.
+
+
+
+전체적인 인증 로직은 아래와 같다.
+
+![img](image/1861CD3C4FA341460D.png)
+
+<center> 출처 : https://springsource.tistory.com/80</center>
+
+> 더 쉽고 자세한 내용은 [spring-security-authentication-architecture](https://springbootdev.com/2017/08/23/spring-security-authentication-architecture/)를 참고바랍니다.
+
+
+
+### 3-2 역할
+
+객체지향에서 중요한 개념은 협력, 역할, 책임이다. 각 객체들의 역할과 책임을 알아본다.
+
+* `AbstractAuthenticationProcessingFilter` - POST 폼 데이터를 포함하는 요청을 처리한다.
+  * POST의 Request로부터 `username`과 `password`의 null검사를 한 후
+  * 사용자 비밀번호를 다른 필터로 전달하기 위해서 `Authentication` 객체를 생성한다.
+  * 생성후 `AuthenticationManager`에게 `authentication`(인증)요청을하고 반환 받은 값을 다른 필터에게 넘긴다.
+* `AuthenticationManager` - 인증요청을 받고 `Authentication`에 맞는 `Provider`를 찾고 찾은 `Provider`에게 인증을 요청한다.
+* `AuthenticationProvider` - 실제 인증이 일어나고 만약 인증 성공시 `Authentication` 객체의 `authenticated = true`를 설정해준다.
+
+
+
+### 3-3 인증예외
+
+인증과 관련된 모든 예외는 `AuthenticationException`을 상속한다. `AuthenticationException`은 개발자에게 상세한 디버깅 정보를 제공하기 위해 두 개의 멤버 필드를 제공한다.
+
+* `authentication` - 인증 요청관련 `Authentication` 객체를 저장하고 있다.
+* `extraInformation` - 인증 예외 관련 부가 정보를 제공한다.
+  * 예를 들어, `UsernameNotFountException ` 예외는 인증에 실패한 유저의 id 정보를 저장하고 있다.
+
+많이 발생하는 예외들은 아래와 같다.
+
+* `BadCredentialsException` : 사용자 아이디가 전달되지 않았거나 인증 저장소의 사용자 id 에 해당하는 패스워드가 일치하지 않을 경우 발생한다.
+* `LockedException` : 사용자 계정이 잠긴경우 발생한다.
+* `UsernameNotFoundException` : 인증 저장소에서 사용자 ID를 찾을 수 없거나 사용자 ID에 부여된 권한이 없을 경우 발생한다.
+
+
+
+## 4 Spring Security 필터
+
+[Spring Security 동작 방식](#2-2-spring-security-동작-방식)에서 언급했듯이 시큐리티는 필터 기반으로 동작한다.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-## 4 필터
 
 ![image-20200925132302655](./image/image-20200925132302655.png)
 
