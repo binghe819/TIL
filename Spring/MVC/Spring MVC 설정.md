@@ -4,9 +4,44 @@
 
 # 목차
 
-
-
-
+- [Spring MVC 설정](#spring-mvc-설정)
+  * [1 DispatcherServlet과 스프링 컨테이너](#1-dispatcherservlet과-스프링-컨테이너)
+    + [1-1 DispatcherServlet과 스프링 컨테이너 생성되는 과정](#1-1-dispatcherservlet------------------)
+    + [1-2 DispatcherServlet은 빈을 통해 구성요소를 초기화한다](#1-2-dispatcherservlet은-빈을-통해-구성요소를-초기화한다)
+  * [2 스프링 MVC 설정](#2-스프링-mvc-설정)
+    + [2-1 Bean 설정방법](#2-1-bean-설정방법)
+    + [2-2 @EnableWebMvc](#2-2-enablewebmvc)
+      - [DelegatingWebMvcConfiguration](#delegatingwebmvcconfiguration)
+      - [WebMvcConfigurationSupport](#webmvcconfigurationsupport)
+    + [2-3 WebMvcConfigurer](#2-3-webmvcconfigurer)
+  * [3 스프링 부트의 스프링 MVC 설정](#3-스프링-부트의-스프링-mvc-설정)
+    + [3-1 스프링 부트의 자동 설정](#3-1-스프링-부트의-자동-설정)
+    + [3-2 스프링 MVC 커스터마이징 (중요)](#3-2-스프링-mvc-커스터마이징-중요)
+  * [4 Formatter](#4-formatter)
+  * [5 핸들러 인터셉터](#5-핸들러-인터셉터)
+    + [5-1 핸들러 인터셉터란](#5-1-핸들러-인터셉터란)
+    + [5-2 핸들러 인터셉터 설정 위치](#5-2-핸들러-인터셉터-설정-위치)
+    + [5-3 필터 vs 인터셉터](#5-3-필터-vs-인터셉터)
+    + [5-4 핸들러 인터셉터 구현](#5-4-핸들러-인터셉터-구현)
+  * [6 리소스 핸들러](#6-리소스-핸들러)
+    + [6-1 리소스 핸들러란?](#6-1-리소스-핸들러란)
+      - [디폴트 서블릿](#디폴트-서블릿)
+    + [6-2 리소스 핸들러 설정](#6-2-리소스-핸들러-설정)
+  * [7 HTTP 메시지 컨버터](#7-http-메시지-컨버터)
+    + [7-1 HTTP 메시지 컨버터란?](#7-1-http-메시지-컨버터란)
+    + [7-2 기본 HTTP 메시지 컨버터 종류](#7-2-기본-http-메시지-컨버터-종류)
+    + [7-3 HTTP 컨버터 설정 방법](#7-3-http-컨버터-설정-방법)
+    + [7-4 JSON](#7-4-json)
+  * [8 그 밖의 WebMvcConfigurer 설정](#8-그-밖의--webmvcconfigurer-설정)
+    + [8-1 CORS 설정](#8-1-cors-설정)
+    + [8-2 Return Value Handler 설정](#8-2-return-value-handler-설정)
+    + [8-3 Argument Resolver 설정](#8-3-argument-resolver-설정)
+    + [8-4 뷰 컨트롤러](#8-4-뷰-컨트롤러)
+    + [8-5 비동기 설정](#8-5-비동기-설정)
+    + [8-6 View Resolver 설정](#8-6-view-resolver-설정)
+    + [8-7 Content Negotiation 설정](#8-7-content-negotiation-설정)
+  + [9 마무리](#9-마무리)
+- [참고](#참고)
 
 
 
@@ -110,7 +145,7 @@ public class WebConfig {
 
 
 
->  이 방법은 어떻게 보면 굉장히 로우 레벨의 설정 방법이다. 스프링에서는 설정을 더 쉽게 할 수 있도록 `@EnableWebMVC` 를 통해 MVC 설정을 쉽게 할 수 있도록 제공한다.
+>  이 방법은 어떻게 보면 **로우 레벨의 설정 방법**이다. 스프링에서는 설정을 더 쉽게 할 수 있도록 `@EnableWebMVC` 를 통해 MVC 설정을 쉽게 할 수 있도록 제공한다.
 
 
 
@@ -128,10 +163,10 @@ public class WebMvcConfig {
 }
 ```
 
-🤔  `@EnableWebMvc` 란
+**🤔  `@EnableWebMvc` 란**
 
 * `@Configure`에 `@EnableWebMvc` 애노테이션을 추가해주면 **설정이 완료된 여러 스프링 빈을 추가해준다.**
-  * 기본적인 `HandlerMapping` 빈, `HandlerAdapter` 빈 등을 추가해주는 것.
+  * **`@Configure`에 기본적인 `HandlerMapping` 빈, `HandlerAdapter` 빈 등을 추가해주는 것.**
 * **또한, `DelegatingWebMvcConfiguration`을 통해 스프링 MVC(Web관련) 빈들을 쉽게 설정할 수 있게 도와준다.**
 
 
@@ -266,11 +301,9 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
-## 4 WebMvcConfigurer
+## 4 Formatter
 
-
-
-### 4-1 Formatter
+**포매터**
 
 * 추가 방법
   * `WebMvcConfigurer`의 `addFormatter(FormatterRegistry)` 메서드 정의
@@ -290,7 +323,7 @@ public class SampleController {
 }
 ```
 
-하지만 만약 `Person`이라는 객체로 받아오고 싶다면 데이터 바인딩이 필요해진다.
+하지만 만약 `Person`이라는 객체로 받아오고 싶다면 **데이터 바인딩이 필요해진다.**
 
 ```java
 // 데이터 바인딩이 필요한 상황
@@ -475,7 +508,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
-### 6-1 리소스 핸들러개념
+### 6-1 리소스 핸들러란?
 
 * **이미지, JS, CSS, HTML 파일과 같은 정적인 리소스를 처리하는 핸들러.**
   * `index.html`, `profile.jpg` 등을 처리할 때 사용된다.
@@ -521,17 +554,213 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 
+## 7 HTTP 메시지 컨버터
 
 
 
+### 7-1 HTTP 메시지 컨버터란?
+
+* HTTP 요청 본문에서 메시지를 읽어들이거나, 응답 본문에 메시지를 작성할 때 사용한다.
+
+* 메시지 방식의 컨트롤러를 사용하는 방법은 두 가지로 구분된다.
+  * GET - URL과 쿼리 스트링으로 제한됨.
+    * `@RequestParam`
+    * `@ModelAttribute`
+  * POST - URL과 쿼리 그리고 Body 사용 가능
+    * `@RequestBody`
+    * `@ResponseBody`
+
+:point_right: 예시
+
+![image-20201006014215527](image/image-20201006014215527.png)
+
+* `@RequestBody`는 HTTP 요청 본문을 `Person`객체로 변환한다.
+* `@ResponseBody`는 리턴 값 (`Hello...`)를 HTTP 응답 본문에 작성한다.
+
+> `@RestController`는 자동적으로 모든 메서드에 `@ResponseBody`를 붙여준다.
 
 
 
+### 7-2 기본 HTTP 메시지 컨버터 종류
+
+> 컨버터가 Classpath에 의존성이 추가되면 자동적으로 등록된다고 한다.
+
+* 바이트 배열 컨버터
+* 문자열 컨버터
+* Resource 컨버터
+* Form 컨버터 (폼 데이터 to/from MultiValueMap<String, String>)
+* XML
+  * JAXB2 컨버터
+
+* JSON
+  * Jackson2 컨버터
+  * Jackson 컨버터
+  * Gson 컨버터
+* Atom 컨버터
+* RSS 컨버터
+* ...
+
+> **HTTP 메시지 컨버터를 결정하는 기준은 요청 Header의 `Content Type` 이다.**
 
 
 
+### 7-3 HTTP 컨버터 설정 방법
+
+> HTTP 컨버터 설정도 다른 것과 동일하게 `WebMvcConfigurer`를 사용하여 설정한다.
+
+* 기본으로 등록해주는 컨버터에 새로운 컨버터 추가하기 : `extendMessageConverters`
+
+* 기본으로 등록해주는 컨버터는 다 무시하고 새로 컨버터 추가하기 : `configureMessageConverters`
+
+* **의존성 추가로 컨버터 추가하기 (추천)**
+
+  * **메이븐 또는 그래들 설정에 의존성을 추가하면 그에 따른 컨버터가 자동으로 등록된다.**
+
+  * **`WebMvcConfigurationSupport` - 이곳에 정의되어 있다.**
+
+    * ```java
+      if(...Present) { // 만약 ...이 있다면
+        messageConverters.add(...)
+      }
+      ```
+
+    * 컨버터가 존재하는지 판단은 `ClassUtils`로 특정 위치의 패키지가 존재하는지 확인한다.
+
+  * 이 기능 자체는 스프링 프레임워크의 기능이며, 스프링 부트가 아니라고 한다.
 
 
+
+### 7-4 JSON
+
+> **HTTP 메시지 컨버터는 요청 `Header`의 `Content Type`과 `Accept`의 내용을 바탕으로 결정된다.**
+>
+> * 스프링 부트는 `jackSon2`를 기본적으로 제공하며 `ObjectMapper`를 이용해서 변환한다.
+
+
+
+```java
+public class User {
+
+    private String name;
+
+    private String age;
+
+    // getter / setter / constructor
+}
+```
+
+```java
+@RestController
+public class SampleController {
+
+    @PostMapping("/jsonmessage")
+    public User jsonmessage(@RequestBody User user) {
+        user.setName("Hello " + user.getName());
+        return user;
+    }
+
+}
+```
+
+아래와 같이 Header와 Body를 작성후 요청을 보내면 자동적으로 JSON 형태로 응답이 오는 것을 볼 수 있다.
+
+![image-20201006021720163](image/image-20201006021720163.png)
+
+
+
+## 8 그 밖의 WebMvcConfigurer 설정
+
+
+
+### 8-1 CORS 설정
+
+<img src="image/CORS_principle.png" width="500" />
+
+<center>출처 : https://developer.mozilla.org/ko/docs/Web/HTTP/CORS</center>
+
+* CORS란?
+  * Cross - Origin Resource Sharing 교차 출처 리소스 공유
+  * 도메인 또는 포트가 다른 서버의 자원을 요청하는 매커니즘을 말한다.
+* **같은 도메인에서 온 요청이 아니더라도 처리를 허용하고 싶다면 설정한다.**
+
+
+
+### 8-2 Return Value Handler 설정
+
+* **Return Value Handler란?**
+  * **핸들러(컨트롤러)에서 리턴하는 값을 처리하는 핸들러**
+* 스프링 MVC가 제공하는 기본 리턴 값 핸들러 이외에 리턴 핸들러를 추가하고 싶을 때 설정한다.
+
+
+
+### 8-3 Argument Resolver 설정
+
+* 스프링 MVC가 제공하는 기본 아규먼트 리졸버 이외에 커스텀한 아규먼트 리졸버를 추가하고 싶을 때 설정한다.
+
+
+
+### 8-4 뷰 컨트롤러
+
+* 단순하게 요청 URL을 특정 뷰로 연결하고 싶을 때 사용할 수 있다.
+
+
+
+### 8-5 비동기 설정
+
+* 비동기 요청 처리에 사용할 타임아웃이나 `TaskExecutor`
+
+
+
+### 8-6 View Resolver 설정
+
+* **핸들러에서 리턴하는 뷰 이름에 해당하는 문자열을 View 인스턴스로 바꿔줄 뷰 리졸버를 설정한다.**
+
+
+
+### 8-7 Content Negotiation 설정
+
+* 요청 본문 또는 응답 본문을 어떤 (MIME)타입으로 보내야 하는지 결정하는 전략을 설정한다.
+  * Header에 Content-Type
+
+* 만약 `localhost:8080/test.json`처럼 특정 타입의 요청이나 응답을 처리하고 싶을 때 사용할 수 있다.
+
+
+
+> 이 외에도 여러가지 설정이 있다. 더 많은 내용과 자세한 내용은 [다음](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/config/annotation/WebMvcConfigurer.html)을 참고하자.
+
+
+
+## 9 마무리
+
+**스프링 MVC 설정은 쉽게 정리하면 `DispatcherServlet`이 사용할 빈들을 설정해주는 것이다.**
+
+* HandlerMapper
+* HandlerAdapter
+* ExceptionResolver
+* ...
+
+하나하나 등록하려면 너무 많고, 해당 빈들이 참조하는 또 다른 객체들까지 설정하려면 설정할게 너무 많다.
+
+  
+
+**@EnableWebMvc**
+
+그러므로 스프링에서는 `@EnableWebMvc`를 사용하면 기본적인 빈들을 등록해주도록 했다.
+
+* 애노테이션 기반의 스프링 MVC 설정 간편화
+* 기본적인 빈들을 설정해준다. (`WebMvcConfigurationSupport`)
+* `WebMvcConfigurer`가 제공하는 메서드를 구현하여 커스터마이징할 수 있다. (`Delegating...`)
+
+  
+
+**스프링 부트**
+
+* 스프링 부트 자동 설정을 통해 다양한 스프링 MVC 기능을 아무런 설정 파일을 만들지 않아도 제공한다.
+* `WebMvcConfigurer`가 제공하는 메서드를 구현하여 커스터마이징할 수 있다.
+* `@EnableWebMvc`를 사용하면 스프링 부트 자동 설정을 사용하지 못한다.
+
+* [3-2 스프링 MVC 커스터마이징](#3-2-스프링-mvc-커스터마이징-중요)를 참고하자.
+* 또한, `application.properties` 를 통해 쉽게 설정할 수 있다.
 
 
 
