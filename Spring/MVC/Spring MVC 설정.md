@@ -1,4 +1,4 @@
-[백기선님의 MVC 강의]()와 [여러 참고 자료](#참고)를 바탕으로 정리한 자료입니다.
+[백기선님의 MVC 강의](https://www.inflearn.com/course/%EC%9B%B9-mvc/dashboard)와 [참고 자료](#참고)를 바탕으로 정리한 자료입니다.
 
 
 
