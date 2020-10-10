@@ -28,7 +28,7 @@
   * [서블릿에 SpringMVC 연동](https://github.com/binghe819/TIL/blob/master/Spring/MVC/%EC%84%9C%EB%B8%94%EB%A6%BF%EC%97%90%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%97%B0%EB%8F%99.md)
   * [DispatcherServlet](https://github.com/binghe819/TIL/blob/master/Spring/MVC/DispatcherServlet.md)
   * [Spring MVC 설정](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20%EC%84%A4%EC%A0%95.md)
-  * [Spring MVC 활용]()
+  * [Spring MVC 활용](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20%ED%99%9C%EC%9A%A9.md)
 * Spring Boot
   * [Spring Boot 필터 설정](https://github.com/binghe819/TIL/blob/master/Spring/SpringBoot/SpringBootFilter.md)
 * Spring Security
@@ -121,3 +121,12 @@
 
 ## JavaScript
 
+
+
+
+
+
+
+## ETC
+
+* [Git 정리](https://github.com/binghe819/TIL/tree/master/ETC/Git)
