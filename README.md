@@ -37,6 +37,8 @@
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
   * [격리 수준 - Isolation Level]()
+* 예외처리
+  * [Spring Exception 처리 개념 및 전략 정리]()
 * Test
   * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
 * 기타
