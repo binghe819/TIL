@@ -102,6 +102,7 @@
 * 기타
   * [ThreadLocal](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/ThreadLocal.md)
   * [불변 객체](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4.md)
+  * [Enum]()
 
 
 
