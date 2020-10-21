@@ -198,6 +198,8 @@ HSACSHA256 (
 ## 2 JWT 구현
 
 > jwt 토큰을 생성하고 검증하는데 사용되는 `jjwt` 라이브러리를 이용해 구현해보았다.
+>
+> `jjwt`외에도 jwt 토큰을 생성하고 검증하는 라이브러리 : auth0, nimubs등등.
 
 * jwt 토큰 생성
 * jwt 토큰 파싱 및 검증
@@ -316,7 +318,7 @@ class JjwtTest {
 
 ## 3 Spring Security JWT 도입
 
-Spring Security에 JWT를 도입하는 방법과 예제는 [~~Spring Security JWT Hello World~~]()에 자세히 정리해두었다.
+Spring Security에 JWT를 도입하는 방법과 예제는 [Spring Security JWT Hello World](https://github.com/binghe819/spring-security-helloworld/tree/master/helloworld-spring-security-jwt)에 자세히 정리해두었다.
 
 
 
@@ -326,6 +328,7 @@ Spring Security에 JWT를 도입하는 방법과 예제는 [~~Spring Security JW
 * https://velopert.com/2389
 * https://velopert.com/2350
 * https://galid1.tistory.com/588
+* https://stackabuse.com/understanding-json-web-tokens-jwt/
 
 
 
