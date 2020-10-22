@@ -18,5 +18,6 @@
 
 # 목차
 
-* [GIT - 버전 관리]()
+* [GIT - 버전 관리](https://github.com/binghe819/TIL/blob/master/ETC/Git/%EB%B2%84%EC%A0%84%EA%B4%80%EB%A6%AC.md)
+* [GIT - Branch & Conflict]()
 
