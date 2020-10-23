@@ -1,6 +1,6 @@
 # 자바스크립트 기초 정리
 
->  본 글은 다음 세 권의 책을 바탕으로 작성되었습니다.
+>  본 정리집은 다음 세 권의 책을 바탕으로 작성되었습니다.
 >
 > * [모던 자바스크립트 Deep Dive](http://www.yes24.com/Cooperate/Naver/welcomeNaver.aspx?pageNo=1&goodsNo=11781589)
 > * [코어 자바스크립트](http://www.yes24.com/Cooperate/Naver/welcomeNaver.aspx?pageNo=1&goodsNo=11781589)
@@ -20,5 +20,5 @@
 
 # 목차
 
-* [01 자바스크립트 개요]()
+* [01 자바스크립트 개요](https://github.com/binghe819/TIL/blob/master/JS/01%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B0%9C%EC%9A%94.md)
 

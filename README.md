@@ -126,7 +126,7 @@
 
 ## JavaScript
 
-* [JS 기초 정리]()
+* [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS)
 
 
 
