@@ -36,8 +36,9 @@
 ### 1-1 트랜잭션이란
 
 <p  align="center">
-<img src="image/500px-%E1%84%90%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%A2%E1%86%A8%E1%84%89%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B4_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%89%E1%85%A5%E1%86%BC.png" />
+<img src="image/500px-트랜잭션의_필요성.png" />
 출처 : http://wiki.hash.kr/index.php/트랜잭션</p>
+
 
 * 트랜잭션의 사전적 의미 : 거래
   * 하나의 거래는 **두 요소가 서로 주고 받았을때 성사**된다.
@@ -53,7 +54,8 @@
 ### 1-2 트랜잭션의 상태
 
 <p align="center">
-<img src="image/500px-%E1%84%90%E1%85%B3%E1%84%85%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%A2%E1%86%A8%E1%84%89%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%86%BC%E1%84%90%E1%85%A2.png"/>출처 : http://wiki.hash.kr/index.php/트랜잭션</p>
+<img src="image/500px-트랜잭션의_상태.png"/>출처 : http://wiki.hash.kr/index.php/트랜잭션</p>
+
 
 * 활동(Active) : 트랜잭션이 실행 중인 상태
 * 실패(Failed) : 트랜잭션 실행에 오류가 발생하여 중단된 상태
@@ -67,8 +69,9 @@
 
 #### COMMIT
 
-<p align="center"><img src="image/500px-%E1%84%8F%E1%85%A5%E1%84%86%E1%85%B5%E1%86%BA(COMMIT).png"  />
+<p align="center"><img src="image/500px-커밋(COMMIT).png"  />
 출처 : http://wiki.hash.kr/index.php/트랜잭션</p>
+
 
 * 커밋은 모든 작업들을 **정상적으로 처리하겠다고 확정하는 명령어**이며, **처리과정을 DB에 영구적으로 저장**하는 것.
 
@@ -76,8 +79,9 @@
 
 #### ROLLBACK
 
-<p align="center"><img src="image/500px-%E1%84%85%E1%85%A9%E1%86%AF%E1%84%87%E1%85%A2%E1%86%A8(ROKKBACK).png" />
+<p align="center"><img src="image/500px-롤백(ROKKBACK).png" />
 출처 : http://wiki.hash.kr/index.php/트랜잭션</p>
+
 
 * 롤백은 작업 중 **문제가 발생**하여 트랜잭션의 처리과정에서 발생한 **변경사항을 취소하는 명령어**이다.
 

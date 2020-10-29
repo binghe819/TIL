@@ -36,7 +36,6 @@
   * [Spring Security JWT](https://github.com/binghe819/TIL/blob/master/Spring/Security/Spring%20Security%20JWT.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
-  * [격리 수준 - Isolation Level]()
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리]()
 * Test
@@ -70,8 +69,10 @@
 * 데이터 모델링
   * [데이터 모델링 기초 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81%20%EA%B8%B0%EC%B4%88.md)
   * [정규형](https://github.com/binghe819/TIL/blob/master/DB/RDB/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%AA%A8%EB%8D%B8%EB%A7%81/%EC%A0%95%EA%B7%9C%ED%98%95.md)
+* 트랜잭션
+  * [트랜잭션](https://github.com/binghe819/TIL/blob/master/DB/RDB/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/Transaction.md)
 * 인덱스
-  * [DB 인덱스 개념]()
+  * [인덱스 개념]()
 * [h2](https://github.com/binghe819/TIL/blob/master/DB/RDB/h2/h2.md)
 * [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
 
