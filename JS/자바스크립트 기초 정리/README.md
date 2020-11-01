@@ -21,4 +21,7 @@
 # 목차
 
 * [01 자바스크립트 개요](https://github.com/binghe819/TIL/blob/master/JS/01%20%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B0%9C%EC%9A%94.md)
+* [02 데이터 타입 및 연산자](https://github.com/binghe819/TIL/blob/master/JS/02%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90.md)
+* [03 객체]()
+* [04 함수]()
 
