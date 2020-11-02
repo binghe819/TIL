@@ -37,7 +37,7 @@
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
 * 예외처리
-  * [Spring Exception 처리 개념 및 전략 정리]()
+  * [Spring Exception 처리 개념 및 전략 정리](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
 * Test
   * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
 * 기타
@@ -127,7 +127,7 @@
 
 ## JavaScript
 
-* [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS)
+* [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC)
 
 
 
