@@ -14,5 +14,5 @@
 * [06 메시지와 인터페이스](https://github.com/binghe819/TIL/blob/master/OOP/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/06%20%EB%A9%94%EC%8B%9C%EC%A7%80%EC%99%80%20%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
 * [08 의존성 관리하기](https://github.com/binghe819/TIL/blob/master/OOP/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/08%20%EC%9D%98%EC%A1%B4%EC%84%B1%20%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0.md)
 * [09 유연한 설계]()
-* [11 합성과 유연한 설계]()
+* [11 합성과 유연한 설계](https://github.com/binghe819/TIL/blob/master/OOP/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/11%20%ED%95%A9%EC%84%B1%EA%B3%BC%20%EC%9C%A0%EC%97%B0%ED%95%9C%20%EC%84%A4%EA%B3%84.md)
 
