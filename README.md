@@ -76,7 +76,8 @@
 * 인덱스
   * [인덱스 개념]()
 * [h2](https://github.com/binghe819/TIL/blob/master/DB/RDB/h2/h2.md)
-* [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
+* SQL
+  * [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
 
 
 
@@ -99,9 +100,10 @@
   * [Thread](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Thread.md)
   * [Lambda](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Lambda.md)
   * [네트워킹](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md)
-* 모던 자바
-  * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
+* [Effective Java 3/E]()
+* [백기선님 live-study]()
 * 기타
+  * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
   * [ThreadLocal](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/ThreadLocal.md)
   * [불변 객체](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/%EB%B6%88%EB%B3%80%20%EA%B0%9D%EC%B2%B4.md)
   * [Enum](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/%EC%97%B4%EA%B1%B0%ED%98%95(enum).md)
