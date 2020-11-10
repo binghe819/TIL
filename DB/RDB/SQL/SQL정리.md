@@ -1,29 +1,6 @@
 # 목차
 
-- [SQL 정리](#sql-정리)
-  * [조회](#조회)
-    + [SELECT](#select)
-    + [DISTINCT](#distinct)
-    + [WHERE](#where)
-      - [LIKE](#like)
-      - [IN](#in)
-      - [Between](#between)
-    + [ORDER BY](#order-by)
-    + [GROUP BY](#group-by)
-      - [그룹 함수](#그룹-함수)
-      - [HAVING](#having)
-    + [JOIN](#join)
-      - [LEFT OUTER JOIN](#left-outer-join)
-      - [INNER JOIN](#inner-join)
-      - [FULL OUTER JOIN](#full-outer-join)
-  * [삽입](#삽입)
-  * [갱신](#갱신)
-  * [삭제](#삭제)
-  * [테이블](#테이블)
-    + [CREATE TABLE](#create-table)
-    + [ALTER TABLE](#alter-table)
-    + [DROP TABLE](#drop-table)
-- [참조](#참조)
+
 
 
 
@@ -32,6 +9,37 @@
 🤔  SQL
 
 * SQL (Structrued Query Language, 구조화 질의어)는 RDBMS의 데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어이다.
+
+
+
+## 데이터 베이스
+
+
+
+### 관계 대수
+
+* **관계 대수라는 것에 착안하여 고안된 데이터베이스가 바로 관계형 데이터 베이스(이하 RDB)이다.**
+* 관계 대수란?
+  * RDB에서 원하는 정보와 그 정보를 검색하기 위해서 어떻게 유도하는 가를 기술하는 절차적인 언어.
+  * **연산자와 연산규칙을 제공하는 언어로 피연산자가 릴레이션이고 결과도 릴레이션이다.**
+  * **질의에 대한 해를 구하기 위해 수행해야 할 연산의 순서를 명시한다.**
+  * 대표적으로 순수 관계 연산자와 일반 집합 연산자가 있다.
+* 순수 관계 연산자
+  * RDB에 적용할 수 있또록 특별히 개발한 관계 연산자
+    * Select, Join, Devision...
+* 일반 집합 연산자
+  * 일반집합 연산자는 수학적 집합 이론에서 사용하는 연산자로서 릴레이션 연산에도 그대로 적용할 수 있다.
+    * 합집합, 교집합, 차집합, 교차곱...
+
+
+
+### 클라이언트/서버 모델
+
+<p align="center"><img src="image/image-20201110134906702.png" /><br>출처 : https://www.ktexperts.com/clientserver-architecture-of-mysql/</p>
+
+* 많은 RDBMS가 클라이언트/서버 모델을 사용중이다.
+
+
 
 
 
@@ -47,6 +55,7 @@ SELECT UserID, Name FROM USERS;
 ```
 
 * 조회
+  * **SELECT 구는 열을 선택할 때 사용한다.**
 
 
 
@@ -94,6 +103,10 @@ SELECT * FROM USER WHERE USERID = 2 OR ( NAME = '홍길동' AND AGE = 20)
 ```
 
 * 조건문
+  * **행을 선택할 때 사용한다.**
+* NULL 값을 검색할 경우에는 `IS NULL`을 사용한다.
+* AND는 OR에 비해 우선 순위가 높다.
+  * 가능한 AND OR을 사용할때는 괄호를 사용하자.
 
 | 명령어  | 설명                                             |
 | ------- | ------------------------------------------------ |
@@ -123,6 +136,9 @@ SELECT *  FROM USER WHERE NAME LIKE '%동'
 ```
 
 * 시작, 포함, 끝나는 단어 조회
+  * 문자열 이스케이프 - 원하는 문자열 앞에 `\` 혹은 `'`'를 붙여주면 된다.
+    * `%/%%`
+    * `'It''s'`
 
 
 
@@ -432,6 +448,19 @@ DROP TABLE 테이블명
 ```
 
 
+
+##  기타
+
+
+
+### DESC
+
+```sql
+DESC 테이블명;
+```
+
+* 테이블에 어떤 열이 정의되어 있는지 알 수 있다.
+  * SQL 명령어는 아니다.
 
 
 
