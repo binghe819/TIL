@@ -164,6 +164,16 @@ SELECT * FROM USER WHERE AGE BETWEEN 20 AND 23
 
 
 
+#### 내부 처리 순서
+
+<img src="image/image-20201111132308908.png" width="500" />
+
+* WHERE 구 -> SELECT 구 -> ORDER BY 구
+  * 위 순서로 대부분의 DB가 동작한다고 한다.
+  * 그러므로, SELECT에서 설정한 별명(AS)는 WHERE에서는 사용할 수 없다.
+
+
+
 ### ORDER BY
 
 ```sql
@@ -183,7 +193,31 @@ SELECT * FROM USER ORDER BY NAME DESC
 SELECT * FROM USER ORDER BY NAME ASC, AGE DESC
 ```
 
+* ORDER BY 구로 정렬하고 싶은 열을 지정하면, 지정된 열의 값에 따라 행의 순서가 변경된다.
+* ORDER BY는 복수의 열을 지정할 수 있다.
+  * 지정한 열명의 순서에 따라, 값이 같아 순서를 결정할 수 없는 경우에 다음 지정된 열로 정렬을 한다.
+* NULL 값의 정렬순서
+  * NULL 값은 대소비교를 할 수 없다. 그러므로 가장 작은 값이나, 가장 큰 값으로 취급된다. (DB마다 다르다.)
+  * MySQL에서는 오름차순에서는 가장 작은 값으로 취급하고, 내림차순에서는 가장 큰 값으로 취급한다.
 
+
+
+### LIMIT
+
+```sql
+// 최대 3개 행을 결과로 받아온다.
+SELECT * FROM USER LIMIT 3;
+```
+
+* LIMIT으로 결과의 최대 행수를 지정할 수 있다.
+
+
+
+### OFFSET
+
+<img src="image/image-20201111130052263.png" width="400" />
+
+* LIMIT과 OFFSET을 이용하여 페이징 처리를 할 수 있다.
 
 
 
@@ -343,6 +377,28 @@ SELECT * FROM article LEFT JOIN USER ON article.user = USER.uid
   * `FULL JOIN` =  `LEFT JOIN` UNION `RIGHT JOIN`
 
 > 전혀 사용되지는 않지만.. JOIN의 원리를 이해하는데 도움이 되는 것 같다.
+
+
+
+### CASE
+
+```sql
+CASE WHEN 조건식1 THEN 식1
+	[WHEN 조건식2 THEN 식2 ...]
+	[ELSE 식3]
+END
+
+-- 예시
+SELECT a AS '코드',
+CASE
+	WHEN a = 1 THEN '여자'
+	WHEN a = 2 THEN '남자'
+	ELSE '미지정'
+END AS "성별" FROM USER;
+```
+
+* 임의의 조건에 따라 독자적으로 변환 처리를 지정해 데이터를 변환하고 싶을때 CASE 문을 이용할 수 있다.
+* CASE 문의 ELSE를 생략하면 자동적으로 ELSE NULL로 된다. 문제가 생길 여지가 많기 때문에 ELSE도 항상 같이 사용하는 편이 좋다.
 
 
 
