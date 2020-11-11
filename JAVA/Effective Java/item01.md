@@ -1,22 +1,10 @@
 > 본 자료는 [Effective Java 3/E]()를 바탕으로 작성되었습니다.
 
+# 아이템 1. 생성자 대신 static 팩토리 메서드를 고려하라
 
+> 1장은 객체의 생성과 파괴를 다룬다.
 
-# 목차
-
-
-
-
-
-
-
-
-
-# 1장 객체 생성과 파괴
-
-> 이번 장은 객체의 생성과 파괴를 다룬다.
-
-이번 장의 학습 목표
+**1장의 학습 목표**
 
 1. 객체를 만들어야할 때와 만들지 말아야 할 때는 구분하는 방법.
 2. 올바른 객체 생성 방법을 알 수 있다.
@@ -25,11 +13,7 @@
 
 
 
-## 아이템 1. 생성자 대신 static 팩토리 메서드를 고려하라
-
-
-
-### 인스턴스를 생성하는 방법
+## 인스턴스를 생성하는 방법
 
 ```java
 public static Boolean valueOf(boolean b) {
@@ -47,7 +31,7 @@ public static Boolean valueOf(boolean b) {
 
 
 
-### 팩토리 메서드의 장점과 단점
+## 팩토리 메서드의 장점과 단점
 
 
 
@@ -164,7 +148,7 @@ public class Person {
 
 
 
-### 정적 팩토리 메서드의 흔히 사용되는 명명 방식
+## 정적 팩토리 메서드의 흔히 사용되는 명명 방식
 
 * `from` : 매개변수를 하나 받아서 해당 타입의 인스턴스를 반환하는 형변환 메서드
   * `Date d = Date.from(instant)`
@@ -183,80 +167,4 @@ public class Person {
   * `BufferedReader br = Files.newBufferedReader(path)`
 * `type` : getType과 newType의 간결한 버전
   * `List<Complaint> litany = Collections.list(legacyLitany);`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
