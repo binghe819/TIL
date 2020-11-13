@@ -120,10 +120,6 @@
 
 
 
-
-
-
-
 ## 2 JVM 구성요소
 
 <p align="center"><img src="image/D38KNzioDbt2_m19tsFbCrbTqC9AU_U90mYuz8hGAjqlUifVzIosfa47XWM1Qh86BkIjFftYtxtbAK-rLyDWVYKWhiCEFU8olzevvlQQ55ZFQz6c1jo0KboAszRbnYdijmXoFEUc.png" width="450" /><br>출처 : 백기선님 더 자바 강의</p>
@@ -138,11 +134,16 @@
 
 ### 2-2 메모리
 
-* 메서드 (class 영역)
-  * 메모리 영역에는 클래스 수준의 정보 (클래스 이름, 부모 클래스 이름, 메서드, 변수) 저장.
-  * class, interface 등등.
+* 메서드
+  * 필드 정보 (클래스 멤버 변수명, 데이터 타입, 접근 제어자 정보)
+  * 메서드 정보 (메서드명, 리턴 타입, 접근 제어자 정보)
+  * 타입 정보 (Class인지 interface인지)
+  * Constant Pool (상수 풀 : 문자 상수, 타입, 필드, 객체 참조 저장)
+  * static 변수
+  * final 클래스 변수
 * 힙
-  * 객체 저장되는 공간.
+  * 객체 저장되는 공간. (new로 생성된 객체와 배열이 생성되는 영역)
+  * Method 영역에 로드된 class만 생성 가능하며 GC가 참조되지 않은 메모리를 확인하고 제거하는 영역
 * 스택
   * 스레드마다 런타임 스택을 만들고, 그 안에 메서드 호출을 스택 프레임이라 부르는 블럭으로 쌓는다.
   * 스레드 종료하면 런타임 스택도 사라진다. (main 스레드 포함 모든 스레드 종료시 프로세스 종료)
@@ -152,6 +153,15 @@
 * 네이티브 메서드 스택
   * 자바 이외의 언어 (C, C++, 어셈블리 등)로 작성된 코드를 실행할 때, Native Method Stack이 할당되며, 일반적인 C 스택을 사용한다.
   * 일반적인 경우 JVM 스택에 쌓이다가 해당 메서드 내부에 네이티브 방식을 사용하는 메서드가 있다면 해당 메서드는 네이티브 스택에 쌓인다.
+
+
+
+### 2-3 실행 엔진
+
+* 실행 엔진은 크게 3가지로 나뉜다.
+  * 인터프리터
+  * JIT 컴파일러
+  * GC
 
 
 
@@ -180,7 +190,7 @@ $ java 소스파일명
 
 
 
-### 3-4 JDK와 JRE의 차이
+### 3-3 JDK와 JRE의 차이
 
 <p align="center"><img src="image/7QSVIUdwS2HtcIrtQ2l3fnZYPhANpNIsjyAz60oMfaoVZ6m6LP-UjeXJgvq8H1J-ICbdSkk7Bbg6qS-lKNGk5eOkua5e7Q2fnTVUzpcc-ryClJrGvMGYqAQWV9LaJwWI5Z0JLS1S.png" width="300" /><br>출처 : 백기선님 더 자바 강의</p>
 
