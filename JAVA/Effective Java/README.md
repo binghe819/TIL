@@ -18,4 +18,5 @@
   * [아이템 7. 다 쓴 객체 참조를 해제하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item07.md)
   * [아이템 8. finalizer와 cleaner 사용을 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item08.md)
   * [아이템 9. try-finally 보다는 try-with-resources를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item09.md)
+  * [아이템 10. equals는 일반 규약을 지켜 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item10.md)
 
