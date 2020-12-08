@@ -20,5 +20,6 @@
   * [아이템 9. try-finally 보다는 try-with-resources를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item09.md)
 * 3장 모든 객체의 공통 메서드
   * [아이템 10. equals는 일반 규약을 지켜 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item10.md)
-  * [아이템 11. equals를 재정의하려거든 hashcode도 재정의하라](./Item11.md)
+  * [아이템 11. equals를 재정의하려거든 hashcode도 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item11.md)
+  * [아이템 12. toString을 항상 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item12.md)
 
