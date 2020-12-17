@@ -384,6 +384,12 @@ stream2.distinct().forEach(System.out::print); // 123456
 
 #### 스트림 변환 - map, flatMap
 
+> filter가 조건을 충족시키는 아이템들만으로 새로운 스트림을 생성한다면,
+>
+>  `Map`은 각각의 item을 변경하여 새로운 컨텐츠를 생성하는 기능이다.
+>
+>  filter와 마찬가지로 `map(함수)`으로 어떻게 아이템을 변경시킬 지 함수로 정의한다.
+
 ```java
 Stream<String> stream = Stream.of("JAVA", "C", "C++", "PYTHON");
 stream.map(s -> s.length()).forEach(System.out::println);
@@ -393,9 +399,20 @@ stream.map(s -> s.length()).forEach(System.out::println);
 * map() : 해당 스트림의 요소들을 주어진 함수에 인수로 전달하여, 그 반환값들로 이루어진 새로운 스트림을 반환한다.
   * 즉, 스트램 내 요소들을 하나씩 특정 값으로 변환해준다. 값을 변환하기 위한 람다를 인자로 받는다.
 
+> FlatMap은 여러개의 스트림을 한개의 스트림으로 합쳐준다.
+>
+> 복잡한 스트림을 간단한 스트림으로 변경되는데 사용할 수 있다.
+
 ```java
 Stream<String> stream = Stream.of("I study hard", "You study JAVA", "I am hungry");
-stream.flatMap(s -> Stream.of(s.split(" +"))).forEach(System.out::println);
+stream.flatMap(s -> Stream.of(s.split(" "))).forEach(System.out::println);
+```
+
+```java
+String[][] arrays = new String[][]{ {"a1", "a2"}, {"b1", "b2"}, {"c1", "c2", "c3"} };
+Stream<String[]> stream4 = Arrays.stream(arrays);
+Stream<String> stream5 = stream4.flatMap(s -> Arrays.stream(s));
+stream5.forEach(System.out::println);
 ```
 
 * flatMap() : 만약 스트림의 요소가 배열이라면, flatMap() 메서드를 사용하여 각 배열의 각 요소의 반환값을 하나로 합친 새로운 스트림을 얻을 수 있다.
@@ -611,3 +628,4 @@ System.out.println(evenLengthList);               // JAVA, PYTHON
 * 자바의 정석 - 스트림
 * http://www.tcpschool.com/java/java_stream_concept
 * https://futurecreator.github.io/2018/08/26/java-8-streams/
+* https://codechacha.com/ko/stream-filter/
