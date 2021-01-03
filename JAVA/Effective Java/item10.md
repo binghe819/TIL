@@ -131,6 +131,20 @@ public boolean equals(Object o) {
    * 모든 필드가 일치하면 `true`를, 하나라도 다르면 `false`를 반환한다.
    * 기본 타입은 `==`를 사용해도 되지만, 참조형이면 `equals`를 사용한다.
 
+### 전형적인 equals
+```java
+// PhoneNumber
+@Override public boolean equals(Object o) {
+    if (o == this)
+        return true;
+    if (!(o instanceof PhoneNumber))
+        return false;
+    PhoneNubmer pn = (PhoneNumber)o;
+    return pn.lineNum == lineNum 
+        && pn.prefix == prefix
+        && pn.areaCode == areaCode;
+}
+```
 <br>
 
 이외에도 `equals`를 구현했다면 세 가지만 자문해보자.
