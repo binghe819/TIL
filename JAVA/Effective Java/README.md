@@ -30,4 +30,5 @@
   * [아이템 17. 변경 가능성을 최소화하라 (불변객체)](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item17.md)
   * [아이템 18. 상속보다는 조합을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item18.md)
   * [아이템 19. 상속을 고려해 설계하고 문서화하라. 아니면 상속을 금지하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item19.md)
+  * [아이템 20. 추상 클래스보다는 인터페이스를 우선하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item20.md)
 
