@@ -195,7 +195,7 @@ public class Outer {
 ### 어댑터 역할을 한다
 non-static 멤버 클래스는 어떤 클래스의 인스턴스를 감싸 마치 다른 클래스의 인스턴스처럼 보이게 하는 **뷰 역할**을 할 때 사용된다.
 
-<p align="center"><img src="./image/스크린샷 2021-01-08 오후 1.51.25.png" width="700"></p>
+<p align="center"><img src="./image/keyset.png" width="700"></p>
 
 위 예시처럼, `Map`은 인스턴스화되고, 자신의 컬렉션 뷰(`keySet`, `entrySet`...)을 구현할 때 non-static 멤버 클래스를 사용한다.
 
