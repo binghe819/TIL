@@ -36,4 +36,8 @@
   * [아이템 23. 태그 달린 클래스보다는 클래스 계층구조를 활용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item23.md)
   * [아이템 24. 멤버 클래스는 되도록 static으로 만들라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item24.md)
   * [아이템 25. 톱레벨 클래스는 한 파일에 하나만 담아라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item25.md)
+* 5장 제네릭
+  * [제네릭 기초 간단 정리](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/generic.md)
+  * [아이템 26. 로 타입은 사용하지 말라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item26.md)
+  * [아이템 27. 비검사 경고를 제거하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item27.md)
 
