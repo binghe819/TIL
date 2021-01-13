@@ -152,7 +152,8 @@ static <T> void sort(List<T> list, Comparator<? super T> c)
 <br>
 
 ### 제네릭 클래스와 제네릭 메서드
-<p align="center"><img src="./image/스크린샷 2021-01-13 오후 3.51.08.png" width="500"></p>
+
+<p align="center"><img src="./image/generic_example.png" width="500"></p>
 
 * 제네릭 클래스에 정의된 타입 매개변수(T)와 제네릭 메서드에 정의된 타입 매개변수는 전혀 별개의 것이다.
   * static멤버에는 타입 매개변수를 사용할 수 없지만, 이처럼 제네릭 메서드는 사용이 가능하다.
