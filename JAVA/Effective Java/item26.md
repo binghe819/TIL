@@ -25,7 +25,7 @@
 ## 로타입의 문제 - 타입 안정성
 
 ```java
-// 로타입 선언
+// 로타입 선언 (elements가 Object로 생성됨)
 List stamps = new ArrayList();
 
 // 실수로 coin을 넣는다.
@@ -33,13 +33,12 @@ stamps.add(new Coin()); // "unchecked call" 경로를 내뱉지만 실행은 된
 
 // 로타입의 반복자 - 문제 발생
 for (Iterator i = stamps.iterator(); i.hasNext();) {
-    Stamp stamp = (Stamp)  i.next(); // ClassCaseException을 던진다.
+    Stamp stamp = (Stamp)i.next(); // ClassCaseException을 던진다.
     // ...
 }
 ```
 * 위와 같이 로타입은 `stamp`만 담고자하는 리스트에 `coin`을 담아도 컴파일타임때 에러가 안난다.
 * 오류가 발생하고 한참 뒤인 런타임에야 알아챌 수 있다.
-  * 이렇게되면 오류와 원인을 제공하는 코드가 물리적으로 상당히 떨어져 있을 가능성이 높다.
 > **위와 같은 문제로 로타입을 쓰면 제네릭이 안겨주는 안전성과 표현력을 잃게 된다. 사용하지 말자.**
 
 <br>
@@ -68,7 +67,7 @@ private static void unsafeAdd(List list, Object data) { // 로타입의 안 좋�
 절대 써서는 안 되는 로타입을 애초에 왜 만들어놓은 것일까??
 * 바로 호환성 때문이다.
   * 제네릭이 도입되기 전 10년의 기존 코드를 모두 호환하기위해서 그대로 두는 것.
-  * 이와 같이 마이그레이션 호환성을 위해 로타입을 지원하고 제네릭 구현에는 소거([아이템 28](./item28.md))방식을 사용하기로 했다.
+  * **이와 같이 마이그레이션 호환성을 위해 로타입을 지원하고 제네릭 구현에는 소거([아이템 28](./item28.md))방식을 사용하기로 했다.**
 
 <br>
 
