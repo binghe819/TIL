@@ -15,15 +15,18 @@
 # 목차
 
 * 개요
-  * [자바스크립트란? (자바스크립트와 ECMAScript)]()
+  * [자바스크립트란? (자바스크립트와 ECMAScript)](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B0%9C%EC%9A%94/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%9E%80.md)
 * 데이터 타입 및 연산자
-  * [메모리 특징]()
-  * [표현식과 문]()
-  * [동적 타입]()
-  * [데이터 타입]()
-  * [비교 연산자]()
-  * [타입 변환]()
-  * [단축 평가]()
+  * 기본 타입 (Primitive)
+    * [메모리 특징](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%A9%94%EB%AA%A8%EB%A6%AC%20%ED%8A%B9%EC%A7%95.md)
+    * [표현식과 문](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC%20%EB%AC%B8.md)
+    * [동적 타입](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8F%99%EC%A0%81%ED%83%80%EC%9E%85.md)
+    * [데이터 타입](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85.md)
+    * [비교 연산자](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%B9%84%EA%B5%90%20%EC%97%B0%EC%82%B0%EC%9E%90.md)
+    * [타입 변환](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%ED%83%80%EC%9E%85%20%EB%B3%80%ED%99%98.md)
+    * [단축 평가](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8B%A8%EC%B6%95%20%ED%8F%89%EA%B0%80.md)
+  * 객체 타입
+    * [객체]()
 
 
 <br>
