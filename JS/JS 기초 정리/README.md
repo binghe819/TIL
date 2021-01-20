@@ -26,11 +26,15 @@
     * [타입 변환](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%ED%83%80%EC%9E%85%20%EB%B3%80%ED%99%98.md)
     * [단축 평가](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8B%A8%EC%B6%95%20%ED%8F%89%EA%B0%80.md)
   * 객체 타입
-    * [기본자료형과 참조형의 차이]()
-    * [객체란]()
-    * [객체 생성]()
-    * [배열]()
+    * [기본자료형과 참조형의 차이](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EA%B8%B0%EB%B3%B8%EC%9E%90%EB%A3%8C%ED%98%95%EA%B3%BC%20%EC%B0%B8%EC%A1%B0%ED%98%95%EC%9D%98%20%EC%B0%A8%EC%9D%B4.md)
+    * [객체란](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EA%B0%9D%EC%B2%B4%EB%9E%80.md)
+    * [객체 생성](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EA%B0%9D%EC%B2%B4%20%EC%83%9D%EC%84%B1.md)
+    * [배열](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%B0%B0%EC%97%B4.md)
   * 함수
+    * [함수 정의](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EC%A0%95%EC%9D%98.md)
+    * [함수 객체](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EA%B0%9D%EC%B2%B4.md)
+    * [함수의 다양한 형태]()
+    * [this]()
   * 프로토타입
     * [프로토타입이란]()
 
