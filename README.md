@@ -16,9 +16,9 @@
   * [Bean](https://github.com/binghe819/TIL/blob/master/Spring/IoC/Bean.md)
   * [ApplicationContext](https://github.com/binghe819/TIL/blob/master/Spring/IoC/ApplicationContext.md)
 * AOP
-  * [AOP 개념]()
-  * [용어 정리]()
-  * [프록시 패턴]()
+  * [AOP 개념 - 예정]()
+  * [용어 정리 - 예정]()
+  * [프록시 패턴 - 예정]()
 * Servlet
   * [Head First Servlet & First](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/Head%20First%20Servlets%20%26%20JSP)
   * [Servlet Filter](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletFilter.md)
@@ -36,8 +36,8 @@
   * [Spring Security JWT](https://github.com/binghe819/TIL/blob/master/Spring/Security/Spring%20Security%20JWT.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
 * 트랜잭션
-  * [PlatformTransactionManager]()
-  * [@Transactional]()
+  * [PlatformTransactionManager - 예정]()
+  * [@Transactional - 예정]()
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
 * Test
@@ -74,7 +74,7 @@
 * 트랜잭션
   * [트랜잭션](https://github.com/binghe819/TIL/blob/master/DB/RDB/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/Transaction.md)
 * 인덱스
-  * [인덱스 개념]()
+  * [인덱스 개념 - 예정]()
 * [h2](https://github.com/binghe819/TIL/blob/master/DB/RDB/h2/h2.md)
 * SQL
   * [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
@@ -134,7 +134,7 @@
 
 ## JavaScript
 
-* [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC)
+* [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC)
 
 
 
