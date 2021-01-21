@@ -33,7 +33,7 @@
   * 함수
     * [함수 정의](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EC%A0%95%EC%9D%98.md)
     * [함수 객체](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EA%B0%9D%EC%B2%B4.md)
-    * [함수의 다양한 형태]()
+    * [함수의 다양한 형태](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%EC%9D%98%20%EB%8B%A4%EC%96%91%ED%95%9C%20%ED%98%95%ED%83%9C.md)
     * [this]()
   * 프로토타입
     * [프로토타입이란]()
