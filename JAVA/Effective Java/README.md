@@ -44,4 +44,5 @@
   * [아이템 29. 이왕이면 제네릭 타입으로 만들라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item29.md)
   * [아이템 30. 이왕이면 제네릭 메서드로 만들라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item30.md)
   * [아이템 31. 한정적 와일드카드를 사용해 API 유연성을 높이라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item31.md)
-
+* 5장 열거 타입과 애너테이션
+  * [아이템 34. int 상수 대신 열거 타입을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item34.md)
