@@ -30,13 +30,13 @@
     * [객체란](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EA%B0%9D%EC%B2%B4%EB%9E%80.md)
     * [객체 생성](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EA%B0%9D%EC%B2%B4%20%EC%83%9D%EC%84%B1.md)
     * [배열](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%B0%B0%EC%97%B4.md)
-  * 함수
-    * [함수 정의](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EC%A0%95%EC%9D%98.md)
-    * [함수 객체](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EA%B0%9D%EC%B2%B4.md)
-    * [함수의 다양한 형태](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%EC%9D%98%20%EB%8B%A4%EC%96%91%ED%95%9C%20%ED%98%95%ED%83%9C.md)
-    * [this]()
-  * 프로토타입
-    * [프로토타입이란]()
+* 함수
+  * [함수 정의](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EC%A0%95%EC%9D%98.md)
+  * [함수 객체](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%EA%B0%9D%EC%B2%B4.md)
+  * [함수의 다양한 형태](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%EC%9D%98%20%EB%8B%A4%EC%96%91%ED%95%9C%20%ED%98%95%ED%83%9C.md)
+  * [함수 호출과 this](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%ED%98%B8%EC%B6%9C%EA%B3%BC%20this.md)
+* 프로토타입
+  * [프로토타입이란]()
 
 
 <br>

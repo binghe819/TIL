@@ -12,6 +12,9 @@
     - [3-2 생성자 함수의 동작 방식](#3-2-생성자-함수의-동작-방식)
     - [3-3 생성자 함수의 this](#3-3-생성자-함수의-this)
   - [4 call과 apply 메서드를 이용한 명시적인 this 바인딩](#4-call과-apply-메서드를-이용한-명시적인-this-바인딩)
+  - [5 함수 리턴](#5-함수-리턴)
+    - [5-1 일반 함수나 메서드는 리턴값을 지정하지 않으면 undefined 값이 리턴된다](#5-1-일반-함수나-메서드는-리턴값을-지정하지-않으면-undefined-값이-리턴된다)
+    - [5-2 생성자 함수에서 리턴값을 지정하지 않을 경우 생성된 객체가 리턴된다](#5-2-생성자-함수에서-리턴값을-지정하지-않을-경우-생성된-객체가-리턴된다)
 
 <br>
 
@@ -233,4 +236,95 @@ console.log(me.name);
 <br>
 
 ## 4 call과 apply 메서드를 이용한 명시적인 this 바인딩
+```js
+// thisArg : apply() 메서드를 호출한 함수 내부에서 사용한 this에 바인딩할 객체
+// argArray : 함수를 호출할 때 넘길 인자들의 배열을 가리킨다.
+function.apply(thisArg, argArray)
+```
+```js
+// 생성자 함수
+function Person(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+}
 
+// foo 빈 객체 생성
+var foo = {};
+
+// apply() 메서드 호출
+Person.apply('foo', 30, 'man');
+```
+* call, apply 메서드란?
+  * `this`를 특정 객체에 명시적으로 바인딩시키는 방법.
+* `apply()` 핵심 개념
+  * `apply()`메서드는 `this`를 특정 객체에 바인딩할 뿐 결국 본질적인 기능은 **함수 호출**이다.
+  * 예를 들어, `Person.apply()` 호출하면 이것의 기본적인 기능은 `Person()` 함수를 호출하는 것이다.
+* `call`은 `apply()`에서 매개변수만 조금 달라진 것 뿐이다.
+
+<br>
+
+**예시**
+
+`this`를 원하는 값으로 명시적으로 매핑해서 특정 함수나 메서드를 호출할 수 있다는 장점이 있다.
+
+```js
+function myFunction() {
+    console.dir(arguments);
+
+    // arguments.shift(); 배열 메서드이므로 오류 발생
+
+    // arguments 객체를 배열로 변환
+    var args = Array.prototype.slice.apply(arguments);
+    console.dir(args);
+}
+
+myFunction(1, 2, 3);
+```
+
+<p align="center"><img src="./image/test8.png" width="500"></p>
+
+* `Array.prototype.splice()` 메서드를 호출해라. 이때 `this`는 `arguments` 객체로 바인딩하라.
+* 유사 배열 객체을 배열 객체처럼 사용할 수 있게 됐다.
+
+<br>
+
+## 5 함수 리턴
+**JS 함수는 항상 리턴값을 반환한다.**
+
+<br>
+
+### 5-1 일반 함수나 메서드는 리턴값을 지정하지 않으면 undefined 값이 리턴된다
+```js
+// noReturnFunc() 함수
+var noReturnFunc = function() {
+    console.log('This function has no return statement.');
+};
+
+var result = noReturnFunc();
+console.log(result);
+
+// 결과
+This function has no return statement.
+undefined
+```
+
+<br>
+
+### 5-2 생성자 함수에서 리턴값을 지정하지 않을 경우 생성된 객체가 리턴된다
+```js
+// Person() 생성자 함수
+function Person(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+
+    // 명시적으로 다른 객체 반환
+    return {name:'bar', age:20, gender:'woman'};
+}
+
+var foo = new Person('foo', 30, 'man');
+console.dir(foo); // age: 20, gender: 'woman', name: 'bar'
+```
+* 위와 같이 명시적으로 다른 객체를 반환하면 해당 객체가 반환된다.
+* 하지만 만약 객체가 아닌 불린, 숫자, 문자열의 경우는 리턴 값을 무시하고 `this`로 바인딩 된 객체가 리턴된다.
