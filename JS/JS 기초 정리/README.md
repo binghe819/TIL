@@ -36,8 +36,8 @@
   * [함수의 다양한 형태](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%EC%9D%98%20%EB%8B%A4%EC%96%91%ED%95%9C%20%ED%98%95%ED%83%9C.md)
   * [함수 호출과 this](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%95%A8%EC%88%98/%ED%95%A8%EC%88%98%20%ED%98%B8%EC%B6%9C%EA%B3%BC%20this.md)
 * 프로토타입와 프로토타입 체이닝
-  * [프로토타입이란]()
-  * [프로토타입 체이닝]()
+  * [프로토타입이란](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%EC%9D%B4%EB%9E%80.md)
+  * [프로토타입 체이닝](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85/%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%EC%B2%B4%EC%9D%B4%EB%8B%9D.md)
 
 
 <br>
