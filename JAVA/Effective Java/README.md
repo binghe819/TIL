@@ -46,3 +46,5 @@
   * [아이템 31. 한정적 와일드카드를 사용해 API 유연성을 높이라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item31.md)
 * 5장 열거 타입과 애너테이션
   * [아이템 34. int 상수 대신 열거 타입을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item34.md)
+  * [아이템 35. ordinal 메서드 대신 인스턴스 필드를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item35.md)
+  * [아이템 36. 비트 필드 대신 EnumSet을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item36.md)
