@@ -13,7 +13,8 @@
 * [6장 객체와 자료구조](https://github.com/binghe819/TIL/blob/master/ETC/CleanCode/6%EC%9E%A5%20%EA%B0%9D%EC%B2%B4%EC%99%80%20%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0.md)
 * [7장 오류 처리](https://github.com/binghe819/TIL/blob/master/ETC/CleanCode/7%EC%9E%A5%20%EC%98%A4%EB%A5%98%20%EC%B2%98%EB%A6%AC.md)
 * [8장 경계](https://github.com/binghe819/TIL/blob/master/ETC/CleanCode/8%EC%9E%A5%20%EA%B2%BD%EA%B3%84.md)
-* [9장 단위 테스트]()
+* [9장 단위 테스트](https://github.com/binghe819/TIL/blob/master/ETC/CleanCode/9%EC%9E%A5%20%EB%8B%A8%EC%9C%84%20%ED%85%8C%EC%8A%A4%ED%8A%B8.md)
+* [10장 클래스]()
 
 
 
