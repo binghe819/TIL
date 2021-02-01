@@ -55,4 +55,6 @@
   * [아이템 39. 명명 패턴보다 애너테이션을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item39.md)
   * [아이템 40. @Override 애노테이션을 일관되게 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item40.md)
   * [아이템 41. 정의하려는 것이 타입이라면 마커 인터페이스를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item41.md)
+* 7장 람다와 스트림
+  * [아이템 42. 익명 클래스보다는 람다를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item42.md)
 

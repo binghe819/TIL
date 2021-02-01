@@ -16,6 +16,7 @@ ordinal(순서)를 사용해서 배열이나 리스트에서 인덱싱하는 경
   - [예시 2](#예시-2)
     - [2-1 안좋은 예시](#2-1-안좋은-예시)
     - [2-2 해결책](#2-2-해결책)
+  - [3 EnumMap 활용](#3-enummap-활용)
   - [핵심 정리](#핵심-정리)
 
 <br>
@@ -230,6 +231,29 @@ public enum Phase {
 }
 ```
 * 변경에 유연하고, 안전하며 유지보수하기에도 좋다.
+
+<br>
+
+## 3 EnumMap 활용
+```java
+public enum DayOfWeek {
+  MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+
+// enum을 키로 사용하는 EnumMap을 생성
+Map<DayOfWeek, String> activityMap = new EnumMap<>(DayOfWeek.class);
+
+// add elements
+activityMap.put(DayOfWeek.MONDAY, "Running");
+activityMap.put(DayOfWeek.WEDNESDAY, "Swimming");
+activityMap.put(DayOfWeek.SATURDAY, "Cycling");
+
+// check elements by key
+System.out.println(activityMap.containsKey(DayOfWeek.MONDAY)); // true
+
+// check elements by value
+System.out.println(activityMap.containsValue("Cycling")); // true
+```
 
 <br>
 
