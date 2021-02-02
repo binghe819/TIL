@@ -57,4 +57,5 @@
   * [아이템 41. 정의하려는 것이 타입이라면 마커 인터페이스를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item41.md)
 * 7장 람다와 스트림
   * [아이템 42. 익명 클래스보다는 람다를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item42.md)
+  * [# 아이템 43. 람다보다는 메서드 참조를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item43.md)
 
