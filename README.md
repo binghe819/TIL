@@ -2,7 +2,7 @@
 
 [![Blog](https://img.shields.io/badge/Blog-binghe.github.io-green.svg)](https://binghedev.tistory.com/)
 
-
+<br>
 
 ## Spring
 
@@ -40,22 +40,18 @@
   * [@Transactional - 예정]()
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
-* Test
-  * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
 * 기타
   * [DTO, VO](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/DTO%2C%20VO.md)
   * [DataSource](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/DataSource.md)
   * [KeyHolder](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/KeyHolder.md)
 
-
+<br>
 
 ## 운영체제
 
+<br>
 
-
-
-
-
+<br>
 
 ## 네트워크
 
@@ -63,7 +59,7 @@
 
 * [REST / REST API / RESTful](https://github.com/binghe819/TIL/blob/master/Network/REST%20API/REST%20API.md)
 
-
+<br>
 
 ## 데이터베이스
 
@@ -79,11 +75,7 @@
 * SQL
   * [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
 
-
-
-
-
-
+<br>
 
 ## JAVA
 
@@ -102,6 +94,8 @@
   * [네트워킹](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md)
 * [Effective Java 3/E](https://github.com/binghe819/TIL/tree/master/JAVA/Effective%20Java)
 * [live-study](https://github.com/binghe819/TIL/tree/master/JAVA/live-study)
+* Test
+  * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
 * 기타
   * [Stream](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Stream.md)
   * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
@@ -112,7 +106,7 @@
   * [SUN Java Convention](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/SUN%20Java%20Convention.md)
   * [Google Java Convention](https://github.com/binghe819/TIL/blob/master/JAVA/%EA%B8%B0%ED%83%80/google%20java%20style%20guide.md)
 
-
+<br>
 
 ## OOP
 
@@ -130,15 +124,13 @@
 * 디자인 패턴
   * [Front Controller Pattern](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
 
-
+<br>
 
 ## JavaScript
 
 * [JS 기초 정리](https://github.com/binghe819/TIL/tree/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC)
 
-
-
-
+<br>
 
 ## ETC
 

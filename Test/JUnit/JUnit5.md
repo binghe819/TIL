@@ -1,56 +1,55 @@
->  [더 자바, 애플리케이션을 테스트하는 다양한 방법 - 백기선님]()강의와 [JUnit User Guide]()를 바탕으로 작성된 글입니다.
+>  [더 자바, 애플리케이션을 테스트하는 다양한 방법 - 백기선님](https://www.inflearn.com/course/the-java-application-test)강의와 [JUnit User Guide](https://junit.org/junit5/docs/current/user-guide/#writing-tests-annotations)를 바탕으로 작성된 글입니다.
 
-
+<br>
 
 # 목차
 
+- [목차](#목차)
 - [JUnit 5](#junit-5)
-  * [1 JUnit란](#1-junit란)
-    + [1-1 JUnit 5 달라진 점](#1-1-junit-5-달라진-점)
-  * [2 JUnit 5 시작하기](#2-junit-5-시작하기)
-    + [2-1 스프링 부트 프로젝트](#2-1-스프링-부트-프로젝트)
-    + [2-2 스프링 부트 프로젝트 아닌 경우](#2-2-스프링-부트-프로젝트-아닌-경우)
-  * [3 기본 애노테이션](#3-기본-애노테이션)
-    + [@Test](#-test)
-    + [@BeforeAll / @AfterAll](#beforeall--afterall)
-    + [@BeforeEach / @AfterEach](#beforeeach--aftereach)
-    + [@Disabled](#disabled)
-  * [4 테스트 이름 표기하는 방법](#4-테스트-이름-표기하는-방법)
-    + [@DisplayNameGeneration](#displaynamegeneration)
-    + [@DisplayName](#displayname)
-  * [5 Assertion](#5-assertion)
-    + [5-1 Assertion 목록](#5-1-assertion-목록)
-    + [5-2 Message](#5-2-message)
-    + [5-3 assertAll](#5-3-assertall)
+  - [1 JUnit란](#1-junit란)
+    - [1-1 JUnit 5 달라진 점](#1-1-junit-5-달라진-점)
+  - [2 JUnit 5 시작하기](#2-junit-5-시작하기)
+    - [2-1 스프링 부트 프로젝트](#2-1-스프링-부트-프로젝트)
+    - [2-2 스프링 부트 프로젝트 아닌 경우](#2-2-스프링-부트-프로젝트-아닌-경우)
+  - [3 기본 애노테이션](#3-기본-애노테이션)
+    - [@Test](#test)
+    - [@BeforeAll / @AfterAll](#beforeall--afterall)
+    - [@BeforeEach / @AfterEach](#beforeeach--aftereach)
+    - [@Disabled](#disabled)
+  - [4 테스트 이름 표기하는 방법](#4-테스트-이름-표기하는-방법)
+    - [@DisplayNameGeneration](#displaynamegeneration)
+    - [@DisplayName](#displayname)
+  - [5 Assertion](#5-assertion)
+    - [5-1 Assertion 목록](#5-1-assertion-목록)
+    - [5-2 Message](#5-2-message)
+    - [5-3 assertAll](#5-3-assertall)
       - [assertAll을 사용하지 않으면](#assertall을-사용하지-않으면)
       - [assertAll를 사용하면](#assertall를-사용하면)
-    + [5-4 assertThrows](#5-4-assertthrows)
-    + [5-5 assertTimeout](#5-5-asserttimeout)
+    - [5-4 assertThrows](#5-4-assertthrows)
+    - [5-5 assertTimeout](#5-5-asserttimeout)
       - [assertTimeout](#asserttimeout)
       - [assertTimeoutPreemptively](#asserttimeoutpreemptively)
-  * [6 조건에 따라 테스트 실행하기](#6-조건에-따라-테스트-실행하기)
-    + [6-1 assumeTrue](#6-1-assumetrue)
-    + [6-2 assumingThat](#6-2-assumingthat)
-    + [6-3 애노테이션을 사용한 assumption](#6-3-애노테이션을-사용한-assumption)
-  * [7 태깅과 필터링](#7-태깅과-필터링)
-  * [8 커스텀 태그](#8-커스텀-태그)
-  * [9 테스트 반복하기](#9-테스트-반복하기)
-    + [9-1 @RepeatedTest](#9-1-repeatedtest)
-    + [9-2 @ParameterizedTest](#9-2-parameterizedtest)
-  * [10 테스트 인스턴스](#10-테스트-인스턴스)
-  * [11 테스트 순서](#11-테스트-순서)
-  * [12 JUnit 설정](#12-junit-설정)
-  * [13 확장 모델](#13-확장-모델)
-    + [13-1 확장팩 만드는 방법](#13-1-확장팩-만드는-방법)
-    + [13-2 예제](#13-2-예제)
+  - [6 조건에 따라 테스트 실행하기](#6-조건에-따라-테스트-실행하기)
+    - [6-1 assumeTrue](#6-1-assumetrue)
+    - [6-2 assumingThat](#6-2-assumingthat)
+    - [6-3 애노테이션을 사용한 assumption](#6-3-애노테이션을-사용한-assumption)
+  - [7 태깅과 필터링](#7-태깅과-필터링)
+  - [8 커스텀 태그](#8-커스텀-태그)
+  - [9 테스트 반복하기](#9-테스트-반복하기)
+    - [9-1 @RepeatedTest](#9-1-repeatedtest)
+    - [9-2 @ParameterizedTest](#9-2-parameterizedtest)
+  - [10 테스트 인스턴스](#10-테스트-인스턴스)
+  - [11 테스트 순서](#11-테스트-순서)
+  - [12 JUnit 설정](#12-junit-설정)
+  - [13 확장 모델](#13-확장-모델)
+    - [13-1 확장팩 만드는 방법](#13-1-확장팩-만드는-방법)
+    - [13-2 예제](#13-2-예제)
 
-
-
-
+<br>
 
 # JUnit 5
 
-
+<br>
 
 ## 1 JUnit란
 
@@ -61,7 +60,7 @@
 * TMI
   * 스프링 부트 2.2부터 디폴트로 JUnit 5를 채택해서 사용되고 있다.
 
-
+<br>
 
 ### 1-1 JUnit 5 달라진 점
 
@@ -85,7 +84,7 @@
       * `Jupiter` : `TestEngine API` 구현체. (JUnit 5를 제공)
       * `Vintage` : JUnit 4와 3을 지원하는 `TestEngine` 구현체
 
-      
+<br>
 
 ## 2 JUnit 5 시작하기
 
@@ -94,13 +93,13 @@
 * 스프링 부트 프로젝트
 * 스프링 부트 프로젝트를 사용하지 않는 방법
 
-
+<br>
 
 ### 2-1 스프링 부트 프로젝트
 
 💁‍♂️ **스프링 부트 프로젝트는 2.2버전 이상부터는 기본적으로 JUnit 5 의존성이 추가가 된다.**
 
-
+<br>
 
 ### 2-2 스프링 부트 프로젝트 아닌 경우
 
@@ -117,7 +116,7 @@
 
 * 위와 같이 의존성을 추가해주면 된다.
 
-
+<br>
 
 ## 3 기본 애노테이션
 
@@ -125,7 +124,7 @@
 
 💁‍♂️ **JUnit Jupiter는 아래와 같은 기본적인 애노테이션을 제공한다.** 
 
-
+<br>
 
 ### @Test
 
@@ -134,11 +133,9 @@
 * 주의 할 점
   * JUnit 4와 다르게 Jupiter는 자체적으로 정의된 애노테이션에 기초하여 동작하기 때문에 `@Test`는 어떠한 속성도 선언하지 않는다. 
 
-
-
 >  테스트 메서드 : `@Test`, `@RepeatedTest`, `@ParameterizedTest`, `@TestFactory`
 
-
+<br>
 
 ### @BeforeAll / @AfterAll
 
@@ -149,7 +146,7 @@
 * 주의 할 점
   * "클래스 단위" 테스트 인스턴스 라이프사이클을 사용하지 않는 한,  **꼭 `static`으로 선언해줘야 한다.** 
 
-
+<br>
 
 ### @BeforeEach / @AfterEach
 
@@ -162,7 +159,7 @@
   * JUnit 4와 똑같이 매 테스트 메서드마다 새로운 클래스를 생성(new)하여 실행된다.
     * **즉,  JDBC의 커넥션을 `@BeforeEach`에서 생성한다고 가정하면, 매 테스트 케이스마다 생성된다. (비효율적)**
 
-
+<br>
 
 ### @Disabled
 
@@ -170,9 +167,7 @@
   * 테스트를 하고 싶지 않은 클래스나 메서드에 붙이는 애노테이션
     * JUnit 4의 `@Ignore`과 유사하다.
 
-
-
-
+<br>
 
 ## 4 테스트 이름 표기하는 방법
 
@@ -180,7 +175,7 @@
 
 * 테스트 코드를 실행하면 결과창에 테스트 클래스와 메서드의 이름이 출력된다. **기본값을 클래스와 메서드의 이름이다.**
 
-
+<br>
 
 ### @DisplayNameGeneration
 
@@ -189,11 +184,9 @@
   * 기본 구현제로 `ReplaceUnderscores`를 제공한다. (`_`를 자동적으로 띄워쓰기해서 출력해준다.)
 * 예제
 
-<img src="./image/image-20200907161044645.png" width="600" />
+<p align="center"><img src="./image/image-20200907161044645.png" width="700" /></p>
 
-
-
-
+<br>
 
 ### @DisplayName
 
@@ -211,26 +204,26 @@ public void create_study_again() {
 }
 ```
 
-
-
-
+<br>
 
 ## 5 Assertion
 
+<br>
+
 🤔 **Assertion이란?**
 
-* 사전적 의미 : 주장, 행사
+* **사전적 의미 : 주장, 행사**
 * 테스트 케이스의 수행 결과를 판별하는 메서드이다.
   * 오직 실패한 Assertions만 기록된다.
 * 모든 `JUnit Jupiter Assertions`는 `static` 메서드이다. (`org.junit.jupiter.api.Assertions`)
 * `JUnit Jupiter`가 제공하는 기능.
   * 그 외에도 `AssertJ`, `Hemcrest`, `Truth`등의 서드파티 라이브라리를 사용할 수도 있다.
 
-
+<br>
 
 💁‍♂️ JUnit 5부터는 JAVA 8, 특히 람다 표현식의 새로운 기능들의 전체 장점을 끌어올렸다.
 
-
+<br>
 
 ### 5-1 Assertion 목록
 
@@ -245,9 +238,7 @@ public void create_study_again() {
 | `assertThrows(expectedType, executable)` | 예외 발생 확인                        |
 | `assertTimeout(duration, executable)`    | 특정 시간 안에 실행이 완료되는지 확인 |
 
-
-
-
+<br>
 
 ### 5-2 Message
 
@@ -276,7 +267,7 @@ public void create_study_again() {
   * 람다 표현식의 기본 인터페이스인 `Supplier`를 통해 문자열을 정의해주면 **실패시에만 해당 문자열 연산을 한다.**
     * 즉, 일반적인 `String message`보다 성능적 향상이 있다.
 
-
+<br>
 
 :point_right: **예시**
 
@@ -308,9 +299,13 @@ class StudyTest {
 
 <img src="./image/image-20200907162629904.png" />
 
+<br>
 
+<br>
 
 ### 5-3 assertAll
+
+<br>
 
 🤔 **assertAll**
 
@@ -321,7 +316,7 @@ public static void assertAll(Executable... executables) throws MultipleFailuresE
 * **In a grouped assertion all assertions are executed, and all failures will be reported together.**
 * 매개변수로 받는 모든 테스트 코드(`Executable`)를 한번에 실행해준다.
 
-
+<br>
 
 #### assertAll을 사용하지 않으면
 
@@ -339,7 +334,7 @@ Failed : assertEquals
 
 * **만약 `assertEquals(...)`에서 `Failed`가 떠버리면 `assertTrue(..)`는 테스트도 하지 않고 테스트 메서드가 끝나버린다.**
 
-
+<br>
 
 #### assertAll를 사용하면
 
@@ -355,21 +350,21 @@ public void create_study() {
 }
 ```
 
-<img src="./image/image-20200907165604138.png" width="500" />
+<p align="center"> <img src="./image/image-20200907165604138.png" width="500" /></p>
 
 * **`assertEquals`가 `Failed`해도 다음 테스트를 실행하는 것을 볼수 있다.**
 
-
+<br>
 
 > 🤔 **Executable이란?**
 >
-> ![image-20200907165849980](./image/image-20200907165849980.png)
+> <p align="center"><img src="./image/image-20200907165849980.png"></p>
 >
 > * `Executable` is a functional interface that can be used to implement any generic block of code that potentially throws a `Throwable`.
 > * The `Executable` interface is similar to `Runnable`, except that an `Executable` can throw any kind of exception.
 > * 잠재적으로 예외를 던질 수 있는 아무 실행 코드를 구현한 함수형 인터페이스.
 
-
+<br>
 
 ### 5-4 assertThrows
 
@@ -382,7 +377,7 @@ public static <T extends Throwable> T assertThrows(Class<T> expectedType, Execut
 * 예외 발생 테스트.
 * **인자로 받는 `executable`의 로직이 실행하는 도중 `expectedType`의 에러를 발생시키는지 확인하는 메서드이다.**
 
-
+<br>
 
 :point_right: **예시**
 
@@ -407,13 +402,15 @@ public void create_study() {
 }
 ```
 
-
+<br>
 
 ### 5-5 assertTimeout
 
-
+<br>
 
 #### assertTimeout
+
+<br>
 
 🤔 **assertTimeout**
 
@@ -428,7 +425,7 @@ public static void assertTimeout(Duration timeout, Executable executable)
   * 테스트 로직(`executable`)이 끝나고 `timeout`과 시간을 비교하여 결과를 반환한다.
   * 즉, 테스트 로직이 끝날때까지 성공 여부를 모른다. (시간 낭비)
 
-
+<br>
 
 :point_right: **예시**
 
@@ -444,7 +441,7 @@ public void create_study() {
 }
 ```
 
-
+<br>
 
 #### assertTimeoutPreemptively
 
@@ -457,7 +454,7 @@ public static void assertTimeoutPreemptively(Duration timeout, Executable execut
 * Preemptively : 즉각적인
 * **원하는 시간 (`timeout`)이 지나면 바로 결과를 반환해준다.**
 
-
+<br>
 
 :point_right: **예시**
 
@@ -471,18 +468,18 @@ public void create_study() {
 }
 ```
 
-
+<br>
 
 >  주의 할 점
 >
 > * `assertTimeoutPreemptively`은 별개의 Thread를 생성해서 `executable`를 실행한다.
 > * 만약 `ThreadLocal`전략을 사용하는 로직이라면 예상치 못한 결과가 나올 수 있다. (ex. Spring 트랜잭션)
 
-
-
-
+<br>
 
 ## 6 조건에 따라 테스트 실행하기
+
+<br>
 
 💁‍♂️ **테스트 코드를 특정한 조건에 따라 실행하게 하거나 실행되지 않도록 할 수 있다.**
 
@@ -490,14 +487,14 @@ public void create_study() {
 * 특정 자바 버전
 * 특정 시스템 변수, 환경 변수 등등
 
-
+<br>
 
 🤔 **Assumptions란?**
 
 * 사전적 의미 : 추정, 상정
 * `Assumptions` is a collection of utility methods that support conditional test execution based on *assumptions*.
 
-
+<br>
 
 ### 6-1 assumeTrue
 
@@ -505,7 +502,7 @@ public void create_study() {
 
 * 주어진 true라면 실행, false라면 실행은 끝낸다.
 
-
+<br>
 
 :point_right: 예시
 
@@ -526,16 +523,18 @@ public void create_study() {
 * 환경 변수에 `TEST_ENV`의 값이 `LOCAL`이 아니면 테스트 코드를 종료시킨다.
 
 
-
+<br>
 
 
 ### 6-2 assumingThat
+
+<br>
 
 🤔 **assumingThat란?**
 
 * 조건문 처럼 어떠한 조건에 있을 경우 테스트를 실행하게 할 수 있는 메서드.
 
-
+<br>
 
 :point_right: **예시**
 
@@ -554,7 +553,7 @@ public void create_study() {
 }
 ```
 
-
+<br>
 
 ### 6-3 애노테이션을 사용한 assumption
 
@@ -576,10 +575,12 @@ public void create_study() {
 * `@EnabledEnvironmentVariable("TEST_ENV", matches = "LOCAL")` : 주어진 확정 변수의 값일 때 실행
 
 
-
+<br>
 
 
 ## 7 태깅과 필터링
+
+<br>
 
 🤔 **테스트 태깅이란?**
 
@@ -590,7 +591,7 @@ public void create_study() {
   * 통합 테스트
   * 시간 - 오래 걸리는지, 얼마 안걸리는지 등등
 
-
+<br>
 
 :point_right: **예시**
 
@@ -616,9 +617,11 @@ void slow_create(){
 
 * 특정 태그 (`fast`)를 가진 테스트 코드만 실행을 한다.
 
-
+<br>
 
 ## 8 커스텀 태그
+
+<br>
 
 🤔 **커스텀 태그**
 
@@ -626,7 +629,7 @@ void slow_create(){
 * 특징
   * 기존의 JUnit 애노테이션을 담은 커스텀 애노테이션을 만들 수 있다.
 
-
+<br>
 
 :point_right: **예시**
 
@@ -648,22 +651,24 @@ public void create_study() {
 * `@FastTest`안에 `@Test`와 `@Tag`를 포함하고 있다.
 
 
-
+<br>
 
 
 ## 9 테스트 반복하기
+
+<br>
 
 🤔 **테스트 반복**
 
 * 특정 테스트를 반복시키고 싶으면 사용하면 된다.
 
-
+<br>
 
 ### 9-1 @RepeatedTest
 
 🤔 **RepeatedTest**
 
-<img src="./image/image-20200907192151855.png" width="700" />
+<p align="center"><img src="./image/image-20200907192151855.png" width="700" /></p>
 
 * 반복 횟수와 반복 테스트 이름을 설정할 수 있다.
   * value : 반복 횟수
@@ -673,7 +678,7 @@ public void create_study() {
     * {totalRepetitions} : 전체 반복 횟수
 * RepetitionInfo 타입의 인자를 받을 수 있다.
 
-
+<br>
 
 :point_right: **예시**
 
@@ -695,7 +700,7 @@ void repeat_create_study(RepetitionInfo repetitionInfo){
     * 현재 반복 횟수
     * 전체 반복 횟수
 
-
+<br>
 
 ### 9-2 @ParameterizedTest
 
@@ -709,7 +714,7 @@ void repeat_create_study(RepetitionInfo repetitionInfo){
   * {arguments}
   * {0}, {1}, ...
 * `ParameterizedTest`는 여러 많은 애노테이션을 수용한다.
-  * `ValueSource` : 특정한 매개변수를 넘겨줄 수 있다. (단 하나의 자료형에 한해서)
+  * `@ValueSource` : 특정한 매개변수를 넘겨줄 수 있다. (단 하나의 자료형에 한해서)
   * `@EmptySource` : 테스트 마지막에 비어있는 (`""`) 값을 매개변수로 가진 테스트를 실행한다.
   * `@NullSource` :  테스트 마지막에 `null`값을 매개변수로 가진 테스트를 진행한다.
   * `@CvsSource` : 여러 타입의 매개변수를 넘겨줄 수 있다.
@@ -717,7 +722,7 @@ void repeat_create_study(RepetitionInfo repetitionInfo){
   * `@EnumSource`
   * `@MethodSource`
 
-
+<br>
 
 :point_right: **예시**
 
@@ -740,13 +745,15 @@ void parameterizedTest(String message){
 * 두번째 테스트는 `테스트`를 가지고 테스트를 진행한다.
 * ...
 
-
+<br>
 
 > `ValueSource`는 String뿐만 아니라 다양한 자료형의 데이터를 넘겨줄 수 있다.
 
-
+<br>
 
 ## 10 테스트 인스턴스
+
+<br>
 
 💁‍♂️ **JUnit의 기본 전략**
 
@@ -754,7 +761,7 @@ void parameterizedTest(String message){
   * 그 이유는 각 테스트마다의 의존성을 없애기 위해서다. 즉 테스트의 순서에 의존하지 않기 위해서.
   * 단위 테스트이므로 단위별로 서로 영향을 끼쳐서는 안된다.
 
-
+<br>
 
 💁‍♂️ **JUnit 5에서는 기존의 JUnit의 전략을 변경할 수 있게 되었다. == `@TestInstance()`**
 
@@ -767,7 +774,7 @@ void parameterizedTest(String message){
   * `@TestInstance(TestInstance.Lifecycle.PER_CLASS)` : 하나의 클래스만 만들어 모든 테스트 메서드를 실행
   * `@TestInstance(TestInstance.Lifecycle.PER_METHOD)` : 기존 전략대로 매 메서드마다 새로운 인스턴스 생성.
 
-
+<br>
 
 :point_right: **예시**
 
@@ -797,26 +804,27 @@ com.binghe.inflearnthejavatestspringboot.StudyTest@55183b20
 com.binghe.inflearnthejavatestspringboot.StudyTest@55183b20
 2
 ```
-
 * 클래스가 하나만 만들어 진 것을 볼 수 있다.
 
-
+<br>
 
 ## 11 테스트 순서
+
+<br>
 
 💁‍♂️ **실행할 테스트 메서드 특정한 순서에 의해 실행되지만 어떻게 그 순서를 정하는지는 의도적으로 분명히 하지 않는다.**
 
 * 테스트 인스턴스를 테스트마다 새로 만드는 것과 같은 이유이다.
 * 또한, 단위 테스트이므로 각 테스트가 서로 독립적이여야하며 영향을 끼쳐서는 안된다.
 
-
+<br>
 
 💁‍♂️ **하지만, 경우에 따라 특정 순서대로 테스트를 실행하고 싶을 때도 있다.** 
 
 * 회원 가입 -> 로그인 -> 개인 페이지 -> 비밀번호 수정등과 같이 순서대로 테스트를 실행하고 싶은 경우
 * **시나리오 (유스케이스) 테스트**할 때 유용하다.
 
-
+<br>
 
 💁‍♂️ **이 경우에는 테스트 메서드를 원하는 순서에 따라 실행하도록 `@TestMethodOrder`를 사용할 수 있다.**
 
@@ -826,7 +834,7 @@ com.binghe.inflearnthejavatestspringboot.StudyTest@55183b20
   * `OrderAnnotation`
   * `Random`
 
-
+<br>
 
 :point_right: **예시**
 
@@ -854,11 +862,13 @@ class StudyTest {
 * `Order`를 통해 순서를 정할 수 있다.
   * **스프링에도 `Order`가 있기 때문에 헷갈리지 말고 JUnit의 `Order`를 쓰자.**
 
-
+<br>
 
 ## 12 JUnit 설정
 
 > **JUnit 설정파일은 클래스패스 루트 (`src/test/resources/`)에 넣어두면 적용된다.**
+
+<br>
 
 💁‍♂️ **JUnit은 `junit-platform.properties`를 통해 설정을 변경할 수 있다.**
 
@@ -871,24 +881,26 @@ class StudyTest {
 * 테스트 이름 표기 전략 설정
   * `junit.jupiter.displayname.generator.default=org.junit.jupiter.api.DisplayNameGenerator&ReplaceUnderscored`
 
-
+<br>
 
 > * 모든 테스트에 일괄적으로 적용하고 싶은 설정에 대해서 설정해주면 된다.
 > * 설정 파일의 클래스패스 루트 정하는 방법
->   * ![image-20200907203231816](./image/image-20200907203231816.png)
+>   * <p align="center"><img src="./image/image-20200907203231816.png"></p>
 
-
+<br>
 
 ## 13 확장 모델
 
 > [JUnit 5 - extentions](https://junit.org/junit5/docs/current/user-guide/#extensions)에 가면 더 자세히 볼 수 있다.
+
+<br>
 
 💁‍♂️ **JUnit 4와 JUnit 5의 확장 모델**
 
 * JUnit 4의 확장 모델 : `@RunWith(Runner)`, `TestRule`, `MethodRule`
 * JUnit 5의 확장 모델은 단 하나 : `Extension`
 
-
+<br>
 
 💁‍♂️ **확장 모델 등록 방법**
 
@@ -896,7 +908,7 @@ class StudyTest {
 * 프로그래밍 등록 : `@RegisterExtension`
 * 자동 등록 자바 [ServiceLoader]()이용
 
-
+<br>
 
 ### 13-1 확장팩 만드는 방법
 
@@ -910,7 +922,7 @@ class StudyTest {
 * 예외 처리
 * ...
 
-
+<br>
 
 ### 13-2 예제
 
