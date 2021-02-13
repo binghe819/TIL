@@ -96,6 +96,7 @@
 * [live-study](https://github.com/binghe819/TIL/tree/master/JAVA/live-study)
 * Test
   * [JUnit 5](https://github.com/binghe819/TIL/blob/master/Test/JUnit/JUnit5.md)
+  * [AssertJ](https://github.com/binghe819/TIL/blob/master/Test/AssertJ.md)
 * 기타
   * [Stream](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Stream.md)
   * [Optional](https://github.com/binghe819/TIL/blob/master/JAVA/%EB%AA%A8%EB%8D%98%20%EC%9E%90%EB%B0%94/Optional.md)
