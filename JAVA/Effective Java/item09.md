@@ -2,6 +2,16 @@
 
 # 아이템 9. try-finally 보다는 try-with-resources를 사용하라
 
+- [아이템 9. try-finally 보다는 try-with-resources를 사용하라](#아이템-9-try-finally-보다는-try-with-resources를-사용하라)
+  - [close](#close)
+  - [try - finally의 문제](#try---finally의-문제)
+    - [예외가 무시되버려 디버깅이 어려워진다.](#예외가-무시되버려-디버깅이-어려워진다)
+    - [코드가 지저분](#코드가-지저분)
+  - [try-with-resources](#try-with-resources)
+    - [AutoCloseable](#autocloseable)
+    - [try-with-resources 예시](#try-with-resources-예시)
+  - [핵심 정리](#핵심-정리)
+
 <br>
 
 ## close

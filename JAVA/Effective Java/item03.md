@@ -8,7 +8,7 @@
 
 **싱글톤으로 만드는 두가지 방법**이 있는데, 두 방법 모두 생성자를 private으로 만들고, public static 멤버를 사용해서 유일한 인스턴스를 제공한다.
 
-
+<br>
 
 ## final 필드
 
@@ -26,7 +26,7 @@ public class Elvis {
   * 리플렉션을 사용해서 `setAccessible`을 통해 private 생성자를 호출할 수 있다.
   * 이 방법을 막고자 생성자 안에서 카운팅하거나 flag를 이용해서 예외를 던지게 할 수도 있다.
 
-
+<br>
 
 ## static 팩토리 메서드
 
@@ -54,7 +54,7 @@ public class Elvis {
   Supplier<Singleton> singletonSupplier = Singleton::Instance
   ```
 
-  
+<br>
 
 ## 직렬화
 
@@ -81,7 +81,7 @@ public class Singleton {
 }
 ```
 
-
+<br>
 
 ## Enum
 

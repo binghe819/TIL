@@ -4,11 +4,20 @@
 
 # 아이템 8. finalizer와 cleaner 사용을 피하라
 
-
+- [아이템 8. finalizer와 cleaner 사용을 피하라](#아이템-8-finalizer와-cleaner-사용을-피하라)
+  - [finalizer와 cleaner란?](#finalizer와-cleaner란)
+    - [finalizer](#finalizer)
+  - [finalizer와 cleaner의 단점](#finalizer와-cleaner의-단점)
+    - [단점 1 - 언제 실행될지 알 수 없다](#단점-1---언제-실행될지-알-수-없다)
+    - [단점 2 - 인스턴스 반납을 지연시킬 수 있다](#단점-2---인스턴스-반납을-지연시킬-수-있다)
+    - [단점 3 - 아예 실행되지 않을 수도 있다](#단점-3---아예-실행되지-않을-수도-있다)
+    - [단점 4 - 성능 문제도 있다](#단점-4---성능-문제도-있다)
+    - [단점 5 - 보안 이슈](#단점-5---보안-이슈)
+  - [자원 반납 하는 방법](#자원-반납-하는-방법)
 
 ## finalizer와 cleaner란?
 
-
+<br>
 
 ### finalizer
 
@@ -27,7 +36,7 @@ public class Object {
 * 누가 호출하는가?
   * **JVM**이 그 객체가 가지고 있는 메모리가 반환되기 전에 이것을 수행한다. (GC)
 
-
+<br>
 
 ## finalizer와 cleaner의 단점
 
