@@ -61,4 +61,8 @@
   * [아이템 44. 표준 함수형 인터페이스를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item44.md)
   * [아이템 45. 스트림은 주의해서 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item45.md)
   * [아이템 46. 스트림에서는 부작용 없는 함수를 사용하라 - 미완성](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item46.md)
+  * [아이템 47.]()
+  * [아이템 48. ]()
+* 8장 메서드
+  * [아이템 49. 매개변수가 유효한지 검사하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item49.md)
 
