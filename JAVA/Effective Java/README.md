@@ -65,4 +65,5 @@
   * [아이템 48. ]()
 * 8장 메서드
   * [아이템 49. 매개변수가 유효한지 검사하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item49.md)
+  * [아이템 50. 적시에 방어적 복사본을 만들라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item50.md)
 
