@@ -69,4 +69,5 @@
   * [아이템 51. 메서드 시그니처를 신중히 설계하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item51.md)
   * [아이템 52. 다중정의는 신중히 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item52.md)
   * [아이템 53. 가변인수는 신중히 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item53.md)
+  * [아이템 54. null이 아닌, 빈 컬렉션이나 배열을 반환하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item54.md)
 
