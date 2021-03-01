@@ -71,4 +71,6 @@
   * [아이템 53. 가변인수는 신중히 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item53.md)
   * [아이템 54. null이 아닌, 빈 컬렉션이나 배열을 반환하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item54.md)
   * [아이템 55. 옵셔널 반환은 신중하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item55.md)
+* 9장 일반적인 프로그래밍 원칙
+  * [아이템 57. 지역변수의 범위를 최소화하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item57.md)
 
