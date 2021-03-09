@@ -77,4 +77,5 @@
   * [아이템 59. 라이브러리를 익히고 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item59.md)
   * [아이템 60. 정확한 답이 필요하다면 float과 double은 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item60.md)
   * [아이템 61. 박싱된 기본 타입보다는 기본 타입을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item61.md)
+  * [아이템 62. 다른 타입이 적절하다면 문자열 사용을 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item62.md)
 
