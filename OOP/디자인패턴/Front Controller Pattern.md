@@ -1,17 +1,18 @@
 # 목차
 
+- [목차](#목차)
 - [Front Controller Pattern](#front-controller-pattern)
-  * [1 Front Controller Pattern 개념](#1-front-controller-pattern-개념)
-    + [1-1 Page Controller](#1-1-page-controller)
-    + [1-2 Front Controller](#1-2-front-controller)
-    + [1-3 Front Controller의 장점](#1-3-front-controller의-장점)
-    + [1-4 Spring에서의 Front Controller](#1-4-spring에서의-front-controller)
-  * [2 Front Controller Pattern 예시](#2-front-controller-pattern-예시)
-    + [2-1 Front Controller Pattern 역할](#2-1-front-controller-pattern-역할)
-    + [2-2 간단한 예시](#2-2-간단한-예시)
+  - [1 Front Controller Pattern 개념](#1-front-controller-pattern-개념)
+    - [1-1 Page Controller](#1-1-page-controller)
+    - [1-2 Front Controller](#1-2-front-controller)
+    - [1-3 Front Controller의 장점](#1-3-front-controller의-장점)
+    - [1-4 Spring에서의 Front Controller](#1-4-spring에서의-front-controller)
+  - [2 Front Controller Pattern 예시](#2-front-controller-pattern-예시)
+    - [2-1 Front Controller Pattern 역할](#2-1-front-controller-pattern-역할)
+    - [2-2 간단한 예시](#2-2-간단한-예시)
 - [참고](#참고)
 
-
+<br>
 
 # Front Controller Pattern
 
@@ -23,21 +24,16 @@
 
 **스프링에서도 `DispatcherServlet` 을 대표 컨트롤러로 적극 활용한다.**
 
-
-
-
+<br>
 
 ## 1 Front Controller Pattern 개념
 
 `Page Controller` 와 `Front Controller Pattern` 을 살펴보며 개념을 정리하였다.
 
 
+<p align="center"><img src="./image/Page-Controller-and-Front-Controller-Patterns.png" /><br> 출처 : 출처 : https://www.developerfusion.com/article/9450/controller-patterns-for-aspnet/</p>
 
-<center><img src="./image/Page-Controller-and-Front-Controller-Patterns.png" /></center>
-
-<center> 출처 : https://www.developerfusion.com/article/9450/controller-patterns-for-aspnet/ </center>
-
-
+<br>
 
 ### 1-1 Page Controller
 
@@ -45,7 +41,7 @@
 * 특정 뷰에서 요청이 들어왔을 때 요청을 받아 처리하는 특정 컨트롤러
   * 하나의 URL당 하나의 컨트롤러(서블릿)를 할당. 
 
-
+<br>
 
 ### 1-2 Front Controller 
 
@@ -55,7 +51,7 @@
 
 * 모든 요청을 처리해주는 하나의 컨트롤러를 두는 패턴
 
-
+<br>
 
 ### 1-3 Front Controller의 장점
 
@@ -63,26 +59,24 @@
 * 추적, 보안을 적용할 때 하나의 컨트롤러에 하기 때문에 편리하다.
 * 파일 구조가 바뀌어도 URL을 유지할 수 있다.
 
-
+<br>
 
 ### 1-4 Spring에서의 Front Controller
 
 * 스프링은 `DispatcherServlet` 이라는 `Front Controller` 를 스프링 IoC 컨테이너의 Bean으로 등록하여 `Controller Package` 들을 스캔하여 `Controller (Page Controller)` 를 등록하여 사용한다.
   * 즉, **하나의 컨트롤러 클래스 안의 여러 개의 `Page Controller` 를 처리한다.**
 
-
+<br>
 
 ## 2 Front Controller Pattern 예시
 
-
+<br>
 
 ### 2-1 Front Controller Pattern 역할
 
-<center><img src="./image/FCMainClass.gif" /></center>
+<p align="center"><img src="./image/FCMainClass.gif" /> </p>
 
-<center><img src="./image/FCMainSeq.gif" /></center>
-
-<center> 출처 : http://www.corej2eepatterns.com/FrontController.htm </center>
+<p align="center"><img src="./image/FCMainSeq.gif" /><br>출처 : http://www.corej2eepatterns.com/FrontController.htm</p>
 
 * Front Controller - 모든 요청을 핸들링.
   * **로깅 처리, 보안 처리 등의 모든 핸들링이 공통적으로 처리해야하는 로직을 담당.**
@@ -90,13 +84,13 @@
   * **특정 핸들러에게 요청을 배치**
 * View - 요청이 수행되는 객체(서블릿).
 
-
+<br>
 
 ### 2-2 간단한 예시
 
-![image-20200923143010020](./image/image-20200923143010020.png)
+<p align="center"><img src="./image/image-20200923143010020.png"> </p>
 
-
+<br>
 
 ```java
 // Views
@@ -179,11 +173,7 @@ public class Client {
 }
 ```
 
-
-
-
-
-
+<br>
 
 # 참고
 

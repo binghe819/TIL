@@ -124,7 +124,10 @@
   * [DIP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/DIP.md)
 
 * 디자인 패턴
-  * [Front Controller Pattern](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
+  * [전략 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy%20Pattern.md)
+  * [템플릿 메서드 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Template%20Method%20Pattern.md)
+  * [상태 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/State%20Pattern.md)
+  * [프론트 컨트롤 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
 
 <br>
 
