@@ -78,4 +78,8 @@
   * [아이템 60. 정확한 답이 필요하다면 float과 double은 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item60.md)
   * [아이템 61. 박싱된 기본 타입보다는 기본 타입을 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item61.md)
   * [아이템 62. 다른 타입이 적절하다면 문자열 사용을 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item62.md)
+  * [아이템 63. 문자열 연결은 느리니 주의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item63.md)
+  * [아이템 64. 객체는 인터페이스를 사용해 참조하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item64.md)
+  * [아이템 65. 리플렉션보다는 인터페이스를 사용하라 - 미완성](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item65.md)
+  * [아이템 66. 네이티브 메서드는 신중히 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item66.md)
 

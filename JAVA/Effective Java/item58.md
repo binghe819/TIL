@@ -48,6 +48,25 @@ for (String e : arr) {
 ```
 * for-each문을 향상된 for문이라고 부른다.
 
+
+```java
+// for-each문
+for (Transaction transaction : transactions) {
+  if (Character.isDigit(transaction.getReferenceCode().charAt(0))) {
+    transactions.remove(transaction);
+  }
+}
+
+// for-each문의 실제 구동 코드
+for (Iterator<Transaction> iterator = transactions.iterator(); iterator.hasNext(); ) {
+  Transaction transaction = iterator.next();
+  if (Character.isDigit(transaction.getReferenceCode().charAt(0))) {
+    transactions.remove(transaction);
+  }
+}
+```
+
+
 <br>
 
 ## for-each는 Iterable 인터페이스를 구현한 객체라면 모두 순회 가능하다
