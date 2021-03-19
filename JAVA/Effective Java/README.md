@@ -82,4 +82,6 @@
   * [아이템 64. 객체는 인터페이스를 사용해 참조하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item64.md)
   * [아이템 65. 리플렉션보다는 인터페이스를 사용하라 - 미완성](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item65.md)
   * [아이템 66. 네이티브 메서드는 신중히 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item66.md)
+  * [아이템 67. 최적화는 신중히 하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item67.md)
+  * [아이템 68. 일반적으로 통용되는 명명 규칙을 따르라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item68.md)
 
