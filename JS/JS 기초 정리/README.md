@@ -23,6 +23,7 @@
 * 데이터 타입 및 연산자
   * 기본 타입 (Primitive)
     * [메모리 특징](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%A9%94%EB%AA%A8%EB%A6%AC%20%ED%8A%B9%EC%A7%95.md)
+    * [메모리 구조](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0.md)
     * [표현식과 문](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%ED%91%9C%ED%98%84%EC%8B%9D%EA%B3%BC%20%EB%AC%B8.md)
     * [동적 타입](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8F%99%EC%A0%81%ED%83%80%EC%9E%85.md)
     * [데이터 타입](https://github.com/binghe819/TIL/blob/master/JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%83%80%EC%9E%85%20%EB%B0%8F%20%EC%97%B0%EC%82%B0%EC%9E%90/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85.md)
