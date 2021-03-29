@@ -7,3 +7,4 @@
 * [DOM](./DOM.md)
 * [BOM](./BOM.md)
 * [Event](./Event.md)
+* [fetch](./fetch.md)
