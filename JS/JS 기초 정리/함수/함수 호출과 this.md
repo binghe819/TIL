@@ -15,6 +15,10 @@
   - [5 함수 리턴](#5-함수-리턴)
     - [5-1 일반 함수나 메서드는 리턴값을 지정하지 않으면 undefined 값이 리턴된다](#5-1-일반-함수나-메서드는-리턴값을-지정하지-않으면-undefined-값이-리턴된다)
     - [5-2 생성자 함수에서 리턴값을 지정하지 않을 경우 생성된 객체가 리턴된다](#5-2-생성자-함수에서-리턴값을-지정하지-않을-경우-생성된-객체가-리턴된다)
+  - [6 사라진 'this'](#6-사라진-this)
+    - [6-1 this가 사라지는 문제](#6-1-this가-사라지는-문제)
+    - [6-2 해결방법 - 래퍼](#6-2-해결방법---래퍼)
+    - [6-3 bind](#6-3-bind)
 
 <br>
 
@@ -253,7 +257,9 @@ function Person(name, age, gender) {
 var foo = {};
 
 // apply() 메서드 호출
-Person.apply('foo', 30, 'man');
+Person.apply(foo, ['foo', 30, 'man']);
+console.dir(foo);
+// Person('foo', 30, 'man')함수를 호출하면서, this를 foo 객체에 명시적으로 바인딩한 것!
 ```
 * call, apply 메서드란?
   * `this`를 특정 객체에 명시적으로 바인딩시키는 방법.
@@ -261,6 +267,8 @@ Person.apply('foo', 30, 'man');
   * `apply()`메서드는 `this`를 특정 객체에 바인딩할 뿐 결국 본질적인 기능은 **함수 호출**이다.
   * 예를 들어, `Person.apply()` 호출하면 이것의 기본적인 기능은 `Person()` 함수를 호출하는 것이다.
 * `call`은 `apply()`에서 매개변수만 조금 달라진 것 뿐이다.
+
+> 결국 `apply`는 두 번째 인자인 `argArray`배열을 자신을 호출한 함수의 인자로 사용하되, 이 함수 내부에서 사용된 `this`는 첫 번째 인자인 `thisArg`객체로 바인딩해서 함수를 호출하는 기능을 하는 것이다.
 
 <br>
 
@@ -285,7 +293,7 @@ myFunction(1, 2, 3);
 <p align="center"><img src="./image/test8.png" width="500"></p>
 
 * `Array.prototype.splice()` 메서드를 호출해라. 이때 `this`는 `arguments` 객체로 바인딩하라.
-* 유사 배열 객체을 배열 객체처럼 사용할 수 있게 됐다.
+* 이렇게 하면 **유사 배열 객체을 배열 객체처럼 사용할 수 있게 됐다.**
 
 <br>
 
@@ -328,3 +336,117 @@ console.dir(foo); // age: 20, gender: 'woman', name: 'bar'
 ```
 * 위와 같이 명시적으로 다른 객체를 반환하면 해당 객체가 반환된다.
 * 하지만 만약 객체가 아닌 불린, 숫자, 문자열의 경우는 리턴 값을 무시하고 `this`로 바인딩 된 객체가 리턴된다.
+
+<br>
+
+## 6 사라진 'this'
+> https://ko.javascript.info/bind 을 참고하여 작성하였습니다.
+
+<br>
+
+### 6-1 this가 사라지는 문제
+**객체 메서드가 객체 내부가 아닌 다른 곳에 전달되어 호출되면 this가 사라집니다.**
+
+```js
+// 일반적인 메서드 호출
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.sayHi = function() {
+    console.log(`hi! ${this.name}`);
+    console.log(this);
+};
+
+const binghe = new Person('binghe');
+
+binghe.sayHi();
+// hi! binghe
+// Person { name: 'binghe' }
+
+// 사라진 this
+setTimeout(binghe.sayHi, 1000); 
+// hi! undefined 
+// Timeout
+```
+* 문제점 - **`setTimeout`의 결과가 `hi! binghe`여야하는데 `hi! undefined`가 된다.**
+  * **`setTimeout`에 객체(`binghe`)의 메서드(`sayHi`)가 객체와 분리되서 전달되기 때문이다.**
+  * `setTimeout`가 `binghe.sayHi`를 호출하게 되고, 이때 this는 `Timeout`되는 것이다! 그러므로, 당연히 `undefined`가 된다.
+
+<br>
+
+### 6-2 해결방법 - 래퍼
+가장 간단한 해결책은 래퍼 함수를 사용하는 것이라고 한다.
+```js
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.sayHi = function() {
+    console.log(`hi! ${this.name}`);
+    console.log(this);
+};
+
+const binghe = new Person('binghe');
+
+// 래퍼 함수 이용
+setTimeout(function() {
+    binghe.sayHi();
+}, 1000);
+```
+* 래퍼 함수를 사용하여 의도대로 동작하는 이유는 다음과 같다.
+  * 외부 렉시컬 환경에서 `binghe`를 받아서 보통 때처럼 메서드를 호출했기 때문입니다.
+
+<br>
+
+### 6-3 bind
+
+<br>
+
+**bind란?**
+
+모든 함수는 this를 수정하게 해주는 내장 메서드 [bind](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)를 제공한다.
+
+```js
+let boundFunc = func.bind(context);
+```
+* **`func.bind(context)`는 함수처럼 호출 가능한 '특수 객체(exotic object)'를 반환한다. 이 객체를 호출하면 this가 context로 고정된 함수 func가 반환된다.**
+* 따라서 boundFunc를 호출하면 this가 고정된 func를 호출하는 것과 동일한 효과를 본다.
+
+```js
+let user = {
+  firstName: "John",
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+let sayHi = user.sayHi.bind(user); // (*)
+
+// 이제 객체 없이도 객체 메서드를 호출할 수 있습니다.
+sayHi(); // Hello, John!
+
+setTimeout(sayHi, 1000); // Hello, John!
+```
+
+<br>
+
+**생성자 함수 bind로 this 살리기**
+```js
+let Person = function(name) {
+    this.name = name;
+    this.sayHi = function() {
+        console.log(this.name);
+    }.bind(this);
+};
+
+const binghe = new Person('binghe');
+
+binghe.sayHi();
+
+setTimeout(binghe.sayHi, 100); // binghe
+```
+* `binghe`객체의 메서드 `sayHi`를 `setTimeout`에 넘겨도 문제없이 실행되는 것을 볼 수 있다.
+  * 이제 `binghe.sayHi`를 어디로 보내든 자바의 메서드처럼 `binghe`객체를 `this`로 참조하고 있는다.
+
+
