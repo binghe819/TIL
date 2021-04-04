@@ -93,4 +93,8 @@
   * [아이템 74. 메서드가 던지는 모든 예외를 문서화하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item74.md)
   * [아이템 75. 예외의 상세 메시지에 실패 관련 정보를 담으라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item75.md)
   * [아이템 76. 가능한 한 실패 원자적으로 만들라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item75.md)
+* 동시성
+  * [아이템 78. 공유 중인 가변 데이터는 동기화해 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item78.md)
+  * [아이템 79. 과도한 동기화는 피하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item79.md)
+  * [아이템 80. 스레드보다는 실행자, 태스크, 스트림을 애용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item80.md)
 
