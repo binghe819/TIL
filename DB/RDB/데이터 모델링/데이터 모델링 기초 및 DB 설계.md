@@ -1,58 +1,56 @@
 [생활 코딩 - 관계형 데이터 모델링](https://opentutorials.org/course/3883)과 [여러 사이트](#참고)의 자료를 정리한 자료입니다.
 
-
+<br>
 
 # 목차
 
+- [목차](#목차)
 - [DB 데이터 모델링](#db-데이터-모델링)
-  * [데이터 모델링 순서](#데이터-모델링-순서)
-  * [1 요구사항 분석](#1-요구사항-분석)
-  * [2 개념적 설계](#2-개념적-설계)
-    + [2-1 용어 정리](#2-1-용어-정리)
-    + [2-2 관계 표기법](#2-2-관계-표기법)
+  - [데이터 모델링 순서](#데이터-모델링-순서)
+  - [1 요구사항 분석](#1-요구사항-분석)
+  - [2 개념적 설계](#2-개념적-설계)
+    - [2-1 용어 정리](#2-1-용어-정리)
+    - [2-2 관계 표기법](#2-2-관계-표기법)
       - [2-2-1 Cardinality](#2-2-1-cardinality)
-    + [2-2-2 Optionality](#2-2-2-optionality)
-    + [2-3 ERD 정의](#2-3-erd-정의)
-  * [3 논리적 설계](#3-논리적-설계)
-    + [3-1 논리적 설계](#3-1-논리적-설계)
-    + [3-2 정규화](#3-2-정규화)
+    - [2-2-2 Optionality](#2-2-2-optionality)
+    - [2-3 ERD 정의](#2-3-erd-정의)
+  - [3 논리적 설계](#3-논리적-설계)
+    - [3-1 논리적 설계](#3-1-논리적-설계)
+    - [3-2 정규화](#3-2-정규화)
       - [3-2-1 1차 정규화](#3-2-1-1차-정규화)
       - [3-2-2 2차 정규화](#3-2-2-2차-정규화)
       - [3-2-3 3차 정규화](#3-2-3-3차-정규화)
-  * [4 물리적 설계](#4-물리적-설계)
-    + [4-1 find slow query](#4-1-find-slow-query)
-    + [4-2 역정규화 (denormalization)](#4-2-역정규화-denormalization)
-    + [4-3 역정규화 예제](#4-3-역정규화-예제)
+  - [4 물리적 설계](#4-물리적-설계)
+    - [4-1 find slow query](#4-1-find-slow-query)
+    - [4-2 역정규화 (denormalization)](#4-2-역정규화-denormalization)
+    - [4-3 역정규화 예제](#4-3-역정규화-예제)
       - [4-3-1 칼럼 중복 : JOIN 줄이기](#4-3-1-칼럼-중복--join-줄이기)
       - [4-3-2 파생 컬럼의 형성 : 계산작업을 줄이기](#4-3-2-파생-컬럼의-형성--계산작업을-줄이기)
       - [4-3-3 칼럼을 기준으로 테이블을 분리 (샤딩)](#4-3-3-칼럼을-기준으로-테이블을-분리-샤딩)
       - [4-3-4 행을 기준으로 테이블 분리](#4-3-4-행을-기준으로-테이블-분리)
       - [4-3-5 관계의 역정규화](#4-3-5-관계의-역정규화)
+- [DB를 어떤 단계로 설계할 것인가](#db를-어떤-단계로-설계할-것인가)
+  - [테이블 주도 설계](#테이블-주도-설계)
+  - [도메인 주도 설계](#도메인-주도-설계)
 - [참고](#참고)
 
-
-
-
-
-
+<br>
 
 # DB 데이터 모델링
 
 🙌 DB의 설계를 하는데 기초인 데이터 모델링에 대해서 다루는 자료.
 
-
+<br>
 
 ## 데이터 모델링 순서
 
 🤔 데이터 모델링 순서
 
-<img src="./image/SQL_004.png" width="500" />
-
-<center>출처 : http://www.dbguide.net/db.db?cmd=view&boardUid=148404&boardConfigUid=9&categoryUid=216&boardIdx=132&boardStep=1</center>
+<p align="center"><img src="./image/SQL_004.png" width="450" /><br>출처 : http://www.dbguide.net/db.db?cmd=view&boardUid=148404&boardConfigUid=9&categoryUid=216&boardIdx=132&boardStep=1</p>
 
 * 현실세계에서 DB까지 만들어지는 과정을 통해 알 수 있듯이, **데이터 모델링의 순서는 추상화 수준에 따라 개념적 데이터 모델, 논리적 데이터 모델, 물리적 데이터 모델로 정리할 수 있다.**
 
-  
+<br>
 
 🙌  데이터 모델링은 전체적인 흐름에 따라서 설계한다.
 
@@ -61,7 +59,7 @@
 * 논리적 설계
 * 물리적 설계
 
-
+<br>
 
 ## 1 요구사항 분석
 
@@ -70,7 +68,7 @@
 * DB를 사용하려는 **사용자들의 목표를 파악하는 단계**
 * 조직에서 수행하는 업무를 분석하고 요구사항을 파악하기 위해서 사용자들과 커뮤니케이션을 통해 **DB의 용도, 목적을 결정하는 단계**
 
-
+<br>
 
 ## 2 개념적 설계
 
@@ -78,11 +76,11 @@
 
 * **요구사항 명세서를 바탕으로 E-R (Entity - Relationship Diagram) 모델 생성**
 
-
+<br>
 
 ### 2-1 용어 정리
 
-<img src="./image/141EADFC-3896-4E0B-B480-89B5C135479E.png" width="300" />
+<p align="center"><img src="./image/141EADFC-3896-4E0B-B480-89B5C135479E.png" width="300" /><br>출처 : 생활 코딩</p>
 
 🤔 **Entity (엔티티)**
 
@@ -90,7 +88,7 @@
 * **속성들을 그룹화 한 그룹.** 
 * `엔티티 == 테이블 == 개념 == 도메인`
 
-
+<br>
 
 🤔 **Attribute (속성)**
 
@@ -98,24 +96,26 @@
 * **테이블의 필드값**
 * `속성 == Column == 상태`
 
-
+<br>
 
 🤔 **Relationship (관계)**
 
 * **엔티티 사이의 관계를 표시**
 * `관계 == PK,FK == Join`
 
-<img src="./image/mblogthumb-phinf.pstatic.net.png" width="500" />
+<p align="center"><img src="./image/mblogthumb-phinf.pstatic.net.png" width="400" /></p>
 
-
+<br>
 
 🤔 E-R (Entitiy - Relationship)
 
-<img src="./image/BBCCE039-9E3F-4015-9332-4A018DE102DF.png" width="700" />
+<p align="center"><img src="./image/BBCCE039-9E3F-4015-9332-4A018DE102DF.png" width="650" /><br>출처 : 생활코딩</p>
 
-
+<br>
 
 ### 2-2 관계 표기법
+
+<br>
 
 #### 2-2-1 Cardinality
 
@@ -125,7 +125,7 @@
   * 주민등록번호 같은 경우 중복되는 값이 없으므로 Cardinality가 높다고 할 수 있다.
   * 이름 같은 경우 중복되는 값이 많으므로 Cardinality가 낮다고 할 수 있다.
 
-
+<br>
 
 🙌 엔티티간 관계
 
@@ -133,72 +133,68 @@
 
 * 1대 다 관계
 
-<img src="./image/8B8C7287-1AAE-4427-95B9-FFED41E093F0.png" width="500" />
+<p align="center"><img src="./image/8B8C7287-1AAE-4427-95B9-FFED41E093F0.png" width="400" /><br> 출처 : 생활코딩</p>
 
 * 다 대 다 관계
 
-<img src="./image/5DBB7D07-92F7-499A-8D0E-CA4A5C2B4813.png" width="500" />
+<p align="center"><img src="./image/5DBB7D07-92F7-499A-8D0E-CA4A5C2B4813.png" width="400" /><br> 출처 : 생활코딩</p>
 
-
+<br>
 
 ### 2-2-2 Optionality
 
-<img src="./image/3375EDEE-DB03-48EB-B676-754C7F1D0D14.png" width="500" />
+<p align="center"><img src="./image/3375EDEE-DB03-48EB-B676-754C7F1D0D14.png" width="400" /><br> 출처 : 생활코딩</p>
 
-
+<br>
 
 ### 2-3 ERD 정의
 
+<br>
+
 1. 엔티티 정의
 
-<img src="./image/932067E9-15C1-44B1-82EE-7F664AAA1C5D.png" width="500" />
+<p align="center"><img src="./image/932067E9-15C1-44B1-82EE-7F664AAA1C5D.png" width="400" /><br> 출처 : 생활코딩</p>
 
 * 내가 만들고자 하는 기능들의 쓰기 화면을 만들어서 보면 **`엔티티`로 해야되는 것들이 들어나는 경우가 많다.**
 * 주요한 `엔티티`를 찾아낸다.
 
-
+<br>
 
 2. 속성 정의
 
-<img src="./image/8F3595EE-FC57-428E-980C-7AB421480AB8.png" width="500" />
+<p align="center"><img src="./image/8F3595EE-FC57-428E-980C-7AB421480AB8.png" width="400" /><br> 출처 : 생활코딩</p>
 
 * `엔티티`에 속해 있는 **주요한 속성들을 추가해준다.**
 
-
-
-
-
-
+<br>
 
 3. 식별자 정의
 
-<img src="./image/1B96FB7E-9A9C-42F1-973A-47B08DDF5E96.png" width="400"/>
+<p align="center"><img src="./image/1B96FB7E-9A9C-42F1-973A-47B08DDF5E96.png" width="400"/><br> 출처 : 생활코딩</p>
 
-<img src="./image/80CA1522-D422-4F2A-9619-FC2D6ECC4AAB.png" width="400" />
+<p align="center"><img src="./image/80CA1522-D422-4F2A-9619-FC2D6ECC4AAB.png" width="400" /><br> 출처 : 생활코딩</p>
 
-<img src="./image/DDA3D495-23E3-4F19-990F-4418DE302345.png" width="600" />
+<p align="center"><img src="./image/DDA3D495-23E3-4F19-990F-4418DE302345.png" width="400" /><br> 출처 : 생활코딩</p>
 
-
+<br>
 
 4. 관계 (엔티티간의 관계) 정의
 
 🙌 **PK와 FK를 연결하므로써 관계를 만드는 것.**
 
-<img src="./image/FD5B7F68-7C4C-4CD9-A4AA-EC23CDA0CAC3.png" width="600" />
+<p align="center"><img src="./image/FD5B7F68-7C4C-4CD9-A4AA-EC23CDA0CAC3.png" width="400" /><br> 출처 : 생활코딩</p>
 
-<img src="./image/E762728F-1216-4149-B78F-62D12A2BB48B.png" width="500" />
+<p align="center"><img src="./image/E762728F-1216-4149-B78F-62D12A2BB48B.png" width="400" /><br> 출처 : 생활코딩</p>
 
 * 관계 표기법를 사용하여 관계를 나타낸다.
 
-
+<br>
 
 5. ERD 완성
 
-<img src="./image/A77DAAB1-069E-4813-AE1B-1BB3995B9877.png" width="500" />
+<p align="center"><img src="./image/A77DAAB1-069E-4813-AE1B-1BB3995B9877.png" width="400" /><br> 출처 : 생활코딩</p>
 
-
-
-
+<br>
 
 ## 3 논리적 설계
 
@@ -207,43 +203,43 @@
 * 개념적 설계를 컴퓨터가 이해할 수 있도록 DBMS의 논리적 자료 구조로 변환하는 과정.
 * 테이블을 설계하고, 정규화 과정을 거친다.
 
-
+<br>
 
 ### 3-1 논리적 설계
 
 1. 모든 테이블에 필드들을 만든다.
 
-<img src="./image/62A896EF-A0FC-4261-8992-EC1F2AA10AAA.png"  />
+<p align="center"><img src="./image/62A896EF-A0FC-4261-8992-EC1F2AA10AAA.png"  /><br>출처 : 생활코딩</p>
 
 2. 관계 만들어주기 (PK, FK를 사용)
 
-   <img src="./image/48E0EF4C-0B05-444B-8F4F-EAC05E2D82CC.png" width="600" />
+   <p align="center"><img src="./image/48E0EF4C-0B05-444B-8F4F-EAC05E2D82CC.png" width="400" /><br> 출처 : 생활코딩</p>
 
    * 1 : 1 관계
 
-     ![DA26B326-4BE7-4B38-A0D9-8CC7131FB036](./image/DA26B326-4BE7-4B38-A0D9-8CC7131FB036.png)
+     <p align="center"><img src="./image/DA26B326-4BE7-4B38-A0D9-8CC7131FB036.png"><br>출처 : 생활코딩</p>
 
      * 누가 PK를 가져야하는가가 관건.
 
    * 1 : N 관계
 
-     ![25ED3E81-3F9B-4EA8-9EAF-EDD4B7063338](./image/25ED3E81-3F9B-4EA8-9EAF-EDD4B7063338.png)
+     <p align="center"><img src="./image/25ED3E81-3F9B-4EA8-9EAF-EDD4B7063338.png"><br> 출처 : 생활코딩</p>
 
    * M : N 관계
 
      * 한 게시물을 여러명의 사용자가 같이 작성될 수 있게 한다고 가정한다면
 
-     ![699B485C-493C-4BF3-88FB-0B0EC5A47B77](./image/699B485C-493C-4BF3-88FB-0B0EC5A47B77.png)
+     <p align="center"><img src="./image/699B485C-493C-4BF3-88FB-0B0EC5A47B77.png"><br> 출처 : 생활코딩</p>
 
      * 두 가지의 방법이 존재하며 노란 부분이 다대다 관계를 나타낸다. **이런 경우 하나의 새로운 테이블을 만들어 매핑해주는 것이 좋다.**
 
-       ![AE19DFEE-74CF-4991-8A2D-88BA6B5359CD](./image/AE19DFEE-74CF-4991-8A2D-88BA6B5359CD.png)
+      <p align="center"><img src="./image/AE19DFEE-74CF-4991-8A2D-88BA6B5359CD.png"><br> 출처 : 생활코딩</p>
 
-   * ![41B84FEB-C5C2-4AF7-86A9-BC6EC7F70044](./image/41B84FEB-C5C2-4AF7-86A9-BC6EC7F70044.png)
+      <p align="center"><img src="./image/41B84FEB-C5C2-4AF7-86A9-BC6EC7F70044.png"><br>출처 : 생활코딩</p>
 
      * **완성본( 저자와 게시물 사이에 `write` 테이블을 넣음으로써 M : N을 효과적으로 모델링 )**
 
-
+<br>
 
 ### 3-2 정규화
 
@@ -257,12 +253,12 @@
   * **데이터 저장을 논리적으로 한다.**
     * 하나의 테이블에서의 삽입, 삭제, 변경이 정의된 관계들로 인하여 DB의 나머지 부분들로 전파되게 하는 것.
 
-![E44A25B5-5770-4CC3-A65B-5E261086C44B](./image/E44A25B5-5770-4CC3-A65B-5E261086C44B.png)
+<p align="center"><img src="./image/E44A25B5-5770-4CC3-A65B-5E261086C44B.png"> </p>
 
 * `NF` 는 정규형을 뜻한다.
 * 비공식적으로 제 3 정규형 (`3NF`)가 실제 사용하는데는 문제가 없다고 한다.
 
-
+<br>
 
 #### 3-2-1 1차 정규화
 
@@ -273,11 +269,11 @@
 
 :point_right: 예시
 
-![41501EF3-E51C-4C15-B980-D1EE315567CC](./image/41501EF3-E51C-4C15-B980-D1EE315567CC.png)
+<p align="center"><img src="./image/41501EF3-E51C-4C15-B980-D1EE315567CC.png"> </p>
 
 * **`topic` 과 `tag` 는 서로 `다대다 관계` 이므로 새로운 테이블을 만들어서 서로 맵핑을 해준 것.**
 
-
+<br>
 
 #### 3-2-2 2차 정규화
 
@@ -289,11 +285,11 @@
 
 :point_right: 예시
 
-<img src="./image/AD1A2795-E106-4A1E-AA39-E2F1424844D7.png" />
+<p align="center"><img src="./image/AD1A2795-E106-4A1E-AA39-E2F1424844D7.png" /></p>
 
 * 중복된 필드들을 없애 준다고 생각하면 된다. 테이블을 쪼개주면 해결이 가능하다.
 
-
+<br>
 
 #### 3-2-3 3차 정규화
 
@@ -305,12 +301,12 @@
 
 :point_right: 예시
 
-![7CBD2ABD-864A-4F3C-A823-9636D725B8FC](./image/7CBD2ABD-864A-4F3C-A823-9636D725B8FC.png)
+<p align="center"><img src="./image/7CBD2ABD-864A-4F3C-A823-9636D725B8FC.png"> </p>
 
 * `author_id`는 `title`에 종속되어 있지만, `author_name`과 `author_profile`이 `author_id`에 종속되어 있으므로, 이는 중복을 발생시킨다.
 * 테이블을 쪼개주므로써 이를 해결할 수 있다.
 
-
+<br>
 
 ## 4 물리적 설계
 
@@ -319,7 +315,7 @@
 * **물리적 설계는 선택한 DB 제품에 맞는 현실적인 고려를 하는 방법론. 가장 중요한 것은 성능. 특히 역정규화가 중요하다.**
 * DB 파일의 저장 구조 및 액세스 경로, 인덱스의 구조와 저장 레코드의 크기, 순서, 접근 경로 등을 결정하며, 반응 시간, 공간활용도, 트랜잭션 처리량을 고려하여 설계를 해야 한다.
 
-
+<br>
 
 ### 4-1 find slow query
 
@@ -332,7 +328,7 @@
   * 그 이유는 **쓰기가 이뤄질 때마다 그 행의 인덱스에 걸려있다면, 복잡한 연산과정이 발생한다.**
   * 이 과정에서 시간이 오래 걸린다. **인덱스를 효과적으로 사용하는게 좋다.**
 
-
+<br>
 
 ### 4-2 역정규화 (denormalization)
 
@@ -346,19 +342,19 @@
 * 쿼리 성능을 위해서 인덱스를 사용하는데 이때 사용되는 것이 `join` 이다.
   * 이는 굉장한 성능이 요하는 명령이다.
 
-
+<br>
 
 ### 4-3 역정규화 예제
 
 🙌 정규화된 테이블의 구조를 성능과 개발의 편의성을 위해 역정규화 해보는 예제
 
-![3146409D-5460-47DB-AA8A-A942FA571CC4](./image/3146409D-5460-47DB-AA8A-A942FA571CC4.png)
+<p align="center"><img src="./image/3146409D-5460-47DB-AA8A-A942FA571CC4.png"> </p>
 
-
+<br>
 
 #### 4-3-1 칼럼 중복 : JOIN 줄이기
 
-![87725C3E-54EA-43FB-88B6-753FF81A714F](./image/87725C3E-54EA-43FB-88B6-753FF81A714F.png)
+<p align="center"><img src="./image/87725C3E-54EA-43FB-88B6-753FF81A714F.png"> </p>
 
 * `JOIN` 의 횟수를 줄이자.
   * 원래의 테이블은 `JOIN` 을 통해서만 `tag_name` 을 알 수 있었으나, 그렇게하면 `JOIN` 을 계속해야한다.
@@ -368,21 +364,19 @@
 >
 > 그러므로 정규화와 역정규화를 잘 배분해서 사용해야 한다.
 
-
+<br>
 
 #### 4-3-2 파생 컬럼의 형성 : 계산작업을 줄이기
-
-![393555BD-05B2-462D-94F3-3FD0B4011F1B](./image/393555BD-05B2-462D-94F3-3FD0B4011F1B.png)
+<p align="center"><img src="./image/393555BD-05B2-462D-94F3-3FD0B4011F1B.png"> </p>
 
 * 정규화된 테이블에서는 `author`가 쓴 `topic` 의 총 개수를 구하려면 `COUNT` 를 사용해서 쿼리를 발생시킬때마다 `COUNT` 를 해줘야한다.
 * 계산 작업 줄이기
   * 글을 추가할 때마다 `author` 에 새로운 필드인 `topic_count` 를 추가하고 감소해주는 방식으로 사용하면, 시스템은 복잡해지지만 쿼리의 속도는 빨라진다.
 
-
+<br>
 
 #### 4-3-3 칼럼을 기준으로 테이블을 분리 (샤딩)
-
-![E74FABC4-6DD9-40B0-ACB8-2CB3EFC68D8F](./image/E74FABC4-6DD9-40B0-ACB8-2CB3EFC68D8F.png)
+<p align="center"><img src="./image/E74FABC4-6DD9-40B0-ACB8-2CB3EFC68D8F.png"> </p>
 
 * `topic` 테이블을 두 개로 나누는 것.
 * 샤딩
@@ -390,29 +384,48 @@
   * 스케일 아웃의 한 방식.
 * 하지만 시스템이 매우 복잡해지므로 최후의 수단같은 존재..
 
-
+<br>
 
 #### 4-3-4 행을 기준으로 테이블 분리
-
-![B7C745C2-524D-4FF2-B861-F1CA64FFC3E7](./image/B7C745C2-524D-4FF2-B861-F1CA64FFC3E7.png)
+<p align="center"><img src="./image/B7C745C2-524D-4FF2-B861-F1CA64FFC3E7.png"> </p>
 
 * 행을 기준으로 테이블을 분리한다.
   * 예를 들어 1 ~ 1000 인덱스의 행은 A 서버에, 1001 ~ 2000 인덱스의 행은 B 서버에 저장하는 방식
 * 관리 측면에서 매우 복잡해진다.
 
-
+<br>
 
 #### 4-3-5 관계의 역정규화
-
-![004BAEA8-FB33-4AE6-A2DB-A428242E6EAC](./image/004BAEA8-FB33-4AE6-A2DB-A428242E6EAC.png)
+<p align="center"><img src="./image/004BAEA8-FB33-4AE6-A2DB-A428242E6EAC.png"> </p>
 
 * 두 번 `JOIN` 하는 쿼리를 한 번으로 줄일 수 있다.
 
+<br>
 
+# DB를 어떤 단계로 설계할 것인가
+
+<br>
+
+## 테이블 주도 설계
+<p align="center"><img src="./image/tabledriven.png" width="500"><br>출처 : https://www.slideshare.net/javajigi/orm-27141159</p>
+
+* 테이블 주도로 설계할 경우, 객체 간의 관계는 사라지고 DB에 대한 처리에 집중하게 된다.
+  * 즉, 비즈니스 로직 구현보다는 DB 접근 로직 구현에 집중한다.
+
+<br>
+
+## 도메인 주도 설계
+<p align="center"><img src="./image/domaindriven.png" width="500"><br>출처 : https://www.slideshare.net/javajigi/orm-27141159</p>
+
+* DB에 의존하지 않은 상태에서 개발할 경우, 구현/피드백 사이클이 빠르다.
+  * 구현/피드백 사이클이 빠르므로 지식 축적이 빠르고 도메인에 최적화된 설계를 할 수 있다.
+  * 이는 사용자의 요구사항 변화에 빠르게 대응할 수 있게 한다.
+
+<br>
 
 # 참고
 
 * [생활코딩 - 데이터 모델링](https://opentutorials.org/course/3883)
 * [DBGuide.net](http://www.dbguide.net/db.db?cmd=view&boardUid=148404&boardConfigUid=9&categoryUid=216&boardIdx=132&boardStep=1)
-
 * [위키백과 - 데이터베이스 정규화](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4_%EC%A0%95%EA%B7%9C%ED%99%94)
+* [ORM을 활용할 경우 설계, 개발 과정](https://www.slideshare.net/javajigi/orm-27141159)
