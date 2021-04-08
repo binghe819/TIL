@@ -1,36 +1,37 @@
 # 목차
 
+- [목차](#목차)
 - [Servlet Filter](#servlet-filter)
-  * [1 Filter의 개념](#1-filter의-개념)
-    + [1-1 Servlet Filter란](#1-1-servlet-filter란)
-    + [1-2 사용하는 이유](#1-2-사용하는-이유)
-  * [2 Filter 만들기](#2-filter-만들기)
-    + [2-1 Filter 인터페이스를 구현하면 된다](#2-1-filter-인터페이스를-구현하면-된다)
-    + [2-2 필터 배치](#2-2-필터-배치)
+  - [1 Filter의 개념](#1-filter의-개념)
+    - [1-1 Servlet Filter란](#1-1-servlet-filter란)
+    - [1-2 사용하는 이유](#1-2-사용하는-이유)
+  - [2 Filter 만들기](#2-filter-만들기)
+    - [2-1 Filter 인터페이스를 구현하면 된다](#2-1-filter-인터페이스를-구현하면-된다)
+    - [2-2 필터 배치](#2-2-필터-배치)
       - [web.xml](#webxml)
       - [애노테이션](#애노테이션)
-  * [3 필터 순서 지정하기](#3-필터-순서-지정하기)
-  * [4 Filter 사용 예시](#4-filter-사용-예시)
+  - [3 필터 순서 지정하기](#3-필터-순서-지정하기)
+  - [4 Filter 사용 예시](#4-filter-사용-예시)
 - [참고](#참고)
 
-
+<br>
 
 # Servlet Filter
 
-
+<br>
 
 ## 1 Filter의 개념
 
-
+<br>
 
 ### 1-1 Servlet Filter란
 
-![image-20200921193454703](./image/image-20200921193454703.png)
+<p align="center"><img src="./image/image-20200921193454703.png"> </p>
 
 * WAS로 들어온 요청을 서블릿으로 보내고, 또 서블릿이 작성한 응답을 클라이언트로 보내기 전에 특별한 처리가 필요한 경우에 사용되는 필터.
 * 체인 형태의 구조
 
-
+<br>
 
 ### 1-2 사용하는 이유
 
@@ -41,11 +42,11 @@
   * 문자 인코딩, 디코딩
   * 로그
 
-
+<br>
 
 ## 2 Filter 만들기
 
-
+<br>
 
 ### 2-1 Filter 인터페이스를 구현하면 된다
 
@@ -77,12 +78,12 @@ public class MyFilter implements Filter {
   * 다음 필터가 없다면 내부적으로 서블릿의 `service()` 가 호출된다.
 * `destroy()` - WAS가 종료되기 전에 딱 한번 호출한다.
 
-
+<br>
 
 > * 서블릿이 **실행되기 전의 작업**은 `filterChain.doFilter()` **이전 코드에 써야한다.**
 > * 서블릿이 **실행된 후 응답하는 작업**은 `filterChain.doFilter()` **이후 코드에 써야한다.**
 
-
+<br>
 
 ### 2-2 필터 배치
 
@@ -93,7 +94,7 @@ public class MyFilter implements Filter {
 * `web.xml`
 * 자바 애노테이션
 
-
+<br>
 
 #### web.xml
 
@@ -113,7 +114,7 @@ public class MyFilter implements Filter {
 </filter-mapping>
 ```
 
-
+<br>
 
 #### 애노테이션
 
@@ -128,7 +129,7 @@ public class MyFilter implements Filter {
 
 * 필터 클래스 위에 애노테이션을 붙여주면 된다.
 
-
+<br>
 
 ## 3 필터 순서 지정하기
 
@@ -144,7 +145,7 @@ public class MyFilter implements Filter {
 
 > 스프링에서는 `@Order` 애노테이션을 통해 재공해준다.
 
-
+<br>
 
 ## 4 Filter 사용 예시
 
@@ -181,7 +182,7 @@ public class MyFilter implements Filter {
 }
 ```
 
-
+<br>
 
 # 참고
 

@@ -1,35 +1,36 @@
 # 목차
 
+- [목차](#목차)
 - [ServletListener](#servletlistener)
-  * [1 ServletListener 개념](#1-servletlistener-개념)
-    + [1-1 ServletListener란](#1-1-servletlistener란)
-    + [1-2 ServletListener 종류](#1-2-servletlistener-종류)
-  * [2 ServletListener만들기](#2-servletlistener만들기)
-  * [3 ServletListener 배치](#3-servletlistener-배치)
-    + [web.xml](#webxml)
-    + [애노테이션](#애노테이션)
-  * [4 ServletListener 예시](#4-servletlistener-예시)
+  - [1 ServletListener 개념](#1-servletlistener-개념)
+    - [1-1 ServletListener란](#1-1-servletlistener란)
+    - [1-2 ServletListener 종류](#1-2-servletlistener-종류)
+  - [2 ServletListener만들기](#2-servletlistener만들기)
+  - [3 ServletListener 배치](#3-servletlistener-배치)
+    - [web.xml](#webxml)
+    - [애노테이션](#애노테이션)
+  - [4 ServletListener 예시](#4-servletlistener-예시)
 
-
+<br>
 
 # ServletListener
 
-
+<br>
 
 ## 1 ServletListener 개념
 
-
+<br>
 
 ### 1-1 ServletListener란
 
 * 리스터는 특정 이벤트가 발생하기를 기다리다가 이벤트가 발생되면 실행되는 함수, 혹은 그 메서드를 지닌 객체를 의미한다.
 * 옵저버패턴과 동일하다.
 
-
+<br>
 
 ### 1-2 ServletListener 종류
 
-<img src="./image/image-20200707164340399.png" width="600" />
+<p align="center"><img src="./image/image-20200707164340399.png" width="600" /><br>출처 : Head First Servlets & JSP</p>
 
 <center>출처 : Head First Servlet & JSP</center>
 
@@ -43,7 +44,7 @@
   * 서블릿 요청 라이프사이클 이벤트
   * 서블릿 요청 애트리뷰트(속성) 변경 이벤트
 
-
+<br>
 
 ## 2 ServletListener만들기
 
@@ -65,7 +66,7 @@ public class MyListener implements ServletContextListener {
 
 * 원하는 수준의 리스터는 구현(`implements`)하면 된다.
 
-
+<br>
 
 ## 3 ServletListener 배치
 
@@ -77,7 +78,7 @@ public class MyListener implements ServletContextListener {
 </listener>
 ```
 
-
+<br>
 
 ### 애노테이션
 
@@ -88,9 +89,7 @@ public class MyListener implements ServletContextListener {
 }
 ```
 
-
-
-
+<br>
 
 ## 4 ServletListener 예시
 
@@ -116,9 +115,6 @@ public class MyListener implements ServletContextListener {
 }
 ```
 
+<br>
 
-
-
-
-
-
+> ServletContextListener에 대한 더 자세한 내용은 [여기](./Head%20First%20Servlets%20&%20JSP/5.%20속성과%20리스너.md)를 참고하자.
