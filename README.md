@@ -6,24 +6,26 @@
 
 ## Spring
 
-* 스프링 입문을 위한 자바 객체 지향의 원리와 이해
-  * [IoC / DI](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/IoC%20:%20DI.md)
-  * [AOP](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/AOP.md)
-  * [PSA](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/PSA.md)
-* IoC / DI
-  * [IoC / DI 개념](https://github.com/binghe819/TIL/blob/master/Spring/IoC/IoC:DI%EA%B0%9C%EB%85%90.md)
-  * [의존성 주입 방법](https://github.com/binghe819/TIL/blob/master/Spring/IoC/%EC%9D%98%EC%A1%B4%EC%84%B1%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95.md)
-  * [Bean](https://github.com/binghe819/TIL/blob/master/Spring/IoC/Bean.md)
-  * [ApplicationContext](https://github.com/binghe819/TIL/blob/master/Spring/IoC/ApplicationContext.md)
-* AOP
-  * [AOP 개념 - 예정]()
-  * [용어 정리 - 예정]()
-  * [프록시 패턴 - 예정]()
+* Spring Core
+  * 스프링 입문을 위한 자바 객체 지향의 원리와 이해
+    * [IoC / DI](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/IoC%20:%20DI.md)
+    * [AOP](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/AOP.md)
+    * [PSA](https://github.com/binghe819/TIL/blob/master/Spring/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%9E%85%EB%AC%B8%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%9E%90%EB%B0%94%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%9B%90%EB%A6%AC%EC%99%80%20%EC%9D%B4%ED%95%B4/PSA.md)
+  * IoC / DI
+    * [IoC / DI 개념](https://github.com/binghe819/TIL/blob/master/Spring/IoC/IoC:DI%EA%B0%9C%EB%85%90.md)
+    * [의존성 주입 방법](https://github.com/binghe819/TIL/blob/master/Spring/IoC/%EC%9D%98%EC%A1%B4%EC%84%B1%20%EC%A3%BC%EC%9E%85%20%EB%B0%A9%EB%B2%95.md)
+    * [Bean](https://github.com/binghe819/TIL/blob/master/Spring/IoC/Bean.md)
+    * [ApplicationContext](https://github.com/binghe819/TIL/blob/master/Spring/IoC/ApplicationContext.md)
+  * AOP
+    * [AOP 개념 - 예정]()
+    * [용어 정리 - 예정]()
+    * [프록시 패턴 - 예정]()
 * Servlet
   * [Head First Servlet & First](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/Head%20First%20Servlets%20%26%20JSP)
   * [Servlet Filter](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletFilter.md)
   * [Servlet Listener](https://github.com/binghe819/TIL/tree/master/Spring/Servlet/ServletListener.md)
 * Spring MVC
+  * [Spring MVC 기초 개념](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20%EA%B8%B0%EC%B4%88%20%EA%B0%9C%EB%85%90.md)
   * [Spring MVC Flow](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20flow.md)
   * [서블릿에 SpringMVC 연동](https://github.com/binghe819/TIL/blob/master/Spring/MVC/%EC%84%9C%EB%B8%94%EB%A6%BF%EC%97%90%20%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%97%B0%EB%8F%99.md)
   * [DispatcherServlet](https://github.com/binghe819/TIL/blob/master/Spring/MVC/DispatcherServlet.md)
