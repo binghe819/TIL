@@ -58,8 +58,10 @@
 ## 네트워크
 
 * [HTTP 완벽 가이드](https://github.com/binghe819/TIL/blob/master/Network/HTTP%20The%20Definitive%20Guide)
-
 * [REST / REST API / RESTful](https://github.com/binghe819/TIL/blob/master/Network/REST%20API/REST%20API.md)
+* [SSH](https://github.com/binghe819/TIL/blob/master/Network/SSH/ssh.md)
+* 보안
+  * [암호화 기초](https://github.com/binghe819/TIL/blob/master/Network/Security/%EC%95%94%ED%98%B8%ED%99%94%20%EA%B8%B0%EC%B4%88.md)
 
 <br>
 
