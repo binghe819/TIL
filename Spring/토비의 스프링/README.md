@@ -13,4 +13,5 @@
 * [3장 템플릿](https://github.com/binghe819/TIL/blob/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81/3%EC%9E%A5%20%ED%85%9C%ED%94%8C%EB%A6%BF.md)
 * [4장 예외](https://github.com/binghe819/TIL/blob/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81/4%EC%9E%A5%20%EC%98%88%EC%99%B8.md)
 * [5장 서비스 추상화](./5장%20서비스%20추상화.md)
+* [6장 AOP](./6장%20AOP.md)
 
