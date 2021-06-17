@@ -4,16 +4,16 @@
 
 - [목차](#목차)
 - [웹 애플리케이션 레이어](#웹-애플리케이션-레이어)
-  - [개요](#개요)
-  - [계층은 왜 분리하는 것일까?](#계층은-왜-분리하는-것일까)
-  - [웹에선 어떤 계층 구조를 사용할까?](#웹에선-어떤-계층-구조를-사용할까)
-    - [프레젠테이션 계층](#프레젠테이션-계층)
-    - [애플리케이션 계층 (서비스 계층)](#애플리케이션-계층-서비스-계층)
-    - [비즈니스 계층 (Domain)](#비즈니스-계층-domain)
-    - [영속 계층](#영속-계층)
-  - [Spring 웹 계층 구조](#spring-웹-계층-구조)
+- [개요](#개요)
+- [계층은 왜 분리하는 것일까?](#계층은-왜-분리하는-것일까)
+- [웹에선 어떤 계층 구조를 사용할까?](#웹에선-어떤-계층-구조를-사용할까)
+  - [프레젠테이션 계층](#프레젠테이션-계층)
+  - [애플리케이션 계층 (서비스 계층)](#애플리케이션-계층-서비스-계층)
+  - [비즈니스 계층 (Domain)](#비즈니스-계층-domain)
+  - [영속 계층](#영속-계층)
+- [Spring 웹 계층 구조](#spring-웹-계층-구조)
 - [계층에 대한 토론](#계층에-대한-토론)
-  - [계층 구조를 그냥 건너뛰면 안되나?](#계층-구조를-그냥-건너뛰면-안되나)
+  - [Presentation Layer의 요청 DTO와 Application Layer의 DTO는 같은가?](#presentation-layer의-요청-dto와-application-layer의-dto는-같은가)
   - [DTO와 도메인(Entity)간의 변환 작업은 어디에서 수행되어야 하는가?](#dto와-도메인entity간의-변환-작업은-어디에서-수행되어야-하는가)
     - [도메인 모델 보호 관점](#도메인-모델-보호-관점)
     - [정답은 없다](#정답은-없다)
@@ -24,8 +24,8 @@
     - [Repository](#repository)
     - [DAO](#dao)
     - [차이점](#차이점)
-  - [DB에 대한 예외처리는 어디서 하는 것이 좋은가?](#db에-대한-예외처리는-어디서-하는-것이-좋은가)
-  - [Dao는 Optional을 반환하는 것과 도메인을 반환하는 것중 무엇이 더 좋을까??](#dao는-optional을-반환하는-것과-도메인을-반환하는-것중-무엇이-더-좋을까)
+  - [Validation은 Presentation과 Application Layer중 어디서 해주어야하는가?](#validation은-presentation과-application-layer중-어디서-해주어야하는가)
+  - [영속 계층과 서비스 계층중 어디에서 예외처리를 해주어야하는가?](#영속-계층과-서비스-계층중-어디에서-예외처리를-해주어야하는가)
 - [참고](#참고)
 
 <br>
@@ -34,7 +34,7 @@
 
 <br>
 
-## 개요
+# 개요
 웹 애플리케이션을 구현하면서 항상 다음과 같은 물음표가 따른다.
 
 `이 코드는 여기에 있는게 맞는가? 이 책임은 이 레이어가 담당하는게 맞는가?`
@@ -45,7 +45,7 @@
 
 <br>
 
-## 계층은 왜 분리하는 것일까?
+# 계층은 왜 분리하는 것일까?
 
 🤔 계층 구조를 나누는 의미는 무엇일까?
 
@@ -77,23 +77,21 @@
 
 <br>
 
-## 웹에선 어떤 계층 구조를 사용할까?
+# 웹에선 어떤 계층 구조를 사용할까?
 
 웹 애플리케이션에서는 보통 수평적인 계층 구조를 가진다. 그리고 각 계층은 애플리케이션 내에서 각자의 특정 역할을 수행한다.
 
-<p align="center"><img src="./image/3_tier_layer.png" width="400"><br>출처: https://ko.wikipedia.org/wiki/%EB%8B%A4%EC%B8%B5_%EA%B5%AC%EC%A1%B0</p>
+<p align="center"><img src="./image/3_tier_layer.png" width="400"></p>
 
 일반적으로 다음과 같이 계층 구조를 나눈다.
 * 프레젠테이션 계층 (Presentation Layer)
-* 애플리케이션 계층 (Application Layer) => Service Layer
-* 비즈니스 계층 (Business Layer) => Domain
+* 애플리케이션 계층 (Application Layer)
+* 비즈니스 계층 (Business Layer)
 * 데이터 접근 계층 (Persistence Layer)
-
-> 비즈니스 계층을 Domain으로 봐도 되는가??
 
 <br>
 
-### 프레젠테이션 계층
+## 프레젠테이션 계층
 
 <br>
 
@@ -103,10 +101,13 @@
   * the presentation layer doesn’t need to know or worry about how to get customer data; **it only needs to display that information on a screen in particular format** - [Software Architecture Patterns by Mark Richards](https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/ch01.html)
 * 더 큰 범위의 계층에서의 의미 => **자원에 대한 표현**
   * presents the application’s features and data to the user.
+* Controller, View(Template Engine)으로 구성된다.
 
 <br>
 
 **역할과 책임**
+* 요청 변환
+  * 사용자의 입력을 원하는 형식으로 변환한다.
 * 요청과 응답
   * 사용자의 입력(브라우저)을 처리하고 올바른 응답을 사용자에게 반환해야 한다.
 * 예외 처리
@@ -116,14 +117,14 @@
 
 <br>
 
-### 애플리케이션 계층 (서비스 계층)
+## 애플리케이션 계층 (서비스 계층)
 
 <br>
 
 **Service계층에서 비즈니스 로직을 처리하는 것이 아니다!**
 * **이 계층은 트랜잭션, 도메인 간 순서 보장의 역할만 한다.**
 * 그럼 **비즈니스 로직은 누가 처리하느냐!**
-  * **바로 도메인(Domain)이다!**
+  * **바로 도메인(Domain) Layer다!**
 
 <br>
 
@@ -132,6 +133,8 @@
 
 * **Application Layer == Service Layer**
   * 보통 애플리케이션과 인프라 관련된 서비스를 가지고 있는다.
+* 안드로이드 요청인지, 웹 요청인지, 소켓 요청인지 상관없이 동일하게 동작해야한다.
+  * 어떠한 Presentation Layer과도 의존하면 안된다. (분리)
 * **Domain Model을 묶어서 애플리케이션의 핵심 작업을 제어하는 계층**
   * 서비스 계층은 클라이언트 계층을 인터페이스하는 관점에서 응용 프로그램의 경계와 사용 가능한 작업 현황을 정의한다.
   * 애플리케이션 비즈니스 로직을 캡슐화하고, 운영을 구현하면서 트랜잭션을 제어하고, 응답을 조정한다.
@@ -143,6 +146,8 @@
 <br>
 
 **역할과 책임**
+* **Entity Retrieve/Save**
+  * Entity(핵심 도메인 객체)를 찾고, 변경 내용을 저장하는 기능을 Application Layer가 호출한다.
 * **도메인 간 순서 보장 역할**
   * 도메인 모델의 비즈니스 로직 하나를 호출하는 것만으로는 복잡한 작업을 처리할 수 없다.
   * 여러 도메인 모델에게 비즈니스 처리 요청을 위임하고, 도메인 간의 순서를 보장한다.
@@ -151,10 +156,14 @@
   * **Controller는 그저 UI Layer이기 때문에 진짜 핵심은 Service라고 보는 것이 맞는듯 하다.**
   * 요청이 UI를 통해 들어온거라면 Controller를 거치겠지만, 다른 경로로 들어온다면 (ex. 내부 API) 핵심 API를 처리하는 것은 Service기 때문이다.
 * 트랜잭션 관리
+* 사용자 인증/인가
+  * Presentation Layer는 특정 URL에 대한 권한이 있는지 검증만 할 수 있다.
+  * DB내의 데이터와 대조해야하는 경우 Application Layer를 사용할 수 밖에 없다.
+* 
 
 <br>
 
-### 비즈니스 계층 (Domain)
+## 비즈니스 계층 (Domain)
 
 <br>
 
@@ -172,7 +181,7 @@
 
 <br>
 
-### 영속 계층
+## 영속 계층
 
 <br>
 
@@ -186,7 +195,7 @@
 
 <br>
 
-## Spring 웹 계층 구조
+# Spring 웹 계층 구조
 
 🤔 그렇다면 스프링에선 어떻게 계층을 나눌까?
 
@@ -220,8 +229,36 @@
 
 <br>
 
-## 계층 구조를 그냥 건너뛰면 안되나?
+## Presentation Layer의 요청 DTO와 Application Layer의 DTO는 같은가?
 
+<br>
+
+🤔 **이게 왜 궁금하지?**
+
+* **많은 사람들이 Service의 매개변수로, Controller에서 받아온 DTO를 그대로 넘긴다.**
+
+<br>
+
+**같을 경우 다음과 같은 문제가 있다**
+
+1. **Application Layer에서 Presentation Layer의 WebDTO에 의존한다. (종속적)**
+2. Application Layer가 모듈로 분리되는 경우 해당 Type을 사용할 수 없다.
+   * 다른 Presentation Layer에서도 요청을 할 수 있기 때문에 모듈화.
+3. 트랜잭션으로 처리되어야하는 DTO 항목이, 항상 요청으로 들어온 값과 동일하지 않을 수 있다.
+
+<p align="center"><img src="./image/10.controller-photo.png" width="300"><br>출처: https://woowabros.github.io/experience/2021/02/05/pilot-project-siyoung.html</p>
+
+* 사용자 요청 파라미터를 통해 외부 API를 여러번 호출하고, Service 레이어를 호출할 경우, Controller Web DTO와 Service가 받을 DTO가 달라진다.
+* 이 상황에서 만약 Service레이어에서 특정 Controller WebDTO에 의존하고 있다면 문제가 될 수 있다.
+
+<br>
+
+**결론은 같을수도, 같지 않을수도**
+
+* **DTO가 여러 Layer사이에서 쓰일 수 있기는 하지만, Presentation Layer에서 요구하는 입력 양식과, Application Layer에서 요구하는 입력 양식은 다를 수 있다.**
+  * 그러므로, 요청에 대한 DTO가 다를 수 있다.
+* **물론 따로 만드는 것이 좋지만, 현실적으로 모두 따로 만드는 건 비효율적이라 생각든다.**
+  * '적절히' 만들어서 사용하자..
 
 <br>
 
@@ -244,7 +281,7 @@
 <br>
 
 ### 정답은 없다
-그렇다고 꼭 DTO를 만들어서 반환하라는 것은 아니다.
+그렇다고 꼭 Service에서 DTO를 만들어서 반환하라는 것은 아니다.
 
 DTO를 통해 도메인과 다른 계층을 분리할 수 있지만, 이럴경우 도메인 모델과 유사한 코드 복제가 빈번하게 발생하는 문제가 발생한다.
 
@@ -313,11 +350,64 @@ DTO를 통해 도메인과 다른 계층을 분리할 수 있지만, 이럴경�
 
 <br>
 
-## DB에 대한 예외처리는 어디서 하는 것이 좋은가?
+## Validation은 Presentation과 Application Layer중 어디서 해주어야하는가?
+
+**검증에 대한 필요성**
+
+다들 알고있듯이 프론트만으로는 요청 값에 대한 검증을 할 수 없다.
+
+물론 프론트에서 예외처리를 할 순 있지만, 크롤러나 public API를 이용한다면 검증이 전혀 되지 않는다.
+
+이러한 이유로 서버에서도 검증을 해주어야한다.
+
+그렇다면 어디에서 해줘야할까??
 
 <br>
 
-## Dao는 Optional을 반환하는 것과 도메인을 반환하는 것중 무엇이 더 좋을까??
+**Presentation Layer에서 검증해야 한다는 의견**
+
+* Application Layer로의 책임 전파 방지
+* Application Layer에 넘어가기 전에 에러 내역을 반환하기 때문에, 평균 응답 시간이 빨라짐.
+
+<br>
+
+**Application Layer에서 검증해야 한다는 의견**
+
+* SOA, microservice와 같이 Application Layer의 Service가 다른 Service에 의해 적극적으로 재사용되기를 바라는 경우 Application Layer에서 검증하는 것이 맞음.
+
+<br>
+
+**결론은 형식적 검증은 Presentation, 비즈니스적 검증은 Application**
+
+* 우선 Presentation Layer에선 비즈니스적인 검증을 할 수 없다.
+  * 데이터 존재 여부, 중복 여부등등
+* 또한, 일반적으로 monolithic하게 서버를 많이 구성한다고 가정한다면, 형식적 검증은 Presentation이 하는 것이 좋다고 생각든다.
+  * 형식적 검증: 값 길이, 빈 값 방지, 데이터 형식..
+  * 물론 마이크로 서비스를 적용시킨다면 Application Layer에서 하는 것이 타당.
+
+<br>
+
+## 영속 계층과 서비스 계층중 어디에서 예외처리를 해주어야하는가?
+어느날 현구막이 갑자기 아래와 같은 대화 주제를 꺼냈다.
+
+<p align="center"><img src="./image/dao_exception.png"></p>
+
+아주 좋은 토론 주제라고 생각든다!! 까먹기 전에 여기에 나의 생각을 기록해놓을려고 한다.
+
+<br>
+
+**Service에서 예외처리하는 것이 맞다고 생각든다.**
+
+우선 나는 Service에서 `isExists`를 통해 예외처리하는 것을 지향한다.
+그 이유는 다음과 같다.
+1. 역할과 책임
+   * **중복 체크도 어떻게 보면 비즈니스 로직**이기 때문에 Service에서 처리하고, DAO는 CRUD만 수행하는 역할을 담당하는 것이 맞다고 생각든다.
+2. **DB 기술 그리고 데이터 액세스 기술과의 격리**를 위해선 DB나 데이터 액세스 기술에 의존적인 코드를 작성하면 안된다.
+   * **DB 기술마다 예외 코드와 SQL문이 조금씩 다르기 때문에 DAO를 통해 특정 DB에 종속된 코드를 작성하면 DB 기술을 바꿔 낄 수 없다.**
+   * 물론 스프링은 `DataAccessException`을 통해 모든 DB회사의 예외를 매핑했지만, **데이터 액세스 기술과의 매핑은 완벽하지 않다.**
+     * 하이버네이트의 경우 `DataIntegrityViolationException`를 던지지만, JdbcTemplate의 경우 `DuplicateException`을 던진다.
+
+**간단히 말해, DB 기술 그리고 데이터 액세스 기술와 DAO를 격리시키려면 영속 계층은 CRUD만 지원하는 것이 타당하다고 생각든다.**
 
 <br>
 
@@ -333,3 +423,5 @@ DTO를 통해 도메인과 다른 계층을 분리할 수 있지만, 이럴경�
 * https://www.javaguides.net/2020/07/three-tier-three-layer-architecture-in-spring-mvc-web-application.html
 * https://github.com/xlffm3/javable/blob/doc%2Fdto-layer-scope/src/content/post/2021-04-25-dto-layer-scope.md
 * https://stackoverflow.com/questions/21554977/should-services-always-return-dtos-or-can-they-also-return-domain-models
+* https://woowabros.github.io/experience/2021/02/05/pilot-project-siyoung.html
+* https://tech.junhabaek.net/%EB%B0%B1%EC%97%94%EB%93%9C-%EC%84%9C%EB%B2%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-presentation-layer-2-%EA%B2%80%EC%A6%9D-b1b006c4dc98
