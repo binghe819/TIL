@@ -40,9 +40,9 @@
   * [PlatformTransactionManager - 예정]()
   * [@Transactional - 예정]()
 * Validation
-  * [Java Bean Validation]()
-  * [스프링 Validation 적용]()
-  * [@Valid vs @Validated]()
+  * [Bean Validation와 Hibernate Validator](./Spring/Validation/Bean%20Validation와%20Hibernate%20Validator.md)
+  * [스프링 Validation 적용 - 예정]()
+  * [@Valid vs @Validated - 예정]()
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리](https://github.com/binghe819/TIL/blob/master/Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
 * 기타
