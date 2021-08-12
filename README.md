@@ -125,25 +125,25 @@
 
 <br>
 
-## OOP
+## OOP 및 설계
 
-* [객체지향의 사실과 오해 정리](https://github.com/binghe819/TIL/tree/master/OOP/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
-* [오브젝트 - 코드로 이해하는 객체지향 설계](https://github.com/binghe819/TIL/tree/master/OOP/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
+* [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
+* [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
 * SOLID
-  * [SRP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/SRP.md)
-  * [OCP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/OCP.md)
-  * [LSP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/LSP.md)
-  * [ISP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/ISP.md)
-  * [DIP](https://github.com/binghe819/TIL/tree/master/OOP/SOLID/DIP.md)
+  * [SRP](./OOP&설계/SOLID/SRP.md)
+  * [OCP](./OOP&설계/SOLID/OCP.md)
+  * [LSP](./OOP&설계/SOLID/LSP.md)
+  * [ISP](./OOP&설계/SOLID/ISP.md)
+  * [DIP](./OOP&설계/SOLID/DIP.md)
 * 디자인 패턴
-  * [전략 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy%20Pattern.md)
-  * [템플릿 메서드 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Template%20Method%20Pattern.md)
-  * [상태 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/State%20Pattern.md)
-  * [프론트 컨트롤 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
-  * [데코레이터 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Decorator%20Pattern.md)
-  * [프록시 패턴](https://github.com/binghe819/TIL/blob/master/OOP/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy%20Pattern.md)
+  * [전략 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy%20Pattern.md)
+  * [템플릿 메서드 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Template%20Method%20Pattern.md)
+  * [상태 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/State%20Pattern.md)
+  * [프론트 컨트롤 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
+  * [데코레이터 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Decorator%20Pattern.md)
+  * [프록시 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy%20Pattern.md)
 * 기타
-  * [원시값 포장과 VO](./OOP/기타/원시값%20포장과%20VO.md)
+  * [원시값 포장과 VO](./OOP&설계/기타/원시값%20포장과%20VO.md)
 
 <br>
 
