@@ -55,6 +55,11 @@
 
 <br>
 
+## JPA
+* [JPA 학습 테스트 with 자바 ORM 표준 JPA 프로그래밍](https://github.com/binghe819/jpa-learning-sandbox)
+
+<br>
+
 ## 운영체제
 * [운영체제와 정보기술의 원리](./OS/운영체제와%20정보기술의%20원리/README.md)
 
@@ -127,8 +132,10 @@
 
 ## OOP 및 설계
 
-* [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
-* [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
+* 책
+  * [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
+  * [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
+  * [클린 아키텍처]()
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
