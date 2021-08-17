@@ -79,7 +79,7 @@ OAuth의 Auth는 Authentication(인증)와 Authorization(인가) 둘 다 포함�
 
 다만, OAuth 인증을 진행할 때 해당 서비스 제공자는 '제 3자 어떤 정보나 서비스에 사용자의 권한을 접근하는 것을 허용하겠느냐?'라는 안내 메시지를 보여준다.
 
-<p align="center"><img src="./image/oauth_authencation.png"><br>OAuth의 Authentication Server에서 인증을 하면 인가 권할을 묻는다.</p>
+<p align="center"><img src="./image/authorization_process.png"><br>OAuth의 Authentication Server에서 인증을 하면 인가 권한을 묻는다.</p>
 
 즉, **OAuth에도 인증 과정이 있지만, 근본 목적은 해당 서비스 API를 어디까지 호출할 수 있는지 권한을 부여해주고 권한에 맞는 자원을 제공해주는 것이다.**
 
