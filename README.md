@@ -65,6 +65,15 @@
 
 <br>
 
+## Infra & DevOps
+* CI/CD
+  * [CI/CD란?](./Infra&DevOps/CI:CD/CI:CD란/CI:CD란.md)
+  * Jenkins
+    * [Jenkins 개념 및 설치 - 미완성](./Infra&DevOps/CI:CD/Jenkins/Jenkins%20개념%20및%20설치.md)
+    * [Jenkins와 Github 연동하기](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/Jenkins와%20Github%20연동하기.md)
+    * [freestyle을 통한 CI/CD](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/freestyle을%20통한%20CI:CD.md)
+    * [pipeline을 통한 CI/CD - 예정]()
+
 <br>
 
 ## 네트워크
@@ -74,7 +83,6 @@
 * [SSH](https://github.com/binghe819/TIL/blob/master/Network/SSH/ssh.md)
 * 보안
   * [암호화 기초](https://github.com/binghe819/TIL/blob/master/Network/Security/%EC%95%94%ED%98%B8%ED%99%94%20%EA%B8%B0%EC%B4%88.md)
-* [웹 계층구조](https://github.com/binghe819/TIL/blob/master/Network/Layer/WebLayer.md)
 * [CORS](https://github.com/binghe819/TIL/blob/master/Network/CORS/CORS.md)
 * [OAuth 2.0](./Network/OAuth%202.0/OAuth2.0.md)
 
@@ -136,6 +144,12 @@
   * [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
   * [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
   * [클린 아키텍처]()
+* Layed Architecture
+  * [tier vs Layer]()
+  * [계층을 분리하는 이유]()
+  * [3 layed architecture]()
+  * [3 tier architecture]()
+  * [DDD Layed Architecture]()
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
