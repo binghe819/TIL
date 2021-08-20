@@ -57,6 +57,7 @@
 
 ## JPA
 * [JPA 학습 테스트 with 자바 ORM 표준 JPA 프로그래밍](https://github.com/binghe819/jpa-learning-sandbox)
+* [cascade.REMOVE vs orphanremoval=true](./JPA/기타/cascade_remove_vs_orphanremoval/cascade_remove_vs_orphanremoval.md)
 
 <br>
 
@@ -72,7 +73,7 @@
     * [Jenkins 개념 및 설치 - 미완성](./Infra&DevOps/CI:CD/Jenkins/Jenkins%20개념%20및%20설치.md)
     * [Jenkins와 Github 연동하기](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/Jenkins와%20Github%20연동하기.md)
     * [freestyle을 통한 CI/CD](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/freestyle을%20통한%20CI:CD.md)
-    * [pipeline을 통한 CI/CD - 예정]()
+    * [pipeline을 통한 CI/CD - 예정](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/pipeline/pipeline을%20통한%20이용한%20CI:CD.md)
 
 <br>
 
