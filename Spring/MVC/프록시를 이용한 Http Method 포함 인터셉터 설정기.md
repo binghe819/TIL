@@ -26,7 +26,7 @@
 
 하지만 interceptor register는 특정 핸들러에 특정 인터셉터를 매칭시키는 방법은 아래와 같이 URL로 하는 것이 유일하다.
 
-<p align="center"><img src="./image/interceptor_setting_only_with_url.png"></p>
+<p align="center"><img src="./image/interceptor_setting_only_with_url.png" width="300"></p>
 
 `왜 URL로만 설정가능할까? URL + HTTP Method를 통해 설정하면 얼마나 좋아?` 라는 생각에 커스텀을 해보고자 이번 글을 작성하게 됐다.
 
@@ -106,9 +106,9 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 
 > `InterceptorRegistry`의 인터셉터는 스프링이 켜지면서 `WebMvcConfigurationSupport`의 의해서 ApplicationContext에 등록되는 형식인 듯 하다.
 
-<p align="center"><img src="./image/interceptor_setting_only_with_url.png"><br>InterceptorRegistry에 미리 설정한 인터셉터 설정 코드</p>
+<p align="center"><img src="./image/interceptor_setting_only_with_url.png" width="400"><br>InterceptorRegistry에 미리 설정한 인터셉터 설정 코드</p>
 
-<p align="center"><img src="./image/interceptor_handlerexecutionchain.png"><br>HandlerMapping의 HandlerExecutionChain에서 인터셉터 add하는 코드</p>
+<p align="center"><img src="./image/interceptor_handlerexecutionchain.png" width="400"><br>HandlerMapping의 HandlerExecutionChain에서 인터셉터 add하는 코드</p>
 
 그리고 DispatcherSevlet에서 Chaining형식으로 실행된다. (true면 다음 인터셉터, false면 체이닝 종료)
 
@@ -116,7 +116,7 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 
 처음 고안한 방법은 인터셉터 설정을 할 때 사용되는 `InterceptorRegistration`를 오버라이딩하거나 새로 만드는 것이었다.
 
-<p align="center"><img src="./image/interceptor_registration.png"> </p>
+<p align="center"><img src="./image/interceptor_registration.png" width="400"> </p>
 
 하지만, 위 코드는 스프링MVC의 코드이며, 리팩토링하는 방법을 찾을 수 없었다..
 
@@ -179,6 +179,8 @@ public boolean preHandle(HttpServletRequest request, HttpServletResponse respons
 기존의 매칭 방식과 커스텀한 매칭 방식을 그림을 통해 비교해보자.
 
 <p align="center"><img src="./image/interceptor_with_url.png"><br>기존의 매칭 방식 (URL)</p>
+
+<br>
 
 <p align="center"><img src="./image/interceptor_with_url_and_method.png"><br>커스텀한 매칭 방식 (URL + Method)</p>
 
