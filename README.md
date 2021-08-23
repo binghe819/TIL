@@ -31,6 +31,7 @@
   * [DispatcherServlet](https://github.com/binghe819/TIL/blob/master/Spring/MVC/DispatcherServlet.md)
   * [Spring MVC 설정](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20%EC%84%A4%EC%A0%95.md)
   * [Spring MVC 활용](https://github.com/binghe819/TIL/blob/master/Spring/MVC/Spring%20MVC%20%ED%99%9C%EC%9A%A9.md)
+  * [프록시를 이용한 Http Method 포함 인터셉터 설정기](./Spring/MVC/프록시를%20이용한%20Http%20Method%20포함%20인터셉터%20설정기.md)
 * Spring Boot
   * [Spring Boot 필터 설정](https://github.com/binghe819/TIL/blob/master/Spring/SpringBoot/SpringBootFilter.md)
 * Spring Security
@@ -145,12 +146,6 @@
   * [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
   * [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
   * [클린 아키텍처]()
-* Layed Architecture
-  * [tier vs Layer]()
-  * [계층을 분리하는 이유]()
-  * [3 layed architecture]()
-  * [3 tier architecture]()
-  * [DDD Layed Architecture]()
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
