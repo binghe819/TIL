@@ -37,9 +37,6 @@
 * Spring Security
   * [JWT (with JJWT)](https://github.com/binghe819/TIL/blob/master/Spring/Security/JWT.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
-* 트랜잭션
-  * [PlatformTransactionManager - 예정]()
-  * [@Transactional - 예정]()
 * Validation
   * [Bean Validation와 Hibernate Validator](./Spring/Validation/Bean%20Validation와%20Hibernate%20Validator.md)
   * [스프링 Validation 적용 - 예정]()
