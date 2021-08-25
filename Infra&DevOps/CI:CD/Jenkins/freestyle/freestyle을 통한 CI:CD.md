@@ -160,22 +160,27 @@ Github의 특정 브랜치에 Push되면, 이를 Webhook으로 젠킨스에게 �
 
 > 쉘 스크립트
 ```shell
-#!/bin/bash
-
 FILE_DIRECTORY=/home/ubuntu
 
-CURRENT_PID=$(pgrep -f 8000)
+cd $FILE_DIRECTORY
 
-if [ -z "$CURRENT_PID" ] ; then
-    echo "> new pid"
+CURRENT_PID=$(ps -ef | grep java | grep pick-git | grep -v nohup | awk '{print $2}')
+
+echo "> CURRENT_PID : $CURRENT_PID"
+
+if [ -z ${CURRENT_PID} ] ; then
+ echo "> new pid";
 else
-    echo "> kill -9 $CURRENT_PID"
-    kill -9 $CURRENT_PID
+ echo "> kill -9 $CURRENT_PID"
+ kill -9 $CURRENT_PID
+ sleep 10
 fi
 
 JAR_NAME=$(ls $FILE_DIRECTORY/ | grep jar | tail -n 1)
 
-nohup java -Dspring.profiles.active=prod -Dserver.port=8000 -jar $FILE_DIRECTORY/$JAR_NAME > test.out 2> test.err < /dev/null &
+nohup java -Dserver.port=8000 -jar $FILE_DIRECTORY/$JAR_NAME > test.out 2> test.err < /dev/null &
+
+echo "> finished!"
 ```
 > 위 스크립트는 예시일 뿐, 실제 사용시 상황에 맞게 변경해주어야 한다.
 
