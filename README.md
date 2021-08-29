@@ -105,19 +105,7 @@
 
 ## JAVA
 
-* 자바의 정석
-  * [추상클래스](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EC%B6%94%EC%83%81%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
-  * [인터페이스](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
-  * [내부 클래스](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%82%B4%EB%B6%80%20%ED%81%B4%EB%9E%98%EC%8A%A4.md)
-  * [예외처리](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.pdf)
-  * [java.lang](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/java.lang.md)
-  * [날짜와 시간](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%82%A0%EC%A7%9C%EC%99%80%20%EC%8B%9C%EA%B0%84.md)
-  * [Generics](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Generics.md)
-  * [Annotation](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Annotation.md)
-  * [Collection Framework](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Collection%20Framework.md)
-  * [Thread](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Thread.md)
-  * [Lambda](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/Lambda.md)
-  * [네트워킹](https://github.com/binghe819/TIL/blob/master/JAVA/%EC%9E%90%EB%B0%94%EC%9D%98%20%EC%A0%95%EC%84%9D/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md)
+* [자바의 정석](./Java/자바의%20정석)
 * [Effective Java 3/E](https://github.com/binghe819/TIL/tree/master/JAVA/Effective%20Java)
 * [모던 자바 인 액션](https://github.com/binghe819/TIL/tree/master/JAVA/Modern%20Java%20In%20Action)
 * [live-study](https://github.com/binghe819/TIL/tree/master/JAVA/live-study)
