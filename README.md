@@ -72,6 +72,9 @@
     * [Jenkins와 Github 연동하기](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/Jenkins와%20Github%20연동하기.md)
     * [freestyle을 통한 CI/CD](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/freestyle을%20통한%20CI:CD.md)
     * [pipeline을 통한 CI/CD - 예정](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/pipeline/pipeline을%20통한%20이용한%20CI:CD.md)
+* NginX
+  * [NginX 설치](./Infra&DevOps/NGINX/NGINX%20설치.md)
+  * [NginX 설정](./Infra&DevOps/NGINX/NGINX%20설정.md)
 
 <br>
 
