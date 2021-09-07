@@ -2,6 +2,21 @@
 
 <br>
 
+- [목차](#목차)
+- [젠킨스 파이프라인 Hello World](#젠킨스-파이프라인-hello-world)
+- [파이프라인으로 CI/CD 구성하기](#파이프라인으로-cicd-구성하기)
+  - [1 Jenkins와 Github 연동 설정](#1-jenkins와-github-연동-설정)
+  - [2 파이프라인 프로젝트 생성 및 기본 설정](#2-파이프라인-프로젝트-생성-및-기본-설정)
+  - [3 파이프라인 스크립트 - Git Clone](#3-파이프라인-스크립트---git-clone)
+    - [서브 모듈을 사용하지 않는 경우](#서브-모듈을-사용하지-않는-경우)
+    - [서브 모듈을 사용하는 경우](#서브-모듈을-사용하는-경우)
+  - [4 파이프라인 스크립트 - 빌드 및 테스트](#4-파이프라인-스크립트---빌드-및-테스트)
+  - [5 파이프라인 스크립트 - Publish over SSH를 통한 Jar 보내기](#5-파이프라인-스크립트---publish-over-ssh를-통한-jar-보내기)
+    - [Publish Over SSH 설치 및 설정](#publish-over-ssh-설치-및-설정)
+    - [파이프라인 스니펫 (sshPublisher)](#파이프라인-스니펫-sshpublisher)
+  - [6 Github Webhook을 통한 빌드 유발](#6-github-webhook을-통한-빌드-유발)
+- [참고](#참고)
+
 <br>
 
 # 젠킨스 파이프라인 Hello World
@@ -23,19 +38,19 @@
 
 이제 새로운 Item을 Pipeline으로 만들어준다.
 
-<p align="center"><img src="./image/new_item_pipeline.png"></p>
+<p align="center"><img src="./image/new_item_pipeline.png" width="500"></p>
 
 > 파이프라인 -> 구성
 
 아래와 같이 간단히 파이프라인을 작성해준다.
 
-<p align="center"><img src="./image/pipeline_helloworld_shell.png"><br>Scripted 방식</p>
+<p align="center"><img src="./image/pipeline_helloworld_shell.png" width="500"><br>Scripted 방식</p>
 
-<p align="center"><img src="./image/pipeline_helloworld_declarative.png"><br>Declarative 방식</p> 
+<p align="center"><img src="./image/pipeline_helloworld_declarative.png" width="500"><br>Declarative 방식</p> 
 
 저장해주고 마지막으론 `Build Now`를 눌러주면 아래와 같이 파이프라인일 돌아가는 것을 볼 수 있다.
 
-<p align="center"><img src="./image/pipeline_helloworld_result.png"> </p>
+<p align="center"><img src="./image/pipeline_helloworld_result.png" width="500"> </p>
 
 각 단계(stage)를 선택하면 로그를 따로 볼 수도 있다.
 
@@ -72,7 +87,7 @@
 
 파이프라인 프로젝트가 생성되었다면, 해당 프로젝트의 구성(setting)으로 들어가서 Github Project 설정을 해준다.
 
-<p align="center"><img src="./image/pipeline_setting_github_project.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_github_project.png" width="500"> </p>
 
 <br>
 
@@ -91,11 +106,11 @@
 
 Git Clone을 하는 스크립트를 직접 작성해도 좋지만, 아래와 같이 젠킨스는 스크립트를 자동으로 생성해주는 기능을 지원한다.
 
-<p align="center"><img src="./image/pipeline_setting_syntax_helper.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_syntax_helper.png" width="500"> </p>
 
 들어가서 `Git` 부분을 찾아서 아래와 같이 설정해주고, 아래 `Generate Pipeline Script` 버튼을 눌러주면 자동으로 스크립트를 생성해준다.
 
-<p align="center"><img src="./image/pipeline_setting_syntax_git.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_syntax_git.png" width="500"> </p>
 
 <br>
 
@@ -108,25 +123,25 @@ Git Clone을 하는 스크립트를 직접 작성해도 좋지만, 아래와 같
 
 이땐 pipeline syntax에서 `Git`이 아닌 `checkout` 설정을 통해 가능하다.
 
-<p align="center"><img src="./image/pipeline_setting_syntax_scm.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_syntax_scm.png" width="500"> </p>
 
 위와 같이 작성해주고 아래로 내리면 `Addtional Behaviours` 버튼이 있다. 그리고 `Advanced sub-modules behaviours`를 눌러준다. 
 
-<p align="center"><img src="./image/pipeline_setting_syntax_additional_behaviour.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_syntax_additional_behaviour.png" width="500"> </p>
 
 그리고 아래와 같이 서브 모듈의 주소를 적어주면 된다.
 
 <br>
 
-<p align="center"><img src="./image/pipeline_setting_syntax_submodule.png"></p>
+<p align="center"><img src="./image/pipeline_setting_syntax_submodule.png" width="500"></p>
 
 <br>
 
 이제 스크립트를 생성하여 아래와 같이 파이프라인 스크립트에 붙여넣기하고 수동 `Build Now`를 하면 서브 모듈과 함께 git clone을 잘 하는 것을 볼 수 있다.
 
-<p align="center"><img src="./image/pipeline_script_git_clone.png"> </p>
+<p align="center"><img src="./image/pipeline_script_git_clone.png" width="500"> </p>
 
-<p align="center"><img src="./image/pipeline_result_submodule.png"></p>
+<p align="center"><img src="./image/pipeline_result_submodule.png" width="500"></p>
 
 <br>
 
@@ -136,11 +151,11 @@ Git Clone을 하는 스크립트를 직접 작성해도 좋지만, 아래와 같
 
 방법은 간단하다. `dir` 스니펫을 이용하여 `gradlew`가 위치한 디렉토리로 이동후, `sh '''${shell script}'''`를 통해 빌드하면 된다.
 
-<p align="center"><img src="./image/pipeline_script_build_test.png"> </p>
+<p align="center"><img src="./image/pipeline_script_build_test.png" width="500"> </p>
 
 그리고 다시 수동 `Build now`를 하면 아래와 같이 테스트가 돌고나서 빌드가 성공하는 것을 볼 수 있다.
 
-<p align="center"><img src="./image/pipeline_result_build_test_1.png"><br><img src="./image/pipeline_result_build_test_2.png"> </p>
+<p align="center"><img src="./image/pipeline_result_build_test_1.png" width="500"><br><img src="./image/pipeline_result_build_test_2.png" width="500"> </p>
 
 ## 5 파이프라인 스크립트 - Publish over SSH를 통한 Jar 보내기
 이제 젠킨스 서버에 빌드된 Jar파일을 배포 서버로 옮겨서 실행만 시켜주면 된다.
@@ -157,7 +172,7 @@ Git Clone을 하는 스크립트를 직접 작성해도 좋지만, 아래와 같
 
 > 젠킨스 관리 -> 시스템 설정 -> Publish Over SSH 탭으로 이동
 
-<p align="center"><img src="./image/publish_over_ssh_setting.png"> </p>
+<p align="center"><img src="./image/publish_over_ssh_setting.png" width="500"> </p>
 
 * Passphase
 * Key: SSH접속의 private key(RSA키) 입력.
@@ -176,7 +191,7 @@ Git Clone을 하는 스크립트를 직접 작성해도 좋지만, 아래와 같
 ### 파이프라인 스니펫 (sshPublisher)
 이제 pipeline syntax에서 `sshPublisher`를 통해 스크립트를 생성해준다.
 
-<p align="center"><img src="./image/pipeline_setting_syntax_ssh.png"> </p>
+<p align="center"><img src="./image/pipeline_setting_syntax_ssh.png" width="500"> </p>
 
 * Name: Publish Over SSH 설정에서 설정한 Name (젠킨스에서 사용할 임의의 Name)
 * Verbose output in console: 빌드할 때 콘솔에 상세 내역을 표시할지 여부
@@ -291,11 +306,86 @@ pipeline {
 
 <br>
 
-## 6 Github Webhook
-이제 특정 브랜치에 merge 이벤트가 발생했을 때, Github 웹훅에 따라 빌드가 유발되도록 해볼려고 한다.
+## 6 Github Webhook을 통한 빌드 유발
+Github Webhook이란 Github에서 특정 이벤트 (ex. 특정 브랜치에 push)가 발생했을 때, 해당 이벤트 내용을 등록해놓은 api로 보내주는 기능이다.
+
+이제 Github 웹훅에 이용하여 빌드가 유발되도록 해보자.
+
+기본적인 세팅으로 `Github hook trigger for GITScm polling` 옵션이 있지만, 디테일 세팅은 불가능하다.
+
+예를 들어, 특정 라벨이 붙은 PR을 merge 했을 때만 빌드 유발을 해야할 경우, 위 기본 세팅으론 설정이 불가능하다.
+
+이번 챕터에선 빌드 유발을 커스텀할 수 있는 `Generic Webhook Trigger`를 사용하여 빌드 유발하는 방법에 대해서 다뤘다!
+
+<br>
+
+**1. Generic Webhook Trigger 설치**
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_install.png" width="500"></p>
+
+우선 Generic Webhook Trigger 플러그인을 설치해준다.
+
+그럼 아래와 같이 파이프라인 설정 Build Trigger쪽에 해당 플러그인 설정이 생겨난 것을 볼 수 있다.
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_visable.png" width="500"> </p>
+
+해당 체크박스를 체크해준다.
+
+<br>
+
+**2. Post content parameters 설정**
+
+Post content parameters를 사용하면 Github으로부터 Webhook이 도착했을 때 해당 내용을 변수화할 수 있다.
+
+아래는 Github Webhook 설정가면 볼 수 있는 보내진 JSON 형식이다.
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_json.png" width="500"> </p>
+
+Jenkins로 보내진 위 JSON에서 필요한 정보만 빼보자. 이때 [http://jsonpath.com/](http://jsonpath.com/)를 사용하면 쉽게 찾아낼 수 있다.
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_json_path_1.png" width="500"><br>PR 라벨 이름<br><img src="./image/pipeline_generic_webhook_trigger_json_path_2.png" width="500"><br>PR 브랜치 이름<br><img src="./image/pipeline_generic_webhook_trigger_json_path_3.png" width="500"><br>PR 머지 여부</p>
+
+위 내용을 바탕으로 아래와 같이 Post content parameters 설정을 해준다.
+
+<p align="center"><img src="./image/pipeline_generic_webhhok_trigger_parameters.png" width="500"> </p>
+
+> jsonpath에서 찾아낸 3가지 모두 추가해준다. (동일한 작업이므로 생략함.)
+
+<br>
+
+**3. Optional Filter 설정**
+
+이제 JSON으로부터 빼내온 변수(라벨 이름, 브랜치 이름, 머지 여부)가 어떠한 값이 되었을 떄 빌드가 유발되어야하는지 설정해주어야 한다.
+
+해당 설정은 Optional Filter 부분에서 설정해줄 수 있다.
+
+Text에 설정해주는 변수 정규식 Expression이 true인 경우에만 빌드가 유발된다.
+
+필자는 `$IF_MERGED = true`, `$BRANCH = develop), `$LABEL = backend...`로 하고자했고 아래와 같이 설정해주었다.
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_optional_filter.png"></p>
+
+<br>
+
+> 표현식 관련해서는 [https://regexr.com/](https://regexr.com/)가서 확인할 수 있다.
+
+이제 Github에서 Webhook을 던지고 위와 같이 3개의 조건을 모두 만족하면 빌드가 유발된다!
+
+<br>
+
+**4. 토큰 추가 (옵션)**
+
+Optional Filter까지하면 문제없이 빌드 유발이된다.
+
+하지만 Github Webhook URL에 토큰을 붙여주고, 설정한 토큰이 맞은 경우에만 빌드가 유발될 수 있도록 할 수도 있다.
+
+이는 Jenkins 서버가 Webhook을 받아 해당 토큰을 통해 어떤 파이프라인에게 작업을 요청했는지 판단하는 근거로 사용될 수 있다.
+
+<p align="center"><img src="./image/pipeline_generic_webhook_trigger_token.png" width="500"><br>파이프라인 토큰 설정<br><img src="./image/pipeline_generic_webhook_trigger_url.png" width="500"><br>Github Webhook 설정</p>
 
 <br>
 
 # 참고
 * https://jojoldu.tistory.com/355
+* 손너잘의 젠킨스 강의 (캬~)
 
