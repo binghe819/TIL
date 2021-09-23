@@ -71,7 +71,7 @@
     * [Jenkins 개념 및 설치 - 미완성](./Infra&DevOps/CI:CD/Jenkins/Jenkins%20개념%20및%20설치.md)
     * [Jenkins와 Github 연동하기](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/Jenkins와%20Github%20연동하기.md)
     * [freestyle을 통한 CI/CD](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/freestyle/freestyle을%20통한%20CI:CD.md)
-    * [pipeline을 통한 CI/CD - 예정](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/pipeline/pipeline을%20통한%20이용한%20CI:CD.md)
+    * [pipeline을 통한 CI/CD](./Infra&DevOps/Jenkins/../CI:CD/Jenkins/pipeline/pipeline을%20통한%20이용한%20CI:CD.md)
 * NginX
   * [NginX 설치](./Infra&DevOps/NGINX/NGINX%20설치.md)
   * [NginX 설정](./Infra&DevOps/NGINX/NGINX%20설정.md)
@@ -104,6 +104,8 @@
 * [h2](https://github.com/binghe819/TIL/blob/master/DB/RDB/h2/h2.md)
 * SQL
   * [SQL 정리](https://github.com/binghe819/TIL/blob/master/DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
+* Redis
+  * [Redis 설치](./DB/Redis/Redis설치/Redis설치.md)
 
 <br>
 
