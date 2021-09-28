@@ -3,11 +3,11 @@
 - [목차](#목차)
 - [OCP - 개방 폐쇄 원칙](#ocp---개방-폐쇄-원칙)
   - [개념](#개념)
-  - [예제 1](#예제-1)
-  - [예제 2](#예제-2)
-  - [예제 3](#예제-3)
-  - [예제 4](#예제-4)
-  - [예제 5](#예제-5)
+  - [아키텍처 수준의 OCP 예시](#아키텍처-수준의-ocp-예시)
+  - [쉬운 예제 1](#쉬운-예제-1)
+  - [쉬운 예제 2](#쉬운-예제-2)
+  - [쉬운 예제 3](#쉬운-예제-3)
+  - [쉬운 예제 4](#쉬운-예제-4)
 - [생각해볼 점](#생각해볼-점)
 - [참고](#참고)
 
@@ -36,10 +36,55 @@
   * **변하는 것(핵심 로직)과 변하지 않는 것(부가 로직)을 분리해야 한다.**
 * **다형성과 인터페이스를 통해 변하는 부분과 변하지 않는 부분을 분리**
 * **시스템을 변경하지 않고도 시스템의 행위를 확장할 수 있다.**
+* **목표**
+  * **시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 데 있다.**
+  * **컴포넌트 단위로 불리하고, 저수준 컴포넌트에서 발생한 변경으로부터 고수준 컴포넌트를 보호할 수 있는 계층구조를 만드는 것이 목적이다. - 가장 중요!!**
+* 특징
+  * 방향성 제어 (DIP와도 관계가 깊다.)
+  * 정보 은닉
 
 <br>
 
-## 예제 1
+## 아키텍처 수준의 OCP 예시
+
+재무재표를 웹 페이지로 보여주는 시스템이 있다고 가정해본다.
+
+책에선 SRP와 DIP를 사용하여 최대한 코드의 변경이 줄이는 방식으로 아키텍처를 설계했다.
+
+(일반적인 MVC 패턴과 비슷하다.)
+
+<p align="center"><img src="./image/ocp_architecture_example.png" width="500"><br>출처: 클린 아키텍처 </p>
+
+위와 같이 컴포넌트를 분리시켰다.
+
+**중요한 점은 계층구조가 '레벨'이라는 개념을 바탕으로 돌아간다.**
+
+**저수준 컴포넌트에서 발생한 변경으로부터 고수준 컴포넌트를 보호할 수 있다. - 가장 중요한 내용!**
+
+쉽게 얘기해서, View (가장 낮은 수준)에서의 변경은 Interactor (가장 높은 수준)에 영향을 주지 못한다.
+
+**이것이 바로 아키텍처 수준에서 OCP가 동작하는 방식이다.**
+
+> 중요한 점은 모든 관계는 단방향으로 이뤄진다.
+
+<br>
+
+또 하나의 중요한 점은 인터페이스의 사용이다.
+
+* **방향성 제어**
+  * `FinancialDataGateway`인터페이스
+  * 이 인터페이스는 두 클래스 사이제 위치하며, 의존성을 역전시킨다.
+* **정보 은닉**
+  * `FinancialReportRequester` 인터페이스는 Controller로부터 Interactor의 정보를 은닉하기 위해 존재한다.
+  * 다시 말해 **Interactor의 변경으로부터 Controller를 보호한다.**
+
+<br>
+
+> 다시 한번 느끼지만, 중요한 것은 컴포넌트 사이에서 보호하는 것인 듯 하다.
+
+<br>
+
+## 쉬운 예제 1
 
 <p align="center"><img src="./image/image-20200723164410696.png" width="300" /><br>출처 : 스프링 입문을 위한 자바 객체 지향의 원리와 이해</p>
 
@@ -53,7 +98,7 @@
 
 <br>
 
-## 예제 2
+## 쉬운 예제 2
 
 <p align="center"><img src="./image/1541914244823.png" width="400" /></p>
 
@@ -61,7 +106,7 @@
 
 <br>
 
-## 예제 3
+## 쉬운 예제 3
 
 JVM
 
@@ -69,37 +114,11 @@ JVM
 
 <br>
 
-## 예제 4
+## 쉬운 예제 4
 
 <p align="center"><img src="./image/151351513.png"></p>
 
 * 편의점에서 일일 삼교대로 직원이 교대한다. 직원이 바뀐다고 해서 손님이 구매라는 행위를 하는 데는 영향이 없다.
-
-<br>
-
-## 예제 5
-```java
-// Template Method Pattern
-public abstract class DiscountPolicy {
-  private List<DiscountCondition> conditions = new ArrayList<>();
-  
-  public DiscountPolicy(DiscountCondition... conditions) {
-    this.conditions = Arrays.asList(conditions);
-  }
-  
-  public Money calculateDiscountAmount(Screening screening) {
-    for(DiscountCondition each : conditions) {
-      if(each.isSatisfiedBy(screening))
-        return getDiscountAmount(screening);
-    }
-    return screening.getMovieFee();
-  }
-  
-  abstract protected Monet getDiscountAmount(Screening screening); // 추상 메서드 -> 핵심 로직 (전략)
-}
-```
-* 템플릿 메서드 패턴
-  * 핵심 로직을 추상화
 
 <br>
 
@@ -115,5 +134,5 @@ public abstract class DiscountPolicy {
 <br>
 
 # 참고
-
 * [스프링 입문을 위한 자바 객체 지향의 원리와 이해](http://www.yes24.com/Product/Goods/17350624)
+* [클린 아키텍처](http://www.yes24.com/Product/Goods/77283734?OzSrank=1)
