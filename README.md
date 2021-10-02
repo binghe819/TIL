@@ -28,6 +28,7 @@
 * Spring Boot
   * [Spring Boot 필터 설정](./Spring/SpringBoot/SpringBootFilter.md)
 * Spring Data Redis
+  * [Spring으로 Redis를 사용하기 전 보면 좋은 글 (Redis Client, RedisTemplate, RedisRepository)](./Spring/Redis/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림.md)
   * [Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
 * Spring Security
   * [JWT (with JJWT)](./Spring/Security/JWT.md)
