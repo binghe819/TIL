@@ -23,7 +23,9 @@
 
 그래서 Embedded H2처럼 Embedded Redis도 있다 찾아봤고, 적용시키는 시점에서 모르는 것이 많아 이참에 정리해보고자 한다.
 
-> 본 글은 [이동욱님의 - [Redis] SpringBoot Data Redis 로컬/통합 테스트 환경 구축하기](https://jojoldu.tistory.com/297)와 아라한사님께서 번역하신 [스프링 데이터 레디스](http://arahansa.github.io/docs_spring/redis.html) 를 참고하여 작성된 글입니다.
+> 본 글은 [이동욱님의 - [Redis] SpringBoot Data Redis 로컬/통합 테스트 환경 구축하기](https://jojoldu.tistory.com/297)와 
+> 
+> 아라한사님께서 번역하신 [스프링 데이터 레디스](http://arahansa.github.io/docs_spring/redis.html) 를 참고하여 작성된 글입니다.
 
 <br>
 
