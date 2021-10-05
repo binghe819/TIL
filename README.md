@@ -74,7 +74,7 @@
 * 테스트
   * [웹 성능 진단](./Infra&DevOps/웹%20성능%20진단/웹%20성능%20진단.md)
   * [nGrinder Docker를 이용한 설치](./Infra&DevOps/nGrinder/nGrinder%20Docker를%20이용한%20설치.md)
-  * [nGrinder Hello World](./Infra&DevOps/nGrinder/nGrinder%20Hello%20World.md))
+  * [nGrinder Hello World](./Infra&DevOps/nGrinder/nGrinder%20Hello%20World.md)
 
 <br>
 
@@ -102,6 +102,8 @@
 * [h2](./DB/RDB/h2/h2.md)
 * SQL
   * [SQL 정리](./DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
+* MySQL
+  * [MySQL 5.7 설치 및 설정](./DB/MySQL/MySQL%20설치%20및%20설정/MySQL%205.7%20설치%20및%20설정.md)
 * Redis
   * [Redis 설치](./DB/Redis/Redis설치/Redis설치.md)
   * [Redis 설정](./DB/Redis/Redis설정/Redis설정.md)
