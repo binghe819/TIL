@@ -382,7 +382,12 @@ nGrinder 결과를 보면 생각보다 큰 차이가 발생하지 않는다.
 
 <p align="center"><img src="./image/mysql_read_vmstat_result.png"><br>MySQL 결과 </p>
 
-<p align="center"><img src="./image/memory_read_vmstat_result.png"><br>MySQL 결과 </p>
+<p align="center"><img src="./image/memory_read_vmstat_result.png"><br>Redis 결과 </p>
+
+|DB|r|b|bo|in|cs|wa|
+|---|---|---|---|---|---|---|
+|MySQL|2|0|0|14110|7409|0|
+|Redis|2|0|0|9016|3333|0|
 
 nGrinder에서 지표상 차이가 없듯이, vmstat 관점에서 봤을 때의 차이가 그렇게 크지 않았다.
 
@@ -396,17 +401,17 @@ nGrinder에서 지표상 차이가 없듯이, vmstat 관점에서 봤을 때의 
    * 필자가 비교적 복잡한 쿼리를 날리는 프로젝트에선 CPU 비용이 굉장히 컸다.
    * 이번 실험에선 단순한 쿼리이므로, 성능 차이가 없지않나 싶다.
 
+> 아직 정확히 왜 Disk I/O가 발생하는지 모른다. 아시는 분은 메일 부탁드립니다!
+
 <br>
 
 ### 결론
 
-**단순한 쿼리를 대상으로 한 MySQL의 읽기 속도는 Redis보다 조금 느리다.**
+**단순한 쿼리를 대상으로 한 MySQL의 읽기 속도는 Redis보다 비교적 조금 느리다.**
 
 중요한 점은 단순한 쿼리일 때만이다!
 
 결론적으론 그래도 MySQL의 읽기 속도는 Redis보다 느리다.
-
-> 그 이유는 추후에 공부를 통해 알게되면 추가할 예정.
 
 이외에도, **Redis의 저장 형식에 따른 속도 차이도 생각보다 크다.**
 
