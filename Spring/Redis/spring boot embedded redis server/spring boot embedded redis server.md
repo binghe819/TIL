@@ -10,6 +10,8 @@
 - [내장 Redis port 수동 설정](#내장-redis-port-수동-설정)
 - [내장 Redis port 자동 설정](#내장-redis-port-자동-설정)
 - [사용시 주의할 점 - 중요!](#사용시-주의할-점---중요)
+  - [메모리 확인](#메모리-확인)
+  - [netstat 확인](#netstat-확인)
 - [마치며](#마치며)
 - [참고](#참고)
 
@@ -411,6 +413,32 @@ public class RedisConfig {
 
 # 사용시 주의할 점 - 중요!
 필자가 4시간동안 삽질한 내용이라 이곳에 남겨둔다... (부들부들 😠)
+
+<br>
+
+## 메모리 확인
+내장 Redis Server도 메모리에 올라간다.
+
+그리고 테스트시 많은 내장 Redis Server를 키다보면, 메모리 부족이 발생할 수 있다.
+
+이럴 경우 Redis 설정에서 메모리 설정을 해주면 된다.
+
+```java
+@PostConstruct
+public void redisServer() throws IOException {
+    int redisPort = isRedisRunning() ? findAvailablePort() : port;
+    redisServer = new RedisServer(redisPort);
+    redisServer = RedisServer.builder()
+        .port(redisPort)
+        .setting("maxmemory 128M") //maxheap 128M
+        .build();
+    redisServer.start();
+}
+```
+
+<br>
+
+## netstat 확인
 
 만약 두번째 방법인 [내장 Redis port 자동 설정](#내장-redis-port-자동-설정)를 사용한다면, 해당 코드가 어느 환경에서 도는지 확인해야한다.
 
