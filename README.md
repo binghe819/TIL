@@ -154,7 +154,7 @@
   * [상태 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/State%20Pattern.md)
   * [프론트 컨트롤 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Front%20Controller%20Pattern.md)
   * [데코레이터 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Decorator%20Pattern.md)
-  * [프록시 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy%20Pattern.md)
+  * [프록시 패턴와 데코레이터 패턴](./OOP&설계/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/../디자인패턴/Proxy%20Pattern와%20Decorator%20pattern.md)
 * 기타
   * [DTO, VO](./OOP&설계/기타/DTO%2C%20VO.md)
   * [원시값 포장과 VO](./OOP&설계/기타/원시값%20포장과%20VO.md)
