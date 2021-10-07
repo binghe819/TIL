@@ -63,7 +63,7 @@ void invokeMethod() throws Exception {
 
 <br>
 
-> 리플렉션에 대한 더 자세한 내용은 [리플렉션 정리 글](../../Java/JVM/reflection.md)을 참고.
+> 리플렉션에 대한 더 자세한 내용은 [리플렉션 정리 글](../../JAVA/JVM/reflection.md)을 참고.
 
 <br>
 

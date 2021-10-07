@@ -24,7 +24,6 @@
   * [DispatcherServlet](./Spring/MVC/DispatcherServlet.md)
   * [Spring MVC 설정](./Spring/MVC/Spring%20MVC%20%EC%84%A4%EC%A0%95.md)
   * [Spring MVC 활용](./Spring/MVC/Spring%20MVC%20%ED%99%9C%EC%9A%A9.md)
-  * [프록시를 이용한 Http Method 포함 인터셉터 설정기](./Spring/MVC/프록시를%20이용한%20Http%20Method%20포함%20인터셉터%20설정기.md)
 * Spring Boot
   * [Spring Boot 필터 설정](./Spring/SpringBoot/SpringBootFilter.md)
 * Spring Cache
@@ -41,6 +40,9 @@
   * [Spring Boot 기반 Logback 설정 및 전략](./Spring/Logging/logback/logback.md)
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리](./Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
+* 커스텀
+  * [프록시를 이용한 Http Method 포함 인터셉터 설정기](./Spring/MVC/프록시를%20이용한%20Http%20Method%20포함%20인터셉터%20설정기.md)
+  * [다이내믹 프록시를 이용한 QueryCounter 적용기](./Spring/기타/QueryCounter/다이내믹%20프록시를%20이용한%20QueryCounter%20적용기.md)
 * 기타
   * [DataSource](./Spring/%EA%B8%B0%ED%83%80/DataSource.md)
   * [KeyHolder](./Spring/%EA%B8%B0%ED%83%80/KeyHolder.md)
