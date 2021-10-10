@@ -319,6 +319,7 @@ B-Tree에 대한 개념이 전혀 잡혀있지 않았지만, 정리하며 그래
 <br>
 
 # 참고
+* https://ko.wikipedia.org/wiki/B_트리
 * https://helloinyong.tistory.com/296
 * https://www.youtube.com/watch?v=C_q5ccN84C8
 * https://www.cs.usfca.edu/~galles/visualization/BTree.html
