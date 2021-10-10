@@ -112,6 +112,8 @@
   * [Redis 설치](./DB/Redis/Redis설치/Redis설치.md)
   * [Redis 설정](./DB/Redis/Redis설정/Redis설정.md)
   * [Redis는 무엇이고, 어떻게 사용하는 것이 좋은가](./DB/Redis/Redis는%20무엇이고,%20어떻게%20사용하는%20것이%20좋은가/Redis는%20무엇이고,%20어떻게%20사용하는%20것이%20좋은가.md)
+* 기타
+  * [B-Tree](./DB/기타/B-Tree/B-Tree.md)
 
 <br>
 
