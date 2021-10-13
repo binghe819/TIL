@@ -44,7 +44,7 @@ Redis는 자체적 클라이언트 접근 제어 기능(ex. 로그인)이 없으
 
 <br>
 
-**Port 설정**
+**IP 설정**
 
 <p align="center"><img src="./image/redis_setting_ip.png"> </p>
 
@@ -58,7 +58,7 @@ redis는 default로 localhost (`127.0.0.1`)에서만 접근가능하도록 되�
 
 <br>
 
-**IP 설정**
+**PORT 설정**
 
 <p align="center"><img src="./image/redis_setting_port.png"> </p>
 
