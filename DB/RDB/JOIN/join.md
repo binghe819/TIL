@@ -2,6 +2,26 @@
 
 <br>
 
+- [목차](#목차)
+- [들어가며](#들어가며)
+- [JOIN 개념](#join-개념)
+- [JOIN 종류](#join-종류)
+  - [예시 데이터](#예시-데이터)
+  - [OUTER JOIN](#outer-join)
+    - [LEFT OUTER JOIN](#left-outer-join)
+    - [RIGHT OUTER JOIN](#right-outer-join)
+  - [INNER JOIN](#inner-join)
+  - [FULL OUTER JOIN](#full-outer-join)
+- [JOIN 연산 방법](#join-연산-방법)
+  - [중첩 반복 조인](#중첩-반복-조인)
+    - [동작 원리](#동작-원리)
+    - [특징](#특징)
+    - [성능 개선 포인트 - 중요](#성능-개선-포인트---중요)
+  - [정렬 병합 조인](#정렬-병합-조인)
+  - [해시 조인](#해시-조인)
+- [마치며](#마치며)
+- [참고](#참고)
+
 <br>
 
 # 들어가며
@@ -20,8 +40,6 @@
 > 본 글은 MySQL 5.7를 이용하여 작성된 글입니다.
 
 <br>
-
-🤔💁‍♂️❗️👨‍💻
 
 # JOIN 개념
 
@@ -49,7 +67,7 @@ ANSI 표준 SQL는 4 가지 유형의 JOIN을 규정한다.
 <p align="center"><img src="./image/whole_join.png"><br>출처: https://imgur.com/gallery/8u7fc </p>
 
 <details>
-  <summary>본 글은 MySQL 5.7을 기준으로 작성된 글입니다. MySQL의 큰 그림을 보려면 여길 눌러주세요.</summary>
+  <summary>본 글은 MySQL 5.7을 기준으로 작성된 글입니다. MySQL의 JOIN 큰 그림을 보려면 여길 눌러주세요.</summary>
   
   <p align="center"><img src="./image/join_in_mysql.png" > </p>
 </details>
@@ -71,7 +89,9 @@ ANSI 표준 SQL는 4 가지 유형의 JOIN을 규정한다.
 
 > post
 
-<img src="./image/example_data_post.png" >
+<img src="./image/example_data_post.png" width="600">
+
+<br>
 
 <br>
 
@@ -93,7 +113,7 @@ OUTER JOIN은 가장 많이 사용되는 JOIN중 하나이다.
   
   <p align="center"><img src="./image/left_outer_join_view.png" width="300"> </p>
 
-  * post 테이블을 먼저 읽고, nested loop를 통해 user 테이블을 결합한다.
+  * post 테이블을 먼저 읽고, block nested loop를 통해 user 테이블을 결합한다.
 
   > 지금은 JOIN에 대한 개념을 익히기 위함이므로, 효율성을 따지는 인덱스등은 고려하지 않는다.
 </details>
@@ -113,7 +133,7 @@ OUTER JOIN은 가장 많이 사용되는 JOIN중 하나이다.
   
   <p align="center"><img src="./image/right_outer_join_view.png" width="300"> </p>
 
-  * user 테이블을 먼저 읽고, nested loop를 통해 post 테이블을 결합한다.
+  * user 테이블을 먼저 읽고, block nested loop를 통해 post 테이블을 결합한다.
 
   > 지금은 JOIN에 대한 개념을 익히기 위함이므로, 효율성을 따지는 인덱스등은 고려하지 않는다.
 </details>
@@ -151,18 +171,18 @@ OUTER JOIN은 가장 많이 사용되는 JOIN중 하나이다.
 
 <br>
 
-💁‍♂️ JOIN 연산 방법은 아래와 같은 방법이 존재한다.
+💁‍♂️ JOIN은 아래와 같은 연산 방법이 존재한다.
 
 |방법|설명|
 |----|----|
 |중첩 반복 조인<br>Nested Loop JOIN|선행 테이블 (드라이빙 테이블)의 처리 범위를 하나씩 액세스하면서 그 추출된 값으로 연결할 후행 테이블 (드리븐 테이블)을 조인하는 방식|
 |색인된 중첩 반복 조인| - 후행 테이블 (드리븐 테이블)의 JOIN 속성에 인덱스가 존재할 경우 사용.<br>- 선행 테이블(드라이빙 테이블)의 각 레코드들에 대하여 후행 테이블 (드리븐 테이블)의 인덱스 접근 구조를 사용하여 직접 검색 후 조인하는 방식 |
-|정렬 합병 조인<br>Sort Merge JOIN|양쪽 테이블의 처리 범위를 각자 액세스하여 정렬한 결과를 차례로 scan하면서 연결고리의 조건으로 merge해 가는 방식|
+|정렬 병합 조인<br>Sort Merge JOIN|양쪽 테이블의 처리 범위를 각자 액세스하여 정렬한 결과를 차례로 scan하면서 연결고리의 조건으로 merge해 가는 방식|
 |해시 조인<br>Hash JOIN|해시(hash)함수를 사용하여 두 테이블의 자료를 결합하는 조인 방식|
 
 <br>
 
-💁‍♂️ 대부분의 JOIN은 중첩 반복 조인을 사용한다.
+❗️ 대부분의 JOIN은 중첩 반복 조인을 사용한다.
 
 <br>
 
@@ -188,9 +208,9 @@ for (int i = 0; i < 100; i++) { // outer loop (driving table)
 ```
 위 코드를 보면 알겠지만, 위와 같이 Driving 테이블과 Driven 테이블을 대상으로한 for문과 작동 원리가 비슷하다.
 
-각 loop가 인덱스가 될 지, 실제 데이터를 풀 스캔할 지는 인덱스 유무에 따라 다르다.
+각 loop가 인덱스가 될 지, 실제 데이터를 풀 스캔할 지는 인덱스 설정에 따라 다르다.
 
-인덱스 유무에 따른 중첩 조인을 예시를 통해 알아봐본다.
+인덱스 유무에 따른 중첩 조인을 예시를 통해 정리했다.
 
 <br>
 
@@ -198,15 +218,17 @@ for (int i = 0; i < 100; i++) { // outer loop (driving table)
 
 <p align="center"><img src="./image/simple_nested_loop_join.jpeg" width="400"> </p>
 
-Driving 테이블(외부 테이블)의 행 데이터를 반복하면서 Driven 테이블 (내부 테이블)의 모든 행 데이터와 하나씩 비교하여 결과를 얻는 방식이다.
+**Driving 테이블(외부 테이블)의 행 데이터를 반복하면서 Driven 테이블 (내부 테이블)의 모든 행 데이터와 하나씩 비교하여 결과를 얻는 방식이다.**
 
 인덱스가 전혀 걸려있지 않는다면 위와 같이 동작하며, 굉장히 비효율적이다.
 
 <br>
 
+<br>
+
 **Indexed Nested-Loop Join**
 
-> [샘플 데이터](https://github.com/binghe819/TIL/blob/master/DB/MySQL/%EC%83%98%ED%94%8C%20%EB%8D%B0%EC%9D%B4%ED%84%B0/%EC%83%98%ED%94%8C%20%EB%8D%B0%EC%9D%B4%ED%84%B0.md)에서 `Employees 1 : N Salary` 관계에서의 쿼리를 통해 알아보자.
+> [샘플 데이터](https://github.com/binghe819/TIL/blob/master/DB/MySQL/%EC%83%98%ED%94%8C%20%EB%8D%B0%EC%9D%B4%ED%84%B0/%EC%83%98%ED%94%8C%20%EB%8D%B0%EC%9D%B4%ED%84%B0.md)에서 `Employees 1 : N Salary` 관계에서의 쿼리 예시이다.
 
 ```sql
 SELECT *
@@ -222,9 +244,14 @@ SELECT *
 3. 만약 Row의 Gender가 M이면, `salary.emp_no`인덱스에서 `employees.emp_no = salary.emp_no`에 매칭되는 `salary` Row에 액세스한다.
 4. 액세스한 Row의 `salary`가 50000보다 작으면, JOIN 결과에 해당 ROW를 추가한다.
 
-큰 그림을 보자면 Driving 테이블(선행 테이블)의 처리 범위를 하나씩 액세스하면서 추출된 값으로 연결할 테이블을 조인한다고 보면 된다.
+**Driving 테이블(선행 테이블)의 처리 범위를 하나씩 액세스하면서 추출된 값으로 연결할 테이블을 조인한다고 보면 된다.**
 
 **인덱싱이 걸려있는 테이블에서의 조인 방식이며, 가장 많이 사용되는 방식이다.**
+
+> * 각 단계를 완료하고 나서 다음단계로 넘어가는게 아니라 한 **레코드씩 순차적으로 진행**한다.
+> * 단, order by는 전체집합을 대상으로 정렬해야 하므로 **작업을 모두 완료한 후 다음 오퍼레이션을 진행**한다.
+
+<br>
 
 <br>
 
@@ -240,27 +267,20 @@ SELECT *
 4. 이러한 과정을 user 테이블에서 조인 버퍼에 더이상 데이터를 채울 수 없는 시점까지 반복 수행한다.
    * 즉, user 테이블의 조건에 해당하는 데이터를 모두 처리할 때까지 반복 수행한다.
 
-> 여기서 level 테이블을 스캔하는 횟수는 조인 버퍼에 데이터가 적재되는 횟수와 동일하다.
+**필자의 경험상 인덱스가 걸려 있지 않은 컬럼에 대한 JOIN을 수행할 때, 옵티마이저가 Block Nested-Loop Join을 많이 사용한다.**
+
+> 여기서 level 테이블을 스캔하는 횟수는 조인 버퍼에 데이터가 적재되는 횟수와 동일하다. (Simple 중첩 반복보다 효율적이다.)
 > 
 > 그리고 level 테이블에 접근할 땐 테이블 풀 스캔, 인덱스 풀 스캔, 인덱스 범위 스캔등을 사용한다.
 
 <br>
 
 ### 특징
-> 여기서 멀하는 특징은 가장 많이 사용되는 `Indexed Nested-Loop Join`방식의 특징입니다.
+> 대부분의 특징은 가장 많이 사용되는 `Indexed Nested-Loop Join`방식을 가리킨다.
 
-
-    - 주로 좁은 범위에 유리
-
-    - 순차적으로 처리하며, Random Access 위주
-
-    - 후행(Driven) 테이블에는 조인을 위한 인덱스가 생성되어 있어야 함
-
-    - 실행속도 = 선행 테이블 사이즈 * 후행 테이블 접근횟수
-
-* 작은 범위의 데이터 조회시 유리하다.
+* **작은 범위의 데이터 조회**시 유리하다.
   * 인덱스에 의한 랜덤 I/O를 기반으로 하기 때문에 대량의 데이터 처리 시 적합하지 않다.
-* 순차적으로 처리하며, 랜덤 I/O 위주로 동작한다.
+* **순차적으로 처리하며, 랜덤 I/O 위주로 동작한다.**
   * 선행 테이블의 결과를 통해 후행 테이블을 액세스 할 때 랜덤 I/O가 발생한다.
   * 물론 필요한 데이터가 인덱스에 있다면 데이터를 찾기위한 랜덤 I/O는 발생하지 않을 수도 있다.
 * 후행 (Driven) 테이블에는 조인을 위한 인덱스가 생성되어 있어야 한다.
@@ -281,27 +301,69 @@ SELECT *
 <br>
 
 아래와 같이 정리해볼 수 있다.
-* Driving 테이블로는 데이터가 적거나 where절 조건으로 row의 숫자를 줄일 수 있는 테이블이어야 한다.
+* **Driving 테이블로는 데이터가 적거나 where절 조건으로 row의 숫자를 줄일 수 있는 테이블이어야 한다.**
 * Driven 테이블에는 조인을 위한 적절한 인덱스가 생성되어 있어야 한다.
   * 적절한 인덱스가 없다면, 테이블 풀 스캔이 발생하므로 비효율적이다.
 * Loop 개수를 줄이기 위해 조인에 참여하는 테이블 중 Row수가 적은 쪽을 Driving으로 설정하고, Driven 테이블에 인덱스를 걸어 최적화하면 된다.
 
 <br>
 
-## 정렬 합병 조인
-
-
-<br>
-
-# JOIN 활용시 주의할 점
+## 정렬 병합 조인
+> MySQL은 NL (Nested Loop Join)만을 지원한다.
 
 <br>
 
-## 옵티마이저 JOIN 선택
+🤔 언제 정렬 병합 조인이 사용되는가?
+* 중첩 조인(NL)은 효과적으로 수행하려면, 조인 컬럼에 인덱스가 필요하다.
+* 만약 적절한 인덱스가 없다면, Inner 테이블을 탐색할 때마다 반복적으로 Table Full Scan을 수행해야하므로 매우 비효율적이다.
+* 이때 옵티마이저는 BNL, 정렬 병합 조인, 해시 조인을 고려한다.
+
+<br>
+
+🤔 정렬 병합 조인의 동작 원리
+
+<p align="center"><img src="./image/sort_merge_join.png" ><br>출처: https://needjarvis.tistory.com/162</p>
+
+* 두 테이블을 각각 액세스하여 정렬한 다음에 두 집합을 차례대로 스캔하여 머지하면서 조인을 수행한다.
+  * 정렬 단계: 양쪽 집합을 조인 컬럼 기준으로 정렬한다.
+  * 머지 단계: 정렬된 양쪽 집합을 서로 머지한다.
+* Driving 테이블과 Driven 테이블을 Sort Area에 미리 정렬해 둔 자료구조를 이용한다는 점만 다를 뿐, 조인 작업은 NL 조인과 동일하다.
+
+<br>
+
+## 해시 조인
+> MySQL은 NL (Nested Loop Join)만을 지원한다.
+
+<br>
+
+🤔 언제 해시 조인이 사용되는가?
+* 소트머지조인과 NL 조인이 효과적이지 못한 상황의 대안으로 사용된다.
+* 소트머지조인은 소트의 부하가 많이 발생하기 떄문에, 이를 보완하기 위한 방법으로 소트대신 해시를 이용하기 위해 사용된다.
+
+<br>
+
+🤔 해시 조인의 동작 원리
+
+<p align="center"><img src="./image/hash_join.png" ><br>출처: https://needjarvis.tistory.com/162</p>
+
+* 해시 값을 이용하여 테이블을 조인하는 방식
+  * 해시 함수는 직접적인 연결을 담당하지 않고, 연결될 대상을 특정 지역에 모아두는 역할을 담당한다.
 
 <br>
 
 # 마치며
+JOIN을 그저 두 테이블을 연결하는 역할로만 알고 있었다.
+
+DB 성능 튜닝과 관련된 내용을 더하니 이것저것 고민해볼 부분이 많은 것 같다!
+
+특히 MySQL을 많이 사용하는 필자로선 NL을 조심해서 사용해야할 듯 하다.
+
+<br>
+
+* **Driving 테이블로는 데이터가 적거나 where절 조건으로 row의 숫자를 줄일 수 있는 테이블이어야 한다.**
+* Driven 테이블에는 조인을 위한 적절한 인덱스가 생성되어 있어야 한다.
+  * 적절한 인덱스가 없다면, 테이블 풀 스캔이 발생하므로 비효율적이다.
+* **Loop 개수를 줄이기 위해 조인에 참여하는 테이블 중 Row수가 적은 쪽을 Driving으로 설정하고, Driven 테이블에 인덱스를 걸어 최적화하면 된다.**
 
 <br>
 
@@ -310,4 +372,5 @@ SELECT *
 * http://jidum.com/jidums/view.do?jidumId=167
 * https://www.fatalerrors.org/a/join-optimization-for-mysql-optimization.html
 * https://coding-factory.tistory.com/756
+* http://wiki.gurubee.net/pages/viewpage.action?pageId=26743004
 
