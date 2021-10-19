@@ -12,6 +12,7 @@
 - [사용시 주의할 점 - 중요!](#사용시-주의할-점---중요)
   - [메모리 확인](#메모리-확인)
   - [netstat 확인](#netstat-확인)
+  - [M1](#m1)
 - [마치며](#마치며)
 - [참고](#참고)
 
@@ -451,6 +452,56 @@ public void redisServer() throws IOException {
 <br>
 
 **내장 Redis 서버를 사용하려면 우선 포트를 조심하고, 두 번째는 해당 프로그램이 돌아가는 환경에 `net-tools`가 존재하는지 확인하자.**
+
+<br>
+
+## M1
+
+M1 환경에서 Redis 내장 서버를 시동시키면 아래와 같은 메시지가 뜬다.
+
+```java
+Caused by: java.lang.RuntimeException: Can't start redis server. Check logs for details.
+```
+
+원인은 내장 Redis 라이브러리에 `mac_arm64`용 바이너리가 준비되어 있지 않아서 그렇다.
+
+<br>
+
+우선 [Redis 소스 코드](https://redis.io/download)를 다운받아 컴파일하면, Redis Server 컴파일 파일이 생긴다.
+
+해당 파일을 프로젝트의 resources 디렉터리에 복사하고, ClassPathResource 로 불러오시면 된다.
+
+<p align="center"><img src="./image/m1_issue.png" width="400"></p>
+
+```java
+public void redisServer() throws IOException, URISyntaxException {
+  int redisPort = isRedisRunning() ? findAvailablePort() : port;
+  redisServer = new RedisServer(redisPort);
+
+  if (isArmMac()) {
+    redisServer = new RedisServer(Objects.requireNonNull(getRedisFileForArcMac()),
+                                  redisPort);
+  }
+  if (!isArmMac()) {
+    redisServer = new RedisServer(redisPort);
+  }
+
+  redisServer.start();
+}
+
+private boolean isArmMac() {
+  return Objects.equals(System.getProperty("os.arch"), "aarch64") &&
+    Objects.equals(System.getProperty("os.name"), "Mac OS X");
+}
+
+private File getRedisFileForArcMac() {
+  try {
+    return new ClassPathResource("binary/redis/redis-server-6.2.5-mac-arm64").getFile();
+  } catch (Exception e) {
+    throw new EmbeddedRedisServerException();
+  }
+}
+```
 
 <br>
 
