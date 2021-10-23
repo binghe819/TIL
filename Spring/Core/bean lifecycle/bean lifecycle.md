@@ -299,6 +299,11 @@ ExampleBean.destroyByDestroyMethod Called
 <br>
 
 ## 사용 예시
+* 빈 초기화 콜백 메서드
+  * 의존성이 제대로 주입되었는지 검사 (모든 의존성이 주입 완료되고 실행되는 시점이기에 이때 검사한다.)
+  * 내장 Redis 서버 실행 (내장 Redis Configuration에 Redis 설정을 하고, 빈 초기화 콜백 메서드를 이용하여 Redis 서버를 실행)
+* 빈 소멸 콜백 메서드
+  * 자원 반납
 
 <br>
 
