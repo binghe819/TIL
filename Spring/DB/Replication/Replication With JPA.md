@@ -24,7 +24,7 @@
 <br>
 
 # 들어가며
-> 우선 이번 글은 [Replication - MySQL]()을 의존하고 있다.
+> 우선 이번 글은 [Replication - MySQL](https://github.com/binghe819/TIL/blob/master/DB/MySQL/Replication/MySQL%20Replication.md)을 의존하고 있다.
 > 
 > 이번 글에서 나오는 모든 코드나 설정들은 위 Replication이 잘 설정되어 있어야지 제대로 동작하게 된다.
 
@@ -52,7 +52,7 @@ Replication은 여러 개의 DB를 수직적인 구조(Master - Slave)로 구축
 * Master DB에선 쓰기 작업만 수행 (Insert, Update, Delete)
 * Slave DB에선 읽기 작업만 수행 (Select)
 
-[이전 글]()에서도 말했듯이, Master 서버와 Slave에 Replication 설정을 해두면 Master의 변경사항이 자동적으로 Slave 서버들에 적용된다.
+[이전 글](https://github.com/binghe819/TIL/blob/master/DB/MySQL/Replication/MySQL%20Replication.md)에서도 말했듯이, Master 서버와 Slave에 Replication 설정을 해두면 Master의 변경사항이 자동적으로 Slave 서버들에 적용된다.
 
 즉, Master DB에 Data를 넣거나 수정하거나 삭제하면, 하나 혹은 여러 개의 Slave DB에 동기화가 되는 방식이다. (BinLog 활용)
 
