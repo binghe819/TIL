@@ -2,6 +2,8 @@
 
 [![Blog](https://img.shields.io/badge/Blog-binghe.github.io-green.svg)](https://binghedev.tistory.com/)
 
+기술과 지식을 나만의 언어로 정리하는 저장소입니다.
+
 <br>
 
 ## Spring
