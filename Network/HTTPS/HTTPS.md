@@ -334,7 +334,7 @@ SSL Handshake과정을 조금 추상화했다고 생각하면 된다.
 > SSL Handshake를 한 눈에 보기 편하다고 생각들어 참고용으로 올려준다!
 > 
 
-<p align="center"><img src="./image/https_flow_study.png" width="600"> </p>
+<p align="center"><img src="./image/https_flow_study.png" width="600"><br>출처: 바다 (조아라씨) </p>
 
 <br>
 
