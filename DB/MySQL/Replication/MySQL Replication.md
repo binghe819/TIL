@@ -174,7 +174,7 @@ MySQL의 Replication 기능의 복제 방식은 크게 두 가지 존재한다.
 * 동작 과정
   1. 마스터는 슬레이브에 관계없이 DB의 변경 내용을 바이너리 로그에 기록한다.
   2. 마스터의 Dump Thread와 슬레이브의 I/O Thread는 커넥션을 맺고 있다.
-  3. 슬레이브 I/O Thread는 마스터의 Dump Thread를 통해 바이너리 로그를 요청하고, 전달받아 자신의 릴레이 로그에 복사한다.
+  3. 슬레이브 I/O Thread는 특정 시간마다 마스터의 Dump Thread를 통해 바이너리 로그를 요청하고, 전달받아 자신의 릴레이 로그에 복사한다.
   4. 슬레이브 SQL Thread는 릴레이 로그 내용을 바탕으로 자신의 DB를 변경한다.
 
 > Binary Log vs. Redo Log
@@ -190,12 +190,19 @@ MySQL의 Replication 기능의 복제 방식은 크게 두 가지 존재한다.
 * 준동기 복제 방식이며, 마스터가 슬레이브로부터 릴레이 기록이 완료되었다는 ACK를 받고 Transaction을 진행하는 방식이다.
 * 마스터 DB는 Transaction 수행 중 슬레이브로 인한 추가적인 동작을 수행한다.
   * 이는 비동기 복제보다 성능 저하가 발생하는 원인.
-  * 만약 마스터가 슬레이브로부터 릴레이 로그를 받지 못하면 Transaction은 중단된다. 단, 마스터는 여러 슬레이브중 하나의 슬레이브로부터 ACK를 받으면 Transaction을 진행한다.
-  * 이로 인해, 여러 대의 슬레이브를 둔다면 슬레이브로 인한 Transaction 장애를 최소화할 수 있다.
-  * 성능은 저하되지만, 마스터 슬레이브간의 동기화를 조금 더 보장해준다.
+  * 만약 마스터가 슬레이브로부터 ACK를 받지 못하면 Transaction은 중단된다. 단, 마스터는 여러 슬레이브중 하나의 슬레이브로부터 ACK를 받으면 Transaction을 진행한다.
+  * 성능은 저하되지만, 즉, 적어도 하나의 Slave에는 동기화가 되어 있다는 것을 보장한다.
 * 준동기 복제 방식은 마스터가 슬레이브에게 DB 변경 내용을 언제 전달하느냐에 따라 두 가지 방식으로 나뉜다.
   1. AFTER_COMMIT: MySQL 5.5 이전
-  2. AFTER_SYNC: MySQL 5.7 이후
+       * Master DB의 테이블을 업데이트하고 Slave에 Binlog를 보내는 방식.
+       * Master DB에 먼저 데이터가 업데이트되므로, 이때 Master에 조회하면 존재하는 데이터가 Slave에 조회하면 존재하지 않을 수 있다.
+  2. AFTER_SYNC: MySQL 5.7 이후 (lossless replication라고도 불린다)
+       * AFTER_COMMIT의 문제점을 해결하기 위해 나온 replication 방식.
+       * 먼저 Slave에 업데이트 관련 Binlog를 보내고, Master의 데이터를 업데이트하는 방식.
+
+<br>
+
+<p align="center"><img src="./image/db_replication_after_commit_problem.png" ><br>AFTER_COMMIT의 문제점<br>출처: http://my-replication-life.blogspot.com/2013/09/loss-less-semi-synchronous-replication.html</p>
 
 <br>
 
@@ -540,3 +547,5 @@ $ mysql> UNLOCK TABLES;
 * https://ssup2.github.io/theory_analysis/MySQL_Replication/
 * https://hoing.io/archives/3111
 * http://minsql.com/mysql/semi-synchronous-replication-on-mysql/
+* http://jongguheo.blogspot.com/2019/10/replication-lossless-semi-sync.html
+* https://kimdubi.github.io/mysql/semi_sync/
