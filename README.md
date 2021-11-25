@@ -36,6 +36,8 @@
   * [내장 Redis 서버 - Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
 * DB
   * [Spring Boot + JPA기반의 Replication 구현 (Multi DataSource)](./Spring/DB/Replication/Replication%20With%20JPA.md)
+* Test
+  * [DB 테스트 격리 (DatabaseCleaner를 곁들인)](./Spring/Test/DB%20테스트%20격리/DB%20테스트%20격리.md)
 * Spring Security
   * [JWT (with JJWT)](./Spring/Security/JWT.md)
 * [토비의 스프링](https://github.com/binghe819/TIL/tree/master/Spring/%ED%86%A0%EB%B9%84%EC%9D%98%20%EC%8A%A4%ED%94%84%EB%A7%81)
