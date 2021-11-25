@@ -503,4 +503,5 @@ public class AcceptanceTest {
 * https://www.baeldung.com/spring-boot-testing
 * https://www.baeldung.com/spring-tests
 * https://velog.io/@ljinsk3/%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B2%A9%EB%A6%ACTest-Isolation
+* https://bgpark.tistory.com/149
 
