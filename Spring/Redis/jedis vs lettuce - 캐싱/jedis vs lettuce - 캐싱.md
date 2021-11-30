@@ -371,11 +371,14 @@ public class RedisConfiguration {
 > 각 테스트는 2번씩 진행했으며, 더 좋은 결과를 토대로 비교하였다.
 
 * 커넥션 풀 Size를 높인다고 TPS, MTT, 테스트 실행 횟수가 비약적으로 높아지진 않는다. (2증가)
-* 커넥션 풀 Size를 늘리면, Redis에서의 커넥션 수도 `WAS * 커넥션 풀 Size`만큼 늘어난다. 이는 메모리를 주로 사용하는 Redis에게는 좋지 않을 듯 하다.
+  * 오히려 Pool Size를 올렸더니 WAS와 Redis의 CPU 사용량이 증가하였다.
+* 커넥션 풀 Size를 늘리면, Redis에서의 커넥션 수도 `WAS 개수 * 커넥션 풀 Size`만큼 늘어난다. 이는 메모리를 주로 사용하는 Redis에게는 좋지 않을 듯 하다.
   * 실제로 Redis의 병목현상의 대부분은 CPU가 아닌 시스템 메모리/네트워크 대역폭에서 발생한다고 한다. [참고](https://coderscat.com/why-redis-is-single-threaded/)
   * **Lettuce는 1개를 유지함으로써, Jedis보다 우수하다고 판단된다.**
 * **모든 수치에서 Lettuce가 더 좋은 성능을 발휘한다.**
-  * WAS의 사용량은 Lettuce가 소폭 높지만, WAS의 CPU 사용량은 큰 문제가 될 것이라 판단되지 않는다. (로드밸런싱을 적용시키면 되기 때문)
+  * WAS의 평균 사용량은 Lettuce가 소폭 높게 나온다. 다만 현재 필자의 프로젝트에선 로드밸런싱을 적용시켰기에 큰 문제가 될 것으로 판단하진 않았다.
+
+> vmstat과 top을 통한 모니터링도 병행했으며, 메모리 사용량은 세 방식 모두 거의 동일했다.
 
 <br>
 
@@ -388,7 +391,7 @@ public class RedisConfiguration {
 
 실제로 [Jedis Release](https://github.com/redis/jedis/releases?page=3)를 보면 커넥션 풀 동시성 문제 (Race Condition, Jedis Pool exhausted)문제등등 다양한 문제들을 해결한 것으로 보인다.
 
-> 필자 생각엔 현재는 Jedis 사용하는 것도 크게 문제 없어보인다.
+> 필자 생각엔 현재는 Jedis 사용하는 것도 큰 문제가 없어보인다.
 
 그럼에도 불구하고, 필자는 Lettuce를 그대로 사용할 예정이다.
 
@@ -410,9 +413,11 @@ public class RedisConfiguration {
 
 이로인해 어떠한 테스트를 진행하든, 테스트시 항상 Ngrinder의 CPU 사용량은 100%를 보여주었다.
 
-물론 같은 환경에서 진행한 테스트이기에 큰 문제는 없다고 추측하고있지만, 그래도 혹시 몰라 주의할 점으로 남겨둔다.
+또한, 대용량이라고 보기도 어려운 데이터 크기이다.
 
-> 추후에 Controller와 Agent를 분리하여 테스트한다면 이 글은 지속적으로 업데이트 할 예정이다.
+물론 같은 환경에서 진행한 테스트이기 때문에 정확하다고 추측하지만, 그래도 혹시 몰라 주의할 점으로 남겨둔다.
+
+> 추후에 Ngrinder의 Controller와 Agent를 분리하여 테스트한다면 이 글은 지속적으로 업데이트 할 예정이다.
 
 <br>
 
