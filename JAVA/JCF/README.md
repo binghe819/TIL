@@ -21,8 +21,7 @@
 
 # 목차
 * [JCF 개념과 특징](./JCF%20개념과%20특징.md)
-* [JCF 계층구조와 Collection, Iterable ]()
-* []()
+* [JCF 계층구조와 Collection, Iterable](./JCF%20계층구조.md)
 
 <br>
 
