@@ -63,6 +63,8 @@
 ## JPA
 * [JPA 학습 테스트 with 자바 ORM 표준 JPA 프로그래밍](https://github.com/binghe819/jpa-learning-sandbox)
 * [cascade.REMOVE vs orphanremoval=true](./JPA/기타/cascade_remove_vs_orphanremoval/cascade_remove_vs_orphanremoval.md)
+* N + 1
+  * [N + 1 문제와 해결 방법](./JPA/N+1/N+1%20문제와%20해결%20방법.md)
 
 <br>
 
