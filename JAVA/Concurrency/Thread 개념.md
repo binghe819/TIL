@@ -19,7 +19,7 @@
 # Process와 Thread
 동시성 프로그래밍에선 크게 두 가지의 실행 단위가 존재한다. **바로 프로세스와 스레드이다.**
 
-<p align="center"><img src="./image/program_vs_process_vs_thread.jpg"><br>Program vs Process vs Thread</p>
+<p align="center"><img src="./image/program_vs_process_vs_thread.jpg" width="400"><br>Program vs Process vs Thread</p>
 
 이번 챕터에선 간단히 프로세스와 스레드에 대한 개념과 차이점에 대해서 정리하였다.
 
@@ -125,7 +125,7 @@
 
 **프로세스간에도 컨텍스트 스위칭을 통해 CPU를 점유한다면, 한 프로세스안에서의 Thread간에도 컨텍스트 스위칭을 통해 CPU를 점유한다.**
 
-이때 프로세스는 PCB, Thread는 TCB를 이용한다. 이와 관련해서는 밑에서 더 자세히 다룰 예정이다.
+이떄 프로세스는 PCB, Thread는 TCB라는 이름을 가진 자료구조(저장소가 더 정확할 듯?)로 프로세스와 스레드의 진행사항을 저장한다.
 
 <br>
 
@@ -154,8 +154,6 @@
 
 ## Process vs Thread
 Process와 Thread에 대한 기본적인 개념을 알았으니 간단히 두 개념의 차이점을 알아본다.
-
-<br>
 
 <p align="center"><img src="./image/process_vs_thread.png" width="300"><br>출처: https://eun-jeong.tistory.com/19</p>
 
@@ -279,47 +277,6 @@ User Level Thread는 커널 위 사용자 영역에서 동작하며 커널 지�
 * Two-Level
   * 다대다 모델과 유사하지만 특정 사용자 레벨 스레드를 단일 커널 레벨 스레드에 매핑할 수 있다.
   * 일대다와 일대일방식을 합친 것과 유사하다.
-
-<br>
-
-# 여러가지 개념
-Process와 Thread를 다루면서 항상 헷갈리는 여러 가지 개념들을 정리해보았다.
-
-
-<br>
-
-## 싱글 스레드 vs 멀티 스레드
-
-<br>
-
-🤔 싱글 스레드
-
-* 싱글 스레드란?
-  * 하나의 프로세스에서 하나의 스레드를 실행하는 것.
-* 싱글 스레드 장점
-  * 동기화를 신경 쓸 필요가 없다. -> 동기화를 처리하는데 생각보다 많은 비용이 들기 때문에 싱글 스레드의 장점.
-  * 스레드간의 컨텍스트 스위칭이 필요하지 않다. -> 두 개의 스레드를 이용하여 처리하는 것보다 하나의 스레드로 처리하는 것이 더 빠른 경우도 존재할 수 있다. (즉, 성능상 장점이 존재할 수도 있다.)
-* 싱글 스레드 단점
-  * 여러 개의 CPU를 활용하지 못한다.
-  * 
-
-* 멀티 스레드 해야하는 이유
-* 싱글 스레드 vs 멀티 스레드 장단점
-
-<br>
-
-## Concurrent vs Parallel
-많은 사람들이 헷갈리는 내용중 하나는 바로 `병행 (Concurrent) vs 병렬 (Parallel)`의 차이점이다.
-
-<br>
-
-## Multi-Procss vs Multi-Threading
-* 멀티 프로세싱: 하나의 프로그램을 여러 프로세스로 구성하는 방식??
-* 멀티 스레드: 
-
-<br>
-
-
 
 <br>
 

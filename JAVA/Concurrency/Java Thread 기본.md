@@ -267,6 +267,8 @@ public class Thread implement Runnable {
 
 <br>
 
+<br>
+
 ## java.lang.Runnable
 <p align="center"><img src="./image/java_lang_runnable.png" width="400"> </p>
 
@@ -415,7 +417,7 @@ public class CustomThread {
     }
 }
 ```
-<p align="center"><img src="./image/sleep_example" width="300"> </p>
+<p align="center"><img src="./image/sleep_example.png" width="300"> </p>
 
 Main과 Custom 스레드 모두 1부터 5까지 카운트하는 스레드이지만, Custom 스레드는 매 카운트마다 0.1초씩 `sleep()`하기 때문에 Main 스레드가 모두 실행되고나서 Custom 스레드가 실행되는 것을 볼 수 있다.
 
