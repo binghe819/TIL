@@ -464,6 +464,8 @@ ExecutorService executorService = Executors.newCachedThreadPool();
   * `Executors.newCachedThreadPool()`: 필요에 따라 새로운 스레드를 생성하며, 이전에 생성했던 스레드가 존재하면 재사용한다.
     * 디폴트로는 60초동안 스레드가 유지된다. -> `corePoolSize: 0, maximumPoolSize: Integer.MAX_VALUE`
 
+> 설정에 대한 더 자세한 내용은 [여기](https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/thread-pools.html)를 참고.
+
 <br>
 
 💁‍♂️ `java.util.concurrent.ScheduledThreadPoolExecutor`
