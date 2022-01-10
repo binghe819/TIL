@@ -746,7 +746,7 @@ public class ThreadGroup implements Thread.UncaughtExceptionHandler {
 💁‍♂️ 자바 메인 스레드와 데몬 스레드
 
 <p align="center"><img src="./image/daemon_thread_and_main_thread.png" width="400"><br>출처: https://www.learntek.org/blog/multithreading-in-java/</p>
-m
+
 * JVM은 프로그램이 실행되면 Main을 실행함과 동시에 다른 데몬 스레드도 실행한다.
   * JVM이 프로그램을 실행하는데 필요한 스레드들이 데몬으로 실행된다고 보면 된다.
 * Main 스레드가 종료되면 데몬 스레드들도 같이 종료된다.
