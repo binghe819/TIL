@@ -70,6 +70,12 @@
 
 <br>
 
+## 빌드
+* [Gradle이란 무엇인가?](./Build/Gradle%20기본/Gradle이란%20무엇인가?.md)
+* [Gradle 시작하기](./Build/Gradle%20기본/Gradle%20시작하기.md)
+
+<br>
+
 ## 운영체제
 * [운영체제와 정보기술의 원리](./OS/운영체제와%20정보기술의%20원리/README.md)
 
@@ -190,6 +196,11 @@
 
 * [JS 기초 정리](./JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/README.md)
 * [WEB APIs](./JS/web/README.md)
+
+<br>
+
+## Vue.js
+
 
 <br>
 

@@ -79,7 +79,7 @@
 
 🤔 Gradle Wrapper는 어떻게 동작하는가?
 
-<p align="center"><img src="./image/wrapper-workflow.png"><br>wrapper workflow</p>
+<p align="center"><img src="./image/wrapper-workflow.png" width="400"><br>wrapper workflow</p>
 
 * `gradlew`을 통해 빌드하면 `gradle-wrapper.properties`에 정의된 Gradle 정보에 빌드가 진행된다.
   * 이때, **정의된 Gradle 버전이 로컬에 없으면 외부 서버로부터 다운받아 로컬에 저장시키고 이를 사용하여 빌드를 진행한다.**
