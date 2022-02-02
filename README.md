@@ -71,7 +71,7 @@
 <br>
 
 ## 빌드
-* [Gradle이란 무엇인가?](./Build/Gradle%20기본/Gradle이란%20무엇인가?.md)
+* [Gradle이란 무엇인가?](./Build/Gradle%20기본/Gradle이란%20무엇인가.md)
 * [Gradle 시작하기](./Build/Gradle%20기본/Gradle%20시작하기.md)
 * 멀티 모듈
   * [멀티 모듈 적용하기 with Gradle, Spring](./Build/멀티%20모듈/멀티%20모듈%20적용%20with%20Gradle.md)
