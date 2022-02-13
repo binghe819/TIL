@@ -533,6 +533,12 @@ $ gradlew :module-api-read:bootRun
 $ gradlew :{module 이름}:bootRun --args='--server.port={원하는 포트 번호}'
 ```
 
+스프링 부트에서 특정 profile로 애플리케이션을 시동하고 싶다면 아래와 같이 입력해주면된다.
+
+```shell
+$ gradlew :{module 이름}:bootRun -Dspring.profiles.active={profile명}
+```
+
 <br>
 
 <p align="center"><img src="./image/create_execute_example_1.png" width="500"><br>명령 서버 요청 성공</p>
