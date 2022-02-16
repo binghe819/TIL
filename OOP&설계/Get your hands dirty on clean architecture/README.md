@@ -121,7 +121,7 @@
 
 계층형 아키텍처의 규칙과 팀에서 정한 규칙을 잘 준수한다면 계층형 아키텍처도 유지보수와 확장면에서 유용할 수 있다.
 
-필자의 경우 실제 진행한 프로젝트([Github Repo 기반 개발 장려 SNS](https://github.com/woowacourse-teams/2021-pick-git))에서 DDD 계층 구조를 사용했으며, 팀원들과 몇 가지 추가 규칙를 통해 유지보수와 확장면에서 좋다고 느꼈다.
+필자의 경우 실제 진행한 프로젝트([Github Repo 기반 개발 장려 SNS](https://github.com/woowacourse-teams/2021-pick-git))에서 DDD 계층 구조를 사용했으며, 팀원들과 몇 가지 추가 규칙를 통해 유지보수와 확장면에서 만족스러운 설계였다.
 
 <p align="center"><img src="./image/1_F82KYklUqew6ycZEq9niAw.png" width="400"><br>출처: Domain-Driven Design </p>
 
@@ -205,4 +205,57 @@
 <br>
 
 > 무엇보다 중요한 것은 의존성을 역전시켜 도메인 코드가 다른 바깥쪽 코드 (UI, 영속성 프레임워크)에 종속적이지 않게해서 코드를 변경할 이유의 수를 줄이는 것이다. 이를 통해 유지보수성을 더 높이기 위함.
+
+<br>
+
+# 3 코드 구성하기
+이번 장에선 코드를 보는 것만으로도 어떤 아키텍처인지 알 수 있는 패키지 구성에 대해서 다룬다.
+
+책에선 사용자가 본인의 계좌에서 다른 계좌로 돈을 송금하는 '송금하기'유스케이스를 통해 패키지 구조를 설명한다.
+
+그리고 아키텍처적으로 육각형 아키텍처를 패키지화하면 아래와 같다.
+
+```shell
+.
+└── account
+    ├── adapter
+    │   ├── in
+    │   │   └── web
+    │   │       └── AccountController
+    │   └── out
+    │       └── persistence
+    │           ├── AccountPersistenceAdapter
+    │           └── SpringDataAccountRepository
+    ├── application
+    │   ├── SendMoneyService
+    │   └── port
+    │       ├── in
+    │       │   └── SendMoneyUseCase
+    │       └── out
+    │           ├── LoadAccountPort
+    │           └── UpdateAccountStatePort
+    └── domain
+        ├── Account
+        └── Activity
+```
+
+<p align="center"><img src="./image/clean_architecture_hexagonal_package.png" width="400"><br>출처: Get your hands dirty on clean architecture  </p>
+
+저자는 위 구조는 육각형을 잘 나타낸다고 한다.
+
+다만, 완벽한 설계가 없듯이, 위 구조가 정답은 아니다. 패키지 구조도 표현력있게 잘 설계한다면 문제 없다고 생각든다.
+
+**마지막으로 육각형 아키텍처를 위해 가장 중요한 점은 의존성 주입이다**
+
+**컴파일타임에 추상적인 것에 의존하고, 런타임에 구체적인 것에 의존하는 유연한 설계를 위해선 의존성 주입은 필수다.**
+
+실제로 육각형 아키텍처에서 port에 인터페이스를 두는 것 또한 유연한 설계를 위함이다.
+
+> 의존성 주입 내용은 사실 너무 당연한 얘기이며, 좋은 자료가 많기에 생략
+
+<br>
+
+# 4 유스케이스 구현하기
+
+
 
