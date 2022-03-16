@@ -30,6 +30,8 @@
 > * Spring Boot 2.6.4
 > * Lombok 1.18.22
 
+전체 소스 코드는 [Github](https://github.com/binghe819/learning-sandbox/tree/master/spring-event)을 참고하면 된다.
+
 <br>
 
 # 개요
@@ -49,6 +51,8 @@
 * EventListener
   * 스프링 프레임워크 `4.2` 이전 버전을 사용한다면 `ApplicationListener`를 상속 및 구현해야한다.
   * `4.2` 버전 이후로는 `@EventListener` 애노테이션만 붙여도 사용 가능하다.
+
+> 이번 글은 가능한 쉽게 설명하기 위해 애노테이션 기반의 코드만을 구현하였다.
 
 <br>
 
