@@ -48,6 +48,8 @@
 # Hello World
 본격적으로 도메인 언어와 메타 테이블에 대해 다루기전에 스프링 배치를 이용해 Hello World를 작성해본다.
 
+<br>
+
 ## 프로젝트 생성 및 의존성
 
 우선 `Spring Initializer`를 통해 Spring Boot 프로젝트를 만들어준다.
