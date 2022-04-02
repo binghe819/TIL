@@ -24,7 +24,7 @@ Spring Batch에서 Job을 구성하는 요소는 Step이다.
 
 이때, 특정 Step이 실패했다고 무조건 해당 Job이 실패해야하는 것은 아니다.
 
-물론 특정 Step이 성공해야지만 다음 Step으로 이어지는 것도 아니다.
+물론 특정 Step이 성공해야지만 바로 다음 순서의 Step (순차적 Flow 관점)으로 이어지는 것도 아니다.
 
 이러한 Step들간의 순서 혹은 처리 흐름을 제어하는 것은 Job 구성에 있어서 굉장히 중요하다.
 
@@ -37,7 +37,7 @@ Spring Batch에서 Job을 구성하는 요소는 Step이다.
 
 바로 `next()`를 이용한 순차 Flow를 구성해보는 것이다.
 
-<p align="center"><img src="./image/sequential-flow.png"><br>출처: Spring Batch Docs </p>
+<p align="center"><img src="./image/sequential-flow.png" width="100"><br>출처: Spring Batch Docs </p>
 
 > SequantialFlowJobConfiguration.java
 
@@ -106,9 +106,11 @@ Job 설정을 보면 `next()`를 통해 순차적으로 Step을 설정한 것을
 # 조건별 흐름 제어
 위와 같이 순차별 흐름 제어만 사용하면 좋겠지만.. 배치 작업을 하다보면 Step들을 조건별 흐름 제어할 일도 종종 생긴다.
 
-예를 들어, 특정 Step이 실패해도 남은 Step을 계속해서 실행되야한다든지, Step이 정상인 경우 A로 실패인경우 C로 흐름을 제어한다든디...
+예를 들어, 특정 Step이 실패해도 남은 Step을 계속해서 실행되야한다든지, 
 
-<p align="center"><img src="./image/conditional-flow.png"><br>출처: Spring Batch Docs </p>
+아래와 같이 Step A가 정상인 경우 B로 실패인경우 C로 흐름을 제어한다든지
+
+<p align="center"><img src="./image/conditional-flow.png" width="300"><br>출처: Spring Batch Docs </p>
 
 스프링 배치에서는 위와 같은 조건별 흐름 제어를 위해 다양한 기능을 제공해주고 있다.
 
@@ -176,7 +178,7 @@ public class ConditionalFlowJobConfiguration {
 }
 ```
 <details>
-  <summary>Job 설정은 아래와 같이 다르게 해줄 수도 있다.</summary>
+  <summary>Job 설정은 동일하게 동작하지만 아래와 같이 다르게 설정할 수 도 있다.</summary>
   
   ---
   
@@ -219,7 +221,7 @@ public class ConditionalFlowJobConfiguration {
 
 위 Flow는 모두 Job의 설정을 통해 가능하다.
 
-<p align="center"><img src="./image/job-flow-conditional.png"> </p>
+<p align="center"><img src="./image/job-flow-conditional.png" width="500"> </p>
 
 * `start()`
   * Job의 시작을 의미.
@@ -232,7 +234,8 @@ public class ConditionalFlowJobConfiguration {
 * `to()`
   * 다음으로 이동할 Step 지정.
 * `from()`
-  * 매개변수로 넘어온 Step으로 돌아가서 새 Flow를 시작해야하는 경우 사용한다. 아직 등록되지 않은 Step이면 `stat(step)`으로 동작한다.
+  * 매개변수로 넘어온 Step으로 돌아가서 새 Flow를 시작해야하는 경우 사용한다. 아직 등록되지 않은 Step이면 `start(step)`으로 동작한다.
+  * 이벤트 리스터와 비슷한 역할을 한다.
   * ex. 만약 `StepA`의 이벤트 캐치가 `FAILED`면 추가로 이벤트 캐치를 해줘야하기에 이때 `from`을 사용한다.
 * `end()`
   * 
