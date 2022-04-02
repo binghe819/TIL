@@ -39,6 +39,10 @@
   * [Jedis vs Lettuce - 캐싱 예시](./Spring/Redis/jedis%20vs%20lettuce%20-%20캐싱/jedis%20vs%20lettuce%20-%20캐싱.md)
   * [Spring으로 Redis를 사용하기 전 보면 좋은 글 (Redis Client, RedisTemplate, RedisRepository)](./Spring/Redis/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림.md)
   * [내장 Redis 서버 - Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
+* Spring Batch
+  * [배치 애플리케이션이란?](./Spring/Batch/배치애플리케이션이란/batch-application.md)
+  * [Hello World로 보는 Spring Batch 도메인 언어 및 메타 테이블](./Spring/Batch/spring-batch-helloworld-domain-and-meta/spring-batch-helloworld-domain-and-meta.md)
+  * [스프링 배치 Job Flow](./Spring/Batch/spring-batch-job-flow/spring-batch-job-flow.md)
 * DB
   * [Spring Boot + JPA기반의 Replication 구현 (Multi DataSource)](./Spring/DB/Replication/Replication%20With%20JPA.md)
 * Test
