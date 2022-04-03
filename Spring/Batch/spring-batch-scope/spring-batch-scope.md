@@ -11,6 +11,7 @@
     - [두번째이유. 병렬 혹은 동시에 사용할 때 안전하다.](#두번째이유-병렬-혹은-동시에-사용할-때-안전하다)
 - [Job Parameters는 Step이나 Job Scope일 때만 사용가능하다](#job-parameters는-step이나-job-scope일-때만-사용가능하다)
 - [JobScope vs StepScope - 미완성](#jobscope-vs-stepscope---미완성)
+- [마치며](#마치며)
 - [참고](#참고)
 
 <br>
@@ -247,7 +248,7 @@ jobLauncher.run(jobNamee, jobParameters);
 
 2️⃣ **Job Parameters를 사용해야 배치 애플리케이션의 기본 기능을 사용할 수 있다.**
 
-위 웹 애플리케이션을 켠 상태에서 방금 요청한 `date=20220402`로 요청을 날리면 아래와 같이 예외가 발생한다.
+위 웹 애플리케이션을 켠 상태에서 방금 요청한 `date=20220402`로 재요청을 날리면 아래와 같이 예외가 발생한다.
 
 <p align="center"><img src="./image/job_scope_date_example_result_4.png"><br>이전에 요청했던 date=20220402로 재요청시 발생한 예외</p>
 
@@ -262,7 +263,7 @@ jobLauncher.run(jobNamee, jobParameters);
 <br>
 
 ### 두번째이유. 병렬 혹은 동시에 사용할 때 안전하다.
-사실 두번째이유는 사실 굉장히 명확하다.
+두번째이유는 사실 굉장히 명확하다.
 
 Step안에 멤버변수가 존재하는데 병렬처리를 한다면 당연히 해당 값을 Thread-Safe하지 않다.
 
@@ -345,6 +346,13 @@ Convenient annotation for step scoped beans that defaults the proxy mode, so tha
 https://docs.spring.io/spring-batch/docs/current/api/org/springframework/batch/core/configuration/annotation/StepScope.html
 
 https://stackoverflow.com/questions/51549891/spring-batch-late-binding-step-scope-or-job-scope
+
+<br>
+
+# 마치며
+이제 필자는 배치에 왜 Scope가 필요한지 알게되었다.
+
+이 글을 읽는 분들도 모두 조금이나마 도움이 되었기를....
 
 <br>
 
