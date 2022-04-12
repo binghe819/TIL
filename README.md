@@ -132,10 +132,11 @@
 * 관계형 데이터베이스
   * [트랜잭션](./DB/RDB/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/Transaction.md)
   * 인덱스 - 예정
-  * [JOIN](./DB/RDB/JOIN/join.md)
 * [h2](./DB/RDB/h2/h2.md)
 * SQL
   * [SQL 정리](./DB/RDB/SQL/SQL%EC%A0%95%EB%A6%AC.md)
+  * [JOIN](./DB/RDB/JOIN/join.md)
+  * [IN, NOT IN, EXISTS, NOT EXISTS](./DB/RDB/IN_EXISTS_NOT_IN_NOT_EXISTS/IN_EXISTS_NOT_IN_NOT_EXISTS.md)
 * MySQL
   * [MySQL 5.7 설치 및 설정](./DB/MySQL/MySQL%20설치%20및%20설정/MySQL%205.7%20설치%20및%20설정.md)
   * [Real MySQL](./DB/MySQL/RealMySQL/README.md)
