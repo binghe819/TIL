@@ -182,7 +182,7 @@
 
 <br>
 
-## OOP 및 설계
+## OOP 및 아키텍처
 
 * 책
   * [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
@@ -213,11 +213,6 @@
 * [JS 기초 정리](./JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/README.md)
 * [WEB APIs](./JS/web/README.md)
 * [Node.js와 NPM](./JS/node.js와%20npm/node.js와%20npm.md)
-
-<br>
-
-## Vue.js
-
 
 <br>
 
