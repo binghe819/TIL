@@ -107,7 +107,6 @@
   * nGrinder
     * [nGrinder Docker를 이용한 설치](./Infra&DevOps/nGrinder/nGrinder%20Docker를%20이용한%20설치.md)
     * [nGrinder Hello World](./Infra&DevOps/nGrinder/nGrinder%20Hello%20World.md)
-  * [성능 비교 - In-Memory DB (Redis) vs Disk I/O DB (MySQL)](./Infra&DevOps/In-Memory%20DB%20vs%20Disk%20I:O%20DB/In-Memory%20DB%20vs%20Disk%20I:O%20DB%20-%201.md)
 
 <br>
 
