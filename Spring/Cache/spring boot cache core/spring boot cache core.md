@@ -7,16 +7,16 @@
 - [스프링 캐싱 코어](#스프링-캐싱-코어)
   - [스프링은 어떻게 캐싱을 처리하지?](#스프링은-어떻게-캐싱을-처리하지)
   - [AOP 코드는 어디에?](#aop-코드는-어디에)
-  - [Cache와 CacheManager](#cache와-cachemanager)
+  - [Cache, CacheManager](#cache-cachemanager)
   - [멀티 스레드는 기본으로 제공하지 않는다](#멀티-스레드는-기본으로-제공하지-않는다)
   - [결국 핵심은 두 가지다 - 중요](#결국-핵심은-두-가지다---중요)
 - [애노테이션](#애노테이션)
   - [@Cacheable](#cacheable)
     - [value, cacheNames](#value-cachenames)
     - [key](#key)
+    - [cacheResolver와 cacheManager](#cacheresolver와-cachemanager)
     - [condition](#condition)
     - [unless](#unless)
-    - [cacheManager](#cachemanager)
     - [sync](#sync)
   - [@CachePut](#cacheput)
   - [@CacheEvict](#cacheevict)
@@ -36,14 +36,18 @@
 
 캐싱도 관심사의 분리와 AOP를 활용하여 애노테이션만 붙여주면 쉽게 적용시킬 수 있도록 추상화해놓았다.
 
-이번 글은 스프링에서 캐싱을 적용시키기위해 꼭 알아야하는 내용들을 다룬다.
+> Spring Framwork 4.1 부터는 [JSR-107](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache-jsr-107)을 준수하는 어노테이션을 통해 선언적인 캐싱 구현이 가능해졌다.
 
-> 글 출처는 [Spring Docs - Cache](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache)이다.
+기본적은 개념에 대한 내용은 모두 [Spring Docs - Cache](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache)를 참고하였다.
 
 <br>
 
 # 스프링 캐싱 코어
-우선은 스프링에서 어떤 방식으로 캐싱을 처리하고, 추상화 시켰는지 살펴본다.
+이제 본격적으로 스프링 캐싱 코어에 대해서 다룬다.
+
+우선 스프링에서 어떤 방식으로 캐싱을 처리하고, 추상화 시켰는지 살펴본다.
+
+> TIP) 버퍼와 캐시에 대한 차이점은 [여기](https://en.wikipedia.org/wiki/Cache_(computing)#The_difference_between_buffer_and_cache)를 참고하자.
 
 <br>
 
@@ -119,7 +123,7 @@
 
 <br>
 
-## Cache와 CacheManager
+## Cache, CacheManager
 > 스프링이 캐싱 기능을 잘 추상화시켰고, **그저 `@EnableCaching`이라는 애노테이션을 선언만해주면, 캐시 관련된 애노테이션을 스캔하여 캐싱 로직을 수행한다.**
 
 <br>
@@ -131,7 +135,7 @@
 그리고 이 부분을 스프링은 아래 두 가지 인터페이스를 이용해 추상화해두었다.
 
 * `org.springframework.cache.Cache`: 캐시 데이터에 대한 생명주기를 관리하는 객체.
-  * is managed by Cache Manager, which manages the life cycle of Cache. Cache exists in the context of Cache Manager and is a map-like data structure that temporarily stores key-indexed values.A Cache is owned by only one CacheManager
+  * is managed by Cache Manager, which manages the life cycle of Cache. Cache exists in the context of Cache Manager and is a map-like data structure that temporarily stores key-indexed values.A Cache is owned by only one CacheManager.
 * `org.springframework.cache.CacheManager`: 캐시를 관리해주는 매니저. `Cache` 객체를 관리한다.
   * Create, configure, acquire, manage, and control multiple uniquely named Caches that exist within the context of CacheManager. A CacheManager corresponds to only one CachingProvider
 
@@ -161,7 +165,11 @@
 
 그러므로 여러 스레드가 같은 아이템를 접근하고 수정하려고하면, 예상과 다르게 동작할 수 있다.
 
-> 물론 `sync`라는 설정이 존재하지만, 대부분의 캐시 저장소가 이를 지원하지 않는다고 한다. (물론 예외는 존재할 듯 싶다)
+물론 `sync`라는 설정이 존재하지만, 대부분의 캐시 저장소가 이를 지원하지 않는다. (물론 지원하는 저장소가 있을수도...)
+
+다만, 필자 생각엔 캐시 데이터는 성능을 높이기 위한 임시 데이터일 뿐 트랜잭션 락과 같은 성능을 저하할 수 있는 기능을 사용한다는 것은 맞지 않다고 생각한다.
+
+만약 이렇게 사용해야한다면 이는 설계에서 잘못된 부분이 존재하지 않나싶다.
 
 <br>
 
@@ -169,7 +177,7 @@
 스프링에서 캐싱처리를 적용시키기위해 신경써야할 부분은 사실 딱 두가지이다.
 
 * Caching declaration: Identify the methods that need to be cached and their policy.
-  * 애노테이션을 통해 어떤 메서드가 캐싱이 필요한지, 또한 애노테이션을 통해 어떤 정책을 사용할지 설정해주면된다.
+  * 애노테이션을 통해 어떤 메서드가 캐싱이 필요한지, 또한 애노테이션을 통해 어떤 캐싱 정책을 사용할지 설정해주면된다.
 * Cache Configuration: The backing cache where the data is stored and from which it is read.
   * 캐시한 데이터를 어디에 저장하고 읽어올지 설정해주면 된다.
 
@@ -180,20 +188,22 @@
 
 그러므로 각 애노테이션에 대한 이해가 필요하다.
 
-* @Cacheable: Triggers cache population.
-* @CacheEvict: Triggers cache eviction.
-* @CachePut: Updates the cache without interfering with the method execution.
-* @Caching: Regroups multiple cache operations to be applied on a method.
-* @CacheConfig: Shares some common cache-related settings at class-level.
+* @Cacheable: Triggers cache population. (캐시 데이터 조회 트리거)
+* @CacheEvict: Triggers cache eviction. (캐시 데이터 삭제 트리거)
+* @CachePut: Updates the cache without interfering with the method execution. (메서드 실행을 방해하지 않고 캐시 데이터를 업데이트)
+* @Caching: Regroups multiple cache operations to be applied on a method. (메서드에 적용할 여러 캐시 작업을 다시 그룹화)
+* @CacheConfig: Shares some common cache-related settings at class-level. (클래스 레벨에서 공통 캐싱 설정)
 
 <br>
 
 ## @Cacheable
-자바 메서드에 `@Cacheable`을 설정함으로써 해당 메서드를 캐싱할 수 있다.
+자바 메서드에 `@Cacheable`을 설정함으로써 해당 메서드의 결과를 캐싱할 수 있다.
 
 타겟메서드가 호출되었을 때, 캐시에 해당 메서드가 이미 동일한 인자로 존재한다면 캐시해둔 결과를 Proxy에서 반환한다.
 
-캐싱해둔 데이터가 없다면, 실제 DB로부터 조회하여 캐싱 저장소에 저장후 결과를 반환한다.
+만약 캐싱이 히트되어 캐싱저장소에서 데이터를 가져온다면, 타겟메서드가 실행조차되지않는다.
+
+캐싱해둔 데이터가 없다면, 타겟메서드를 실행시켜 실제 DB로부터 조회하여 캐싱 저장소에 저장후 결과를 반환한다.
 
 <br>
 
@@ -209,7 +219,11 @@ public Book findBook(ISBN isbn) {...}
 * **캐시 저장소는 여러 개 정의할 수 있다.**
   * ex. `@Cacheable({"books", "isbns"})` -> `books`와 isbns`라는 두 군데에 캐시 데이터가 저장된다.
 
-<p align="center"><img src="./image/cacheable_value_example.png"><br>Redis를 이용하여 homeFeed라는 캐시 저장소에 저장시킨 예시</p>
+<p align="center"><img src="./image/cacheable_value_example.png"><br>Redis를 이용하여 books 캐시 저장소에 저장시킨 예시</p>
+
+<p align="center"><img src="./image/cacheable_value_example2.png">Redis를 이용하여 books와 isbns 캐시 저장소에 저장시킨 예시</p>
+
+> redis-cli로 데이터를 보고싶다면 `get books::test-isbn` 혹은 `get isbns::test-isbn` 명령어를 입력하면 된다.
 
 <br>
 
@@ -217,6 +231,8 @@ public Book findBook(ISBN isbn) {...}
 캐시는 필수적으로 `key:value` 형식으로 저장된다. 그러므로 각 메서드마다 어떤 key를 통해 캐시 데이터를 저장하고 조회할 지 설정해주어야한다.
 
 별도의 커스텀 키를 정의하지 않으면, 디폴트로 알고리즘 기반의 KeyGenerator를 사용하여 키를 생성한다.
+
+디폴트로 정의되어있는 `KeyGenerator`는 아래와 같이 동작한다. (디폴트로 `SimpleKeyGenerator`를 사용한다.)
 
 * 매개변수가 아무것도 없으면 `SimpleKey.EMPTY`을 반환.
 * 매개변수가 하나면, 그 인스턴스를 반환.
@@ -226,16 +242,18 @@ public Book findBook(ISBN isbn) {...}
 
 > `SimpleKey`안에 `Object[]`형식으로 키를 가지고 있는다.
 
-다른 기본 키를 생성하려면 `org.springframework.cache.KeyGenerator` 인터페이스를 구현하고, `CacheResolver`에 설정해주면 된다.
+커스텀 key 정책을 설정하려면 `org.springframework.cache.KeyGenerator` 인터페이스를 구현하고, `CacheResolver`에 설정해주면 된다.
 
 <br>
 
-**Custom Key**
+**선언적 Custom Key 설정**
+
+스프링에선 각 메서드마다 쉽게 원하는 key를 커스텀할 수 있도록 선언적 설정방법을 제공한다.
 
 원하는 Key가 있다면 아래와 같이 `SpEL`을 사용하며 정의해주면 된다.
 
 ```java
-@Cacheable(value="books", key="#isbn"
+@Cacheable(value="books", key="#isbn")
 public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
  
  
@@ -247,12 +265,46 @@ public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
 public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
 ```
 
+만약 SpEL로 key에 대한 커스텀 설정이 복잡해진다면 아래와 같이 직접 `KeyGenerator`를 구현하여 설정해주면 된다.
+
+```java
+@Cacheable(cacheNames="books", keyGenerator="myKeyGenerator")
+public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
+```
+
+> 참고로 key와 keyGenerator는 상호배타적이다. 즉, 둘을 함께 사용하면 예외가 발생한다.
+
+<br>
+
+### cacheResolver와 cacheManager
+스프링에서 추상화한 캐싱은 기본적으로 `CacheResolver`에서 `CacheManger`의 설정을 보고 캐시를 탐색한다.
+
+그리고 디폴트로 사용되는 `CacheResolver`는 `SimpleCacheResolver`이며, 이 구현체는 설정된 `CacheManager`에 따라 캐시를 탐색한다.
+
+그리고 이는 하나의 `CacheManager`에 적합해서, 복잡한 설정을 할 수 없다.
+
+만약 애플리케이션이 여러 개의 `CacheManager`를 설정해야한다면 아래와 같이 설정해서 사용하면된다.
+
+```java
+@Cacheable(cacheNames="books", cacheManager="anotherCacheManager") 
+public Book findBook(ISBN isbn) {...}
+```
+
+만약 `CacheResolver` 자체를 변경하고 싶다면 아래와 같이 설정해줄 수 있다.
+
+```java
+@Cacheable(cacheResolver="runtimeCacheResolver") 
+public Book findBook(ISBN isbn) {...}
+```
+
+> 이 두 설정도 상호베타적으므로 하나만 설정가능하다. 둘 다 설정할 경우 예외가 발생한다.
+
 <br>
 
 ### condition
 > `...일때 캐싱을 해라`
 
-캐싱 조건을 설정해줄 수 있다.
+SpEL을 사용하여 캐싱 조건을 설정해줄 수 있다.
 
 * Condition로 주어진 값이 `true`면 캐싱 O
   * 메서드 내부(핵심 객체)가 실행되지 않는다.
@@ -263,6 +315,10 @@ public Book findBook(ISBN isbn, boolean checkWarehouse, boolean includeUsed)
 @Cacheable(value="book", condition="#name.length < 32")
 public Book findBook(String name)
 ```
+
+이외에도 SpEL을 이용하여 메타 데이터를 활용할 수도 있다.
+
+이와 관련된 내용은 [공식 문서](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache-spel-context)를 참고하자.
 
 > SpEL에 대한 내용은 [Baeldung - SpEL](https://www.baeldung.com/spring-expression-language)와 [공식 문서](https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache-spel-context)을 참고하자.
 
@@ -292,20 +348,6 @@ public Book findBook(String name)
 public Book findBook(String name)
 ```
 * 반환되는 결과가 `null`이면 캐싱하지 말라는 의미.
-
-<br>
-
-### cacheManager
-여러 개의 캐싱 저장소를 사용하거나 전략을 사용하는 경우, 여러 개의 `CacheManager`를 정의해놓을 수 있다.
-
-그리고 `cacheManager`설정을 통해 해당 메서드는 어떤 캐시 매니저를 사용할지 결정할 수 있다.
-
-```java
-@Cacheable(cacheNames="books", cacheManager="anotherCacheManager") 
-public Book findBook(ISBN isbn) {...}
-```
-
-> 이외에도 `cacheResolver`를 설정해주는 설정도 있다.
 
 <br>
 
@@ -339,7 +381,7 @@ public Book updateBook(ISBN isbn, BookDescriptor descriptor)
 
 `@CachePut`은 `@Cacheable`과 동일한 옵션을 제공한다. 다만, 캐시에 저장하는 것보다는 메서드 흐름을 최적화하는데 사용되어야한다.
 
-> 한 메서드에 `@Cacheable`과 함께 사용하는 것을 권장하지 않는다.
+> 한 메서드에 `@Cacheable`와 `@CachePut`을 함께 사용하는 것을 권장하지 않는다.
 
 <br>
 
@@ -364,12 +406,16 @@ public Book updateBook(ISBN isbn, BookDescriptor descriptor)
 public Book importBooks(String deposit, Date date)
 ```
 
+예를 들어 같은 메서드이지만 캐시 저장소에 따라 다르게 캐시 설정을 해줘야할 때 사용될 수 있다.
+
 <br>
 
 ## @CacheConfig
-지금까지의 설정은 대부분 Global한 설정이었다.
+지금까지의 설정은 대부분 메서드에 설정해주는 것이었다.
 
-만약 특정 클래스에만 설정을 다르게 주고 싶다면 `@CacheConfig`를 사용하면 된다.
+만약 특정 클래스안에 있는 메서드 모두에 캐시 관련된 설정을 한번에 하고싶다면, `@CacheConfig`를 사용하면된다.
+
+예를 들어, 특정 클래스에 있는 캐시 name을 모두 `books`로 하고싶다면 아래와 같이 설정할 수 있다.
 
 ```java
 @CacheConfig("books") 
@@ -379,13 +425,25 @@ public class BookRepositoryImpl implements BookRepository {
     public Book findBook(ISBN isbn) {...}
 }
 ```
-`cacheName`, `CacheManager`, `KeyGenerator`, `CacheResolver`등을 설정해줄 수 있다.
+**`@CacheConfig`를 통해 특정 클래스안에 모든 메서드에 `cacheName`, `CacheManager`, `KeyGenerator`, `CacheResolver`등을 설정해줄 수 있다.**
+
+
 
 <br>
 
-캐시 설정은 세 가지 레벨로 나뉘며, 낮아질 수록 오버라이딩된다.
-* Global 설정. `CacheManger`, `KeyGenerator`에 사용할 수 있다.
-* 클래스 레벨 설정. `@CacheConfig`를 사용한다.
+**`@CacheConfig`는 클래스 레벨 애노테이션이다.**
+
+물론 메서드 레벨로 재정의한다면 해당 메서드 레벨 애노테이션의 우선 순위가 더 높다.
+
+<br>
+
+**캐시 설정 레벨**
+
+캐시 설정은 세 가지 레벨로 나뉘며, 낮아질 수록 오버라이딩된다. (낮아질 수록 우선순위가 높다.)
+* Global 설정. 
+  * `@EnableCaching`이 붙은 Configuration에서`CacheManger`, `KeyGenerator`에 사용할 수 있다.
+* 클래스 레벨 설정. 
+  * `@CacheConfig`를 사용한다.
 * 메서드 레벨 설정.
 
 <br>
