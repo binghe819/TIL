@@ -32,7 +32,7 @@
 * Spring Boot
   * [Spring Boot 필터 설정](./Spring/SpringBoot/SpringBootFilter.md)
 * Spring Cache
-  * [Spring Cache Core](./Spring/Cache/spring%20boot%20cache%20core/spring%20boot%20cache%20core.md)
+  * [Spring Cache Core (with 학습테스트)](./Spring/Cache/spring%20boot%20cache%20core/spring%20boot%20cache%20core.md)
   * Spring Cache 적용기 - Bad Practice
     * [Spring Cache With Redis - 적용기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20적용기.md)
     * [Spring Cache With Redis - 성능개선기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20성능%20개선기.md)
@@ -188,6 +188,7 @@
   * [객체지향의 사실과 오해 정리](./OOP&설계/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%9D%98%20%EC%82%AC%EC%8B%A4%EA%B3%BC%20%EC%98%A4%ED%95%B4)
   * [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
   * [만들면서 배우는 클린 아키텍처](./OOP&설계/Get%20your%20hands%20dirty%20on%20clean%20architecture/README.md)
+  * [도메인 주도 개발 시작하기](./OOP%26%EC%84%A4%EA%B3%84/DDD/%EB%8F%84%EB%A9%94%EC%9D%B8%20%EC%A3%BC%EB%8F%84%20%EA%B0%9C%EB%B0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/README.md)
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
