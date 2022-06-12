@@ -42,9 +42,7 @@
   * [내장 Redis 서버 - Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
 * Spring Batch
   * [배치 애플리케이션이란?](./Spring/Batch/배치애플리케이션이란/batch-application.md)
-  * [Hello World로 보는 Spring Batch 도메인 언어 및 메타 테이블](./Spring/Batch/spring-batch-helloworld-domain-and-meta/spring-batch-helloworld-domain-and-meta.md)
-  * [스프링 배치 Job Flow](./Spring/Batch/spring-batch-job-flow/spring-batch-job-flow.md)
-  * [스프링 배치 Scope & Paramters](./Spring/Batch/spring-batch-scope/spring-batch-scope.md)
+  * [Hello World로 보는 Spring Batch 시작하기](./Spring/Batch/spring-batch-helloworld-and-enabledbatchprocessing/spring-batch-helloworld-and-enabledbatchprocessing.md)
 * DB
   * [Spring Boot + JPA기반의 Replication 구현 (Multi DataSource)](./Spring/DB/Replication/Replication%20With%20JPA.md)
 * Test
