@@ -55,6 +55,10 @@
   * Profile에 따라 배치 도메인 메타 데이터 테이블을 저장하기 위한 DB 관련 의존성.
 * Lombok
 
+위 4가지의 의존성을 추가하고 프로젝트를 생성해준다.
+
+> 프로젝트를 생성한 후 위 4가지 의존성을 설정해줘도 무방하다.
+
 <br>
 
 ## 1-2 Hello World Job 구성 및 실행
@@ -126,7 +130,7 @@ public class SpringBatchTestApplication {
 
 <br>
 
-어떤가! 굉장히 간단하지 않은가?? 설정 자바 클래스 하나 구현해주고 실행하면 순서에 따라 배치가 동작한다.
+어떤가! 굉장히 간단하지 않은가?? 배치를 동작하는데 필요한 자바 빈 몇가지를 설정해주면고 실행하면 원하는 순서에 따라 배치가 동작한다.
 
 <br>
 
@@ -217,7 +221,7 @@ Hello World Job 코드를 보면 눈에 띄는 도메인 객체가 있다. 바�
 
 가장 왼쪽을 보면 `JobLauncher`라는 도메인을 볼 수 있다.
 
-이름에서 알 수 있듯이, 이 도메인은 배치 Job을 실행시키는 역할을 한다.
+**이름에서 알 수 있듯이, 이 도메인은 배치 Job을 실행시키는 역할을 한다.**
 
 조금 더 자세히 살펴보면 아래 코드와 같다.
 
@@ -234,9 +238,9 @@ Hello World Job 코드를 보면 눈에 띄는 도메인 객체가 있다. 바�
 ## 3-2 배치를 실행시키는 다양한 방법
 앞에서 `JobLauncher`가 배치 Job을 실행시키는 주체라는 것을 설명했다.
 
-생각보다 간단하지 않은가? 이를 활용하면 다양한 배치 실행 방법을 떠올릴 수 있다.
+생각보다 간단하지 않은가? **이를 활용하면 다양한 배치 실행 방법을 떠올릴 수 있다.**
 
-이번 글에선 두 가지 방법을 소개한다.
+이번 글에선 대표적인 두 가지 방법을 소개한다.
 
 <br>
 
@@ -246,7 +250,7 @@ Hello World Job 코드를 보면 눈에 띄는 도메인 객체가 있다. 바�
 
 만약 여러 개의 `ApplicationRunner`가 존재해서 순서를 보장해야한다면 `@Order` 애노테이션을 이용하여 순서를 정해준다.
 
-스프링 배치에서 Job을 실행시키는 주체인 `JobLauncher`도 이 `ApplicationRunner`와 유사한 `CommandLineRunner`를 구현한 빈을 이용하면 쉽게 Job을 실행시킬 수 있다.
+**스프링 배치에서 Job을 실행시키는 주체인 `JobLauncher`도 이 `ApplicationRunner` 혹은 `CommandLineRunner`를 구현한 빈을 이용하면 쉽게 스프링 애플리케이션이 실행되고 자동으로 Job을 실행시킬 수 있다.**
 
 <br>
 
@@ -270,14 +274,17 @@ public class ManualJobLauncher implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String jobName = "jobInstanceJob"; // Job 이름
+        String jobName = "{실행하고자하는 job 이름}"; // Job 이름
 
+        // Job
         Job job = determineJob(jobName);
 
+        // JobParameters
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("name", "binghe")
                 .toJobParameters();
 
+        // Job (혹은 여러 Job) 실행
         jobLauncher.run(job, jobParameters);
     }
 
@@ -333,10 +340,12 @@ public class JobLauncherTestController {
 
 위 방식은 사용할 때 주의해야한다. 만약 단기간에 너무 많은 API 요청하면, 너무 많은 배치가 한번에 실행되서 서버에 부하가 걸리기 쉽기 때문이다.
 
+> 일반적으로 배치의 경우 대용량을 다루는 경우가 많기에, CPU나 메모리가 기존의 웹 애플리케이션보다 많이 소요된다. 그러기에 API 요청을 받아 배치 Job을 실행시키는 방식은 지양하는 것이 좋다.
+
 <br>
 
 ## 3-3 @EnableBatchProcessing
-스프링 부트기반의 스프링 배치도 위와 같이 `JobLauncher`를 이용하여 Job을 실행시킨다.
+**실제로 스프링 부트 기반의 스프링 배치도 위와 같이 `JobLauncher`를 이용하여 Job을 실행시킨다.**
 
 물론 스프링 진영에서 Job 실행시키는 부분을 모두 추상화시켜두었다.
 
@@ -354,7 +363,7 @@ public class JobLauncherTestController {
 
 즉, **스프링 부트 배치의 자동 설정 클래스를 실행시킴으로써 빈으로 등록된 모든 Job을 검색해서 필요한 빈을 초기화시켜주는 것이다.**
 
-또한, **애플리케이션을 실행하면 Job을 자동으로 실행시켜준다.**
+또한, **애플리케이션을 `ApplicationRunner` 구현한 빈 객체를 생성하여 Job을 자동으로 실행시켜준다.**
 
 > 배치에 사용되는 필요한 빈의 예시로는 `JobBuilderFactory`, `StepBuilderFactory`, `JobRepository`, `JobLauncher`등등이 있다.
 
@@ -379,26 +388,34 @@ public class JobLauncherTestController {
     * JPA 관련 객체를 생성하는 설정 클래스이다.
 * `BatchAutoConfiguration`
   * **스프링 배치의 주요 구성 요소가 생성 및 초기화되고 실행되며, `ApplicationRunner`를 구현한 `JobLauncherApplicationRunner` 빈을 생성과 동시에 지정된 Job을 실행한다.**
-  * [위에서 설명했듯이](), `ApplicationRunner`는 빈이 생성과 동시에 `run()` 메서드를 호출한다. 이때 Job을 실행하게 되는 것이다.
+  * [위에서 설명했듯이](#3-2-배치를-실행시키는-다양한-방법), `ApplicationRunner`는 빈이 생성과 동시에 `run()` 메서드를 호출한다. 이때 Job을 실행하게 되는 것이다.
 
 <br>
 
 ## 3-4 @EnableBatchProcessing - 원하는 Job만 실행시키기
-마지막으로 알아볼 내용은 스프링 부트 기반의 스프링 배치를 실행할 때 프로젝트내에서 원하는 Job을 실행시키는 방법이다.
+앞서 말했듯, `@EnableBatchProcessing`을 붙이면 스프링 배치 애플리케이션을 실행하는데 필요한 도메인과 인프라 빈 객체를 생성 및 실행시켜준다.
+
+사실 스프링 배치를 이용하여 배치 코드를 작성할 때, 위 내용은 그렇게 중요하진 않다.
+
+프레임워크의 장점중 하나는 개발자로 하여금 핵심 비즈니스에만 집중할 수 있게 하는 것이다.
+
+이러한 점에서 스프링 진영은 추상화를 잘 적용했다고 볼 수도 있다.
+
+그래서 **이번 글의 마지막으로 알아볼 내용은 개발자가 실제 처음 배치 애플리케이션을 궁금한 부분인 `프로젝트내에서 원하는 Job을 실행시키는 방법`이다.**
 
 `BatchAutoConfiguration` 내부 코드를 자세히 본 사람은 알겠지만.. 
 
-<p align="center"><img src="./image/spring_batch_job_names.png" width="500"><br>BatchAutoConfiguration </p>
+<p align="center"><img src="./image/spring_batch_job_names.png" width="700"><br>BatchAutoConfiguration </p>
 
 `JobLauncher`의 빈을 생성하는 부분을 보면 `BatchProperties`에서 실행할 Job의 이름을 가져와서 Setter로 주입해준다.
 
 그리고 `BatchProperties`의 내부 코드를 보면 아래와 같이 `spring.batch.job.names`에서 해당 Job 이름 가져오는 것을 알 수 있다.
 
-<p align="center"><img src="./image/spring_batch_job_names_property.png" width="500"> </p>
+<p align="center"><img src="./image/spring_batch_job_names_property.png" width="700"> </p>
 
 즉... **원하는 Job을 실행시키는 방법은 배치 애플리케이션 실행시 `spring.batch.job.names`에 Job Name을 기입해주면 된다.**
 
-<p align="center"><img src="./image/spring_batch_launch_with_job_names.png" width="500"><br>IntelliJ에서 실행하는 예시 </p>
+<p align="center"><img src="./image/spring_batch_launch_with_job_names.png" width="700"><br>IntelliJ에서 실행하는 예시 </p>
 
 CLI환경에서 실행한다면 아래와 같이 명령어를 입력해주면 된다.
 
