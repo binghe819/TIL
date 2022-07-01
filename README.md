@@ -43,6 +43,7 @@
 * Spring Batch
   * [배치 애플리케이션이란?](./Spring/Batch/배치애플리케이션이란/batch-application.md)
   * [Hello World로 보는 Spring Batch 시작하기](./Spring/Batch/spring-batch-helloworld-and-enabledbatchprocessing/spring-batch-helloworld-and-enabledbatchprocessing.md)
+  * [디버깅을 통해 알아보는 Spring Batch 동작 원리](./Spring/Batch/spring-batch-helloworld-workflow/spring-batch-helloworld-workflow.md)
 * DB
   * [Spring Boot + JPA기반의 Replication 구현 (Multi DataSource)](./Spring/DB/Replication/Replication%20With%20JPA.md)
 * Test

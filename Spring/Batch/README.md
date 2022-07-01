@@ -11,6 +11,5 @@
 
 # 목차
 * [배치 애플리케이션이란?](./배치애플리케이션이란/batch-application.md)
-* [Hello World로 보는 Spring Batch 도메인 언어 및 메타 테이블](./spring-batch-helloworld-domain-and-meta/spring-batch-helloworld-domain-and-meta.md)
-* [스프링 배치 Job Flow](./spring-batch-job-flow/spring-batch-job-flow.md)
-* [스프링 배치 Scope](./spring-batch-scope/spring-batch-scope.md)
+  * [Hello World로 보는 Spring Batch 시작하기](./spring-batch-helloworld-and-enabledbatchprocessing/spring-batch-helloworld-and-enabledbatchprocessing.md)
+  * [디버깅을 통해 알아보는 Spring Batch 동작 원리](./spring-batch-helloworld-workflow/spring-batch-helloworld-workflow.md)
