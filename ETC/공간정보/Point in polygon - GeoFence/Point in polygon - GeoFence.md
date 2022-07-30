@@ -60,7 +60,7 @@
 
 🤔 **PIP와 Geo-fence는 어떤 연관이있는가?**
 
-앞서 말했듯이, PIP (Point In Polygon)은 한 점이 특정 다각형 공간안에 위치하는지 판단하는 것을 의미한다.
+앞서 말했듯이, PIP (Point In Polygon)는 한 점이 특정 다각형 공간안에 위치하는지 판단하는 것을 의미한다.
 
 **그리고 여기서말하는 다각형 공간을 Geo-fence로 표현하는 것이다.**
 
@@ -68,7 +68,7 @@
 
 다시 말하지만, **Geo-fence는 PIP에서의 다각형 공간을 의미한다. PIP에 대한 알고리즘(Vector 기반과 그리드 기반)은 따로 존재한다.**
 
-> 실제로 필자의 경우 처음에 이 부분이 헷갈렸다...
+> 필자가 처음 Geo-fence에 대한 개념을 접할때 이부분이 이 부분이 헷갈렸다...
 
 <br>
 
@@ -150,9 +150,9 @@
 
 <br>
 
-또한, Polygon이 원만으로 구성된다면, 원의 중심점에서 점과의 거리와 원의 반지름의 거리를 비교하여 점이 원안에 존재하는지 확인할 수 있다.
+또한, **만약 Polygon이 원만으로 구성된다면, 원의 중심점에서 점과의 거리와 원의 반지름의 거리를 비교하여 점이 원안에 존재하는지 확인할 수 있다.**
 
-하지만 Polygon 공간이 정사각형이나 원형처럼 간단한 경우는 거의 없다.
+하지만 **Polygon 공간이 정사각형이나 원형처럼 간단한 경우는 거의 없다.**
 
 **지도안에 요소들은 간단한 모양으로 표현할 수 없기때문에 대부분이 다각형으로 구성되어있다.**
 
@@ -202,7 +202,7 @@
 
 예시로는 아래와 같이 강남역 부근에 Polygon을 형성하고, 강남역과 신논현쪽에 위치한 교보문고가 해당 Polygon에 위치한지 테스트해본다.
 
-<p align="center"><img src="./image/ray_casting_example.png"> </p>
+<p align="center"><img src="./image/ray_casting_example.png" width="400"> </p>
 
 JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와 같다.
 
@@ -218,7 +218,7 @@ JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와
 
 > 수학적인 내용은 [우아한형제들 기술 블로그의 글](https://techblog.woowahan.com/2567/)을 참고하여 작성한 글입니다.
 
-<p align="center"><img src="./image/geo-fence-intersections.png"><br>출처: https://techblog.woowahan.com/2567/ </p>
+<p align="center"><img src="./image/geo-fence-intersections.png" width="700"><br>출처: https://techblog.woowahan.com/2567/ </p>
 
 수학적인 예시를 위해 점 `(1, 8)`과 `(4,8)`이 삼각형 공간안에 위치한지 확인해본다.
 
@@ -238,7 +238,7 @@ JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와
 
 ❗️ **주의할 점**
 
-<p align="center"><img src="./image/geo-fence-exception.png"><br>출처: https://techblog.woowahan.com/2567/ </p>
+<p align="center"><img src="./image/geo-fence-exception.png" width="400"><br>출처: https://techblog.woowahan.com/2567/ </p>
 
 
 위와 같이 임의의 점이 도형 안에 포함되어 있지만, 짝수 번재의 선 위에 있으면 밖에 있다고 잘못된 값을 반환할 수 있다.
@@ -254,7 +254,7 @@ JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와
 
 🤔 **Winding Number Algorithm의 의미**
 
-<p align="center"><img src="./image/winding_number_workflow.gif"><br>Winding number 알고리즘의 동작 방식<br>출처: https://iq.opengenus.org/inside-outside-test/ </p>
+<p align="center"><img src="./image/winding_number_workflow.gif" width="300"><br>Winding number 알고리즘의 동작 방식<br>출처: https://iq.opengenus.org/inside-outside-test/ </p>
 
 위 그림에서 볼 수 있듯이, **다각형의 면이 점을 감싸는 횟수를 기반으로 0인 경우 Polygon 밖, 0이 아닌 경우 Polygon 안으로 판단하는 알고리즘이다.**
 
@@ -262,7 +262,7 @@ JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와
 
 💁‍♂️ **알고리즘 원리**
 
-<p align="center"><img src="./image/winding_number_algorithm.png"><br>https://en.wikipedia.org/wiki/Point_in_polygon </p>
+<p align="center"><img src="./image/winding_number_algorithm.png" width="250"><br>https://en.wikipedia.org/wiki/Point_in_polygon </p>
 
 > 알고리즘 원리에 대해선 더 자세히 알아보고 이 글에 추가할 예정이다.
 
