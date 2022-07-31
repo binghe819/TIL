@@ -1,3 +1,9 @@
+---
+title: Point In Polygon - Geofence 기본 개념과 벡터 기반의 PIP 알고리즘
+meta: Geofence의 기본 개념과 벡터 기반의 PIP 기본 알고리즘에 대해서 정리한 글입니다.
+tags: [Geo-fence, PIP]
+---
+
 # 목차
 
 <br>
@@ -210,7 +216,7 @@ JTS의 `within` 메서드를 이용하여 테스트를 구현해보면 아래와
 
 위 테스트를 실행해보면 테스트가 잘 통과하는 것을 볼 수 있다.
 
-> 참고로 점이 영역의 경계선에 위치하면 안에 있다고 판단하지 않는다. 자세한 내용은 [DE-9IM](https://en.wikipedia.org/wiki/DE-9IM)을 보면 된다.
+> 참고로 점이 영역의 경계선에 위치하면 안에 있다고 판단하지 않는다. 자세한 내용은 [DE-9IM](https://en.wikipedia.org/wiki/DE-9IM)을 참고.
 
 <br>
 
