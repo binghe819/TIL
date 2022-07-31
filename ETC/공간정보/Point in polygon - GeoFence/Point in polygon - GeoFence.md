@@ -4,6 +4,8 @@ meta: Geofence의 기본 개념과 벡터 기반의 PIP 기본 알고리즘에 �
 tags: [Geo-fence, PIP]
 ---
 
+<br>
+
 # 목차
 
 <br>
@@ -288,11 +290,17 @@ Ray casting algorithm와 Winding number algorithm를 비교한다면.
 # 벡터 기반의 PIP의 단점
 > 여기서 말하는 벡터 기반의 PIP 알고리즘은 Geo-fence 기반의 Ray casting와 Winding number 알고리즘을 의미한다.
 
-**인덱싱**
+**인덱싱이 안되어있다.**
 
 * 벡터 기반의 PIP 기법들은 인덱싱이 전혀 되어있지 않다.
 * 이로 인해 특정 점이 어떤 Geo-fence에 속하는지 찾으려면, 지도에 설정한 모든 Geo-fence를 순회하며 찾아줘야한다.
 * **시간 복잡도: 모든 Geo-fence를 순회하는 N * 매 Geo-fence별 PIP 알고리즘 N => `O(N^2)`**
+
+<br>
+
+**Polygon간의 이웃판별이 어렵다.**
+
+* 벡터 기반의 PIP는 알고리즘상 Polygon간 이웃인지 판별하는 것이 쉽지 않다.
 
 <br>
 
