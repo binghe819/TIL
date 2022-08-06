@@ -190,7 +190,7 @@
 
 ## Python
 * [Python 설치 및 venv 가상 환경 - mac](./Python/install_&_venv_for_mac/install_&_venv_for_mac.md)
-* [folium](./python/folium/folium.md)
+* [folium](./Python/folium/README.md)
 
 <br>
 
