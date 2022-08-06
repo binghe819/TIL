@@ -190,6 +190,7 @@
 
 ## Python
 * [Python 설치 및 venv 가상 환경 - mac](./Python/install_&_venv_for_mac/install_&_venv_for_mac.md)
+* [folium](./python/folium/folium.md)
 
 <br>
 
@@ -238,5 +239,5 @@
 * 공간 데이터(지도) 관련
   * [공간정보 기본 이해하기 feat. GIS](./ETC/공간정보/공간정보%20기본%20이해하기%20-%20GIS/공간정보_기본_이해하기.md)
   * [좌표계 기본 이해하기](./ETC/공간정보/좌표계%20기본%20이해하기/좌표계_기본_이해하기.md)
-  * [Point In Polygon - Geofence 기본 개념과 벡터 기반의 PIP 알고리즘](./ETC/공간정보/Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)
+  * [Geofence 기본 개념과 벡터 기반의 PIP(Point In Polygon) 알고리즘](./ETC/공간정보/Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)
 * [컴퓨터 개발 세팅](./ETC/컴퓨터세팅/setting.md)
