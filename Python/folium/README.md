@@ -29,7 +29,7 @@ folium은 공식 문서에 설명과 예시가 잘 정리되어있다.
 
 첫 시작은 Quick Start이다. folium을 통해 어떤 것을 할 수 있으며, 어떻게 적용하는지 Hello World 수준으로 적용해본다.
 
-- [Quick Start](./QuickStart.ipynb)
+- [Quick Start](https://nbviewer.org/github/binghe819/TIL/blob/master/Python/folium/QuickStart.ipynb)
 
 <br>
 
