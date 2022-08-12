@@ -240,4 +240,5 @@
   * [공간정보 기본 이해하기 feat. GIS](./ETC/공간정보/공간정보%20기본%20이해하기%20-%20GIS/공간정보_기본_이해하기.md)
   * [좌표계 기본 이해하기](./ETC/공간정보/좌표계%20기본%20이해하기/좌표계_기본_이해하기.md)
   * [Geofence 기본 개념과 벡터 기반의 PIP(Point In Polygon) 알고리즘](./ETC/공간정보/Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)
+  * [GeoHash 기본 개념과 Geo-hash를 이용한 Point In Polygon](./ETC/공간정보/Point%20in%20polygon%20-%20GeoHash/Point%20in%20polygon%20-%20GeoHash.md)
 * [컴퓨터 개발 세팅](./ETC/컴퓨터세팅/setting.md)
