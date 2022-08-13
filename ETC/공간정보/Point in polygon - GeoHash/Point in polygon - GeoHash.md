@@ -57,7 +57,7 @@ tags: [Geo-hash, PIP]
 
 > 이 글은 [이전 글 - Geofence와 PIP](../Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)을 의존하므로, 이전 글을 보고 올 것을 추천한다.
 
-> 전체 코드는 [주피터 노트북](./Geo-Hash%20%20학습테스트.ipynb)를 참고하면 된다.
+> 전체 코드는 [주피터 노트북](https://nbviewer.org/github/binghe819/TIL/blob/master/ETC/%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4/Point%20in%20polygon%20-%20GeoHash/Geo-Hash.ipynb)를 참고하면 된다.
 
 <br>
 

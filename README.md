@@ -229,16 +229,19 @@
 
 <br>
 
+## 지도
+* [공간정보 기본 이해하기 feat. GIS](./ETC/공간정보/공간정보%20기본%20이해하기%20-%20GIS/공간정보_기본_이해하기.md)
+* [좌표계 기본 이해하기](./ETC/공간정보/좌표계%20기본%20이해하기/좌표계_기본_이해하기.md)
+* [Geofence 기본 개념과 벡터 기반의 PIP(Point In Polygon) 알고리즘](./ETC/공간정보/Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)
+* [GeoHash 기본 개념과 Geo-hash를 이용한 Point In Polygon](./ETC/공간정보/Point%20in%20polygon%20-%20GeoHash/Point%20in%20polygon%20-%20GeoHash.md)
+
+<br>
+
 ## ETC
 
 * [Clean Code](./ETC/CleanCode/README.md)
 * 테스트
   * [단위 테스트](./Test/TestGuide/%EB%8B%A8%EC%9C%84%ED%85%8C%EC%8A%A4%ED%8A%B8.md)
   * [책 - 단위 테스트](./Test/Unit%20Testing/README.md)
-  * [테스트 더블](./Test/TestDouble/TestDouble.md)
-* 공간 데이터(지도) 관련
-  * [공간정보 기본 이해하기 feat. GIS](./ETC/공간정보/공간정보%20기본%20이해하기%20-%20GIS/공간정보_기본_이해하기.md)
-  * [좌표계 기본 이해하기](./ETC/공간정보/좌표계%20기본%20이해하기/좌표계_기본_이해하기.md)
-  * [Geofence 기본 개념과 벡터 기반의 PIP(Point In Polygon) 알고리즘](./ETC/공간정보/Point%20in%20polygon%20-%20GeoFence/Point%20in%20polygon%20-%20GeoFence.md)
-  * [GeoHash 기본 개념과 Geo-hash를 이용한 Point In Polygon](./ETC/공간정보/Point%20in%20polygon%20-%20GeoHash/Point%20in%20polygon%20-%20GeoHash.md)
+  * [테스트 더블](./Test/TestDouble/TestDouble.md)  
 * [컴퓨터 개발 세팅](./ETC/컴퓨터세팅/setting.md)
