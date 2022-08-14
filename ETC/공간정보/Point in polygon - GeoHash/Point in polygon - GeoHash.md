@@ -298,7 +298,7 @@ Geo-hash에 대한 개념과 알고리즘 그리고 특징들에 대해서 이�
 
 <br>
 
-**아래 학습 테스트에대한 전체 코드는 [여기 Jupyter Notebook]()을 참고하면 된다.**
+**아래 학습 테스트에대한 전체 코드는 [여기 Jupyter Notebook](https://nbviewer.org/github/binghe819/TIL/blob/master/ETC/%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4/Point%20in%20polygon%20-%20GeoHash/Geo-Hash.ipynb)을 참고하면 된다.**
 
 <br>
 
@@ -856,7 +856,9 @@ print(f'유저 b가 속하는 지점은 {len(user_b_result)}개 입니다.') # 0
 
 **이렇게 Geo-hash를 이용하면 쉽게 PIP를 구현할 수 있다.**
 
-> **시간복잡도는 O(1)이며, 미리 Geo-hash : Shop 의 매핑정보를 로컬 캐시나 Redis에 넣어두면 많은 트래픽도 감당할 수 있다.**
+**시간복잡도는 O(1)이며, 미리 Geo-hash : Shop 의 매핑정보를 로컬 캐시나 Redis에 넣어두면 많은 트래픽도 감당할 수 있다.**
+
+> 사용자의 위경도를 Geo-hash로 변환하는 작업으로인해 최악의경우 `O(logn)`이 소요될 수도 있다.
 
 <br>
 
