@@ -63,7 +63,7 @@ HTTP(HyperText Transfer Protocol)란 웹상에서 데이터를 주고 받을때 
 
 [HTTP 완벽 가이드](http://www.yes24.com/product/goods/15381085)에서 가져온 아래 이미지를 보면 쉽게 이해가 된다.
 
-<p align="center"><img src="./image/image-20200812011918861.png"><br>출처: HTTP 완벽 가이드 </p>
+<p align="center"><img src="./image/image-20200812011918861.png" width="500"><br>출처: HTTP 완벽 가이드 </p>
 
 다만, 보통 소켓 프로그래밍이라고하면 두 엔드포인트가 TCP로 연결되어 사용자가 종료를 하지않는 이상 계속해서 연결하여 양방향으로 통신한다. (채팅을 생각하면 이해가 쉽다.)
 
@@ -78,7 +78,7 @@ HTTP(HyperText Transfer Protocol)란 웹상에서 데이터를 주고 받을때 
 
 본격적으로 자바 세계로 들어오자면.. 자바에서도 Socket 통신을 위한 라이브러리를 지원한다.
 
-<p align="center"><img src="./image/java_net.png">JDK의 `java.net` 패키지에있는 클래스들 </p>
+<p align="center"><img src="./image/java_net.png" width="300"><br>JDK의 `java.net` 패키지에있는 클래스들 </p>
 
 `Socket` 클래스를 이용한다면 HTTP 통신을 실행할 수 있다.
 
@@ -203,7 +203,7 @@ HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
 
 🤔 **`openConnection()`이 반환하는 `URLConnection` 객체는 어디에서 얻는 것일까?**
 
-<p align="center"><img src="./image/URL_openConnection.png"> </p>
+<p align="center"><img src="./image/URL_openConnection.png" width="500"> </p>
 
 위 코드에서 `handler`는 `URLStreamHandler`의 인스턴스이다.
 
@@ -215,7 +215,7 @@ HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
 
 `URLStreamHandler`는 `URL` 객체가 아래와 같이 static으로 가지고있는다. (`Map<Protocol, URLStreamHandler>` 형태이다)
 
-<p align="center"><img src="./image/URL_getURLStreamHandler.png"> </p>
+<p align="center"><img src="./image/URL_getURLStreamHandler.png" width="500"> </p>
 
 `getURLStreamHandler()`는 매 `URL` 인스턴스가 생성될 때마다 매개변수로 `Handler`를 넘기지않으면 실행되는 메서드이다.
 
@@ -231,13 +231,13 @@ HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
 
 그리고 `URLStreamHandlerFactory`는 크게 두 가지 방식으로 가지고오게된다.
 
-<p align="center"><img src="./image/URL_getURLStreamHandler_detail.png"> </p>
+<p align="center"><img src="./image/URL_getURLStreamHandler_detail.png" width="500"> </p>
 
 1. JVM이 시동되면서 static으로 설정된 `URLStreamHandlerFactory`이 주입되었는지 확인한다. 만약 있다면 해당 Factory를 이용한다.
 2. 1번이 없다면 `DefaultFactory`를 이용한다. `DefaultFactory`는 아래와 같이 특정 패키지에 있는 Factory를 반환한다.
    * 필자가 테스트로 생성한 프로젝트에선 `sun.net.www.protocol` 패키지에서 가져온다.
 
-<p align="center"><img src="./image/DefaultFactory_createURLStreamHandler.png"> </p>
+<p align="center"><img src="./image/DefaultFactory_createURLStreamHandler.png" width="500"> </p>
 
 <br>
 
