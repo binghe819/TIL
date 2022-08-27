@@ -102,6 +102,8 @@
 <br>
 
 ## Infra & DevOps
+* AWS
+  * [IAM 개념과 AWS 계정 안전하게 사용하는 모범 사례](./Infra%26DevOps/AWS/IAM/IAM.md)
 * CI/CD
   * [CI/CD란?](./Infra&DevOps/CI:CD/CI:CD란/CI:CD란.md)
   * Jenkins
