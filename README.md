@@ -60,7 +60,10 @@
 * 예외처리
   * [Spring Exception 처리 개념 및 전략 정리](./Spring/%EA%B8%B0%ED%83%80/%EC%8A%A4%ED%94%84%EB%A7%81%20%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20%EA%B0%9C%EB%85%90%20%EB%B0%8F%20%EC%A0%84%EB%9E%B5.md)
 * Rest Client
-  * [URLConnection & HttpURLConnection](./Spring/RestClient/UrlConnection%26HttpUrlConnection/UrlConnection%26HttpUrlConnection.md)
+  * URLConnection
+    * [URLConnection & HttpURLConnection](./Spring/RestClient/UrlConnection%26HttpUrlConnection/UrlConnection%26HttpUrlConnection.md)
+  * HttpClient (HttpComponents)
+    * [Apache HttpClient 사용 방법 (Quick-Start)](./Spring/RestClient/HttpClient/apache_httpclient_quick_start.md)
   * RestTemplate
     * [RestTemplate - Quick Start](./Spring/RestClient/RestTemplate/quick-start/quick-start.md)
   * WebClient
