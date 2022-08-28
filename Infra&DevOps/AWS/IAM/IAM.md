@@ -82,13 +82,13 @@ IAM는 AWS를 안전하게 이용하기 위한 다양한 기능을 제공한다.
 
 따라서 **루트 사용자의 액세스 키는 없애는 것이 좋다.**
 
-<p align="center"><img src="./image/aws_iam_1_1.png"><br>1. '보안 자격 증명' 메뉴를 클릭한다. </p>
+<p align="center"><img src="./image/aws_iam_1_1.png" width="300"><br>1. '보안 자격 증명' 메뉴를 클릭한다. </p>
 
-<p align="center"><img src="./image/aws_iam_1_2.png"><br>2. '액세스 키'를 확인한다. </p>
+<p align="center"><img src="./image/aws_iam_1_2.png" width="800"><br>2. '액세스 키'를 확인한다. </p>
 
 보통 따로 생성해주지 않았다면, 액세스키는 존재하지 않는다. 하지만, 만약 루트 사용자라면 아래와 같이 삭제해주는 것이 좋다.
 
-<p align="center"><img src="./image/aws_iam_1_3.png"><br>3. 만약 존재한다면 액세스 키를 삭제해준다. </p>
+<p align="center"><img src="./image/aws_iam_1_3.png" width="800"><br>3. 만약 존재한다면 액세스 키를 삭제해준다. </p>
 
 <br>
 
@@ -109,19 +109,19 @@ IAM는 AWS를 안전하게 이용하기 위한 다양한 기능을 제공한다.
 
 2. '보안 자격 증명' 관리 화면에서 MFA를 활성화해준다.
 
-<p align="center"><img src="./image/aws_iam_2_1.png"><br>MFA 활성화 </p>
+<p align="center"><img src="./image/aws_iam_2_1.png" width="800"><br>MFA 활성화 </p>
 
 <br>
 
 3. MFA 디바이스를 선택.
 
-<p align="center"><img src="./image/aws_iam_2_2.png"> </p>
+<p align="center"><img src="./image/aws_iam_2_2.png" width="600"> </p>
 
 스마트폰을 이용할 것이기 때문에, 위와 같이 가상 MFA 디바이스를 선택해준다.
 
 4. 가상 MFA 디바이스 설정
 
-<p align="center"><img src="./image/aws_iam_2_3.png"> </p>
+<p align="center"><img src="./image/aws_iam_2_3.png" width="500"> </p>
 
 MFA 애플리케이션에 `QR 코드 스캔` 기능을 제공한다. 이를 이용하여 위 QR 코드를 스캔하면 MFA가 추가된다.
 
@@ -138,13 +138,13 @@ MFA 애플리케이션에 `QR 코드 스캔` 기능을 제공한다. 이를 이�
 
 1. IAM 대시보드에서 '사용자 추가' 클릭
 
-<p align="center"><img src="./image/aws_iam_3_1.png"> </p>
+<p align="center"><img src="./image/aws_iam_3_1.png" width="800"> </p>
 
 <br>
 
 2. 사용자 세부 정보 설정
 
-<p align="center"><img src="./image/aws_iam_3_2.png"> </p>
+<p align="center"><img src="./image/aws_iam_3_2.png" width="800"> </p>
 
 액세스 유형은 아래 의미를 가진다.
 
@@ -155,7 +155,7 @@ MFA 애플리케이션에 `QR 코드 스캔` 기능을 제공한다. 이를 이�
 
 3. 권한 설정
 
-<p align="center"><img src="./image/aws_iam_3_3.png"> </p>
+<p align="center"><img src="./image/aws_iam_3_3.png" width="800"> </p>
 
 IAM 사용자에 대한 접근 권한을 부여한다.
 
@@ -163,7 +163,7 @@ IAM 사용자에 대한 접근 권한을 부여한다.
 
 4. 태그 추가
 
-<p align="center"><img src="./image/aws_iam_3_4.png"> </p>
+<p align="center"><img src="./image/aws_iam_3_4.png" width="800"> </p>
 
 태그는 지정한 이름 이외에 사용자를 구별할 때 사용된다.
 
@@ -173,7 +173,7 @@ IAM 사용자를 수백 명 정도의 대규모로 등록할 때, 이름과 함�
 
 IAM을 생성되었다면, 아래와 같이 나오며 이제 IAM을 통해서 로그인도 할 수 있다.
 
-<p align="center"><img src="./image/aws_iam_3_5.png"> </p>
+<p align="center"><img src="./image/aws_iam_3_5.png" width="800"> </p>
 
 > IAM 사용자마다 MFA 설정이 가능하다. 가능한 IAM 사용자별로 MFA 설정을 해주는 것이 좋다.
 
@@ -186,13 +186,13 @@ IAM을 생성되었다면, 아래와 같이 나오며 이제 IAM을 통해서 �
 
 1. 사용자 그룹 생성 클릭
 
-<p align="center"><img src="./image/aws_iam_4_1.png"> </p>
+<p align="center"><img src="./image/aws_iam_4_1.png" width="800"> </p>
 
 <br>
 
 2. 그룹 이름을 설정하고 권한 정책을 연결한다.
 
-<p align="center"><img src="./image/aws_iam_4_2.png"> </p>
+<p align="center"><img src="./image/aws_iam_4_2.png" width="800"> </p>
 
 간단히 그룹 이름을 설정하고 권한 정책을 지정해줄 수 있다.
 
