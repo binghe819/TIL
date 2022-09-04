@@ -151,11 +151,15 @@ CloseableHttpResponse response = httpclient.execute(httpget);
 ### ExecChain
 ExecChain부분은 HttpClient의 HTTP 요청과 응답의 핵심 부분이라고 볼 수 있다.
 
-**정확히 말하면 `ClientExecChain` 인터페이스를 구현한 구현체들이 아래와 같이 체이닝 방식으로 동작하게 된다.**
+정확히 말하면 `ClientExecChain` 인터페이스를 의미하며, 이미 여러 구현체를 지원한다.
+
+<p align="center"><img src="./image/clientexecchain_implementations.png" width="300"> </p>
+
+**그리고 디폴트로 `ClientExecChain` 인터페이스를 구현한 구현체들이 아래와 같이 체이닝 방식으로 동작하게 된다.**
 
 <p align="center"><img src="./image/exec_chain_flow.png" width="600"> </p>
 
-코드를 살펴보면 알겠지만, **체이닝 방식은 프록시의 한 종류인 데코레이터 패턴을 활용한 구조라고 보면 된다.**
+그리고 직접 디버깅을 통해 코드를 살펴보면 알겠지만, **체이닝 방식은 프록시의 한 종류인 데코레이터 패턴을 활용한 구조라고 보면 된다.**
 
 > 프록시와 데코레이터 패턴과 관련된 자세한 내용은 [여기](https://github.com/binghe819/TIL/blob/master/OOP&%EC%84%A4%EA%B3%84/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy%20Pattern%EC%99%80%20Decorator%20pattern.md)를 참고.
 
