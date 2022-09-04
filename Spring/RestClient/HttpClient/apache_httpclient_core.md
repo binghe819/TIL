@@ -132,13 +132,13 @@ CloseableHttpResponse response = httpclient.execute(httpget);
 
 추상 클래스를 사용하는 이유중 하나는 바로 부가 로직과 핵심 로직을 분리시키기 위함이며, 실제로 HttpClient에서도 아래와 같이 템플릿 메서드 패턴을 활용하였다.
 
-<p align="center"><img src="./image/httpclient_template_method_pattern.png"><br>CloseableHttpClient.execute 구현부분 </p>
+<p align="center"><img src="./image/httpclient_template_method_pattern.png" width="600"><br>CloseableHttpClient.execute 구현부분 </p>
 
 `CloseableHttpClient`는 이름에서 알 수 있듯이, `Closeable`을 구현함으로써 부가 로직(커넥션 리소스 반환)을 수행한다.
 
 그리고 실제 핵심 로직은 `InternalHttpClient`에게 위임한다. (전형적인 템플릿 메서드 패턴이다)
 
-<p align="center"><img src="./image/internalhttpclient_execute.png"><br>InternalHttpClient.doExecute 구현부분 </p>
+<p align="center"><img src="./image/internalhttpclient_execute.png" width="600"><br>InternalHttpClient.doExecute 구현부분 </p>
 
 위 코드를 보면 알 수 있듯이, **`InternalHttpClient#doExecute` 구현부분은 요청에 필요한 설정 (커넥션 timeout, 소켓 timeout등등)이 존재하는지 확인하고 요청에 사용할 수 있도록 설정하는 역할을 수행한다.**
 
@@ -153,7 +153,7 @@ ExecChain부분은 HttpClient의 HTTP 요청과 응답의 핵심 부분이라고
 
 **정확히 말하면 `ClientExecChain` 인터페이스를 구현한 구현체들이 아래와 같이 체이닝 방식으로 동작하게 된다.**
 
-<p align="center"><img src="./image/exec_chain_flow.png"> </p>
+<p align="center"><img src="./image/exec_chain_flow.png" width="600"> </p>
 
 코드를 살펴보면 알겠지만, **체이닝 방식은 프록시의 한 종류인 데코레이터 패턴을 활용한 구조라고 보면 된다.**
 
@@ -165,7 +165,7 @@ ExecChain부분은 HttpClient의 HTTP 요청과 응답의 핵심 부분이라고
 
 💁‍♂️ **Redirect Exec**
 
-<p align="center"><img src="./image/exec_chain_redirect.png"><br>`RedirectExec`의 `execute`메서드 구현부 </p>
+<p align="center"><img src="./image/exec_chain_redirect.png" width="600"><br>`RedirectExec`의 `execute`메서드 구현부 </p>
 
 **`Redirect Exec`는 요청에 대해서 추가적인 동작을 수행하지않고 즉시 다음 체인에 요청 처리를 위임하고 응답에 대해서만 추가적인 동작을 수행한다.**
 
@@ -188,7 +188,7 @@ CloseableHttpClient httpClient = HttpClients.custom()
 
 💁‍♂️ **Retry Exec**
 
-<p align="center"><img src="./image/exec_chain_retry.png"><br>`RetryExec`의 `execute`메서드 구현부 </p>
+<p align="center"><img src="./image/exec_chain_retry.png" width="600"><br>`RetryExec`의 `execute`메서드 구현부 </p>
 
 `Retry Exec`는 요청에 대한 추가적인 동작을 수행하진 않는다.
 
@@ -214,7 +214,7 @@ HttpClient는 디폴트로 `DefaultHttpRequestRetryHandler`를 사용하며, 이
 
 디폴트로는 아래와 같이 설정되어있다.
 
-<p align="center"><img src="./image/DefaultHttpRequestRetryHandler_default_setting.png"> </p>
+<p align="center"><img src="./image/DefaultHttpRequestRetryHandler_default_setting.png" width="600"> </p>
 
 <br>
 
@@ -226,7 +226,7 @@ HTTP 요청 프로세스중 인터셉터 기능도 이때 실행된다.
 
 > 인터셉터와 관련된 내용은 아래에서 더 자세히 다룰 예정이다.
 
-<p align="center"><img src="./image/exec_chain_protocol.png"> </p>
+<p align="center"><img src="./image/exec_chain_protocol.png" width="600"> </p>
 
 **디버거를 통해 볼 수 있듯이, ProtocolExec는 요청과 응답에 대한 기타 작업 이외에도 인터셉터 관련된 작업을 실행한다.**
 
@@ -270,7 +270,7 @@ CloseableHttpClient httpClient = HttpClients.custom()
 
 그리고 이 `HttpResponse`는 크게 두 가지로 구성되어있다.
 
-<p align="center"><img src="./image/httpresponse.png"> </p>
+<p align="center"><img src="./image/httpresponse.png" width="600"> </p>
 
 * `HttpResponse` - HTTP 요청후 반환받은 응답에 대한 내용을 가지고있다. (응답 시작줄, 헤더, 바디부분)
 * `ConnectionHolder` - HTTP 요청에 사용된 커넥션 관련된 내용을 가지고있다.
