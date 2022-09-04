@@ -63,7 +63,8 @@
   * URLConnection
     * [URLConnection & HttpURLConnection](./Spring/RestClient/UrlConnection%26HttpUrlConnection/UrlConnection%26HttpUrlConnection.md)
   * HttpClient (HttpComponents)
-    * [Apache HttpClient 사용 방법 (Quick-Start)](./Spring/RestClient/HttpClient/apache_httpclient_quick_start.md)
+    * [Apache HttpClient 4 사용 방법 (Quick-Start)](./Spring/RestClient/HttpClient/apache_httpclient_quick_start.md)
+    * [Apache HttpClient 4 코어 - 핵심 구조 (ExecChain)](./Spring/RestClient/HttpClient/apache_httpclient_core.md)
   * RestTemplate
     * [RestTemplate - Quick Start](./Spring/RestClient/RestTemplate/quick-start/quick-start.md)
   * WebClient
