@@ -160,7 +160,7 @@ ExecChain부분은 HttpClient의 HTTP 요청과 응답의 핵심 부분이라고
 
 <p align="center"><img src="./image/exec_chain_flow.png" width="600"> </p>
 
-그리고 직접 디버깅을 통해 코드를 살펴보면 알겠지만, **체이닝 방식은 프록시의 한 종류인 데코레이터 패턴을 활용한 구조라고 보면 된다.**
+직접 디버깅을 통해 코드를 살펴보면 알겠지만, **체이닝 방식은 프록시의 한 종류인 데코레이터 패턴을 활용한 구조라고 보면 된다.**
 
 > 프록시와 데코레이터 패턴과 관련된 자세한 내용은 [여기](https://github.com/binghe819/TIL/blob/master/OOP&%EC%84%A4%EA%B3%84/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy%20Pattern%EC%99%80%20Decorator%20pattern.md)를 참고.
 
@@ -220,6 +220,8 @@ HttpClient는 디폴트로 `DefaultHttpRequestRetryHandler`를 사용하며, 이
 디폴트로는 아래와 같이 설정되어있다.
 
 <p align="center"><img src="./image/DefaultHttpRequestRetryHandler_default_setting.png" width="600"> </p>
+
+> 디폴트 설정에서 알 수 있듯이, 기본적으로 재시도 여부가 false이므로 재시도 매커니즘은 동작하지 않는다.
 
 <br>
 
