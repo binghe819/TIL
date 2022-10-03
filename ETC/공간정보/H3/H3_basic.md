@@ -281,7 +281,7 @@ H3는 어떻게 지구를 육각형으로 일정하게 인덱싱하며, 위경�
 # 3 Python을 이용한 H3 학습테스트
 H3에 대한 개념과 특징에 대해서 어느정도 이해했다면, 이제 파이썬을 이용하여 이를 직접 구현해본다.
 
-학습 테스트에 대한 모든 코드와 설명은 [다른 글 - H3 학습테스트](https://nbviewer.org/github/binghe819/TIL/blob/master/ETC/%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4/Point%20in%20polygon%20-%20H3/H3.ipynb)에 정리해두었다.
+학습 테스트에 대한 모든 코드와 설명은 [다른 글 - H3 학습테스트](https://nbviewer.org/github/binghe819/TIL/blob/master/ETC/%EA%B3%B5%EA%B0%84%EC%A0%95%EB%B3%B4/H3/H3.ipynb)에 정리해두었다.
 
 > 위 학습 테스트를 따라하며 H3가 어떻게 동작하며, 어떻게 사용하는지 자세히 살펴보길 추천한다.
 
