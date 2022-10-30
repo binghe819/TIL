@@ -24,7 +24,7 @@
 # 들어가며
 이전 글에서 Thread에 대한 기본 개념과 Thread In Java에 대해서 다뤘다면 이번 글에선 ThreadPool에 대한 기본 개념과 자바에선 어떻게 사용되는지 다룬다.
 
-우선 ThreadPool에 대한 기본적인 개념에 대해서 다루고, Java에서 ThreadPool을 다루기 위해 꼭 알아야하는 `Executor`와 `ExecutorService`에 대해서 정리하였다.
+우선 ThreadPool에 대한 기본적인 개념에 대해서 다루고, **Java에서 ThreadPool을 다루기 위해 꼭 알아야하는 `Executor`와 `ExecutorService`에 대해서 정리하였다.**
 
 <br>
 
@@ -103,6 +103,8 @@ ThreadPool을 사용하지 않는 기존의 Thread 전략은 한번 사용하면
 <br>
 
 # Thread Pool In Java
+이제 자바에서는 어떻게 Thread Pool을 사용할 수 있는지 살펴본다.
+
 자바는 5버전부터 자체적으로 Thread Pool을 지원하기 시작했다. `java.util.concurrent` 패키지에 ThreadPool과 관련된 클래스가 존재한다.
 
 자바에서의 ThreadPool도 아래와 같이 동일하게 동작한다.
@@ -111,7 +113,7 @@ ThreadPool을 사용하지 않는 기존의 Thread 전략은 한번 사용하면
 
 스레드 풀의 실제 구현에서 코드를 분리한 상태로 유지하고 애플리케이션 전체에서 이러한 인터페이스를 사용해야 합니다.
 
-자바는 ThreadPool과 관련된 코드를 비즈니스 로직과 분리시키기위해 `Executor`과 `ExecutorService`라는 인터페이스로 추상화시켰으며, `Executors`라는 유틸성 클래스를 만들어 편의 메서드를 제공한다. 
+**자바는 ThreadPool과 관련된 코드를 비즈니스 로직과 분리시키기위해 `Executor`과 `ExecutorService`라는 인터페이스로 추상화시켰으며, `Executors`라는 유틸성 클래스를 만들어 편의 메서드를 제공한다.**
 
 <br>
 
@@ -133,7 +135,7 @@ public interface Executor {
 
 **`Executor`는 넘겨받은 Runnable Task를 실행하는 메서드를 가진 간단한 인터페이스다.**
 
-인터페이스로 따로 빼둔 이유는 넘겨받은 Task를 스레드가 어떻게 실행할지, 스레드 스케줄링은 어떻게 할지등을 추상화시키기 위함이다.
+**인터페이스로 따로 빼둔 이유는 넘겨받은 Task를 스레드가 어떻게 실행할지, 스레드 스케줄링은 어떻게 할지등을 추상화시키기 위함이다.**
 
 쉽게 얘기하자면 기존엔 `new Thread(new RunnableTask()).start()`해야했던 작업을 아래와 같이 추상화 시킨것이다.
 
@@ -143,7 +145,15 @@ executor.execute(new RunnableTask1()); // 새로운 Task를 어떻게 처리할�
 executor.execute(new RunnableTask2());
 ```
 
-> 한마디로하면 OCP를 사용한 것.
+<br>
+
+> 자바는 스레드를 직접 구현하여 사용할 수 있도록 지원한다. 
+> 
+> 하지만.. 스레드를 직접 구현하여 사용하면, 코드 가독성이 너무 떨어지며, 코드만 보고는 정확히 어떻게 동작하는지 알기 쉽지않다.
+> 
+> 그리하여 Thread Pool의 개념과 같이 자바는 Thread를 관리하고 부가 로직과 비즈니스 로직인 핵심 로직을 분리시키기위해 고수준의 인터페이스인 `Executor`, `ExecutorService`, `Executors`등을 만들었다.
+> 
+> 즉, **Thread를 생성하고 관리하는 부가로직을 핵심 로직으로부터 분리시킨 것이다.**
 
 <br>
 
@@ -747,3 +757,4 @@ future.cancel();
 * https://stackoverflow.com/questions/15052317/whats-the-difference-between-executor-and-executorservice
 * https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html
 * https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html
+* https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html

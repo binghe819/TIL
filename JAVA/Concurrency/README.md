@@ -10,4 +10,4 @@
 # 목차
 * [Thread 기본 개념](./Thread%20개념.md)
 * [Java Thread 기본](./Java%20Thread%20기본.md)
-* [ThreadPool 개념과 ExecutorService](./Thread%20Pool.md)
+* [ThreadPool 개념과 Executor (ExecutorService)](./Thread%20Pool.md)
