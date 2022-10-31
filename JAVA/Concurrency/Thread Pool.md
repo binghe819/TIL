@@ -5,15 +5,17 @@
 - [목차](#목차)
 - [들어가며](#들어가며)
 - [ThreadPool이 등장하게 된 배경](#threadpool이-등장하게-된-배경)
+  - [ThreadPool을 사용하지 않는다면](#threadpool을-사용하지-않는다면)
+  - [ThreadPool을 사용한다면](#threadpool을-사용한다면)
+  - [ThreadPool의 문제점과 사용시 주의할 점](#threadpool의-문제점과-사용시-주의할-점)
 - [ThreadPool은 어떻게 동작하는가?](#threadpool은-어떻게-동작하는가)
 - [Thread Pool In Java](#thread-pool-in-java)
+  - [스레드 풀 추상화 - Executor와 ExecutorService](#스레드-풀-추상화---executor와-executorservice)
   - [Executor vs ExecutorService](#executor-vs-executorservice)
   - [ThreadPool 사용 예시](#threadpool-사용-예시)
 - [ExecutorService](#executorservice)
   - [ExecutorService 구현체](#executorservice-구현체)
   - [꼭 Shutdown을 해줘야한다](#꼭-shutdown을-해줘야한다)
-  - [Execute Runnable vs Submit Runnable](#execute-runnable-vs-submit-runnable)
-  - [Runnable vs Callable](#runnable-vs-callable)
   - [invokeAny() vs invokeAll()](#invokeany-vs-invokeall)
   - [Task Cancel](#task-cancel)
 - [마치며](#마치며)
@@ -32,6 +34,8 @@
 
 <br>
 
+## ThreadPool을 사용하지 않는다면
+
 ❗️ **ThreadPool을 사용하지 않는다면**
 
 많은 프로그램은 스레드를 이용하여 병렬 (혹은 병행)처리를 한다.
@@ -45,6 +49,18 @@
 > 예를 들어, 메모리(RAM)이 너무 많이 소모되어 OS가 RAM을 Disk로 스왑아웃하기 시작하면 속도는 현저히 느려진다.
 
 물론 스레드 생성뿐만 아니라 회수도 해야한다..
+
+<br>
+
+❗️ **자바 스레드의 문제**
+
+자바 스레드는 직접 운영체제 스레드에 접근한다. 이때 스레드를 생성하고 회수하는 비용은 생각보다 크며, 더욱이 운영체제 스레드의 숫자는 제한되어있다.
+
+만약 운영체제가 제공하는 스레드 개수이상의 스레드를 생성하여 사용한다면 자바 애플리케이션이 예상치 못하게 크래시될 수 있다.
+
+<br>
+
+## ThreadPool을 사용한다면
 
 <br>
 
@@ -69,6 +85,8 @@ ThreadPool을 사용하지 않는 기존의 Thread 전략은 한번 사용하면
 
 <br>
 
+## ThreadPool의 문제점과 사용시 주의할 점
+
 ❗️ **그렇다고 좋은 것만은 아니다 - Thread Pool의 단점**
 
 1. 메모리 낭비
@@ -78,10 +96,13 @@ ThreadPool을 사용하지 않는 기존의 Thread 전략은 한번 사용하면
    * 병렬적으로 처리요청을 한다면 한 스레드는 요청을 처리하느라 허덕이고 있는와중에 다른 스레드는 놀고있을 수 있다.
    * 이로인해 미리 만들어둔 스레드를 잘 활용하지 못할 수도 있는 문제가 있다.
    * 물론 이는 자바에서는 `ForkJoinPool`을 지원한다.
-3. DeadLock
+3. **놀고먹거나 I/O 혹은 네트워크 연결을 기다리는 스레드 사용시 주의해야한다.**
+   * **스레드가 잠을 자거나 I/O 혹은 네트워크 연결을 기다리면 해당 Task를 실행하는 스레드는 Blocking될 확률이 높다. 즉, 스레드를 할당받았으면서 아무 작업도 하지않고있는 것이다.**
+   * 그러므로 가능한 Blocking (자거나 이벤트를 기다리는)을 발생시키는 Task는 스레드 풀을 이용하지않는게 좋다. (물론 이는 지키기어렵다...)
+4. DeadLock
    * ThreadPool만의 문제라기보다는 멀티스레딩 환경에서 발생할 수 있는 대표적인 문제점은 데드락이다. ThreadPool도 데드락이 발생할 수 있다.
    * ThreadPool에 경우, 만약 하나의 Task의 결과를 기다리는 또 다른 Task를 Queue에 넣으면 데드락이 발생할 확률이 높다.
-4. 스레드 없어짐 문제
+5. 스레드 없어짐 문제
    * ThreadPool에 미리 생성된 스레드가 요청을 처리하고나서 다시 대기상태가 안되고 제거될 수 있다. (재사용 불가)
    * 예를 들어, 스레드에 할당된 Task가 예외를 던졌는데 해당 예외를 잡지 못한다면 Thread 자체가 종료되기 때문에 ThreadPool에서 스레드의 개수가 하나씩 줄어들 수 있다.
 
@@ -114,6 +135,20 @@ ThreadPool을 사용하지 않는 기존의 Thread 전략은 한번 사용하면
 스레드 풀의 실제 구현에서 코드를 분리한 상태로 유지하고 애플리케이션 전체에서 이러한 인터페이스를 사용해야 합니다.
 
 **자바는 ThreadPool과 관련된 코드를 비즈니스 로직과 분리시키기위해 `Executor`과 `ExecutorService`라는 인터페이스로 추상화시켰으며, `Executors`라는 유틸성 클래스를 만들어 편의 메서드를 제공한다.**
+
+<br>
+
+## 스레드 풀 추상화 - Executor와 ExecutorService
+자바는 손쉽게 스레드 풀을 제어할 수 있도록 Executor와 ExecutorService라는 인터페이스를 제공한다.
+
+실제로 아래와 같이 손쉽게 스레드 풀을 생성할 수 있다.
+
+> ThreadPool 생성 예시 (스레드 100개)
+```java
+ExecutorService threadPool = Executors.newFixedThreadPool(100);
+```
+
+**생성한 스레드 풀에 Task (`Runnable` 혹은 `Callable`)을 제공하면 손쉽게 스레드 풀안의 스레드로 이를 실행시킬 수 있게된다.**
 
 <br>
 
@@ -532,118 +567,6 @@ Executed!
 
 <br>
 
-## Execute Runnable vs Submit Runnable
-`ExecuteService`는 `Executor`를 상속받는 인터페이스이기 때문에 단 건의Task를 요청하는 방법이 크게 두 가지있다.
-
-바로 `execute(Runnable)`와 `submit(Runnable)`이다.
-
-두 메서드는 모두 비동기 (asynchronously)적으로 동작한다는 공통점이있다.
-
-> `submit(Callable)`도 있다. Runnable와 Callable에 관련된 차이는 아래서 다룬다.
-
-<br>
-
-💁‍♂️ `void execute(Runnable command)`
-
-```java
-ExecutorService executeService = Executors.newSingleThreadExcutor();
-
-executeService.execute(() -> {
-    System.out.println("비동기 Task 실행");
-});
-
-executeService.shutdown();
-```
-
-`execute`는 `Executor`의 추상 메서드이며, 인자로 넘어오는 `Runnable`을 비동기적으로 실행한다. 
-
-특징으로는 `Callable`을 받는 `submit`과 다르게 실행에 대한 결과를 얻을 수 없다.
-
-<br>
-
-💁‍♂️ `<T> Future<T> submit(Callable<T> task)`
-
-```java
-<T> Future<T> submit(Callable<T> task);
-
-<T> Future<T> submit(Runnable task, T result);
-
-Future<?> submit(Runnable task);
-```
-
-<br>
-
-> submit(Runnable) 예시
-
-```java
-Future<?> future = executorService.submit(() -> {
-    System.out.println("비동기 Task");
-});
-
-System.out.println(future.get()); // null이 나오면 Task가 정상적으로 처리되었다는 의미.
-System.out.println(future.isDone()); // true
-```
-
-`submit`은 `ExecutorService`의 추상 메서드이며, 인자로 넘어노는 `Callable` 혹은 `Runnable`을 비동기적으로 실행한다.
-
-`execute`와 동일하게 `Runnable`을 인자로 받아 Task를 처리할 수 있다. 다만, `Future` 객체를 반환하며, 이를 통해 인자로 넘어온 `Runnable`이 모두 완료되었는지 체크할 수 있다.
-
-<br>
-
-> submit(Callable) 예시
-
-```java
-Future<String> future = executorService.submit(() -> {
-    System.out.println("비동기적 Task");
-    return "비동기적 Task 완료";
-});
-
-System.out.println(future.get()); // "비동기적 Task 완료"가 출력되면 Task가 정상적으로 처리되었다는 의미
-System.out.println(future.isDone()); // true
-```
-
-`submit`은 `Runnable`뿐만 아니라 `Callble`도 인자로 받아 Task를 처리할 수 있다.
-
-`Callable`을 인자로 준다면 비동기적으로 요청한 Task의 결과도 받아볼 수 있다.
-
-> `Runnable`과 `Callable`의 차이는 바로 아래서 다룬다.
-
-<br>
-
-## Runnable vs Callable
-
-Task를 만들어 스레드에 할당하기 위해선 두 인터페이스중 하나를 구현해야한다.
-
-사실 이 두 인터페이스의 차이점은 코드를 보면 쉽게 파악할 수 있다.
-
-> Runnable.java
-
-```java
-public interface Runnalbe {
-    public abstract void run();
-}
-```
-
-> Callable.java
-
-```java
-public interface Callable {
-    V call() throws Exception;
-}
-```
-
-차이점은 아래와 같다.
-
-* 리턴값 유무
-  * `Callable.call()`은 Task를 처리 후 결과 값을 반환할 수 있다. 반면에, `Runnable.run()`은 결과 값을 반환할 수 없다.
-* Checked Exception 유무
-  * `Callable.call()`은 Checked Exception`을 던질 수 있다. 반면에, `Runnable.run()`은 Checked Exception을 던질 수 없다.
-  * 물론, Unchecked Exception은 둘 다 던질 수 있다.
-
-> 생각보다 별거 없다. 그저 Task에 대한 결과를 얻어야하는 경우 `Callable`을 이용하고, 결과가 필요없다면 `Runnable`을 이용하면 된다.
-
-<br>
-
 ## invokeAny() vs invokeAll()
 `invoke`가 붙은 메서드는 여러 개의 Task를 한번에 요청할 때 사용된다.
 
@@ -745,7 +668,9 @@ future.cancel();
 
 > 간단한 ThreadPool을 직접 구현해보고싶다면 [여기](http://tutorials.jenkov.com/java-concurrency/thread-pools.html)를 참고하면 된다.
 > 
-> 필자는 직접 구현해보니 조금은 도움이 되었다.
+> 필자는 직접 구현해보니 많은 도움이 되었다.
+
+다음 글부터 비동기 처리에 대해서 정리한다. 아마 다음 글은 Future에 대한 글일 듯 싶다.
 
 <br>
 
