@@ -2,6 +2,15 @@
 
 <br>
 
+- [목차](#목차)
+- [개요](#개요)
+  - [VSCODE](#vscode)
+  - [Git](#git)
+  - [iterm2](#iterm2)
+  - [JAVA](#java)
+
+<br>
+
 # 개요
 컴퓨터 바꿀 때마다 세팅하는데 이곳저곳 찾다보니.. 머리아파서 정리해둔 자료.
 
@@ -100,6 +109,16 @@
   
   * [iterm2 및 zsh 설치 및 기본 커스텀](https://ooeunz.tistory.com/21)
   * [유용한 플러그인 및 설정방법 - 여기 나오는 방법이 좋음](https://2dowon.netlify.app/etc/use-iterm2/)
+  
+  ---
+</details>
+
+<details>
+  <summary>iterm2 커서이동 기본값 수정</summary>
+  
+  ---
+  
+  * https://ifuwanna.tistory.com/300
   
   ---
 </details>
