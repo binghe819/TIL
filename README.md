@@ -243,7 +243,7 @@
 
 ## JavaScript
 
-* [JS 기초 정리](./JS/JS%20%EA%B8%B0%EC%B4%88%20%EC%A0%95%EB%A6%AC/README.md)
+* [Vanilla JS](./JS/Vanilla%20JS/README.md)
 * [WEB APIs](./JS/web/README.md)
 * [Node.js와 NPM](./JS/node.js와%20npm/node.js와%20npm.md)
 
@@ -269,3 +269,4 @@
   * [책 - 단위 테스트](./Test/Unit%20Testing/README.md)
   * [테스트 더블](./Test/TestDouble/TestDouble.md)  
 * [컴퓨터 개발 세팅](./ETC/컴퓨터세팅/setting.md)
+* [Git 명령어 모음](./ETC/git/git-command.md)
