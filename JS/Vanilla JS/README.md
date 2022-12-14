@@ -15,10 +15,12 @@
   * [실행 컨텍스트 이해하기](./%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/%EC%8B%A4%ED%96%89%20%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8%20%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0.md) 
   * [스코프](./%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/%EC%8A%A4%EC%BD%94%ED%94%84%EB%9E%80.md)
   * [스코프 체인](./%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/%EC%8A%A4%EC%BD%94%ED%94%84%20%EC%B2%B4%EC%9D%B8.md)
+  * [클로저 이해하기](./%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/closure.md)
 * this
   * [this 이해하기](./this/this%20이해하기.md)
 * 함수
   * [callback](./함수/callback.md)
+
 
 <br>
 
