@@ -162,6 +162,8 @@
   * [IN, NOT IN, EXISTS, NOT EXISTS](./DB/RDB/IN_EXISTS_NOT_IN_NOT_EXISTS/IN_EXISTS_NOT_IN_NOT_EXISTS.md)
 * MySQL
   * [MySQL 5.7 설치 및 설정](./DB/MySQL/MySQL%20설치%20및%20설정/MySQL%205.7%20설치%20및%20설정.md)
+  * [InnoDB Lock 종류 및 이해하기](./DB/MySQL/InnoDB%20Lock/InnoDB%20Lock.md)
+  * [MySQL DeadLock 확인](./DB/MySQL/DeadLock%20확인/MySQL%20InnoDB%20DeadLock%20확인.md)
   * [Real MySQL](./DB/MySQL/RealMySQL/README.md)
   * [샘플 데이터](./DB/MySQL/샘플%20데이터/샘플%20데이터.md)
   * [Replication 개념과 MySQL을 이용한 실습](./DB/MySQL/Replication/MySQL%20Replication.md)
