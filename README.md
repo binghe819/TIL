@@ -164,7 +164,7 @@
   * [MySQL 5.7 설치 및 설정](./DB/MySQL/MySQL%20설치%20및%20설정/MySQL%205.7%20설치%20및%20설정.md)
   * [InnoDB Lock 종류 및 이해하기](./DB/MySQL/InnoDB%20Lock/InnoDB%20Lock.md)
   * [MySQL DeadLock 확인](./DB/MySQL/DeadLock%20확인/MySQL%20InnoDB%20DeadLock%20확인.md)
-  * [Insert Intention Waiting DeadLock 원인 및 해결 (Insert시 DeadLock 발생)](./DB/Mysql/insert%20intention%20waiting%20DeadLock/insert%20intention%20waiting%20deadlock.md)
+  * [Insert Intention Waiting DeadLock 원인 및 해결 (Insert시 DeadLock 발생)](./DB/MySQL/insert%20intention%20waiting%20DeadLock/insert%20intention%20waiting%20deadlock.md)
   * [Real MySQL](./DB/MySQL/RealMySQL/README.md)
   * [샘플 데이터](./DB/MySQL/샘플%20데이터/샘플%20데이터.md)
   * [Replication 개념과 MySQL을 이용한 실습](./DB/MySQL/Replication/MySQL%20Replication.md)
