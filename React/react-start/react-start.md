@@ -127,7 +127,7 @@ ReactDOM.render(React.createElement(LikeButton), domContainer); // LikeButton �
 
 `simple1.html`을 통해 브라우저에 랜더링하며 아래와 같이 랜더링된다.
 
-<p align="center"><img src="./image/simple1_result.png"> </p>
+<p align="center"><img src="./image/simple1_result.png"><br>랜더링 결과 </p>
 
 그리고 `좋아요` 버튼은 `좋아요`와 `좋아요 취소`를 번갈아가며 변경된다.
 
@@ -188,7 +188,7 @@ ReactDOM.render(
 
 `simple2.html`을 통해 브라우저에 랜더링하며 아래와 같이 랜더링된다.
 
-<p align="center"><img src="./image/simple2_result"> </p>
+<p align="center"><img src="./image/simple2_result.png"><br>랜더링 결과 </p>
 
 좋아요 버튼이 세 개 랜더링 되고 있는 것을 볼 수 있다.
 
@@ -483,7 +483,7 @@ npx webpack
 
 ### 웹팩 이해하기
 
-<p align="center"><img src="./image/webpack_img.png"><br>출처: https://webpack.js.org/ </p>
+<p align="center"><img src="./image/webpack_img.png" width="400"><br>출처: https://webpack.js.org/ </p>
 
 - **웹팩이 필요한 이유**
     - **전통적인 방식으로는 HTML 코드안에 `<script>` 태그를 이용하여 JS를 실행했다. 하지만 JS 파일이 굉장히 많아지며 한 페이지에도 여러 개의 JS 파일이 필요해지면서 관리하기가 힘들어졌다.**
@@ -531,8 +531,6 @@ my-app/
 <br>
 
 💁‍♂️ **각 폴더와 파일 설명**
-
-<p align="center"><img src="./image/"> </p>
 
 - `src` 폴더
   - 대부분의 리액트 소스 코드들이 저장되는 곳. (이곳에 JS와 CSS 파일들이 담긴다.)
