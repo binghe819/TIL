@@ -46,14 +46,6 @@
 
 <br>
 
-이번 글에선 대신 필자가 간단히 그려본 아래 그림을 이해하고 정리해보는 시간을 가져보려고한다.
-
-<p align="center"><img src="./image/"> </p>
-
-> 위 그림도 사실 인터넷에 비슷한 그림이 많다. 필자도 여러 그림을보고 이해한것을 정리해서 그렸다.
-
-<br>
-
 # 개별적 개념
 위 그림을 이해하기에앞서 먼저 크게 두 그룹으로 나눠서 각각의 개념을 살펴본다.
 
@@ -85,8 +77,6 @@ the action or fact of blocking or obstructing someone or somthing
 <br>
 
 💁‍♂️ **컴퓨터로 해석하면..**
-
-이를 컴퓨터로 해석하면 아래와 같다.
 
 ```
 동기 - 하나의 함수(누군가)가 정해진 코드를 실행하는 과정에서, 다른 함수 (누군가)를 호출함으로써 제한되거나 대기하는 상태.
@@ -136,8 +126,6 @@ happening, moving, or existing at the same time
 
 💁‍♂️ **컴퓨터로 해석하면..**
 
-이를 컴퓨터로 해석하면 아래와 같다.
-
 ```
 동기 - 하나의 함수(누군가)가 다른 함수 (누군가)를 호출하고 그 함수의 결과를 기다리거나 작업 완료 여부를 기다림.
 
@@ -175,11 +163,6 @@ happening, moving, or existing at the same time
 
 <br>
 
-> 동기 
-> 
-
-<br>
-
 # Blocking, Non-Blocking, Synchronous, Asynchronous의 조합
 Blocking과 Non-Blocking, 그리고 Synchronous와 Asynchronous의 개별적인 개념을 알았으니 이제 서로 조합된 상황을 코드와 함께 살펴본다.
 
@@ -201,7 +184,7 @@ Blocking과 Non-Blocking, 그리고 Synchronous와 Asynchronous의 개별적인 
 
 <p align="center"><img src="./image/synchronous_blocking.png"><br>I/O 관점에서의 Synchronous-Blocking <br>출처: https://developer.ibm.com/articles/l-async/ </p>
 
-I/O 관점으로보면 하나의 Application에서 커널에 I/O 요청하고 Application은 제어권을 잃어 블록된 상태로 커털의 I/O 요청이 완료될 때까지 기다린다.
+I/O 관점으로보면 하나의 Application에서 커널에 I/O 요청하고 Application은 제어권을 잃어 블록된 상태로 커널의 I/O 요청이 완료될 때까지 기다린다.
 
 예를 들어, 하나의 Application이 사용자 입력을 받을때까지 대기된다면 이는 동기/블로킹이라고 볼 수 있다.
 
@@ -246,7 +229,9 @@ public class SynchronousBlockingExample {
 
 이를 `동기/블로킹`이라고보며, 굉장히 간단하며, 직관적이고 이해하기도 쉽다.
 
-> 이해를 위해 하나의 스레드에서 간단히만 예시를 살펴보았다.
+아마 가장 많이 작성하게되는 코드 동작 형태이기도하다.
+
+> 이해를 위해 하나의 스레드에서 간단히만 예시를 작성해보았다.
 
 <br>
 
