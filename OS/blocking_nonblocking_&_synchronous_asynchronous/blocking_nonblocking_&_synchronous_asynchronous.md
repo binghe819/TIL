@@ -464,6 +464,8 @@ public class AsynchronousNonBlockingExample {
 }
 ```
 
+Callback과 함께 함수를 호출하면서 논블록으로 동작하는 대부분의 예시가 Asynchronous Non-Blocking 이긴하다. 
+
 <br>
 
 # 정리
