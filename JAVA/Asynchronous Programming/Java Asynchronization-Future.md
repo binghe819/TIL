@@ -395,6 +395,10 @@ public class FutureEx_3_submit_and_future {
 
 즉, `Future.get()`을 호출하면 해당 스레드는 블로킹되지만, 여전히 이전에 비동기로 요청한 작업들은 비동기로 동작한다.
 
+그림을 통해 살펴보면 아래와 같다.
+
+<p align="center"><img src="./image/why_use_future.png"><br>출처: https://sites.google.com/site/robhamk/java/completablefuture </p>
+
 > **정확히 말하면 비동기 예시의 경우 `Future.get()`을 호출하기전까진 `비동기/논블로킹`으로 동작하지만,**
 > 
 > **`get()`을 호출하는순간부터는 비동기 처리 결과가 반환되기전까지 `블로킹`가 된다.**
