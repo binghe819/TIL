@@ -403,6 +403,66 @@ public class FutureEx_3_submit_and_future {
 
 <br>
 
+💁‍♂️ **`Future.get`될 때, submit으로 넘긴 Callable 작업을 그제서야 실행하는 것이 아닌, ThreadPool에 submit하자마다 실행된다. - 중요**
+
+흔히 착각하는 것중 하나로, `Future.get()`을 호출해야 비동기로 요청한 Task가 실행된다고 생각한다.
+
+하지만 실제론 ThreadPool에 Task를 submit하자마자 비동기로 Task가 실행된다.
+
+```java
+public class FutureEx_4_submit_and_future_2 {
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService es = Executors.newCachedThreadPool();
+
+        // 3가지의 작업을 병렬적으로 실행시키기위해 ThreadPool에 작업들을 submit한다.
+        Future<String> result1 = es.submit(() -> {
+            System.out.println("Async Hello Task Started!");
+            Thread.sleep(1_000);
+            return ThreadPrintUtils.getCurrentThreadName() + "Async Hello ";
+        });
+
+        Future<String> result2 = es.submit(() -> {
+            System.out.println("Async World Task Started!");
+            Thread.sleep(2_000);
+            return ThreadPrintUtils.getCurrentThreadName() + "Async World ";
+        });
+
+        Future<String> result3 = es.submit(() -> {
+            System.out.println("Async Test Task Started!");
+            Thread.sleep(3_000);
+            return ThreadPrintUtils.getCurrentThreadName() + "Async Test ";
+        });
+
+        System.out.println("Exit");
+
+        // Future.get될 때, submit으로 넘긴 Callable 작업을 그제서야 실행하는 것이 아닌, ThreadPool에 submit하자마다 실행된다.
+        // 여러 작업들이 비동기적으로 계속 동작하다가, get 메서드가 호출되었을때 blocking 되면서 결과를 가져오는 것. (Thread.join과 유사하다)
+        System.out.println(result1.get());
+        System.out.println(result2.get());
+        System.out.println(result3.get());
+
+        es.shutdown();
+    }
+}
+// 결과
+Async Hello Task Started!
+Async Test Task Started!
+Exit
+Async World Task Started!
+[pool-1-thread-1]Async Hello 
+[pool-1-thread-2]Async World 
+[pool-1-thread-3]Async Test
+```
+
+**위 결과에서도 알 수 있듯이, ThreadPool에 넘긴 Task들은 바로 비동기로 실행되게된다.**
+
+그리고 **`Future.get()`를 통해 해당 비동기 결과를 가져오는 것 뿐이다.**
+
+만약 결과가 이미 나왔다면 Blocking이 되지 않지만, 아직 실행중이라면 Blocking된다.
+
+<br>
+
 # 3 Future
 앞서 동기와 비동기의 차이점은 무엇이며, `Future`가 어떤 역할을하는지 살펴보았다.
 
