@@ -241,10 +241,12 @@ CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
     System.out.println(s.toLowerCase());
 });
 
-// get()을 호출해야 비동기 작업이 동작한다.
+// get()을 호출해야 thenAccept가 동작한다.
 future.get();
 ```
 예시에서 볼 수 있듯이, `thenAccept`는 입력값을 받아서 소비만할 뿐, 결과값을 리턴하지않는다.
+
+> `get()`을 호출해야 `thenAccept()`가 동작하며, `get()`이 없을경우 `supplyAsync()`로 주어진 비동기 Task만 수행된다.
 
 <br>
 
@@ -349,7 +351,7 @@ public <U> CompletableFuture<U> thenCompose(Function<? super T, ? extends Comple
 
 `thenCompose()`는 두 작업이 서로 이어서 실행되도록 조합하기때문에, 뒷 순번의 Task가 앞 순번의 Task를 의존한다.
 
-**`thenCombine()`은 두 개의 Task를 서로 독립적으로 실행한다.**
+반면에, **`thenCombine()`은 두 개의 Task를 서로 독립적으로 실행한다.**
 
 ```java
 CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> {
@@ -389,7 +391,7 @@ System.out.println(future.get());
 
 ## 4-3 thenAcceptBoth()
 
-`thenAcceptBoth()`는 두 개의 `Future` 결과로 무언가를 하고싶지만, 결과 값로 `Future` 체인으로 전달할 필요가없을 때 사용된다.
+`thenAcceptBoth()`는 두 개의 `Future` 결과로 무언가를 하고싶지만, 결과 값을 `Future` 체인으로 전달할 필요가없을 때 사용된다.
 
 ```java
 CompletableFuture<Void> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -445,7 +447,7 @@ CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "World")
 
 CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(future1, future2, future3);
 
-// ... 비동기 요청후 따로 처리해야할 코드가 있으면 여기에 정의하면 됩니다 ...
+// ... 비동기 요청후 따로 처리해야할 코드가 있으면 여기에 정의하면 된다. ...
 
 // allOf()는 get()을 호출하면 매개변수로 넘어온 모든 Future가 완료될 때까지 Blocking된다.
 combinedFuture.get();
@@ -479,7 +481,7 @@ System.out.println(combinedFutures);
 
 **이는 `allOf()`의 한계이기도한데.. `allOf()`는 위와 같이 매개변수로 주어진 모든 `Future`의 결합된 결과를 반환하지 않는다.**
 
-> **결합된 결과를 반환하지않는 이유는 각각의 `Future`가 반환하는 타입이 서로 다를 수 있기때문이다. **
+> **결합된 결과를 반환하지않는 이유는 각각의 `Future`가 반환하는 타입이 서로 다를 수 있기때문이다.**
 > 
 > **`future1`은 `String`을 `future2`는 `Integer`를 반환한다면, 하나의 결합된 결과로 반환할 수 없기때문에 어쩔 수 없이 `Void`를 반환하고 수동으로 각자 처리해줘야하는 것이다.**
 
