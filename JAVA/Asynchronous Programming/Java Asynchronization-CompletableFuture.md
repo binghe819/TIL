@@ -207,7 +207,13 @@ es.shutdown();
 
 ## 3-1 thenApply(Function)
 
-`thenApply(Function)`은 이름에서 알 수 있듯이, 결과값을 리턴받아서 다른 값을 바꾸는 콜백이다.
+```java
+public <U> CompletableFuture<U> thenApply(Function<? super T, ? extends U> fn) {
+    return this.uniApplyStage((Executor)null, fn);
+}
+```
+
+`thenApply(Function)`은 `CompletableFuture<U>`를 반환하며, 이름에서도 알 수 있듯이, 결과값을 리턴받아서 다른 값을 바꾸는 콜백이다.
 
 > 비동기로처리한 문자열 결과를 모두 대문자열로 변환하는 예시.
 ```java
@@ -224,11 +230,21 @@ System.out.println(future.get()); // HELLO
 ```
 **위 예시에서 볼 수 있듯이, `thenApply(Function)`는 `Stream.map`과 동일한 역할을 수행한다.**
 
+> `thenApply`로 넘어오는 `Function`은 `supplyAsync()`와 동일한 스레드에서 동작한다. 별도의 스레드에서 실행하고싶다면 `thenApplyAsync()`를 사용해야한다.
+
 <br>
 
 ## 3-2 thenAccept(Consumer)
 
-`thenAccept(Consumer)`는 결과값을 리턴받아서 또 다른 작업을 처리하는 콜백이다.
+```java
+public CompletableFuture<Void> thenAccept(Consumer<? super T> action) {
+    return this.uniAcceptStage((Executor)null, action);
+}
+```
+
+`thenAccept(Consumer)`는 `CompletableFuture<Void>`를 반환한다. 즉, 결과값을 반환하지않는다.
+
+이는 **결과값을 리턴받아서 또 다른 작업을 처리하는 콜백라고 볼 수 있다.**
 
 단, `thenApply(Function)`와는 다르게 결과값을 리턴하지않는다. 그저 사용하는 비동기로 처리한 결과를 콜백으로 Consume하는 역할을 수행한다.
 
@@ -248,12 +264,19 @@ future.get();
 
 > `get()`을 호출해야 `thenAccept()`가 동작하며, `get()`이 없을경우 `supplyAsync()`로 주어진 비동기 Task만 수행된다.
 
+> `thenAccept`로 넘어오는 `Consumer`는 `supplyAsync`와 동일한 스레드에서 동작한다. 별도의 스레드에서 실행하고싶다면 `thenAccepyAsync()`를 사용해야한다.
+
 <br>
 
 ## 3-3 thenRun(Runnable)
 
-`thenRun(Runnable)`은 결과값을 리턴받지 않고 다른 작업을 처리하는 콜백이다.
+```java
+public CompletableFuture<Void> thenRun(Runnable action) {
+    return this.uniRunStage((Executor)null, action);
+}
+```
 
+`thenRun(Runnable)`은 결과값을 리턴받지 않고 다른 작업을 처리하는 콜백이다.
 
 ```java
 CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
@@ -280,9 +303,11 @@ future.get();
 <br>
 
 # 4 Future의 조합
-Callback을 지원하는 것 외에도 `CompletableFuture`에서 가장 중요한 부분은 여러 `Future`를 조합해서 비동기 작업 파이프라인을 구성할 수 있다는 것이다.
+Callback을 지원하는 것 외에도 `CompletableFuture`에서 가장 중요한 부분은 여러 `Future`를 병렬로 조합해서 비동기 작업 파이프라인을 구성할 수 있다는 것이다.
 
 매 체이닝마다 `CompletableFuture`를 반환하기때문에 여러가지 비동기 Task를 연결 및 결합할 수 있다.
+
+예를 들어, 2개의 `CompletableFuture`를 병렬로 실행하고 결과를 합칠 수 있다.
 
 조합할 때 사용되는 메서드는 아래와 같다.
 
@@ -293,6 +318,12 @@ Callback을 지원하는 것 외에도 `CompletableFuture`에서 가장 중요�
 <br>
 
 ## 4-1 thenCompose()
+
+```java
+public <U> CompletableFuture<U> thenCompose(Function<? super T, ? extends CompletionStage<U>> fn) {
+    return this.uniComposeStage((Executor)null, fn);
+}
+```
 
 `thenCompose()`는 두 개의 `Future`를 순차적으로 연결한다.
 
@@ -348,6 +379,12 @@ public <U> CompletableFuture<U> thenCompose(Function<? super T, ? extends Comple
 <br>
 
 ## 4-2 thenCombine()
+
+```java
+public <U> CompletableFuture<U> thenCompose(Function<? super T, ? extends CompletionStage<U>> fn) {
+    return this.uniComposeStage((Executor)null, fn);
+}
+```
 
 `thenCompose()`는 두 작업이 서로 이어서 실행되도록 조합하기때문에, 뒷 순번의 Task가 앞 순번의 Task를 의존한다.
 
