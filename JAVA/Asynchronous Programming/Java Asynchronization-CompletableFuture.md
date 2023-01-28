@@ -516,11 +516,17 @@ System.out.println(combinedFutures);
 
 <p align="center"><img src="./image/completableFuture_allOf.png"> </p>
 
-**이는 `allOf()`의 한계이기도한데.. `allOf()`는 위와 같이 매개변수로 주어진 모든 `Future`의 결합된 결과를 반환하지 않는다.**
+**이는 `allOf()`의 한계이기도한데.. `allOf()`는 위와 같이 매개변수로 주어진 모든 `CompletableFuture`의 결합된 결과를 반환하지 않는다.**
 
-> **결합된 결과를 반환하지않는 이유는 각각의 `Future`가 반환하는 타입이 서로 다를 수 있기때문이다.**
-> 
-> **`future1`은 `String`을 `future2`는 `Integer`를 반환한다면, 하나의 결합된 결과로 반환할 수 없기때문에 어쩔 수 없이 `Void`를 반환하고 수동으로 각자 처리해줘야하는 것이다.**
+그 이유는 각각의 `CompletableFuture`가 반환하는 타입이 서로 다를 수 있기 때문이다.
+
+<p align="center"><img src="./image/all_of_description.png"><br>allOf 메서드 설명 </p>
+
+메서드의 주석부분에도 위와 같이 각 개별 `CompletableFuture`의 예외 처리와 결과가 다르기 때문에 각자 처리해줘야한다고한다.
+
+예를 들어, **`future1`은 `String`을 `future2`은 `Integer`를 반환한다면, 하나의 결합된 결과로 반환할 수 없기때문에 어쩔 수 없이 `Void`를 반환하고 수동으로 각 자 처리해줘야하는 것이다.**
+
+> 이 때문에.. `allOf`를 통해 서로 다른 결과를 반환하는 `CompletableFuture`를 사용할 시 코드가 비교적 더러워진다.
 
 <br>
 
@@ -532,6 +538,8 @@ System.out.println(combinedFutures);
 CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
 CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Beautiful");
 CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "World");
+
+combinedFuture.get();
 
 String combined = Stream.of(future1, future2, future3)
   .map(CompletableFuture::join)
@@ -564,7 +572,7 @@ public T join()
 
 <br>
 
-💁‍♂️ **여러 `Future` 각각의 결과 값을 얻어오는 예시**
+💁‍♂️ **여러 `Future`의 반환 값이 같을 경우 각각의 결과 값을 얻어오는 예시**
 
 여러 `Future`의 결과 값을 결합하지않고 각각 얻어오고싶을때 사용되는 예시이다.
 
@@ -597,6 +605,21 @@ results.get().forEach(System.out::println);
 // World
 ```
 `allOf()`를 통해 모든 작업이 완료되었음을 보장받고나면, `thenApply()`를 통해 직접 `allOf()`의 매개변수로 넘긴 `CompletableFuture`에서 `join()`를 통해 값을 꺼내줘야한다.
+
+이를 메서드로 분리해서 재활용하고싶다면 아래와 같이 구현하면된다.
+
+```java
+public class Futures {
+    public static <T> CompletableFuture<List<T>> all(List<CompletableFuture<T>> futures) {
+        CompletableFuture<Void> cfv = CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+        return cfv.thenApply(future -> {
+            return futures.stream()
+                    .map(completableFuture -> completableFuture.join())
+                    .collect(Collectors.toList());
+        });
+    }
+}
+```
 
 <br>
 
