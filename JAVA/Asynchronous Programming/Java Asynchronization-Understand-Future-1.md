@@ -12,6 +12,7 @@
   - [4-2 FutureTask인스턴스를 Thread에 전달하고 실행한다.](#4-2-futuretask인스턴스를-thread에-전달하고-실행한다)
   - [4-3 비동기 작업이 완료될 때까지 Blocking되어 결과를 기다려 얻는다.](#4-3-비동기-작업이-완료될-때까지-blocking되어-결과를-기다려-얻는다)
 - [정리](#정리)
+- [참고](#참고)
 
 <br>
 
@@ -93,8 +94,6 @@ public static void main(String[] args) {
 <br>
 
 # 2 Callable은 어떻게 비동기 처리결과를 반환하는가?
-https://cloud.tencent.com/developer/article/2118889?from=article.detail.1692202&areaSource=106000.2&traceId=_LN__NXak4S2tOOKXmSVM
-
 `Callable`을 다른 스레드에 제출하여 적절한 경우 작업 완료 여부를 판단하여 실행 결과를 얻어는 역할을 `Future`가 한다고 한다.
 
 이를 그림으로 그려보면 아래와 같다.
@@ -133,7 +132,7 @@ Main 스레드에서 비동기로 실행할 내용을 `Callable`에 정의하고
 
 이러한 인터페이스와 클래스를 구현 및 상속받는 녀석이 바로 `FutureTask`이다. (가장 핵심 클래스라고 볼 수 있다.)
 
-<p align="center"><img src="./image/"> </p>
+<p align="center"><img src="./image/future_task_diagram.png"> </p>
 
 위 클래스 다이어그램을 통해 알 수 있듯이, `FutureTask`는 `Future`과 `Runnable`의 구현체이며, 동시에 `Thread`와 `Callable` 인터페이스를 상태로 가지고있다.
 
@@ -352,3 +351,10 @@ private int awaitDone() {
 이번 글은 `Future`가 탄생하게 된 배경과 역할, 그리고 그 구현체인 `FutureTask`를 내가 이해한대로 정리해보았다.
 
 다음 글은 `FutureTask`을 조금 더 자세히 알아볼 예정이다.
+
+<br>
+
+# 참고
+* https://stackoverflow.com/questions/48213670/when-will-completable-future-releases-thread-back-to-thread-pool?newreg=708e7aa2dc5948e38bdb4ee265c215b8
+* https://segmentfault.com/a/1190000016542779
+* https://cloud.tencent.com/developer/article/2118889?from=article.detail.1692202&areaSource=106000.2&traceId=_LN__NXak4S2tOOKXmSVM
