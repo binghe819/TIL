@@ -324,6 +324,36 @@ run_agent_bg.sh # If you want to run it in the background for linux / mac
 
 <br>
 
+**4. Agent 서버 자원 limit 확인 - linux**
+
+Agent를 리눅스에서 실행한다면, 자원의 limit을 확인하여 필요시 limit을 풀어줄 필요가있다.
+
+```shell
+$ ulimit -a
+
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 30446
+max locked memory       (kbytes, -l) unlimited
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 65535
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 10240
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) unlimited
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+```
+만약 `max user processes`와 `open files`값이 작다면, nGrinder 권고사항에 따라 적어도 10000 이상으로 설정해주는 것이 좋다.
+
+`/etc/security/limits.conf`파일에서 수정해주면된다.
+
+<br>
+
 # 3 nGrinder 성능 테스트 Hello World
 마지막으로 nGrinder를 간단히 다뤄보는 Hello World식 부하 테스트를 진행해본다.
 
