@@ -126,8 +126,7 @@
   * [NginX를 이용한 로드 밸런싱 (헬스 체크 모듈을 곁들인)](./Infra&DevOps/NGINX/NGINX%20로드%20밸런싱%20(무료%20헬스체크를%20곁들인).md)
 * 성능 테스트
   * [웹 성능 진단](./Infra&DevOps/웹%20성능%20진단/웹%20성능%20진단.md)
-  * nGrinder
-    * [nGrinder 완벽가이드 - 개념, 설치, 부하테스트 Hello World](./Infra&DevOps/nGrinder/nGrinder%20%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C.md)
+  * [nGrinder 완벽가이드 - 개념, 설치, 부하테스트 Hello World](./Infra&DevOps/nGrinder/nGrinder%20%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 * 카프카
   * [카프카 Hello World (Quick Start)](./Infra%26DevOps/Kafka/hello-world/kafka-hello-world.md)
 
