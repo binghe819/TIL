@@ -127,8 +127,7 @@
 * 성능 테스트
   * [웹 성능 진단](./Infra&DevOps/웹%20성능%20진단/웹%20성능%20진단.md)
   * nGrinder
-    * [nGrinder Docker를 이용한 설치](./Infra&DevOps/nGrinder/nGrinder%20Docker를%20이용한%20설치.md)
-    * [nGrinder Hello World](./Infra&DevOps/nGrinder/nGrinder%20Hello%20World.md)
+    * [nGrinder 완벽가이드 - 개념, 설치, 부하테스트 Hello World](./Infra&DevOps/nGrinder/nGrinder%20%EC%99%84%EB%B2%BD%EA%B0%80%EC%9D%B4%EB%93%9C.md)
 * 카프카
   * [카프카 Hello World (Quick Start)](./Infra%26DevOps/Kafka/hello-world/kafka-hello-world.md)
 
