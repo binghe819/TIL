@@ -437,7 +437,7 @@ $ nohup java -jar target/*.jar &
 * Total Vusers: Vusers 수
 * TPS: 평균 TPS (초당 처리량이므로 높을 수록 좋다.)
 * Peak TPS: 최고 TPS
-* Mean Test Time: 평균 테스트시간 (평균 Response Time)
+* Mean Test Time: 평균 테스트시간 (평균 Response Time = Latency)
 * Executed Tests: 테스트 실행 횟수
 * Successful Tests: 테스트 성공 횟수
 * Errors: 에러 횟수
