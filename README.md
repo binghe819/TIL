@@ -193,6 +193,8 @@
   * [Future 이해하기 (1) - Future은 어떻게 비동기 결과를 얻는가?](./JAVA/Asynchronous%20Programming/Java%20Asynchronization-Understand-Future-1.md)
   * [Future 이해하기 (2) - FutureTask의 동작 원리]()
   * [안정적 비동기 프로그래밍 - CompletableFuture](./JAVA/Asynchronous%20Programming/Java%20Asynchronization-CompletableFuture.md)
+* 로깅
+  * [자바 로깅 프레임워크 히스토리](./JAVA/Logging/history_of_java_logging/history_of_java_logging.md)
 * [자바의 정석](./JAVA/자바의%20정석/README.md)
 * [Effective Java 3/E](./JAVA/Effective%20Java/README.md)
 * [모던 자바 인 액션](./JAVA/Modern%20Java%20In%20Action/README.md)
