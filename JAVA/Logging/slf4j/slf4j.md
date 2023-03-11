@@ -33,7 +33,7 @@ slf4j (Simple Logging Facade for Java)는 자바 로깅 프레임워크의 Facad
 
 slf4j를 이해하기위해선 아래 세 가지 모듈을 이해하면 된다.
 
-<p align="center"><img src="./image/"><br>slf4j 세 가지 모듈의 관계</p>
+<p align="center"><img src="./image/slf4j-architecture.png"><br>slf4j 세 가지 모듈의 관계</p>
 
 * API Module
   * slf4j를 사용하기 위한 인터페이스를 제공한다.
