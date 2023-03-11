@@ -195,6 +195,7 @@
   * [안정적 비동기 프로그래밍 - CompletableFuture](./JAVA/Asynchronous%20Programming/Java%20Asynchronization-CompletableFuture.md)
 * 로깅
   * [자바 로깅 프레임워크 히스토리](./JAVA/Logging/history_of_java_logging/history_of_java_logging.md)
+  * [slf4j 이해하기](./JAVA/Logging/slf4j/slf4j.md)
 * [자바의 정석](./JAVA/자바의%20정석/README.md)
 * [Effective Java 3/E](./JAVA/Effective%20Java/README.md)
 * [모던 자바 인 액션](./JAVA/Modern%20Java%20In%20Action/README.md)
