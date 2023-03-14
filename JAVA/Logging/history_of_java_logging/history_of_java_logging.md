@@ -43,7 +43,7 @@
 
 <br>
 
-1. **동작방식이 동기 (Synchronous)이다.**
+첫번째. **동작방식이 동기 (Synchronous)이다.**
 
 `System.out.println`에서 `System.out`의 기본 구현체는 `PrintStream`으로 지정된다.
 
@@ -81,7 +81,7 @@ private void newLine() {
 
 <br>
 
-2. **다양한 로그 설정을 할 수 없다.**
+두번째. **다양한 로그 설정을 할 수 없다.**
 
 `System.out.println`은 로그 내용을 콘솔에 출력하는것이 아닌 파일에 저장하는등 여러 설정을 자체적으로 지원하지 않는다.
 
@@ -129,15 +129,13 @@ private void newLine() {
 
 하지만 위 방식은 파일에 대한 사이즈 및 로그 개수에따라 파일을 분리시키는등에 로깅 프레임워크가 제공하는 다양한 기능을 하나도 지원하지 않는다.
 
-<br>
-
-또한 환경에 따른 로그 설정을 할 수 없다.
+**또한 환경에 따른 로그 설정을 할 수 없다.**
 
 즉, 베타와 운영등의 환경별 로그 설정을 따로 할 수 없다.
 
 <br>
 
-3. **로그 레벨이 세분화되어있지않다.**
+세번째. **로그 레벨이 세분화되어있지않다.**
 
 로그 레벨이 따로 세분화되어있지않으므로, 로그 레벨을 통한 정보 분리하기가 어렵다.
 
@@ -147,19 +145,21 @@ private void newLine() {
 
 # 2 Log4j 탄생
 
-`System.out.println`의 여러 문제점을 해결하고자 ceki Gulcü가 2001에 `Log4j`를 개발하여 오픈소스로 발표한다. 이때 Log4j는 많은 개발자들의 환호를 불러일으켰으며, Apache 재단의 탑레벨 프로젝트로 들어가게된다.
+`System.out.println`의 여러 문제점을 해결하고자 ceki Gulcü가 2001에 `Log4j`를 개발하여 오픈소스로 발표한다. 
 
-이후 Log4j는 자바 로깅 시스템의 마일스톤역할을 했으며, `Appender`, `Level`, `Logger`라는 개념(concept)`가 탄생하게되었다.
+이때 Log4j는 많은 개발자들의 환호를 받았으며, Apache 재단의 탑레벨 프로젝트로 등록된다.
 
-또한, 다양한 로그 레벨을 설정할 수 있게되었을 뿐만 아니라 다양한 `Appender`를 커스텀하여 사용할 수 있게되어 로그 레벨별 로그 저장방식도 쉽게 커스텀할 수 있게되었다. (ex. `SMTPAppender`, `SyslogAppender`, `JdbcAppender` [참고](https://stackoverflow.com/questions/31840/java-logging-vs-log4j/36482#36482))
+이후 Log4j는 자바 로깅 시스템의 마일스톤역할을 했으며, `Appender`, `Level`, `Logger`라는 개념(concept)가 탄생하게되기도했다.
+
+다양한 로그 레벨을 설정할 수 있게되었을 뿐만 아니라 다양한 `Appender`를 커스텀하여 사용할 수 있게되어 로그 레벨별 로그 저장방식도 쉽게 커스텀할 수 있게되었다. (ex. `SMTPAppender`, `SyslogAppender`, `JdbcAppender` [참고](https://stackoverflow.com/questions/31840/java-logging-vs-log4j/36482#36482))
 
 지금도 비교적 많은 개발자가 Log4j를 선호하며, 여담으로 Apache에서 Log4j를 JDK에 가장 최우선 로깅 시스템으로 추천하였으나 sun에서 바로 거절했다고한다.
 
-Log4j는 레거시 시스템이라면 사용하고있겠지만, Log4j 개발팀은 2015년을 끝으로 log4j를 더이상 업데이트하고있지않다.
+Log4j는 많은 레거시 시스템이라면 사용하고있겠지만, Log4j 개발팀은 2015년을 끝으로 log4j를 더이상 업데이트하고있지않다.
 
 그러므로 지금의 시스템이라면 굳이 사용할 이유가없다.
 
-> 여기서 말하는 Log4j는 초기에 Log4j이다. 현재는 Log4j2가 나온 상태이다.
+> 여기서 말하는 Log4j는 초기에 Log4j이다. 현재는 Log4j2가 나온 상태이다. 이 둘을 구분할 필요가있다.
 
 <br>
 
@@ -167,7 +167,7 @@ Log4j는 레거시 시스템이라면 사용하고있겠지만, Log4j 개발팀�
 
 Log4j가 출시한 같은 시기 Sun에선 자신들만의 로깅 라이브러리인 JUL (Java Util Logging)을 만들었다.
 
-JUL인 [JSR 47](https://jcp.org/en/jsr/detail?id=47)에 명시되어있으며, JDK 1.4부터 공식배포되었다.
+JUL은 [JSR 47](https://jcp.org/en/jsr/detail?id=47)에 명시되어있으며, JDK 1.4부터 공식배포되었다.
 
 Log4j와 다르게 `Appender`를 `Handler`라고 칭하고있으며, 오직 두 개의 `Handler`만 사용가능하다.
 
@@ -175,6 +175,8 @@ Log4j와 다르게 `Appender`를 `Handler`라고 칭하고있으며, 오직 두 
 * `FileHandler`
 
 JUL도 `System.out.println`의 문제점들은 대부분 해결하였지만, 일관성 없는 API 확장, 느린 성능, 설정 옵션 부족함, 문서화 부족등의 이유로 개발자들의 선택을 받진 못했다.
+
+> JDK에서 공식적으로 제공하는 로깅 프레임워크임에도 필자의 주변엔 사용하는 개발자는 한 명도 보지못했다.
 
 <br>
 
@@ -221,11 +223,11 @@ slf4j는 세 가지 모듈을 제공한다.
 
 ceki Gulcü는 slf4j를 개발하던 비슷한 시기에 Log4j의 후속 프로젝트로 Logback을 개발하였다.
 
-> 왜 Logback을 만들었는지는 [여기](https://logback.qos.ch/reasonsToSwitch.html)를 참고.
+> 왜 Logback을 만들었는지는 [여기](https://logback.qos.ch/reasonsToSwitch.html) 참고.
 
 이는 slf4j의 구현체이며, 현재 자바 로깅 프레임워크의 가장 인기있는 구현체라고 볼 수 있다.
 
-실제로 스프링은 slf4j + Logback 조합을 디폴트로 사용한다.
+실제로 스프링 부트는 slf4j + Logback 조합을 디폴트로 사용한다.
 
 <br>
 
@@ -249,8 +251,6 @@ log4j2는 가장 최근에 나온 프레임워크이며, Logback과 마찬가지
 어떤 프레임워크를 사용할지는 상황에따라 사용하면 될 듯하다.
 
 다만 slf4j 인터페이스 사용하는 것을 추천한다. 그래야 추후에 소스코드 변경없이 쉽게 로깅 프레임워크 구현체를 변경할 수 있다.
-
-> 최대한 여러 자료들을 참고하였지만, 틀린 내용이 있을 수 있다.
 
 <br>
 
