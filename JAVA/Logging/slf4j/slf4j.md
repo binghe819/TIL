@@ -19,7 +19,7 @@ slf4j (Simple Logging Facade for Java)는 자바 로깅 프레임워크의 Facad
 
 즉, 자바의 다양한 로깅 프레임워크 (JUL, Logback, log4j등등)에 대한 추상화 (인터페이스) 역할을 수행한다.
 
-객체지향으로 생각한다면 OCP와 DIP를 적용하여 로깅이 필요한 개발자는 특정 로깅 프레임워크 구현체에 의존하지않고, slf4j에만 의존하여 사용하여 로깅 구현체로부터 분리시킨 것이다.
+객체지향으로 생각한다면 OCP와 DIP를 적용하여 로깅이 필요한 개발자는 특정 로깅 프레임워크 구현체에 의존하지않고, slf4j에만 의존하도록함으로써 의존성을 로깅 구현체로부터 분리시킨 것이다.
 
 이로써 개발자는 slf4j만 의존하여 로깅을 구현하면, 이후에 로깅 프레임워크 구현체를 변경한다해도 소스코드의 변경을 최소화할 수 있다.
 
@@ -97,7 +97,7 @@ public class Slf4jApiModuleHelloWorld {
 
 즉, **클래스 패스에 사용하길 원하는 로깅 프레임워크의 구현체를 slf4j에 바인딩(binding)해주어야한다.**
 
-이때 주의할 점은 둘 이상의 slf4j 바인딩은 동시에 사용할 수 없다. 반드시 하나만 설정해야한다.
+이때 주의할 점은 하나 이상의 slf4j 바인딩은 동시에 사용할 수 없다. 반드시 하나만 설정해야한다.
 
 <br>
 
@@ -190,9 +190,9 @@ public class Slf4jApiModuleHelloWorld {
 
 하나의 프레임워크엔 다양한 라이브러리가 사용된다. 그리고 각 라이브러리는 사용하는 로깅 프레임워크가 다를 수 있다.
 
-실제로 spring 코드를 살펴보면 spring-context 모듈은 JCL (Jakarta Commons Logging) API를 사용하는 것을 발견할 수 있다.
+실제로 spring-context 모듈 코드를 살펴보면 JCL (Jakarta Commons Logging)을 사용한다.
 
-이렇게 여러 다른 로깅 API를 사용하는 라이브러리사이에서 다리 역할을 수행하는 모듈이 slf4j brigdging 모듈이다.
+이렇게 여러 다른 로깅 API를 사용하는 라이브러리들 사이에서 다리 역할을 수행하는 모듈이 slf4j brigdging 모듈이다.
 
 **slf4j bridging 모듈은 다른 로깅 API로의 Logger 호출을 slf4j 인터페이스로 리다이렉션하여 slf4j API가 대신 처리할 수 있도록 도와주는 어댑터 역할을 수행한다.**
 
@@ -200,7 +200,7 @@ public class Slf4jApiModuleHelloWorld {
 
 개발자는 다른 로깅 API를 사용하지만, 내부에서는 `다른 로깅 API -> Bridge Module -> slf4j API`와 같이 slf4j API를 호출하도록하는 일종의 어댑터 역할을 수행한다.
 
-이를 통해 여러 로깅 API를 하나의 채널로 Logging을 통합한다.
+이를 통해 여러 로깅 API를 하나의 채널 (slf4j)로 Logging을 통합한다.
 
 <br>
 
