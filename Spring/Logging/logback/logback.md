@@ -523,7 +523,7 @@ Spring Boot는 Logback도 profile마다 설정을 달리할 수 있도록 `sprin
 
 <br>
 
-**예시**
+**예시 1**
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -548,6 +548,40 @@ Spring Boot는 Logback도 profile마다 설정을 달리할 수 있도록 `sprin
       <appender-ref ref="STDOUT"/>
     </logger>
   </springProfile>
+</configuration>
+```
+
+<br>
+
+**예시 2**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
+
+    <springProfile name="!prod">
+        <include resource="console-appender.xml"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <include resource="file-info-appender.xml"/>
+        <include resource="file-warn-appender.xml"/>
+        <include resource="file-error-appender.xml"/>
+
+        <root level="INFO">
+            <appender-ref ref="FILE-INFO"/>
+            <appender-ref ref="FILE-WARN"/>
+            <appender-ref ref="FILE-ERROR"/>
+        </root>
+    </springProfile>
 </configuration>
 ```
 
