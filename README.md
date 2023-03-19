@@ -174,6 +174,7 @@
   * [Redis 자료구조와 명령어 & 활용사례](./DB/Redis/Redis%20자료구조와%20명령어/Redis%20자료구조와%20명령어%20&%20활용사례.md)
 * 기타
   * [B-Tree](./DB/기타/B-Tree/B-Tree.md)
+  * [CAP, PACELC 이론과 DB 선택의 기준](./DB/CAP_PACELC/CAP_PACELC_theorem.md)
 
 <br>
 
