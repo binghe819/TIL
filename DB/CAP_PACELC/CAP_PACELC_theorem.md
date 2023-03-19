@@ -99,12 +99,23 @@ CAP 이런도 사실 완전한 일관성과 완전한 가용성중 하나를 선
 
 <br>
 
+💁‍♂️ **Eventual consistency와 Strong Consistency**
+
+* Eventual consistency - AP
+  * Eventual consistency는 항목이 새롭게 업데이트되지 않는다는 전제하에 항목의 모든 읽기 작업이 최종적으로는 마지막으로 업데이트된 값을 반환한다는 것을 이론적으로 보장한다. 
+  * 인터넷 DNS(도메인 이름 시스템)는 eventual consistency 모델이 사용된 시스템의 예로 잘 알려져 있다. 보통 조회 모델에서 자주 사용한다.
+  * 자바에서 자주 사용되는 로컬 캐시인 Caffeine 에서도 Eventual Consistency의 한 예시이다.
+    * expireAfterWrite와 refreshAfterWrite 옵션을 통해 주기적인 캐시 삭제 또는 리프레쉬로 Eventual Consistency를 만족할 수 있다.
+* Strong Consistency - CP
+  * Eventual consistency와 반대된 개념으로, 일관성을 지향한다.
+
+<br>
+
 💁‍♂️ **정리하면 CAP 이론의 한계는 아래와 같다.**
 
 * 완벽한 CP, AP 시스템은 사용할 수 없다.
 * 대부분 분산 시스템은 CP와 AP의 중간 어디쯤이다.
 * 모든 분산 시스템이 파티션을 사용하진 않는다.
-
 
 <br>
 
@@ -137,9 +148,13 @@ CAP와 PACELC 이론은 대략적인 DB 선택의 기준을 제시하지만, 같
 
 DB에 높은 수준의 조회 성능이 필요한 상황에서 두 이론만 생각한다면 성능을 단지 일관성과 가용성과 연관지어 생각하게된다.
 
-하지만 DB의 조회 성능을 두 이론의 속성뿐만 아니라 데이터의 생김새, 저장 방식에 따라 더 세분화된다.
+하지만 DB의 조회 성능은 두 이론의 속성뿐만 아니라 데이터의 생김새, 저장 방식에 따라 더 세분화된다.
+
+> 사실 필자 생각엔 데이터의 생김새와 저장 방식이 성능엔 더 큰 영향을 끼친다. 그러므로 데이터의 생김새와 저장 방식을 먼저 고려하는 것이 좋다고 생각든다.
 
 예를 들어, 저장할 데이터가 Key-Value로 가능하고 데이터의 양이 많지않다면 redis를 선택할 수 있다.
+
+그러므로 너무 이 두 이론에 심취하기보단, 이런 기준도 있구나~라고 DB선택시 고려하면 좋을 듯 하다.
 
 <br>
 
@@ -153,3 +168,4 @@ DB에 높은 수준의 조회 성능이 필요한 상황에서 두 이론만 생
 * https://itwiki.kr/w/PACELC_이론
 * http://happinessoncode.com/2017/07/29/cap-theorem-and-pacelc-theorem/
 * https://www.youtube.com/watch?v=hUd_9FENShA
+* https://velog.io/@soongjamm/Eventual-Consistency-%EB%9E%80
