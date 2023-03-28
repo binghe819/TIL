@@ -292,7 +292,7 @@ public interface Processor<T,R> extends Subscriber<T>, Publisher<R> {
 
 조금 다른 그림을 통해 보면 아래와 같이 이해할 수도 있다.
 
-<p align="center"><img src="./image/reactive_workflow_2.png"> </p>
+<p align="center"><img src="./image/reactive_workflow_3.png"> </p>
 
 > onNext()마다 request(n)를 보낼 수도 있다.
 
