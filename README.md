@@ -195,7 +195,7 @@
   * [Future 이해하기 (2) - FutureTask의 동작 원리]()
   * [안정적 비동기 프로그래밍 - CompletableFuture](./JAVA/Asynchronous%20Programming/Java%20Asynchronization-CompletableFuture.md)
 * Reactive Programming
-  * [Reactive Streams](./Java/Reactive%20Programming/Reactive%20Streams/Reactive%20Streams.md)
+  * [Reactive Streams](./JAVA/Reactive%20Programming/Reactive%20Streams/Reactive%20Streams.md)
 * 로깅
   * [자바 로깅 프레임워크 히스토리](./JAVA/Logging/history_of_java_logging/history_of_java_logging.md)
   * [slf4j 이해하기](./JAVA/Logging/slf4j/slf4j.md)
