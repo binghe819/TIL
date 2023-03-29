@@ -302,94 +302,83 @@ public interface Processor<T,R> extends Subscriber<T>, Publisher<R> {
 이번엔 이전에 Iterable과 옵저버 패턴때 사용되었던 동일한 예시를 통해 Reactive Streams를 간단히 구현해본다.
 
 ```java
+/**
+ * Reactive Streams Hello World
+ */
 public class PubSub {
 
     public static void main(String[] args) {
-        List<Integer> itr = Arrays.asList(1, 2, 3, 4, 5);
-
-        Publisher p = new Publisher() {
+        Publisher<Integer> pub = new Publisher<Integer>() {
             @Override
-            public void subscribe(Subscriber subscriber) {
-                // 데이터 (DB에서 조회해오는 데이터라고 생각해도 된다.)
-                Iterator<Integer> it = itr.iterator();
+            public void subscribe(Subscriber<? super Integer> subscriber) {
+                Iterable<Integer> data = Stream.iterate(1, a -> a + 1).limit(5).collect(toList());
 
-                // 최초 호출되는 메서드이며, Subscriber를 사용할 때에 무조건 처음에 호출된다.
-                // Subscription을 넘기며,
+                // 2. Publisher에서 Subscriber에게 Subscription (구독 정보)를 전달한다.
                 subscriber.onSubscribe(new Subscription() {
                     @Override
                     public void request(long n) {
+                        // 4. 요청에 따라 Subscriber에게 n개 만큼의 데이터를 전송.
+                        // 여기선 우선 모든 데이터 전부 보내는 것으로 예시 작성함.
+                        System.out.println("Pub request. n : " + n);
                         try {
-                            while(n-- > 0) {
-                                if (it.hasNext()) {
-                                    subscriber.onNext(it.next());
-                                } else {
-                                    subscriber.onComplete();
-                                    break;
-                                }
-                            }
-                        } catch (RuntimeException e) {
+                            data.forEach(it -> subscriber.onNext(it));
+                            subscriber.onComplete();
+                        } catch (Throwable e) {
                             subscriber.onError(e);
                         }
                     }
 
                     @Override
                     public void cancel() {
-
                     }
                 });
-
             }
         };
 
-        Subscriber<Integer> s = new Subscriber<Integer>() {
-            private static final int N = 1;
-
+        Subscriber<Integer> sub = new Subscriber<Integer>() {
             private Subscription subscription;
 
             @Override
             public void onSubscribe(Subscription subscription) {
-                System.out.println("onSubscribe");
+                // 3. Publisher로부터 전달받은 Subscription (구독 정보)을 통해 데이터를 요청한다.
+                System.out.println("Sub onSubscribe.");
                 this.subscription = subscription;
-                this.subscription.request(N); // 2개씩만 받고싶다고 할 때 설정.
+                // Subscription을 통해 데이터 request
+                this.subscription.request(Integer.MAX_VALUE);
             }
 
             @Override
             public void onNext(Integer item) {
-                System.out.println("onNext : " + item);
-                // Publisher에게 다음 데이터를 보내라고 요청. (보통 버퍼를 고려해서 호출한다.)
-                this.subscription.request(N);
+                // 5. Publisher에서 전송한 데이터를 받아서 Subscriber에서 처리.
+                System.out.println("Sub onNext. item : " + item);
             }
 
             @Override
             public void onError(Throwable throwable) {
-                System.out.println("onError");
+                System.out.println("Sub onError.");
             }
 
             @Override
             public void onComplete() {
-                System.out.println("onComplete");
+                System.out.println("Sub onComplete");
             }
         };
 
-        // Publiser에 Subscriber 등록 (구독)
-        p.subscribe(s);
+        // 1. publisher에 subscriber 구독 요청.
+        pub.subscribe(sub);
     }
 }
 
+
 // 결과
-onSubscribe
-request: 1
-onNext : 1
-request: 1
-onNext : 2
-request: 1
-onNext : 3
-request: 1
-onNext : 4
-request: 1
-onNext : 5
-request: 1
-onComplete
+Sub onSubscribe.
+Pub request. n : 2147483647
+Sub onNext. item : 1
+Sub onNext. item : 2
+Sub onNext. item : 3
+Sub onNext. item : 4
+Sub onNext. item : 5
+Sub onComplete
 ```
 위 예시는 `request(1)`로 요청하여 매 `onNext()`마다 `request(1)`를 날리도록 한 예시이다.
 
