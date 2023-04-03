@@ -6,7 +6,7 @@
 
 # 목차
 * [1장. 왜 NoSQL인가?](./ch01_%EC%99%9C_nosql%EC%9D%B8%EA%B0%80.md)
-
+* [2장. 집합적 데이터 모델](./ch02_%EC%A7%91%ED%95%A9%EC%A0%81_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%AA%A8%EB%8D%B8.md)
 
 
 
