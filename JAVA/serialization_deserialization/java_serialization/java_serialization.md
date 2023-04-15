@@ -16,7 +16,7 @@
 
 # 자바 직렬화 이해하기 - 사용시 주의할 점과 사용을 추천하지 않는 이유
 
-자바 직렬화는 자바 시스템에서 사용되는 객체 또는 데이터를 외부의 자바 시스템에서도 사용할 수 있도록 바이트 스트림 형태로 변환하는 것이다.
+직렬화는 자바 시스템에서 사용되는 객체 또는 데이터를 외부의 자바 시스템에서도 사용할 수 있도록 바이트 스트림 형태로 변환하는 것이다.
 
 역직렬화는 반대로 직렬화를 통해 변환된 바이트 스트림 데이터를 다시 객체로 변환하는 것이다.
 
@@ -24,11 +24,9 @@
 
 현재 웹상에서 주력으로 사용되는 JSON도 여러 장비들이 네트워크 통신을 위해 만들어진 직렬화 포맷중의 한 종류라고 볼 수 있다.
 
-이번 글은 자바에서 제공하는 Native한 직렬화 방식에 대해서 알아본다.
+이번 글은 자바에서 기본적으로 제공하는 JDK 직렬화 방식에 대해서 알아본다.
 
-그리고 자바 직렬화 사용시 주의해야할 점에 대해서 정리해본다.
-
-> 왜 자바 직렬화를 사용하지 말라는 것인지도 알아보자...
+그리고 자바 직렬화 사용시 주의해야할 점과 왜 사용을 추천하지 않는지 정리해본다.
 
 <br>
 
@@ -36,7 +34,7 @@
 
 직렬화/역직렬화 프로세스는 독립적으로 실행되어야한다.
 
-즉, A에서 직렬화한 내용은 다른 B에서 역직렬화할 수 있어야한다. 
+즉, A 자바 시스템에서 직렬화한 내용은 다른 B 자바 시스템에서 역직렬화할 수 있어야한다. 
 
 자바 직렬화는 이를 지원하며, 대신 직렬화/역직렬화 대상 클래스 `Serializable` 인터페이스를 구현해야한다.
 
@@ -164,6 +162,7 @@ public class Person implements Serializable {
     private Address address;
 }
 
+// Address는 Person에 의해 참조되지만 Serializable을 구현하지 않고있다.
 @Getter
 @AllArgsConstructor
 public class Address {
@@ -187,7 +186,11 @@ void whenSerializing_thenThrowNotSerializableException() throws IOException {
             .isInstanceOf(NotSerializableException.class);
 }
 ```
-만약 참조하는 객체들이 `Serializable`를 구현하고있지 않으면, 위와 같이 `NotSerializableException` 예외가 발생한다.
+위 코드에서 `Address`는 `Person`에 의해 참조되지만 `Serializable`을 구현하지 않고있다.
+
+그래서 테스트코드 실행시 `NotSerializableException`가 던져진다.
+
+정리하면, **만약 참조하는 객체들이 `Serializable`를 구현하고있지 않으면, 위와 같이 `NotSerializableException` 예외가 발생한다.**
 
 이는 Collection의 요소도 포함이다. Collection의 요소도 모두 `Serializable`을 구현해줘야한다.
 
@@ -197,7 +200,9 @@ void whenSerializing_thenThrowNotSerializableException() throws IOException {
 
 `Serializable`를 구현하는 클래스를 상속하는 하위 클래스도 자동으로 모두 `Serializable`를 구현하게된다.
 
-**자동으로 모두 구현하게되므로, 이를 인지하고있어야한다.**
+이는 모든 하위 클래스도 `Serializable`로부터 자유로울 수 없으며, 자바 직렬화 사용시 주의해야할 점을 모두 주의해줘야한다는 것이다.
+
+**즉, 하위 클래스도 모두 `Serializable`이 자동으로 모두 구현하게되므로, 이를 인지하고있어야한다.**
 
 <br>
 
@@ -208,10 +213,10 @@ void whenSerializing_thenThrowNotSerializableException() throws IOException {
 > 직렬화한 데이터 스트림을 Base64로 인코딩후 디코딩한 결과
 
 ```text
-�sr�/ex03_serializable_inheritance.SoftwareDeveloper=	n;�L�languaget�Ljava/lang/String;xr�$ex03_serializable_inheritance.Person}f=�I�ageL�nameq�~�xp���t�binghet�java
+�sr�/com.binghe.ex05.SoftwareDeveloper=	n;�L�languaget�Ljava/lang/String;xr�$com.binghe.ex05.Person}f=�I�ageL�nameq�~�xp���t�binghet�java
 ```
 
-위와 같이 `String`, `Person`등등의 메타 정보를 모두 같이 저장한다.
+위와 같이 `String`, `com.binghe.ex05.Person`등등의 메타 정보를 모두 같이 저장한다.
 
 <br>
 
@@ -260,11 +265,11 @@ public class Address implements Serializable {
 �sr�"com.binghe.ex05.Person��������I�ageL�addresst�%Lcom.binghe.ex05/Address;L�namet�Ljava/lang/String;xp���sr�#com.binghe.ex05.AddressJt̗$�L�addressq�~�xpt�seoult�binghe
 ```
 
-이때 `Address`의 패키지 위치가 변경해본다.
+이때 `Address`의 패키지 위치를 변경해본다.
 
 `com.binghe.ex05` -> `com.binghe.ex05.address`
 
-그리고 위에서 직렬화한 데이터 스트림을 역직렬화해보면 아래와 같이 `ClassNotFoundException`가 발생한다.
+그리고 위에서 직렬화한 데이터 스트림을 역직렬화해보면 `ClassNotFoundException`가 발생한다.
 
 **직렬화한 결과에서 역직렬화시 `com.binghe.ex05.Address`를 찾는데, `Address`는 `com.binghe.ex05.address.Address`로 패키지가 변경되었기때문에 클래스를 찾을 수 없다는 예외가 발생하는 것이다.**
 
@@ -330,7 +335,7 @@ rO0ABXNyACRleDA0X3NlcmlhbGl6YXRpb25fdmVyc2lvblVJRC5QZXJzb26/7herOgpoOAIAAkkAA2Fn
 
 이 문자열을 바로 역직렬화하면 `Person`으로 잘 변환된다. (물론 테스트할 때에 반드시 패키지도 동일해야한다.)
 
-그렇다면 `Person` 클래스의 구조 변경하고 직렬화하면 어떻게될까?
+그렇다면 `Person` 클래스의 구조를 변경하고 직렬화하면 어떻게될까? (ex. 멤버변수 추가)
 
 > Person.java
 
@@ -382,7 +387,9 @@ java.io.InvalidClassException: ex04_serialization_versionUID.Person; local class
 
 하지만 예외가 발생한다.. 예외를 잘 읽어보면 `Person`의 `serialVersionUID`가 일치하지않아서 발생한 것을 알 수 있다.
 
-**여기서 알 수 있는 것은 자바는 객체를 직렬화할 때 `serialVersionUID`을 생성하고, 역직렬화할 때의 생성한 `serialVersionUID`와 같이않으면 `InvalidClassException`를 던진다는 것이다.**
+**여기서 알 수 있는 것은 자바는 객체를 직렬화할 때 `serialVersionUID`을 생성하고, 역직렬화할 때의 생성한 `serialVersionUID`와 같지않으면 `InvalidClassException`를 던진다는 것이다.**
+
+> 직렬화할 때의 클래스 버전과 역직렬화할 때의 클래스 버전이 서로 다르면 예외가 발생한다는 의미.
 
 <br>
 
@@ -402,6 +409,7 @@ java.io.InvalidClassException: ex04_serialization_versionUID.Person; local class
 ```java
 @Getter
 public class Person implements Serializable {
+    // SUID 값 명시.
     private static final long serialVersionUID = 1L;
 
     private String name;
@@ -439,7 +447,7 @@ public class Person implements Serializable {
 
 <br>
 
-그래서 몇몇 자료를 참고하여 필자 생각에 왜 추천하지않는지 정리해보았다.
+그래서 필자는 몇몇 자료를 참조하고 사용해보면서 JDK 직렬화 추천하지 않는 이유를 정리해보았다.
 
 1. 버저닝 이슈
    * [사용시 주의 사항](#2-3-역직렬화시-클래스-구조-변경-문제-serial-version-uid)에서 얘기했듯이, 직렬화할 때와 역직렬화할 때의 클래스 버저닝이 다르면 예외가 발생한다.
@@ -450,7 +458,7 @@ public class Person implements Serializable {
    * `Serializable`을 구현한 클래스만 직렬화/역직렬화 될 수 있다.
    * 문제는 다른 객체를 참조하고있는 클래스가 직렬화/역직렬화하려면 참조하는 객체도 모두 `Serializable`을 구현해야한다는 것이다. (상속도 동일)
    * 이는 [사용시 주의 사항](#2-1-상속과-조합)에도 정리한 내용이기도한데, 이 특징으로인해 복잡한 객체 그래프를 가진경우 `Serializable` 지옥에 빠질 수 있다.
-   * 또한, **필자 생각엔 Serializable에 의존하는 코드 자체가 POJO가 아니라고 생각든다. 비침투성을 지향하는 시스템이라면 사용을 지양해야한다.**
+   * 또한, **필자 생각엔 Serializable에 의존하는 코드 자체가 JDK의 기본 스펙임에도 POJO의 비침투성을 깨트리는게 아닌가 생각든다.**
 3. 용량 문제
    * [사용시 주의 사항](#2-2-역직렬화시-멤버-변수-타입이-변경되거나-패키지-위치가-변경되면-예외가-발생한다)에서 알 수 있듯이, 자바 직렬화는 직렬화시 멤버변수의 패키지와 타입을 메타 정보로 저장한다.
    * 이는 캐시 서버와 같은 곳에 사용된다면 용량 문제로 이어질 수 있다. 항상 조심해서 사용해야한다.
