@@ -33,9 +33,8 @@
   * [Spring Boot 필터 설정](./Spring/SpringBoot/SpringBootFilter.md)
 * Spring Cache
   * [Spring Cache Core (with 학습테스트)](./Spring/Cache/spring%20boot%20cache%20core/spring%20boot%20cache%20core.md)
-  * Spring Cache 적용기 - Bad Practice
-    * [Spring Cache With Redis - 적용기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20적용기.md)
-    * [Spring Cache With Redis - 성능개선기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20성능%20개선기.md)
+  * [Spring Cache With Redis - 적용기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20적용기.md)
+  * [Spring Cache With Redis - 성능개선기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20성능%20개선기.md)
 * Spring Data Redis
   * [Jedis vs Lettuce - 캐싱 예시](./Spring/Redis/jedis%20vs%20lettuce%20-%20캐싱/jedis%20vs%20lettuce%20-%20캐싱.md)
   * [Spring으로 Redis를 사용하기 전 보면 좋은 글 (Redis Client, RedisTemplate, RedisRepository)](./Spring/Redis/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림.md)
@@ -184,6 +183,7 @@
   * [JVM 구조](./JAVA/JVM/jvm_structure.md)
   * [ClassLoader](./JAVA/JVM/classloader.md)
   * [reflection](./JAVA/JVM/reflection.md)
+  * [자바 직렬화 이해하기 - 사용시 주의할 점과 사용을 추천하지 않는 이유](./JAVA/serialization_deserialization/java_serialization/java_serialization.md)
 * [JCF (Java Collections Framework)](./JAVA/JCF/README.md)
 * [Thread & Thread Pool](./JAVA/Thread%26ThreadPool/README.md)
   * [Thread 기본 개념 (Thread란 무엇인가)](./JAVA/Thread%26ThreadPool/Thread%20%EA%B0%9C%EB%85%90.md)
