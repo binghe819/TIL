@@ -36,6 +36,7 @@
   * [Spring Cache With Redis - 적용기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20적용기.md)
   * [Spring Cache With Redis - 성능개선기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20성능%20개선기.md)
 * Spring Data Redis
+  * [Spring RedisTemplate Serializer 종류와 사용시 주의할 점](./Spring/Redis/redis%20serializer/serializer.md)
   * [Jedis vs Lettuce - 캐싱 예시](./Spring/Redis/jedis%20vs%20lettuce%20-%20캐싱/jedis%20vs%20lettuce%20-%20캐싱.md)
   * [Spring으로 Redis를 사용하기 전 보면 좋은 글 (Redis Client, RedisTemplate, RedisRepository)](./Spring/Redis/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림.md)
   * [내장 Redis 서버 - Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
