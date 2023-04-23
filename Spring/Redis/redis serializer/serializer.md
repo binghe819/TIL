@@ -524,7 +524,7 @@ RedisSerializer는 총 6개 지원한다. 그중 가장 많이 사용되는 4가
 | Serializer | 메타정보 버저닝 이슈 | `serialVersionUID` 버저닝 이슈 | 용량 이슈 | 호환성 이슈 |
 | --- | --- | --- | --- | --- |
 | `JdkSerializationRedisSerializer` | O | O | O | O |
-| `GenericJackson2JsonRedisSerializer` | O | X | O | X |
+| `GenericJackson2JsonRedisSerializer` | O | X | O | O |
 | `Jackson2JsonRedisSerializer` | X | X | X | X |
 | `StringRedisSerializer` | X | X | X | X |
 
