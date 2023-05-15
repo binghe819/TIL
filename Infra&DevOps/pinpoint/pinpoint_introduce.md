@@ -161,7 +161,7 @@ Pinpoint는 Agent로부터 받은 데이터를 Collector가 HBase에 저장한�
 
 Pinpoint를 설치하기위해선 호환되는 HBase를 다운해야한다.
 
-<p align="center"><img src="./image/hbase_compatibility.png"><br>출처: https://github.com/pinpoint-apm/pinpoint </p>
+<p align="center"><img src="./image/hbase_compatibility.png" width="400"><br>출처: https://github.com/pinpoint-apm/pinpoint </p>
 
 이번 글에서 설치하는 Pinpoint는 [2.3.3](https://github.com/pinpoint-apm/pinpoint/releases/tag/v2.3.3)이므로 가능한 Yes가 명시된 `HBase 1.4.x` 설치한다.
 
