@@ -203,7 +203,7 @@ Pinpoint를 설치하기위해선 호환되는 HBase를 다운해야한다.
 
 그러므로 꼭 빌드를 하지 않아도된다. 실제 공식문서에도 직접 빌드하는 것보단 빌드된 파일 사용을 추천한다.
 
-예를들어, 2.5.1의 release된 빌드 파일은 [여기](https://github.com/pinpoint-apm/pinpoint/releases/tag/v2.5.1)에서 확인할 수 있다.
+예를들어, 2.3.3의 release된 빌드 파일은 [여기](https://github.com/pinpoint-apm/pinpoint/releases/tag/v2.3.3)에서 확인할 수 있다.
 
 만약 직접 빌드해야될 상황이라면 [공식문서](https://pinpoint-apm.gitbook.io/pinpoint/getting-started/installation#2.-building-pinpoint)를 참고하여 빌드해주면된다.
 
@@ -222,7 +222,7 @@ Collector는 Agent로부터 받은 정보를 HBase에 적재하는 역할을한�
 💁‍♂️ **빌드된 JAR 다운 및 실행**
 
 ```bash
-# 빌드된 Pinpoint-Collector 2.5.1 jar 파일 다운
+# 빌드된 Pinpoint-Collector 2.3.3 jar 파일 다운
 $ wget https://github.com/pinpoint-apm/pinpoint/releases/download/v2.3.3/pinpoint-collector-boot-2.3.3.jar
 
 # 실행권한 부여
