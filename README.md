@@ -191,6 +191,7 @@
   * [ClassLoader](./JAVA/JVM/classloader.md)
   * [reflection](./JAVA/JVM/reflection.md)
   * [자바 직렬화 이해하기 - 사용시 주의할 점과 사용을 추천하지 않는 이유](./JAVA/serialization_deserialization/java_serialization/java_serialization.md)
+  * [가비지 컬렉션 이해하기 - 가비지 컬렉션이 무엇이고 어떻게 동작하는가?](./JAVA/JVM/garbage_collection_how_to_works.md)
 * [JCF (Java Collections Framework)](./JAVA/JCF/README.md)
 * [Thread & Thread Pool](./JAVA/Thread%26ThreadPool/README.md)
   * [Thread 기본 개념 (Thread란 무엇인가)](./JAVA/Thread%26ThreadPool/Thread%20%EA%B0%9C%EB%85%90.md)
