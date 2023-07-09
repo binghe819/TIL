@@ -115,6 +115,7 @@ static String firstLineOfFile(String path) throws IOException {
   * 또한 숨겨진 예외도 모두 스택 추적 내역에 '숨겨졌다(suppressed)'라는 꼬리표를 달고 출력된다.
 
 * 또한, 보통의 try - finally처럼 `catch` 절을 쓸 수 있다.
+  * `cath`문안에 각 예외별 로그를 남기면 무시되는 예외없이 모두 추적할 수 있다.
 
 <br>
 
