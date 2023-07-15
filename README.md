@@ -47,7 +47,7 @@
 * DB
   * [Spring Boot + JPA기반의 Replication 구현 (Multi DataSource)](./Spring/DB/Replication/Replication%20With%20JPA.md)
 * Test
-  * [DB 테스트 격리 (DatabaseCleaner를 곁들인)](./Spring/Test/DB%20테스트%20격리/DB%20테스트%20격리.md)
+  * [Spring DB 테스트 격리 (DatabaseCleaner를 곁들인)](./Spring/Test/DB%20테스트%20격리/DB%20테스트%20격리.md)
 * Event
   * [Spring Boot기반 Event 기초](./Spring/Event/Spring%20Event%20Basic/SpringEventBasic.md)
 * Spring Security
