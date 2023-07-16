@@ -23,7 +23,7 @@
   * [아이템 11. equals를 재정의하려거든 hashcode도 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item11.md)
   * [아이템 12. toString을 항상 재정의하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item12.md)
   * [아이템 13. clone 재정의는 주의해서 진행하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item13.md)
-  * [아이템 14. 아이템 14. Comparable을 구현할지 고려하라 - 미완성](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item14.md)
+  * [아이템 14. 아이템 14. Comparable을 구현할지 고려하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item14.md)
 * 4장 클래스와 인터페이스
   * [아이템 15. 클래스와 멤버의 접근 권한을 최소화하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item15.md)
   * [아이템 16. public 클래스에서는 public 필드가 아닌 접근자 메서드를 사용하라](https://github.com/binghe819/TIL/blob/master/JAVA/Effective%20Java/item16.md)

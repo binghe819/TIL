@@ -36,7 +36,9 @@ public interface Comparable<T> {
 **`Comparable`은 단순 동치성 비교에 더해 순서까지 비교할 수 있으며, 제네릭하다.**
 
 `Comparable`을 구현했다는 것은 그 클래스의 인스턴스들에는 **자연적인 순서**가 있음을 뜻한다.
+
 <br>
+
 ### Comparable 예시
 ```java
 // 배열 정렬
@@ -47,13 +49,14 @@ Set<String> s = new TreeSet<>();
 Collections.addAll(s, args);
 System.out.println(s);
 ```
-* 이외에도 자바 플랫폼 라이브러리의 모든 값 클래스와 열거 타입은 `Comparable`이 구현되어있다.
+* 이외에도 자바 플랫폼 라이브러리 대부분의 값 클래스와 열거 타입은 `Comparable`이 구현되어있다.
 
 <br>
 
 ## Comparable 규약
 
-Comparable의 규약은 총 4가지이다.
+`Comparable`은 기본적으로 객체의 순서를 비교하여 정렬할 때 사용된다. 그리고 객체의 순서를 비교하는 방식은 아래와 같다.
+
 * 이 객체와 주어진 객체의 순서를 비교한다.
   * 이 객체가 주어진 객체보다 작으면 : 음수
   * 이 객체가 주어진 객체와 같으면 : 0
@@ -64,7 +67,7 @@ Comparable의 규약은 총 4가지이다.
 
 ### 반사성, 대칭성, 추이성
 
-규약중 3가지는 `equals`의 반사성, 대칭성, 추이성과 같다. 
+규약중 3가지는 `equals`의 반사성, 대칭성, 추이성과 비슷하다.
 
 그러므로 기존 클래스를 확장한 구체 클래스에서 새로운 변수를 추가했을때의 주의사항도 [아이템 10](./item10.me)의 `equals`와 같다.
 
@@ -75,7 +78,9 @@ Comparable의 규약은 총 4가지이다.
 * 대칭성 : 세 객체 참조의 다음과 같은 결과가 나와야 한다.
   * 첫 번째 객체가 두 번째 객체보다 크고, 두 번째가 세 번째보다 크면, 첫 번째는 세 번째보다 커야한다.
 * 추이성 : 크기가 같은 객체들끼리는 어떤 객체와 비교하더라도 항상 같아야 한다.
-  * 첫 번째 객체와 두 번째 객체가 같고, 두 번째 객체와 세 번째 객체가 같다면, 첫 번째와 세 번째 객체가 같아야한다.
+  * 첫 번째 객체와 두 번째 객체가 같고, 두 번째 객체와 세 번째 객체가 같다면, 첫 번째와 세 번째 객체가 같아야한다. (크다, 작다 모두 포함)
+
+**`equals`와 다른 점이라면, `compareTo`는 타입이 다른 객체를 신경 쓰지 않는다는 것이다. 만약 서로 다른 타입이면 `ClassCastException`을 던지면 되기때문이다.**
 
 <br>
 
@@ -90,6 +95,8 @@ Comparable의 규약은 총 4가지이다.
 <br>
 
 ## compareTo 작성 요령
+
+<br>
 
 ### compareTo는 컴파일타임에 타입이 정해진다
 `compareTo`의 작성 요령은 `equals`와 비슷하다.
@@ -147,6 +154,8 @@ public int compareTo(PhoneNumber pn) {
 
 **이 방식은 간결하지만 약간의 성능 저하가 뒤따른다고 한다. (실제 저자는 10% 정도 느려졌다고 한다.)**
 
+<br>
+
 ### 숫자 타입
 
 ```java
@@ -160,6 +169,8 @@ public int compareTo(PhoneNumber pn) {
 }
 ```
 `comparingInt`이외에도 `long`, `double`등 타입마다 모두 구현되어있다.
+
+<br>
 
 ### 객체 참조
 객체 참조용 비교자 생성 메서드도 준비되어 있다.
@@ -190,10 +201,14 @@ static Comparator<Object> hashCodeOrder = new Comparator<>() {
 };
 ```
 
+<br>
+
 ```java
 static Comparator<Object> hashCodeOrder = 
     Comparator.comparingInt(o -> o.hashCode());
 ```
+
+<br>
 
 ## 결론
 * 순서를 고혀해야 하는 값 클래스를 작성한다면 꼭 `Comparable`를 구현하자.
