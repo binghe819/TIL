@@ -30,7 +30,7 @@ SNS는 특정 주제에 대한 알림을 게시할 수 있는 pub-sub 메시징 
 
 AWS에서도 추천하는 조합이므로 내구성과 확장성면에서는 충분히 믿고 사용할만하다고 판단된다.
 
-<p align="center"><img src="./image/sns_sqs_structure.png"><br>SNS와 SQS 구조.<br>SNS는 SQS말고도 다양한 Subscription을 지원한다.</p>
+<p align="center"><img src="./image/sns_sqs_structure.png" width="700"><br>SNS와 SQS 구조.<br>SNS는 SQS말고도 다양한 Subscription을 지원한다.</p>
 
 이번 글은 Spring Boot 환경에서 AWS SNS와 SQS를 이용한 이벤트 처리 과정을 직접 구현해본다.
 
@@ -367,7 +367,7 @@ public class TestController {
 
 API를 호출해보면 아래와 같이 SQS에 메시지가 쌓이는 것을 볼 수 있다.
 
-<p align="center"><img src="./image/sqs_event_example.png"> </p>
+<p align="center"><img src="./image/sqs_event_example.png" width="500"> </p>
 
 
 <br>
@@ -409,7 +409,7 @@ public class AwsSqsConsumer {
 
 메세지를 Polling하고 여러가지 처리를 진행한후에 메시지를 어떻게 언제 삭제할지를 설정할 수 있다.
 
-<p align="center"><img src="./image/sqs_delition_policy.png"> </p>
+<p align="center"><img src="./image/sqs_delition_policy.png" width="600"> </p>
 
 필자는 `ON_SUCCESS`만 사용해보긴했으나, 로직에 따라 다양하게 설정해서 사용할 수 있을 듯 하다.
 
@@ -502,7 +502,7 @@ SNS와 SQS에 접근하는 Publisher와 Consumer 서버에 모두 IAM를 설정�
       "Sid": "__owner_statement",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::385423560848:root"
+        "AWS": "arn:aws:iam::{source owner id}:root"
       },
       "Action": "SQS:*",
       "Resource": "arn:aws:sqs:ap-northeast-2:{source owner id}:binghe-test"
@@ -537,7 +537,7 @@ SNS는 SQS로 메시지를 전달할 때 아래와 같이 여러가지 내용을
   "Type" : "Notification",
   "MessageId" : "113432bb-e413-5c3b-8281-6f876adba7e4",
   "TopicArn" : "arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns",
-  "Message" : "{\"id\":\"qwerqwer\",\"message\":\"test message 5\"}",
+  "Message" : "{\"id\":\"qwerqwer\",\"message\":\"test message 5\"}", // 메시지 내용
   "Timestamp" : "2023-07-27T15:26:00.012Z",
   "SignatureVersion" : "1",
   "Signature" : "xxxx",
@@ -553,7 +553,7 @@ SNS는 SQS로 메시지를 전달할 때 아래와 같이 여러가지 내용을
 
 그러므로 SNS -> SQS 연동하는 설정에서 아래와 같이 `Enable Raw Message Delivery` 설정을 체크해줘야 제대로 역직렬화할 수 있다.
 
-<p align="center"><img src="./image/raw_message_setting.png"> </p>
+<p align="center"><img src="./image/raw_message_setting.png" width="600"> </p>
 
 <br>
 
