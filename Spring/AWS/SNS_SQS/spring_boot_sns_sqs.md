@@ -13,6 +13,9 @@
   - [2-3 SNS, SQS properties](#2-3-sns-sqs-properties)
 - [3 SNS 이벤트 발행](#3-sns-이벤트-발행)
 - [4 SQS 이벤트 수신](#4-sqs-이벤트-수신)
+- [5 자주 실수하는 부분](#5-자주-실수하는-부분)
+  - [5-1 IAM, Access Policy 설정](#5-1-iam-access-policy-설정)
+  - [5-2 Enable Raw Message Delivery](#5-2-enable-raw-message-delivery)
 - [참고](#참고)
 
 <br>
@@ -409,6 +412,148 @@ public class AwsSqsConsumer {
 <p align="center"><img src="./image/sqs_delition_policy.png"> </p>
 
 필자는 `ON_SUCCESS`만 사용해보긴했으나, 로직에 따라 다양하게 설정해서 사용할 수 있을 듯 하다.
+
+<br>
+
+# 5 자주 실수하는 부분
+
+구현하면서 자주 실수하는 부분을 정리한다.
+
+<br>
+
+## 5-1 IAM, Access Policy 설정
+
+Spring Boot에서 SNS로 이벤트를 Publish할 때 인증 관련 에러가 발생한다면, SNS 액세스 처리 방식을 살펴봐야한다.
+
+SNS에선 액세스 증명할 때 여러가지 방식을 제공한다.
+
+참고: https://docs.aws.amazon.com/ko_kr/sns/latest/dg/sns-using-identity-based-policies.html
+
+<br>
+
+필자는 모두 AWS 환경에서 IAM 기반으로 액세스 처리를 했으므로, 이와 관련된 내용만 간단히 정리해보면..
+
+* EC2에서 SNS에 이벤트를 전송하려면 IAM 설정.
+* SNS에 메시지를 Publish하는 EC2는 IAM에 SNS 관련 메시지 Publish 권한이 있어야하며,
+* SQS로부터 메시지를 Consume하는 EC2는 IAM에 메시지 Consume 권한이 있어야한다.
+
+<br>
+
+💁‍♂️ **Publisher, Consumer IAM 설정**
+
+SNS와 SQS에 접근하는 Publisher와 Consumer 서버에 모두 IAM를 설정해준다.
+
+필자는 아래와 같이 같은 계정내의 SNS와 SQS의 풀 액세스 권한을 부여한 IAM Role을 설정해주었다.
+
+<p align="center"><img src="./image/iam_role.png"> </p>
+
+> IAM과 관련된 자세한 내용은 [IAM 개념](../../../Infra&DevOps/AWS/IAM/IAM.md)를 참고.
+
+<br>
+
+💁‍♂️ **SNS Access Policy 설정**
+
+```json
+{
+  "Version": "2008-10-17",
+  "Id": "__default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "__default_statement_ID",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": [
+        "SNS:GetTopicAttributes",
+        "SNS:SetTopicAttributes",
+        "SNS:AddPermission",
+        "SNS:RemovePermission",
+        "SNS:DeleteTopic",
+        "SNS:Subscribe",
+        "SNS:ListSubscriptionsByTopic",
+        "SNS:Publish",
+        "SNS:Receive"
+      ],
+      "Resource": "arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceOwner": "{source owner id}"
+        }
+      }
+    }
+  ]
+}
+```
+그리고 SNS 생성할 때난 생성하고나서 Acces Policy를 설정할 수 있는데, 위와 같이 같은 계정내에서의 액세스 권한을 모두 등록해준다.
+
+<br>
+
+💁‍♂️ **SQS Access Policy 설정**
+
+마지막으로 SNS -> SQS로 메시지를 전달할 수 있게, SQS에 SNS로부터의 Access Policy를 추가해준다.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Id": "__default_policy_ID",
+  "Statement": [
+    {
+      "Sid": "__owner_statement",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::385423560848:root"
+      },
+      "Action": "SQS:*",
+      "Resource": "arn:aws:sqs:ap-northeast-2:{source owner id}:binghe-test"
+    },
+    {
+      "Sid": "topic-subscription-arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "SQS:SendMessage",
+      "Resource": "arn:aws:sqs:ap-northeast-2:{source owner id}:binghe-test",
+      "Condition": {
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns"
+        }
+      }
+    }
+  ]
+}
+```
+
+<br>
+
+## 5-2 Enable Raw Message Delivery
+SNS는 SQS로 메시지를 전달할 때 아래와 같이 여러가지 내용을 Message Body에 추가하여 전달한다.
+
+> Raw Message 설정을 하지 않는 경우
+
+```json
+{
+  "Type" : "Notification",
+  "MessageId" : "113432bb-e413-5c3b-8281-6f876adba7e4",
+  "TopicArn" : "arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns",
+  "Message" : "{\"id\":\"qwerqwer\",\"message\":\"test message 5\"}",
+  "Timestamp" : "2023-07-27T15:26:00.012Z",
+  "SignatureVersion" : "1",
+  "Signature" : "xxxx",
+  "SigningCertURL" : "https://sns.ap-northeast-2.amazonaws.com/SimpleNotificationService-xxxxxxxxxxxxx.pem",
+  "UnsubscribeURL" : "https://sns.ap-northeast-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-northeast-2:{source owner id}:binghe-test-sns:xxxxxxxxxx",
+  "MessageAttributes" : {
+    "contentType" : {"Type":"String","Value":"application/json;charset=UTF-8"}
+  }
+}
+```
+
+이렇게되면 Consumer에서 Consume할 때 Jackson이 제대로 역직렬화하지못해 모든 값에 null이 들어갈 수 있다.
+
+그러므로 SNS -> SQS 연동하는 설정에서 아래와 같이 `Enable Raw Message Delivery` 설정을 체크해줘야 제대로 역직렬화할 수 있다.
+
+<p align="center"><img src="./image/raw_message_setting.png"> </p>
 
 <br>
 
