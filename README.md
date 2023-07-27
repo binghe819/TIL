@@ -74,6 +74,8 @@
     * [서킷 브레이커 개념과 동작 원리](./Spring/MSA/circuitbreaker-개념/circuitbreaker-개념.md)
     * [resilience4j를 이용한 서킷 브레이커]()
     * [Spring기반의 resilience4j 서킷 브레이커]()
+* AWS
+  * [Spring Boot 환경 AWS SNS와 SQS를 이용한 이벤트 처리](./Spring/AWS/SNS_SQS/spring_boot_sns_sqs.md)
 * 커스텀
   * [프록시를 이용한 Http Method 포함 인터셉터 설정기](./Spring/MVC/프록시를%20이용한%20Http%20Method%20포함%20인터셉터%20설정기.md)
   * [다이내믹 프록시를 이용한 QueryCounter 적용기](./Spring/기타/QueryCounter/다이내믹%20프록시를%20이용한%20QueryCounter%20적용기.md)
