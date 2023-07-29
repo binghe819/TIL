@@ -115,6 +115,7 @@
   * [IAM 개념과 AWS 계정 안전하게 사용하는 모범 사례](./Infra%26DevOps/AWS/IAM/IAM.md)
   * VPC
     * [VPC 이해하기 시리즈의 첫번째 - 일반적인 네트워크 통신 방식](./Infra%26DevOps/AWS/VPC/VPC_1.md)
+    * [VPC 이해하기 시리즈의 두번째 - 실습을 통한 VPC 개념 이해하기](./Infra&DevOps/AWS/VPC/VPC_2.md)
   * SQS
     * [SQS 개념과 동작 원리 이해하기](./Infra%26DevOps/AWS/SQS/SQS.md)
 * CI/CD
