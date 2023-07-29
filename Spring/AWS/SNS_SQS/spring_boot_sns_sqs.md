@@ -43,6 +43,8 @@ AWS에서도 추천하는 조합이므로 내구성과 확장성면에서는 충
 > 이에 대한 자세한 내용은 [AWS SNS개념과 SQS 연동](), [AWS SQS](../../../Infra&DevOps/AWS/SQS/SQS.md)을 참고.
 >
 > 또한, EC2에 Boot를 띄워서 실습한다. 외부 서버에서의 이벤트 발행 및 소비는 다른 글을 참고하길 바랍니다.
+> 
+> 이번 글에서 실습한 모든 코드는 [Github](https://github.com/binghe819/learning-sandbox/tree/master/spring-boot-aws-sns-sqs)을 참고.
 
 <br>
 

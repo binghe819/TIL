@@ -118,6 +118,7 @@
     * [VPC 이해하기 시리즈의 두번째 - 실습을 통한 VPC 개념 이해하기](./Infra&DevOps/AWS/VPC/VPC_2.md)
   * SQS
     * [SQS 개념과 동작 원리 이해하기](./Infra%26DevOps/AWS/SQS/SQS.md)
+    * [Spring Boot 환경 AWS SNS와 SQS를 이용한 이벤트 처리](./Spring/AWS/SNS_SQS/spring_boot_sns_sqs.md)
 * CI/CD
   * [CI/CD란?](./Infra&DevOps/CI:CD/CI:CD란/CI:CD란.md)
   * Jenkins
