@@ -476,6 +476,8 @@ AWS는 이러한 제한을 보안 그룹 (Security Group, SG)라는 기능으로
 
 이 방화벽은 인바운드 규칙과 아웃바운드 규칙을 설정하여 여러 가지 트래픽을 제어할 수 있다.
 
+<p align="center"><img src="./image/security-diagram.png"><br>보안 그룹 예시<br>출처: AWS Doc </p>
+
 <br>
 
 💁‍♂️ **IP주소와 포트 번호로 제어한다.**
