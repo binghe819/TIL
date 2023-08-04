@@ -95,9 +95,10 @@
 <br>
 
 ## 빌드
-* [Gradle이란 무엇인가?](./Build/Gradle%20기본/Gradle이란%20무엇인가.md)
-* [Gradle 시작하기](./Build/Gradle%20기본/Gradle%20시작하기.md)
-* 멀티 모듈
+* Gradle 이해하기
+  * [Gradle 이해하기 시리즈의 첫번째 - Gradle이란 무엇인가?](./Gradle_이해하기_1_Gradle이란_무엇인가.md)
+  * [Gradle 이해하기 시리즈의 두번째 - Gradle 시작하기](./Gradle_이해하기_2_Gradle_시작하기.md)
+* Gradle 멀티 모듈
   * [멀티 모듈 적용하기 with Gradle, Spring](./Build/멀티%20모듈/멀티%20모듈%20적용%20with%20Gradle.md)
 
 <br>

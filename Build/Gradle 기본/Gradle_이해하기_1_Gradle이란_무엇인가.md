@@ -3,7 +3,7 @@
 <br>
 
 - [목차](#목차)
-- [개요](#개요)
+- [Gradle 이해하기 1 - Gradle이란 무엇인가](#gradle-이해하기-1---gradle이란-무엇인가)
 - [Gradle란?](#gradle란)
   - [Gradle 소개](#gradle-소개)
   - [Gradle 특징](#gradle-특징)
@@ -17,7 +17,7 @@
 
 <br>
 
-# 개요
+# Gradle 이해하기 1 - Gradle이란 무엇인가
 필자의 주변 개발자들은 자바 혹은 스프링을 사용하면 빌드 툴로 Gradle을 많이 사용한다.
 
 필자 또한 프로젝트를 진행하며 Gradle을 디폴트로 사용한다.
@@ -26,7 +26,9 @@
 
 그러다보니 다른 팀원이 작성하거나 수정한 Gradle을 이해하기 힘들었다..
 
-이번 글은 Gradle이란 무엇이며, 무엇을 추구하는지 정리해보고자 한다.
+이번 글부터 Gradle이란 무엇이고, 어떻게 동작하는지 시리즈 글로 작성해보려고한다.
+
+이번 글은 첫번째인 Gradle의 전체적인 개념과 특징에 대해서 살펴본다. Gradle이 무엇이고, 어떤 기능을 제공하는지 큰그림으로 살펴본다.
 
 > 이 글은 [Gradle docs - What is Gradle?](https://docs.gradle.org/current/userguide/what_is_gradle.html)을 번역하고 살을 조금 붙인 글입니다.
 

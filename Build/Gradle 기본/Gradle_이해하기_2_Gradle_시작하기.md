@@ -3,18 +3,18 @@
 <br>
 
 - [목차](#목차)
-- [들어가며](#들어가며)
-- [설치 및 실행](#설치-및-실행)
-- [Gradle Wrapper](#gradle-wrapper)
+- [Gradle 이해하기 시리즈 두번째 - Gradle 시작하기](#gradle-이해하기-시리즈-두번째---gradle-시작하기)
+- [1-1 설치 및 실행](#1-1-설치-및-실행)
+- [1-2 Gradle Wrapper](#1-2-gradle-wrapper)
   - [Gradle Wrapper란?](#gradle-wrapper란)
   - [어떻게 동작하는가](#어떻게-동작하는가)
-- [Hello World를 통해 보는 Gradle 빌드 구조](#hello-world를-통해-보는-gradle-빌드-구조)
+- [1-3 Hello World를 통해 보는 Gradle 빌드 구조](#1-3-hello-world를-통해-보는-gradle-빌드-구조)
   - [Gradle 빌드 구조](#gradle-빌드-구조)
 - [마치며](#마치며)
 
 <br>
 
-# 들어가며
+# Gradle 이해하기 시리즈 두번째 - Gradle 시작하기
 이번 글은 `Gradle 시작하기`의 주제로 간단히 어떻게 Gradle을 설치 및 시작하는지에 대해서 다룬다.
 
 이 글을 읽기 전 [Gradle이란 무엇인가?](./Gradle이란%20무엇인가?.md)를 먼저 보는 것을 추천한다.
@@ -23,12 +23,12 @@
 
 <br>
 
-# 설치 및 실행
-아마 대부분의 개발자들은(특히, Java나 Spring) **IDE에서 프로젝트를 생성하기때문에 따로 Gradle을 설치하지 않는다.**
+# 1-1 설치 및 실행
+아마 대부분의 개발자들은(특히, Java나 Spring) **IDE를 통해 프로젝트를 생성하기때문에 따로 로컬 컴퓨터에 Gradle을 설치하지 않는다.**
 
 <br>
 
-🤔 어떻게 Gradle을 설치하지 않고도 Gradle을 이용하여 빌드할 수 있을까?
+🤔 **어떻게 Gradle을 설치하지 않고도 Gradle을 이용하여 빌드할 수 있을까?**
 
 * Gradle은 꼭 설치하지 않아도 사용할 수 있는 기능을 제공하기 때문이다.
 * Gradle의 설치는 두 가지로 나눈다.
@@ -43,7 +43,7 @@
 
 <br>
 
-# Gradle Wrapper
+# 1-2 Gradle Wrapper
 빌드 루트에 식별할 수 있는 [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#gradle_wrapper)가 존재한다면 `gradlew`또는 `gradlew.bat`을 실행함으로써 굳이 Gradle을 설치하지 않고도 프로젝트를 빌드할 수 있다.
 
 > 단, Gradle은 JVM위에서 동작하기 때문에 컴퓨터에 JDK 8이상이 설치되어있어야한다.
@@ -86,7 +86,7 @@
 
 <br>
 
-# Hello World를 통해 보는 Gradle 빌드 구조
+# 1-3 Hello World를 통해 보는 Gradle 빌드 구조
 > Gradle Wrapper 방식의 구조라고 보면 된다.
 
 <br>
@@ -282,8 +282,8 @@ BUILD SUCCESSFUL in 978ms
 
 간단히 다뤘지만, 글을 작성하면서 이전엔 몰랐던 내용들을 많이 알 수 있었다.
 
-특히 이전엔 자바 프로젝트에서 소스코드부분(`src`)만 수정하고 다른 부분은 쳐다도 보지않았다. (반성..)
+특히 이전엔 자바 프로젝트에서 소스코드부분(`src`)만 수정하고 다른 부분은 잘 보지않았다. (반성..)
 
 직접 CLI환경에서 Gradle 프로젝트를 생성하고 빌드하는 과정을 통해 각각의 파일들이 무슨 역할하는지를 알게된 것 같다.
 
-다음 글은 [Gradle을 알아가는 과정](https://docs.gradle.org/current/userguide/getting_started.html#authoring_gradle_builds)에 따라 Gradle 스크립트 작성에 대해서 다룬다.
+다음 글은 본격적으로 Gradle이 어떻게 동작하는지에 대해서 살펴본다.
