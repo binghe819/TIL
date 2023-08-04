@@ -1,16 +1,9 @@
 # 목차
 
-Gradle이 어떻게 실행되고 어떤 환경에서 실행되는지 정리.
-
-Gradle Daemon JVM에서 동작한다는게, 그 과정을 정리하자.
-
-* https://blog.gradle.org/how-gradle-works-1
-* https://docs.gradle.org/current/userguide/gradle_daemon.html
-
 <br>
 
 - [목차](#목차)
-- [Gradle 이해하기 1 - Gradle Daemon](#gradle-이해하기-1---gradle-daemon)
+- [Gradle 이해하기 3 - Gradle Daemon](#gradle-이해하기-3---gradle-daemon)
 - [1 로컬 Gradle로 살펴보는 동작방식](#1-로컬-gradle로-살펴보는-동작방식)
   - [1-1 bin/gradle은 일반적인 스크립트를 실행한다](#1-1-bingradle은-일반적인-스크립트를-실행한다)
   - [1-2 Client와 Daemon](#1-2-client와-daemon)
@@ -20,7 +13,7 @@ Gradle Daemon JVM에서 동작한다는게, 그 과정을 정리하자.
 
 <br>
 
-# Gradle 이해하기 1 - Gradle Daemon
+# Gradle 이해하기 3 - Gradle Daemon
 
 Gradle을 실행하면 아래와 같이 Gradle Daemon이라는 프로세스가 JVM위에서 실행되고있는 것을 볼 수 있다.
 
@@ -33,6 +26,13 @@ Gradle을 실행하면 아래와 같이 Gradle Daemon이라는 프로세스가 J
 Gradle은 JVM 위에서 동작하며 Gradle을 처음 JVM에 올리는 초기화에는 꽤나 시간이 소요된다.
 
 그래서 Gradle은 처음 Gradle 실행시 Gradle Daemon을 백그라운드에 일정 시간동안 실행시켜놓음으로써 두번째부터의 Gradle 빌드 시간을 줄여준다.
+
+> 공식 문서에선 Gradle Daemon이 아래 이유들로 인해 build 시간을 줄여준다고 말한다.
+>
+> * caching project information across builds
+> * running in the background so every Gradle build doesn’t have to wait for JVM startup
+> * benefiting from continuous runtime optimization in the JVM
+> * watching the file system to calculate exactly what needs to be rebuilt before you run a build
 
 이번 글은 Gradle Daemon에 대해서 알아보고 Gradle이 어떻게 실행되고있는지 알아본다.
 
@@ -384,6 +384,6 @@ JVM에 해당 프로세스가 실행되면 `gradle/wrapper/gradle-wrapper.proper
 <br>
 
 # 참고
-* docs.gradle.org
+* https://docs.gradle.org/current/userguide/gradle_daemon.html
 * https://blog.gradle.org/how-gradle-works-1
 
