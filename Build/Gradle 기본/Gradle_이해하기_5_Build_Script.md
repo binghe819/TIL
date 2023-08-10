@@ -5,8 +5,8 @@
 - [목차](#목차)
 - [Gradle 이해하기 5 - Build Script](#gradle-이해하기-5---build-script)
 - [1 Groovy DSL 이해하기](#1-groovy-dsl-이해하기)
-  - [1-2 Groovy DSLs과 코틀린 DSLs](#1-2-groovy-dsls과-코틀린-dsls)
-  - [1-3 Domain-Specific Languages](#1-3-domain-specific-languages)
+  - [1-1 Groovy DSLs과 코틀린 DSLs](#1-1-groovy-dsls과-코틀린-dsls)
+  - [1-2 Domain-Specific Languages](#1-2-domain-specific-languages)
     - [Closure/Lambda](#closurelambda)
     - [Chained Method](#chained-method)
 - [2 projects, build scripts, tasks, plugins](#2-projects-build-scripts-tasks-plugins)
@@ -34,7 +34,7 @@
 
 <br>
 
-## 1-2 Groovy DSLs과 코틀린 DSLs
+## 1-1 Groovy DSLs과 코틀린 DSLs
 
 Gradle로 생성된 자바 프로젝트는 아래와 같은 빌드 스크립트를 가진다.
 
@@ -76,7 +76,7 @@ test {
 
 <br>
 
-## 1-3 Domain-Specific Languages
+## 1-2 Domain-Specific Languages
 
 빌드 스크립트는 Groovy나 코틀린 도메인에 특화된 코드를 작성해야한다.
 
@@ -169,15 +169,15 @@ given { } when { } then { }
 
 # 2 projects, build scripts, tasks, plugins
 
-Build Script를 작성할 때 핵심이되는 4가지 개념에 대해서 정리한다.
+Build Script를 작성할 때 핵심이되는 4가지 개념에 대해서 간단히 정리하고 넘어간다.
 
 <br>
 
-💁‍♂️ **build script는 한 줄 한 줄 위에서 아래로 코드가 실행된다.**
+💁‍♂️ **build script는 위에서부터 한 줄 한 줄 아래로 코드가 실행된다.**
 
 [이전 글 - Build Phase](./Gradle_이해하기_4_Build_Phases.md)에서 살펴보았듯이, **Gradle은 Configuration 단계에서 빌드 스크립트 (`build.gradle`)를 한 줄 한 줄 실행하면서 Project의 Task를 수행하기 위한 모든 메서드와 속성들을 설정한다.**
 
-<p align="center"><img src="./image/build_script_execution.png"> </p>
+<p align="center"><img src="./image/build_script_execution.png" width="700"> </p>
 
 그래서 `build.gradle` 파일 자체는 `Project` 객체라고 보면 되며, `Project` 객체는 `Project`의 Task를 수행하기위한 모든 메서드와 속성들을 모아놓는 슈퍼 객체라고 보면 된다.
 
@@ -187,13 +187,13 @@ Build Script를 작성할 때 핵심이되는 4가지 개념에 대해서 정리
 
 💁‍♂️ **projects, build script, tasks, plugins 관계**
 
-<p align="center"><img src="./image/project_build_script_task_plugin.png"> </p>
+<p align="center"><img src="./image/project_build_script_task_plugin.png" width="400"> </p>
 
-각 Project는 하나의 build script를 실행시켜 task들을 실행하기위한 데이터 구조와 속성을 설정한다. (Project 1 : N Task)
+각 Project는 하나의 build script를 실행시켜 task들을 실행하기위한 데이터 구조와 속성을 설정한다. (**Project 1 : N Task**)
 
 자바코드 컴파일하는 Task나 클래스파일로부터 실행파일을 만드는 Task등 자바 애플리케이션 혹은 기타 다른 애플리케이션의 Task를 매번 작성하는 것은 비효율적이다.
 
-이런경우 Plugin을 apply하면 자동으로 관련된 Task를 추가해준다. (Plugin 1 : N Task)
+이런경우 Plugin을 apply하면 자동으로 관련된 Task를 추가해준다. (**Plugin 1 : N Task**)
 
 <br>
 
@@ -221,16 +221,6 @@ $ ./gradlew <task-name>
 
 <br>
 
-💁‍♂️ **이미 수많은 Task가 정의되어있다.**
-
-Gradle엔 이미 애플리케이션을 빌드하는데 필요한 수많은 Task가 정의되어있으며, 기본적으로 빌드 파일(`build.gradle`)에 import된 상태이다.
-
-> 정확히는 `Project`객체의 TaskContainer안에 이미 많은 Task가 정의되어있다.
-
-[DSL API에서 Task types](https://docs.gradle.org/current/dsl/index.html)에 정의된 다양한 Task를 직접 확장해서 사용할 수 있다.
-
-<br>
-
 ### Task 생성
 
 <br>
@@ -255,11 +245,16 @@ tasks.register("hello") {
 }
 ```
 
+> 이외에도 다양한 방법이 존재한다. 필요에 따라서 찾아보면 될 듯 하다.
+
 <br>
 
 ### 기존 존재하는 Task 설정
+실제 프로젝트에선 실제로 Task를 직접 커스텀할 상황은 많지 않다. 그 이유는 Gradle엔 이미 수많은 Task가 정의되어있기때문이다.
 
-💁‍♂️ **이미 수많은 Task가 정의되어있다.**
+<br>
+
+💁‍♂️ **Gradle엔 이미 수많은 Task가 정의되어있다.**
 
 Gradle엔 이미 애플리케이션을 빌드하는데 필요한 수많은 Task가 정의되어있으며, 기본적으로 빌드 파일(`build.gradle`)에 import된 상태이다.
 
@@ -268,8 +263,6 @@ Gradle엔 이미 애플리케이션을 빌드하는데 필요한 수많은 Task�
 [DSL API에서 Task types](https://docs.gradle.org/current/dsl/index.html)에 정의된 다양한 Task를 설정만 바꿔서 활용하는 경우 테스크를 다음처럼 등록할 수 있다.
 
 ```gradle
-<>
-
 tasks.register('<테스크-이름>', TaskClass) {
     // 테스크 설정
 }
@@ -278,6 +271,8 @@ tasks.register('<테스크-이름>', TaskClass) {
 <br>
 
 💁‍♂️ **예시 1 - copy**
+
+copy도 이미 Project 객체안에 정의되어있으며, 이를 아래와 같이 설정을 오버라이딩하여 `copy` Task가 실행되었을 때의 동작을 컨트롤할 수 있다.
 
 ```gradle
 task copyFile(type: Copy) {
@@ -452,7 +447,9 @@ gradle hello -PskipHello
 
 ### Plugin 개념
 
-💁‍♂️ **Plugin 개념**
+<br>
+
+💁‍♂️ **Plugin은 Task의 모음이다**
 
 자바코드 컴파일하는 Task나 클래스파일로부터 실행파일을 만드는 Task등 자바 애플리케이션 혹은 기타 다른 애플리케이션의 Task를 매번 작성하는 것은 비효율적이다.
 
@@ -464,11 +461,11 @@ gradle hello -PskipHello
 
 💁‍♂️ **Plugin = 빌드 스크립트의 외부 종속성**
 
-Plugin은 다른 의미로 빌드 스크립트의 외부 종속성을 추가하는 것과 같다고 볼 수 있다.
+**Plugin은 다른 의미로 빌드 스크립트의 외부 종속성을 추가하는 것과 같다고 볼 수 있다.**
 
 즉, 빌드 스크립트에서 사용되는 여러 Task를 정의하기위해선 외부 종속성을 먼저 가져와야한다.
 
-<p align="center"><img src="./image/compile-first.png"> </p>
+<p align="center"><img src="./image/compile-first.png" width="800"> </p>
 
 **그래서 위와 같이 `plugins`와 `buildscript`는 빌드 스크립트에서 가장 먼저 컴파일 및 실행된다.**
 
@@ -490,7 +487,7 @@ plugins {
 
 이렇게 플러그인을 추가해주면, `build`, `jar`, `test`, `clean`, `assemble`등등 수 많은 자바 애플리케이션 빌드에 필요한 Task가 추가된다.
 
-<p align="center"><img src="./image/javaPluginTasks.png">java plugin 추가시 생성되는 Task들의 의존 관계<br>출처: https://docs.gradle.org/current/userguide/java_plugin.html </p>
+<p align="center"><img src="./image/javaPluginTasks.png"><br>java plugin 추가시 생성되는 Task들의 의존 관계<br>출처: https://docs.gradle.org/current/userguide/java_plugin.html </p>
 
 > 더 자세한 내용은 [공식 문서](https://docs.gradle.org/current/userguide/java_plugin.html) 참고.
 
