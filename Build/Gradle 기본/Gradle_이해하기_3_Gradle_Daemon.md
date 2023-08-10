@@ -20,7 +20,9 @@ Gradle을 실행하면 아래와 같이 Gradle Daemon이라는 프로세스가 J
 <p align="center"><img src="./image/gradle_daemin_executioned.png"> </p>
 
 ```text
-데몬은 사용자가 직접 제어하지 않고 백그라운드 프로세스를 의미한다. - 위키피디아 -
+데몬은 사용자가 직접적으로 제어하지 않고, 백그라운드에서 돌면서 여러 작업을 하는 프로그램을 말한다 
+
+- 위키피디아 -
 ```
 
 Gradle은 JVM 위에서 동작하며 Gradle을 처음 JVM에 올리는 초기화에는 꽤나 시간이 소요된다.
@@ -45,6 +47,8 @@ Gradle을 실행하는 방법은 크게 두 가지가 있다.
 * 로컬 Gradle설치 -> 설치 (컴퓨터에 전역적으로 사용할 Gradle을 설치하는 방법)
 * Gradle Wrapper -> 무설치 (프로젝트 상위 디렉토리에 Gradle Wrapper를 사용하는 방법)
 
+우선 로컬 Gradle로 Gradle을 실행할때의 동작 방식에 대해서 살펴본다.
+
 <br>
 
 ## 1-1 bin/gradle은 일반적인 스크립트를 실행한다
@@ -57,7 +61,9 @@ Gradle을 실행하는 방법은 크게 두 가지가 있다.
 $ ./{Gradle 설치된 디렉토리}/bin/gradle <실행하고자하는 Task>
 ```
 
-위 명령어를 입력하면 셸 프로세스가 시작되고 `gradle`의 아래 스크립트 코드를 실행한다. 
+위 명령어를 입력하면 셸 프로세스가 시작되고 `gradle`의 아래 스크립트 코드를 실행한다.
+
+<br>
 
 <details>
   <summary>gradle.sh</summary>
@@ -319,6 +325,8 @@ $ ./{Gradle 설치된 디렉토리}/bin/gradle <실행하고자하는 Task>
   ---
 </details>
 
+<br>
+
 스크립트의 중요한 부분만 정리하면 아래와 같다.
 
 1. `java` 명령 실행을 위한 적절한 JRE를 찾고, 명령어에 넘길 파라미터를 결정한다.
@@ -327,13 +335,15 @@ $ ./{Gradle 설치된 디렉토리}/bin/gradle <실행하고자하는 Task>
    exec /path/to/java -xmx... -D... -classpath /path/to/local/distribution/lib/gradle-launcher.jar org.gradle.launcher.GradleMain <실행하고자하는 Task>
    ```
 
+<br>
+
 이제 위 스크립트를 실행하는 프로세스는 JVM 프로세스로 변경되며, Gradle Client JVM의 첫 시작점은 [org.gradle.launcher.GradleMain](https://github.com/gradle/gradle/blob/acc6044325b11874e9626d98dec976a0e495cb62/subprojects/bootstrap/src/main/java/org/gradle/launcher/GradleMain.java) 클래스가 된다.
 
-> `gradle.sh` 스크립트에서 실행된 JVM은 실제 빌드 로직을 실행하지않는 가벼운 JVM이라 `Gradle Client JVM`이라고 부른다.
+> 이번 글에서 `gradle.sh` 스크립트에서 실행된 JVM은 실제 빌드 로직을 실행하지않는 가벼운 JVM이라 `Gradle Client JVM`이라고 부르겠다.
 
 Gradle Client JVM은 호환되는 Gradle 데몬을 검색하여 로컬 소켓을 통해 연결한다.
 
-이때 만약 Gradle Daemon이 실행되어있지않으면, Gradle Client JVM이 Daemon을 실행하고나서 연결한다.
+**이때 만약 Gradle Daemon이 실행되어있지않으면, Gradle Client JVM이 Daemon을 실행하고나서 연결한다.**
 
 <br>
 
@@ -363,21 +373,21 @@ Gradle Wrapper는 실제 Gradle에서도 추천하는 Gradle 실행 방식이다
 
 위와 같이 실행하면 [로컬 Gradle](#1-1-bingradle은-일반적인-스크립트를-실행한다)에서와 동일하게 gradle 쉘 스크립트를 실행한다.
 
-<p align="center"><img src="./image/wrapper-daemon.png"><br>출처: https://blog.gradle.org/how-gradle-works-1 </p>
+<p align="center"><img src="./image/wrapper-daemon.png" width="300"><br>출처: https://blog.gradle.org/how-gradle-works-1 </p>
 
-차이점이라면 빌드시 `gradle/wrapper/gradle-wrapper.jar`를 실행시켜 JVM에 Gradle Daemon 실행을 위한 프로세스로 올린다는 것이다.
+차이점이라면 빌드시 `gradle/wrapper/gradle-wrapper.jar`를 실행시켜 JVM에 Gradle Daemon 실행을 위한 프로세스를 올린다는 것이다.
 
 JVM에 해당 프로세스가 실행되면 `gradle/wrapper/gradle-wrapper.properties`에 선언된 특정 버전의 Gradle 배포를 찾아 다운로드한다.
 
 그리고 로컬 Gradle과 동일하게 JVM내에서 Gradle Daemon을 실행하고 Build를 진행한다.
 
-> 로컬 Gradle과 동일하게 Gradle Wrapper JVM의 시작점은 [org.gradle.wrapper.GradleWrapperMain](https://github.com/gradle/gradle/blob/acc6044325b11874e9626d98dec976a0e495cb62/subprojects/wrapper/src/main/java/org/gradle/wrapper/GradleWrapperMain.java)이다.
+> Gradle Wrapper JVM의 시작점은 [org.gradle.wrapper.GradleWrapperMain](https://github.com/gradle/gradle/blob/acc6044325b11874e9626d98dec976a0e495cb62/subprojects/wrapper/src/main/java/org/gradle/wrapper/GradleWrapperMain.java)이다.
 
 <br>
 
 # 정리
 
-이번 글은 JVM에서 Gradle이 어떻게 실행되는지 살펴보았다.
+이번 글은 JVM에서 Gradle이 어떻게 실행되는지 간단히 살펴보았다.
 
 다음 글은 Gradle이 실제 Build Script를 어떤 방식으로 실행하는지 살펴본다.
 

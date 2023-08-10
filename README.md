@@ -100,6 +100,7 @@
   * [Gradle 이해하기 시리즈의 두번째 - Gradle 시작하기](./Build/Gradle%20기본/Gradle_이해하기_2_Gradle_시작하기.md)
   * [Gradle 이해하기 시리즈의 세번째 - Gradle Daemon](./Build/Gradle%20기본/Gradle_이해하기_3_Gradle_Daemon.md)
   * [Gradle 이해하기 시리즈의 네번째 - Build Phases (LifeCycle)](./Build/Gradle%20기본/Gradle_이해하기_4_Build_Phases.md)
+  * [Gradle 이해하기 5 - Build Script](./Build/Gradle%20기본/Gradle_이해하기_5_Build_Script.md)
 * Gradle 멀티 모듈
   * [멀티 모듈 적용하기 with Gradle, Spring](./Build/멀티%20모듈/멀티%20모듈%20적용%20with%20Gradle.md)
 
