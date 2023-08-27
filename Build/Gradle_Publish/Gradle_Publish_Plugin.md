@@ -21,6 +21,8 @@
 
 이번 글은 Gradle을 활용하여 내가 만든 모듈을 외부 repository에 업로드하는 방법에 대해서 알아본다.
 
+> 간단히 코드만 보고 빠르게 이해하고싶으면 [실습](#4-간단한-실습)부분만 참고하면 된다.
+
 <br>
 
 💁‍♂️ **Gradle은 Publish Plugin을 제공한다.**
@@ -40,11 +42,11 @@ Gradle에선 각 저장소별로 모듈을 Publish할 때 필요한 Plugin을 �
 
 💁‍♂️ **Publish Plugin을 이용하여 모듈을 Publish하기 위해선 아래 3가지만 기억하면 된다.**
 
-* [무엇]()을 Publish 할 것인지
-* [어디]()에 Publish 할 것인지
-* Publish [실행]()
+* [무엇](#1-무엇을-publish-할-것인가)을 Publish 할 것인지
+* [어디](#2-어디에-publish-할-것인지)에 Publish 할 것인지
+* Publish [실행](#3-publish-실행)
 
-<p align="center"><img src="./image/publishing-process.png"><br>Publish 프로세스<br> 출처: https://docs.gradle.org/current/userguide/publishing_setup.html</p>
+<p align="center"><img src="./image/publishing-process.png" width="600"><br>Publish 프로세스<br> 출처: https://docs.gradle.org/current/userguide/publishing_setup.html</p>
 
 <br>
 
@@ -56,7 +58,7 @@ Gradle을 사용하여 내가 구현한 모듈을 외부 저장소에 Publish하
 
 <br>
 
-<p align="center"><img src="./image/gradle_published_module_structure.png"><br>Maven 저장소에 모듈 Publish할 때 저장되는 파일들. </p>
+<p align="center"><img src="./image/gradle_published_module_structure.png" width="500"><br>Maven 저장소에 모듈 Publish할 때 저장되는 파일들. </p>
 
 각 저장소별로 조금씩 다르지만, 가장 많이 사용되는 Maven 저장소를 바탕으로 Publish할 때 필요한 정보는 아래와 같다.
 
@@ -71,7 +73,7 @@ Gradle을 사용하여 내가 구현한 모듈을 외부 저장소에 Publish하
 * Maven POM 파일
   * Maven POM 파일은 내가 구현한 모듈 Artifacts와 해당 모듈에서 의존하는 의존성에 대해서 기록되어있다.
   * ex. Publish하는 모듈이 gRPC 의존성을 주입한 것이라면 아래와 같이 서술되어있다.
-    * <p align="center"><img src="./image/gradle_module_publish_pom.png"> </p>
+    * <p align="center"><img src="./image/gradle_module_publish_pom.png" width="500"> </p>
 
 
 이외에도 Gradle은 위 모든 파일들에 대한 체크섬과 서명을 같이 게시한다. Gradle 6.0부터는 SHA256 및 SHA 512 체크섬을 포함한다.
