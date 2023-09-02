@@ -29,8 +29,6 @@
   * [Spring Boot 필터 설정](./Spring/SpringBoot/SpringBootFilter.md)
 * Spring Cache
   * [Spring Cache Core (with 학습테스트)](./Spring/Cache/spring%20boot%20cache%20core/spring%20boot%20cache%20core.md)
-  * [Spring Cache With Redis - 적용기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20적용기.md)
-  * [Spring Cache With Redis - 성능개선기](./Spring/Cache/spring%20boot%20cache%20with%20redis/spring%20boot%20cache%20with%20redis%20-%20성능%20개선기.md)
 * Spring Data Redis
   * [Spring RedisTemplate Serializer 종류와 사용시 주의할 점](./Spring/Redis/redis%20serializer/serializer.md)
   * [Jedis vs Lettuce - 캐싱 예시](./Spring/Redis/jedis%20vs%20lettuce%20-%20캐싱/jedis%20vs%20lettuce%20-%20캐싱.md)
