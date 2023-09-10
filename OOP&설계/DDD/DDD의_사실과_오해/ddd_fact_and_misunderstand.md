@@ -342,7 +342,7 @@ public class Ticket {
 
 💁‍♂️ **바운디드 컨텍스트**
 
-<p align="center"><img src="./image/sketch.png"><br>Customer와 Product 도메인 객체를 Context에 따라 분리한 예시.<br>출처: https://martinfowler.com/bliki/BoundedContext.html </p>
+<p align="center"><img src="./image/sketch.png" width="500"><br>Customer와 Product 도메인 객체를 Context에 따라 분리한 예시.<br>출처: https://martinfowler.com/bliki/BoundedContext.html </p>
 
 * 바운디트 컨텍스트란?
   * 도메인 모델을 Context에 따라 분리하고, 특정한 도메인 모델이 적용되는 범위를 의미한다.
@@ -404,9 +404,9 @@ public class Ticket {
 
 💁‍♂️ **문제 영역과 솔루션 영역**
 
-<p align="center"><img src="./image/problem_space.png"><br>문제 영역<br>출처: https://www.slideshare.net/tkocjan/domain-driven-design-47480496 </p>
+<p align="center"><img src="./image/problem_space.png" width="500"><br>문제 영역<br>출처: https://www.slideshare.net/tkocjan/domain-driven-design-47480496 </p>
 
-<p align="center"><img src="./image/solution_space.png"><br>솔루션 영역<br>출처: https://www.slideshare.net/tkocjan/domain-driven-design-47480496 </p>
+<p align="center"><img src="./image/solution_space.png" width="500"><br>솔루션 영역<br>출처: https://www.slideshare.net/tkocjan/domain-driven-design-47480496 </p>
 
 * 문제 영역에서 솔루션 공간으로
 
@@ -436,7 +436,7 @@ public class Ticket {
 
 💁‍♂️ **CQRS**
 
-<p align="center"><img src="./image/cqrs.png"><br>출처: https://martinfowler.com/bliki/CQRS.html </p>
+<p align="center"><img src="./image/cqrs.png" width="500"><br>출처: https://martinfowler.com/bliki/CQRS.html </p>
 
 * 조회 모델과 명령 모델을 나눔으로써 도메인 모델 분리는 통한 도메인 모델 복잡성 해결.
 
@@ -457,7 +457,6 @@ public class Ticket {
   * 서비스 단위에 대해 생각하는 유용한 방법은 도메인 주도 설계의 바운디드 컨텍스트의 개념이다.
   * 도메인 주도 설계는 복잡한 도메인을 여러 개의 바운디드 컨텍스트로 나누고 이들 간의 관계를 매핑한다.
   * 즉, 마이크로서비스 아키텍처를 구축하는데 도메인 주도 설계의 개념이 큰 도움 된다는 의미인듯.
-* 
 
 <br>
 

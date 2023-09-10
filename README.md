@@ -262,6 +262,7 @@
   * [도메인 주도 개발 시작하기](./OOP%26%EC%84%A4%EA%B3%84/DDD/%EB%8F%84%EB%A9%94%EC%9D%B8%20%EC%A3%BC%EB%8F%84%20%EA%B0%9C%EB%B0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/README.md)
 * DDD
   * [DDD 사실과 오해](./OOP&설계/DDD/DDD의_사실과_오해/ddd_fact_and_misunderstand.md)
+  * [DDD 지향 마이크로 서비스 디자인](./OOP&설계/DDD/DDD_지향_마이크로_서비스_디자인/ddd_oriented_micro_service_design.md)
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
