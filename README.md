@@ -260,6 +260,8 @@
   * [오브젝트 - 코드로 이해하는 객체지향 설계](./OOP&설계/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8)
   * [만들면서 배우는 클린 아키텍처](./OOP&설계/Get%20your%20hands%20dirty%20on%20clean%20architecture/README.md)
   * [도메인 주도 개발 시작하기](./OOP%26%EC%84%A4%EA%B3%84/DDD/%EB%8F%84%EB%A9%94%EC%9D%B8%20%EC%A3%BC%EB%8F%84%20%EA%B0%9C%EB%B0%9C%20%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/README.md)
+* DDD
+  * [DDD 사실과 오해](./OOP&설계/DDD/DDD의_사실과_오해/ddd_fact_and_misunderstand.md)
 * SOLID
   * [SRP](./OOP&설계/SOLID/SRP.md)
   * [OCP](./OOP&설계/SOLID/OCP.md)
