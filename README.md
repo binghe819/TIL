@@ -155,6 +155,7 @@
   * [JAVA로 gRPC 실습해보기 (feat. 4가지 통신 기법)](./Network/grpc/grpc_java/grpc_java.md)
 * HTTP
   * [HTTP 진화과정 이해하기 첫번째 - HTTP 0.9부터 HTTP 1.1까지](./Network/HTTP_0_9_to_1_1/HTTP_0_9_to_1_1.md)
+  * [HTTP 진화과정 이해하기 두번째 - HTTP 2.0](./Network/HTTP2_0/HTTP2_0.md)
   * [HTTP 완벽 가이드 - 진행중](./Network/HTTP%20The%20Definitive%20Guide/README.md)
   * [HTTPS](./Network/HTTPS/HTTPS.md)
 
