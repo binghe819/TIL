@@ -13,7 +13,7 @@
   - [Stream Prioritization](#stream-prioritization)
   - [Flow Control](#flow-control)
   - [Header Compression](#header-compression)
-- [HTTP/2.0도 완벽하진 않다. 그렇다면 그 다음은](#http20도-완벽하진-않다-그렇다면-그-다음은)
+- [HTTP/2.0도 완벽하진 않다. HTTP/3.0의 등장](#http20도-완벽하진-않다-http30의-등장)
 - [참고](#참고)
 
 <br>
@@ -68,7 +68,7 @@ TCP는 보수적인 환경을 가정하고 네트워크상의 다양한 트래�
 
 문제는 TCP가 현재 Connection에 알맞는 혼잡 윈도우의 크기를 결정하기 위해 느린 시작 (Slow Start)를 사용하는데, 아래와 같이 TCP의 혼잡을 제어하고 공평하게 통신하기위해 윈도우 크기를 높였다 줄였다한다.
 
-<p align="center"><img src="./image/congestion_control.png"><br>출처: http://www.sfu.ca/~ljilja/cnl/presentations/wan/wireless_TCP/sld005.htm </p>
+<p align="center"><img src="./image/congestion_control.png" width="500"><br>출처: http://www.sfu.ca/~ljilja/cnl/presentations/wan/wireless_TCP/sld005.htm </p>
 
 즉, 최적의 혼잡 윈도우 크기를 얻는 데 TCP Connection상 몇 번의 왕복이 필요하며, 이는 결국 성능적인 문제를 야기한다.
 
@@ -130,7 +130,7 @@ SPDY 프로젝트의 목표는 아래와 같다.
 
 이중에서 가장 중점적으로 개선하고자하는 부분은 page load time의 향상이었으며, SPDY는 새로운 binary framing layer을 도입하여 기본 TCP 연결을 보다 효율적으로 사용하도록함으로써 성능 개선을 진행했다.
 
-<p align="center"><img src="./image/spdy_layer.png"><br>출처: https://d2.naver.com/helloworld/140351 </p>
+<p align="center"><img src="./image/spdy_layer.png" width="400"><br>출처: https://d2.naver.com/helloworld/140351 </p>
 
 위 그림에서 **SPDY가 binary framing layer라고 볼 수 있으며, 해당 계층에 multiplexing, prioritization, head compression을 적용함으로써 성능 향상을 이루었다.**
 
@@ -186,7 +186,7 @@ HTTP의 애플리케이션 계층에서의 동작은 동일하며, 제공되는 
 
 HTTP/2의 모든 성능 향상의 핵심은 클라이언트와 서버간에 메시지를 캡슐화하고 전송하는 방식을 지정하는 새로운 Binary Framing Layer 계층이다.
 
-<p align="center"><img src="./image/binary_framing_layer.png"><br>출처: https://web.dev/performance-http2/ </p>
+<p align="center"><img src="./image/binary_framing_layer.png" width="500"><br>출처: https://web.dev/performance-http2/ </p>
 
 HTTP/1.1와 HTTP/2.0의 주요한 차이점인 이 계층은 소켓 인터페이스와 애플리케이션에 노출되는 HTTP API 사이에 최적화된 새로운 인코딩 매커니즘을 적용한다.
 
@@ -210,7 +210,7 @@ HTTP/1.1와 HTTP/2.0의 주요한 차이점인 이 계층은 소켓 인터페이
 
 클라이언트와 서버가 인코딩된 데이터를 주고받을때, HTTP/2.0의 새로운 용어를 이해해야한다.
 
-<p align="center"><img src="./image/hpbn_1202.png"><br>HTTP/2 streams, messages, frames<br>출처: High Performance Browser Networking. Ilya Grigorik</p>
+<p align="center"><img src="./image/hpbn_1202.png" width="500"><br>HTTP/2 streams, messages, frames<br>출처: High Performance Browser Networking. Ilya Grigorik</p>
 
 * Stream - 연결된 Connection 내에서 하나 이상의 메시지를 양뱡향으로 주고 받는 양방향 바이트 흐름. (요청과 응답을 양방향으로 오가는 논리적 연결 단위.)
 * Message - HTTP/1.1와 마찬가지로 하나의 요청과 응답을 구성하는 단위. 다수의 Frame으로 이루어진 배열 라인.
@@ -225,7 +225,7 @@ HTTP/2.0은 HTTP 요청/응답 (메시지)을 여러 개의 Frame로 나누고 �
 
 💁‍♂️ **세 용어의 관계를 조금 더 자세히 정리해보면 아래와 같다.**
 
-<p align="center"><img src="./image/stream_frame_message.png"><br>출처: https://web.dev/performance-http2/ </p>
+<p align="center"><img src="./image/stream_frame_message.png" width="500"><br>출처: https://web.dev/performance-http2/ </p>
 
 * 모든 통신은 단일 TCP Connection에서 수행되며, **한 Connection안에서 원하는 수만큼의 양방향 Stream을 전달할 수 있다.**
   * 하나의 커넥션에서 여러 개의 Stream이 동시에 열리니 속도가 굉장히 빠르다. (병렬적 처리)
@@ -256,7 +256,7 @@ HTTP/2.0은 HTTP 요청/응답 (메시지)을 여러 개의 Frame로 나누고 �
 
 **HTTP/2.0은 이러한 문제를 해결하기위해 위에서 언급한 binary framing layer를 추가하여 HTTP 메시지를 binary 형태의 frame으로 나누고 하나의 connection으로 동시에 여러 개의 message stream을 응답 순서에 상관없이 주고받는 multiplxing을 적용했다.**
 
-<p align="center"><img src="./image/multiplxing_workflow.png"><br>출처: https://web.dev/performance-http2/ </p>
+<p align="center"><img src="./image/multiplxing_workflow.png" width="500"><br>출처: https://web.dev/performance-http2/ </p>
 
 multiplexing을 도입함으로써 동일한 Connection에서 한 번에 여러 요청을 보내고 어떤 순서로든 응답을 다시 받을 수 있게되었다.
 
@@ -266,7 +266,7 @@ multiplexing을 도입함으로써 동일한 Connection에서 한 번에 여러 
 
 HTTP/1.1와 HTTP/2.0의 통신과정을 살펴보면 Multiplexing을 쉽게 이해할 수 있다.
 
-<p align="center"><img src="./image/http_1_1_vs_http_2.png"><br>출처: HTTP/2 in action. https://freecontent.manning.com/mental-model-graphic-how-is-http-1-1-different-from-http-2/ </p>
+<p align="center"><img src="./image/http_1_1_vs_http_2.png" width="700"><br>출처: HTTP/2 in action. https://freecontent.manning.com/mental-model-graphic-how-is-http-1-1-different-from-http-2/ </p>
 
 **HTTP 1.1은 TCP Connection을 맞고나서 요청을 보냈을 때, 해당 요청에 대한 응답이 도착하고나서야 해당 TCP 커넥션에 다시 요청을 보낼 수 있다.**
 
@@ -298,7 +298,7 @@ OS로 비유하자면, HTTP/1.1은 하나의 Connection내에서 동기 형태�
 
 또한, HTTP/1.1에서 Pipelining은 HOLB로인해 사용되지않게되었는데, HTTP/2.0은 순서대로 응답을 받을 필요가없기에 아래와 같이 Pipelining과 다르게 요청을 동시에하지만 순서대로 응답을 받지않아도되게되었다.
 
-<p align="center"><img src="./image/pipelining_multiplexing.png"> </p>
+<p align="center"><img src="./image/pipelining_multiplexing.png" width="800"> </p>
 
 <br>
 
@@ -349,13 +349,13 @@ HTTP/1.1에선 헤더를 아무런 압축없이 그대로 전송하였다. 이�
 
 거기에더해 HTTP/1.1에서의 헤더값 중복되는 문제를 해결하기위해, **HTTP/2.0에선 이전 Message의 헤더 내용중 중복되는 필드를 재전송하지 않도록하였다.**
 
-<p align="center"><img src="./image/header_compression.png"><br>출처: https://web.dev/performance-http2 </p>
+<p align="center"><img src="./image/header_compression.png" width="500"><br>출처: https://web.dev/performance-http2 </p>
 
 중복 헤더는 Static / Dynamic Header Table 개념을 사용하여 중복 헤더를 검출하여, 중복된 헤더의 index 값만 전송하고 중복되지 않은 Header 정보의 값은 호프만 인코딩 (Huffman Encoding) 기법을 사용하는 HPACK 압축 방식으로 인코딩 처리하여 전송한다.
 
 <br>
 
-# HTTP/2.0도 완벽하진 않다. 그렇다면 그 다음은
+# HTTP/2.0도 완벽하진 않다. HTTP/3.0의 등장
 
 이번 글은 HTTP/1.1의 문제점에 대해서 살펴보고, 그 문제점을 HTTP/2.0에선 어떻게 해결하였는지에 대해서 살펴보았다.
 
@@ -367,6 +367,9 @@ gRPC등의 RPC 통신이 늘어남에따라 점차 HTTP/2.0의 사용량도 많�
 * TCP 자체의 Head Of Line Blocking
   * 패킷을 이용하는 TCP에서 패킷이 유실되거나 오류가 있을 때 재전송하게되는데, 이 재전송 과정에서 패킷의 지연이 발생하면 TCP 레벨에서 HOLB가 발생한다.
   * 즉, HTTP/2.0에선 애플리케이션 계층의 HOLB를 해결했을지몰라도, 전송 계층에서의 HOLB는 여전히 발생하게된다.
+* TCP의 혼잡 제어
+  * TCP는 혼잡 제어를 수행하기에 전송 속도 및 혼잡 Window를 낮은 생태에서 천천히 높이는 방식으로 속도 및 혼잡을 제어한다. (Slow Start)
+  * 이는 네트워크 상황이 좋을 때 사실상 불필요한 지연을 발생시킨다.
 
 결과적으로 HTTP/2.0도 TCP 기반으로 동작하기에 TCP가 갖는 문제를 그대로 가지게된다.
 
@@ -381,4 +384,6 @@ gRPC등의 RPC 통신이 늘어남에따라 점차 HTTP/2.0의 사용량도 많�
 * https://blog.chromium.org/2009/11/2x-faster-web.html
 * HTTP/2 in action
 * 러닝 HTTP/2
+* https://stackoverflow.com/questions/36517829/what-does-multiplexing-mean-in-http-2
+* https://datatracker.ietf.org/doc/html/rfc2068#section-8.1.2.2
 
