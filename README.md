@@ -158,6 +158,8 @@
   * [HTTP 진화과정 이해하기 두번째 - HTTP 2.0](./Network/HTTP2_0/HTTP2_0.md)
   * [HTTP 완벽 가이드 - 진행중](./Network/HTTP%20The%20Definitive%20Guide/README.md)
   * [HTTPS](./Network/HTTPS/HTTPS.md)
+* [Data Serialization Format](https://en.wikipedia.org/wiki/Comparison_of_data-serialization_formats)
+  * 
 
 <br>
 
@@ -207,7 +209,6 @@
   * [JVM 구조](./JAVA/JVM/jvm_structure.md)
   * [ClassLoader](./JAVA/JVM/classloader.md)
   * [reflection](./JAVA/JVM/reflection.md)
-  * [자바 직렬화 이해하기 - 사용시 주의할 점과 사용을 추천하지 않는 이유](./JAVA/serialization_deserialization/java_serialization/java_serialization.md)
   * [가비지 컬렉션 이해하기 - 가비지 컬렉션이 무엇이고 어떻게 동작하는가?](./JAVA/JVM/garbage_collection_how_to_works.md)
   * [JAR 개념 및 구조](./JAVA/jar/jar.md)
 * [JCF (Java Collections Framework)](./JAVA/JCF/README.md)
@@ -227,6 +228,11 @@
   * [자바 로깅 프레임워크 히스토리](./JAVA/Logging/history_of_java_logging/history_of_java_logging.md)
   * [slf4j 이해하기](./JAVA/Logging/slf4j/slf4j.md)
   * [Logback 이해하기](./JAVA/Logging/Logback/Logback.md)
+* Serialization / Deserialization (직렬화 / 역직렬화)
+  * [자바 직렬화 이해하기 - 사용시 주의할 점과 사용을 추천하지 않는 이유](./JAVA/serialization_deserialization/java_serialization/java_serialization.md)
+  * [Jackson 이해하기 - 동작 방식과 사용 방법 SOON](./JAVA/jackson/jackson.md)
+    * [TypeRefrence - SOON]()
+  * [Gzip with Jackson - JSON 용량 줄이기 SOON]()
 * [자바의 정석](./JAVA/자바의%20정석/README.md)
 * [Effective Java 3/E](./JAVA/Effective%20Java/README.md)
 * [모던 자바 인 액션](./JAVA/Modern%20Java%20In%20Action/README.md)
