@@ -3,7 +3,7 @@
 <br>
 
 - [목차](#목차)
-- [URLConnection & HttpURLConnection](#urlconnection--httpurlconnection)
+- [URLConnection \& HttpURLConnection](#urlconnection--httpurlconnection)
 - [1 HTTP 통신은 Socket 통신이다.](#1-http-통신은-socket-통신이다)
 - [2 URLConnection은 Socket을 추상화한 것이다.](#2-urlconnection은-socket을-추상화한-것이다)
 - [3 URLConnection과 HttpURLConnection](#3-urlconnection과-httpurlconnection)
@@ -67,7 +67,13 @@ HTTP(HyperText Transfer Protocol)란 웹상에서 데이터를 주고 받을때 
 
 다만, 보통 소켓 프로그래밍이라고하면 두 엔드포인트가 TCP로 연결되어 사용자가 종료를 하지않는 이상 계속해서 연결하여 양방향으로 통신한다. (채팅을 생각하면 이해가 쉽다.)
 
-이에 반해, HTTP는 소켓을 통해 두 엔드포인트가 TCP 연결하고 HTTP 요청과 응답을 수행하고 바로 TCP 연결을 종료한다.
+이에 반해, HTTP는 아래와 같이 소켓을 통해 두 엔드포인트가 TCP 연결하고 HTTP 요청과 응답을 수행하고 바로 TCP 연결을 종료한다.
+
+<p align="center"><img src="./image/http_connection_wireshark.png"><br>간단한 HTTP 요청과 응답 과정. </p>
+
+3 way handshake로 TCP Socket을 연결하고, 연결이 성공적으로 되었다면 HTTP 요청과 응답이 이루어진다.
+
+그리고 마지막으로 4 way handshake로 TCP 연결을 종료하는 것을 볼 수 있다.
 
 > 물론 HTTP1.1부터 나온 Keep-Alive를 통해 HTTP도 주어진 시간만큼 커넥션을 유지한다.
 
@@ -93,8 +99,6 @@ HTTP(HyperText Transfer Protocol)란 웹상에서 데이터를 주고 받을때 
 즉, **통신하고 싶은 URL만 알면 쉽게 통신할 수 있도록, Socket 통신부분을 추상화했다고 볼 수 있다.**
 
 > 실제로 URLConnection의 connect() 부분을보면 Socket 관련 코드를 쉽게 찾아볼 수 있다.
-
-> **참고로 위 내용이 사실이 아닐 수 있다. 그저 필자가 직접 공식 문서를 읽으면서 관련 코드를 살펴보며 든 생각을 기술한 것이다.**
 
 <br>
 
