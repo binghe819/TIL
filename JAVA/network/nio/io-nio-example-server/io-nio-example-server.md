@@ -19,7 +19,7 @@
 
 이번 글은 간단한 대문자 변환 서버를 직접 코드로 작성해보면서 Java NIO의 Multiplexing이 어떻게 동작하는지 정리한다.
 
-Multiplexing 기반의 서버가 동작하는 방식을 이해하기위해 Blcoking I/O부터 시작해서 Non-Blocking I/O 방식까지 아래와 같은 순서로 구현하면서 관련 개념들을 정리한다.
+Multiplexing 기반의 서버가 동작하는 방식을 이해하기위해 Blcoking I/O부터 시작해서 Non-Blocking I/O 방식까지 아래 순서로 구현하면서 관련 개념들을 정리한다.
 
 1. 간단한 Blocking 서버 - 모든 요청을 메인 스레드에서 처리한다. (싱글 스레드 모델)
 2. Thread를 활용한 Blocking 서버 - 모든 요청을 서로 다른 스레드에서 처리한다. (멀티 스레드 모델)
@@ -32,6 +32,8 @@ Multiplexing 기반의 서버가 동작하는 방식을 이해하기위해 Blcok
 <br>
 
 # 1 간단한 Blocking 서버
+> 모든 요청을 메인 스레드에서 처리한다. (싱글 스레드 모델)
+
 가장 먼저 JAVA I/O를 이용하여 요청을 받으면 모든 문자를 대문자로 변경하여 반환하는 간단한 서버를 구현해본다.
 
 <br>
@@ -57,7 +59,7 @@ public class IoSimpleBlockingServerApplication {
              OutputStream out = socket.getOutputStream()) {
             int data;
 
-            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 더이상 읽을 게 없다면 -1을 리턴한다.
+            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 소켓이 닫혀 더이상 읽을 게 없다면 -1을 리턴한다.
             while ((data = in.read()) != -1) {
                 data = Character.isLetter(data) ? toUpperCase(data) : data;
                 out.write(data);
@@ -98,7 +100,7 @@ FDSAFDA
 서버를 동작시키면 문제없이 클라이언트의 요청대로 대문자로 변환하여 응답하지만 아래와 같은 문제점을 가지고있다.
 
 * Blocking 방식
-   * `accept()`를 호출하면 해당 호출 스레드는 소켓 연결이 열릴 때까지 Blocking된다. 
+   * `accept()`, `read()`, `write()`등을 호출하면 해당 호출 스레드는 소켓 연결이 열릴 때까지 Blocking된다. 
 * 다중 클라이언트 요청 동시 처리 불가 (싱글 스레드 모델)
    * 서버는 보통 하나의 킅라이언트가 아닌 여러 클라이언트의 요청을 동시에 처리한다. 하지만 위 서버 구조는 Main Thread만 동작하므로 동시에 하나의 클라이언트의 요청만 처리가능하다.
    * 서버의 소켓이 닫혀있을 때만 새로운 클라이언트를 받아들일 수 있으므로 서버 구조로서 굉장히 Bad Practice다.
@@ -108,6 +110,8 @@ FDSAFDA
 <br>
 
 # 2 Thread를 활용한 Blocking 서버
+> 모든 요청을 서로 다른 스레드에서 처리한다. (멀티 스레드 모델)
+
 위 서버의 예시는 다중 커넥션 처리를 못하는 것이 가장 큰 문제인데, 이 문제를 해결하는 가장 간단한 방법은 멀티 스레드 모델을 사용하는 것이다.
 
 즉, 커넥션 하나당 스레드 하나를 할당해서 요청을 처리하는 것이다.
@@ -135,7 +139,7 @@ public class IoThreadBlockingServerApplication {
              OutputStream out = socket.getOutputStream()) {
             int data;
 
-            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 더이상 읽을 게 없다면 -1을 리턴한다.
+            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 소켓이 닫혀 더이상 읽을 게 없다면 -1을 리턴한다.
             while ((data = in.read()) != -1) {
                 data = Character.isLetter(data) ? toUpperCase(data) : data;
                 out.write(data);
@@ -166,6 +170,8 @@ public class IoThreadBlockingServerApplication {
 * 커넥션 수에 따른 무한 리소스 증가.
    * 커넥션 수가 많아지면 많아질수록 요청을 처리하는 스레드가 증가하면서 서버가 충돌하거나 메모리 부족을 겪을 수 있다.
    * 스레드가 무한정으로 늘어나면서 서버가 쉽게 죽을 수도 있으며, 반대로 OS마다 프로세스에 대해 생성 가능한 스레드 수가 제한되어 더이상 요청을 받을 수 없게 될 수도 있다.
+* 스레드 컨텍스트 스위칭 비용
+  * 커넥션별로 스레드를 생성하기때문에 스레드가 기하급수적으로 많아질 수도 있다. 이때 스레드간의 컨텍스트 스위칭 하는 과정에서 CPU 시간과 리소스를 소모한다.
 * 컴퓨터 리소스 (CPU, 메모리)를 십분 활용하지 못한다.
   * 이와 관련해서는 아래 Thread Pool 활용한 서버부분에서 자세히 다룬다.
 
@@ -208,7 +214,7 @@ public class IoThreadPoolBlockingServerApplication {
              OutputStream out = socket.getOutputStream()) {
             int data;
 
-            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 더이상 읽을 게 없다면 -1을 리턴한다.
+            // read() 메서드는 데이터를 읽을 때까지 blocking 된다. 만약 소켓이 닫혀 더이상 읽을 게 없다면 -1을 리턴한다.
             while ((data = in.read()) != -1) {
                 data = Character.isLetter(data) ? toUpperCase(data) : data;
                 out.write(data);
@@ -238,9 +244,17 @@ public class IoThreadPoolBlockingServerApplication {
 
 * 특정 시점에 특정 개수의 요청만을 처리할 수 있다. (대용량 트래픽 대응에 효율적이지 않다.)
   * 리소스의 과사용은 어느정도 방지되지만 Thread Pool이 가득차면 idle Thread가 나올 때까지 새 커넥션은 대기하거나 차단된다. 이는 대용량 트래픽을 처리하기엔 효율적이지 않다.
+* 트래픽이 적을 때 불필요한 리소스가 소비된다.
+  * 트래픽이 굉장히 적을 때, 굳이 스레드를 많이 만들어둘 필요가없음에도 Thread Pool로인해 미리 만들어둬서 리소스가 지속적으로 소비된다.
+  * 유연한 Thread Pool을 사용하여 min,max를 정해두고 자동으로 스케줄링해서 해결할 수 있긴하다.
+* 스레드 컨텍스트 스위칭 비용
+  * 특정 개수의 스레드만 생성된다고해도 스레드간의 컨텍스트 스위칭 비용을 무시할 순 없다.
+  * 물론 프로세스 대비 스레드의 스위칭 비용이 적지만, 대용량 트래픽을 받는 서버에선 이 비용도 무시하진 못할 듯 하다.
 * 가장 큰 문제는 Blocking 방식으로 동작함에따른 컴퓨터 리소스(CPU, 메모리)를 제대로 활용하지 못한다는 것이다.
   * 커넥션 하나당 Thread 하나가 할당되어 처리되면서 Blocking 된다. 이는 만약 서버 애플리케이션이 아닌 서드 파티 (ex. DB)의 응답을 기다리거나 비즈니스가 오래걸리면서 Thread가 Blocking되어 idle함에도 다른 커넥션을 처리하지못하는 문제가있다.
   * Thread를 제대로 활용하지못하고 필요이상의 Thread를 만들고 사용함으로써, 높은 트래픽을 효율적으로 처리하지 못한다.
+
+<p align="center"><img src="./image/reality_thoery.gif" width="300"><br>멀티 스레드 모델의 이론과 현실<br>출처: https://www.reddit.com/r/ProgrammerHumor/comments/o8584o/multithreading_is_hard/</p>
 
 위 문제를 해결하는 가장 근본적인 방법은 Non-Blocking으로 요청을 처리하는 것이다.
 
@@ -317,7 +331,7 @@ ByteBuffer는 직접 kernel 버퍼를 참조하고 있으므로, 위에서 발�
 
 ByteBuffer는 말 그대로 내부에 `byte[]` 배열로 구성되면서 버퍼형태의 네 가지 포인터를 가진 클래스다.
 
-<p align="center"><img src="./image/byte_buffer.png"> </p>
+<p align="center"><img src="./image/byte_buffer.png" width="300"> </p>
 
 * position
   * 읽기 또는 쓰기가 작업 중인 위치를 나타낸다. 
@@ -439,7 +453,9 @@ public class NioBlockingServerApplication {
 }
 ```
 
-💁‍♂️ **서버 구조와 문제점**
+<br>
+
+💁‍♂️ **NIO Blocking 서버 구조와 문제점**
 
 이 글의 가장 처음 구현했던 Blocking 서버와 동일하게 싱글 커넥션만 받는 구조이다. 모든 일이 메인 스레드에서만 발생한다.
 
@@ -455,7 +471,7 @@ public class NioBlockingServerApplication {
 
 # 5 NIO Non-Blocking Polling 서버 (Bad Practice)
 
-이제 본격적으로 NIO를 이용한 Non-Blocking 서버를 구현해본다.
+ByteBuffer에 대해서 알아보았으니, 이제 본격적으로 NIO를 이용한 Non-Blocking 서버를 구현해본다.
 
 Non-Blocking을 구현하는 방식은 아래와 같이 NIO SocketChannel에 `configureBlocking`을 false로하면 쉽게 구현할 수 있다.
 
@@ -467,7 +483,7 @@ socket.configureBlocking(false);
 
 심지어 `read()` 또한 언제 데이터를 전달받을지 몰라 Blocking 되었다.
 
-이제 NIO SocketChannel에선 위와 같이 `configureBlocking(false)`로 설정만해줘도 `coonect()`, `accept()`, `read()`, `write()` 모두에서 Blocking이 없다. 
+이제 NIO SocketChannel에선 위와 같이 `configureBlocking(false)`로 설정만해줘도 `coonect()`, `accept()`, `read()`, `write()` 모두에서 Blocking이 없이 바로 return된다. 
 
 즉, Non-Blocking으로 동작한다는 의미이다.
 
@@ -571,7 +587,9 @@ public class NioNonBlockingServerApplication {
 
 💁‍♂️ **NIO Non-Blocking Polling 서버 구조와 문제점**
 
-<p align="center"><img src="./image/non-blocking-i-o.png"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
+위 서버 예시 코드는 아래와 같이 동작한다.
+
+<p align="center"><img src="./image/non-blocking-i-o.png" width="400"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
 
 실제로 위 구조를 non-blocking이라고 볼 수도 있긴한데.. 특정 Thread가 polling 방식으로 모든 소켓을 반복하며 작업할게 있는지 체크하고 있으면 작업을 수행하는 방식이다.
 
@@ -580,7 +598,7 @@ public class NioNonBlockingServerApplication {
 * 특정 스레드가 서버에 연결된 모든 소켓을 순회하며 읽어들일 내용이 있는지 확인한다.
 * 특정 소켓에 읽어들일 내용이있다면 로직을 수행후 소켓에 쓰기 작업을 수행한다.
 
-즉, **특정 소켓에서 어떤 일이 발생했는지 계속 확인해야하기때문에 지속된 kernel에 I/O 시스템 콜 (`read()`)을 계속 호출하면서 CPU의 낭비가 발생한다.**
+즉, **특정 소켓에서 어떤 일이 발생했는지 계속 확인해야하기때문에 지속된 kernel에 I/O 시스템 콜 (`read()`)을 계속 호출하면서 필요이상의 CPU의 리소스가 소요된다.**
 
 구현에 따라 확인하는 과정이 Blocking 되어 처리가 계속 지연되어 더 큰 문제가 발생할 수도 있게된다.
 
@@ -599,9 +617,11 @@ public class NioNonBlockingServerApplication {
 
 즉, 직접 socket들을 순회하며 읽을 데이터가 있는지 체크하는 것이 아닌, 특정 socket이 변경되면 변경되었다고 이벤트를 만들어 알림을 해주는 것이다.
 
+그리고 이벤트가 발생했을때만 Thread에서 관련 동작을하면 CPU의 리소스를 효율적으로 사용할 수 있게된다.
+
 I/O 그림으로보면 아래와 같다.
 
-<p align="center"><img src="./image/i-o-multiplexing.png"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
+<p align="center"><img src="./image/i-o-multiplexing.png" width="400"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
 
 <br>
 
@@ -609,7 +629,7 @@ I/O 그림으로보면 아래와 같다.
 
 * Polling 방식의 Non-Blocking I/O
   * 누군가의 문자가 올 때까지 계속 문자창을 껐다 켰다 확인한다. 그동안 나는 게임을 못한다. 계속 문자가 왔는지 확인해야하기때문이다.
-  * 누군가에게 문자가오면 콜백한다.
+  * 계속 문자를 확인하던중 누군가에게 문자가오면 콜백한다.
 * Multiplxing 방식의 Non-Blocking I/O
   * 핸드폰에 문자가오면 알림이 울리도록 설정한다. 그리고 나는 계속 게임(딴 짓)을 한다.
     * 핸드폰 (다른스레드)이 알림이 오는지 확인한다.
@@ -627,9 +647,9 @@ Selector는 시스템 이벤트 통지 API를 사용하여 하나의 스레드�
 
 <p align="center"><img src="./image/selector_channel_non_blocking_io.png"> </p>
 
-위 그림을 통해 알 수 있듯이, Selector는 이벤트 리스너 역할을하며, Non-blocking Channel에 Selector를 등록해놓으면 클라이언트의 커넥션 요청이 오거나 데이터가 들어올경우 Channel이 Selector에 이벤트를 통보한다.
+위 그림을 통해 알 수 있듯이, Selector는 이벤트 리스너 역할을하며, Non-blocking Channel에 Selector를 등록해놓으면 클라이언트의 커넥션 요청이 오거나 데이터 읽기/쓰기 작업이 필요한경우 Channel이 Selector에 이벤트를 통보한다.
 
-그럼 Selector는 미리 등록해둔 Key의 상태를 변경하여 특정 Channel에 대한 작업을 수행하도록 미리 등록된 콜백 메서드를 실행한다.
+그럼 Selector는 미리 등록해둔 Key의 상태를 변경하여 특정 Channel에 대한 작업을 수행하도록 미리 등록된 콜백 메서드를 실행하면서 Thread에 비즈니스 로직 처리를 위임한다.
 
 각각의 역할의 관점에서 살펴보면 아래와 같다.
 
