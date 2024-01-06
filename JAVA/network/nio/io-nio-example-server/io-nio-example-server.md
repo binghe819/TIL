@@ -661,9 +661,17 @@ public class NioNonBlockingServerApplication {
 
 앞서 Non-Blocking으로 동작하기는 했지만, 특정 Thread가 순회하며 모든 소켓에 시스템 콜 (`read()`)을 호출하면서 변경된 내용이 있는지 확인하는 방식을 Polling 방식이라고 부른다.
 
-그렇다면 어떻게해야 효율적으로 리소스를 사용할까?? 바로 Polling이 아닌 이벤트 기반의 Push 방식을 이용하는 것이다.
+그렇다면 어떻게해야 효율적으로 리소스를 사용할까?? **바로 Polling이 아닌 이벤트 기반의 Push 방식을 이용하는 것이다.**
 
-즉, **직접 socket들을 순회하며 읽을 데이터가 있는지 체크하는 것이 아닌, 특정 socket이 변경되면 변경되었다고 이벤트를 만들어 알림을 해주는 것이다.**
+<br>
+
+💁‍♂️ **이벤트 기반 프로그래밍**
+
+전통적으로 사용자 인터페이스가 포함된 프로그램에선 이벤트 기반 프로그래밍이 많이 사용된다.
+
+예를 들어 마우스를 클릭에 반응하는 코드가 이에 해당한다. 이와 같이 각 이벤트를 먼저 정의해두고 발생한 이벤트에 따라서 코드가 실행되도록 프로그램을 작성하는 것이다.
+
+**앞서 살펴본 Non-Blocking 방식도 직접 socket들을 순회하며 읽을 데이터가 있는지 체크하는 것이 아닌, 특정 socket이 변경되면 변경되었다고 이벤트를 만들어 알림을 주도록하면 컴퓨팅 자원을 효율적으로 사용할 수 있다.**
 
 > 이러한 역할을 하는 녀석이 바로 `Selector`다.
 
@@ -672,18 +680,6 @@ public class NioNonBlockingServerApplication {
 I/O 그림으로보면 아래와 같다.
 
 <p align="center"><img src="./image/i-o-multiplexing.png" width="400"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
-
-<br>
-
-간단한 예로 내가 게임을 하면서 n명으로부터 누구에게나 문자가오면 그 사람한테 내가 콜백 전화해야한다고 가정해보자.
-
-* Polling 방식의 Non-Blocking I/O
-  * 누군가의 문자가 올 때까지 계속 문자창을 껐다 켰다 확인한다. 그동안 나는 게임을 못한다. 계속 문자가 왔는지 확인해야하기때문이다.
-  * 계속 문자를 확인하던중 누군가에게 문자가오면 콜백한다.
-* Multiplxing 방식의 Non-Blocking I/O
-  * 핸드폰에 문자가오면 알림이 울리도록 설정한다. 그리고 나는 계속 게임(딴 짓)을 한다.
-    * 핸드폰 (다른스레드)이 알림이 오는지 확인한다.
-  * 문자가와 알림이 울리면 그제서야 그 사람한테 콜백한다.
 
 이렇게 socket에서 변경이 감지되면 이벤트로 전송하고 처리할 수 있도록하는 역할로 Java NIO에선 `Selector`라는 클래스를 제공한다.
 
