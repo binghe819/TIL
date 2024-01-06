@@ -219,7 +219,7 @@
   * [안정적 비동기 프로그래밍 - CompletableFuture](./JAVA/Asynchronous%20Programming/Java%20Asynchronization-CompletableFuture.md)
 * Network
   * I/O
-    * [사례를 통해 이해하는 Java NIO와 Multiplexing 다중 접속 서버](./JAVA/network/nio/io-nio-example-server/io-nio-example-server.md)
+    * [사례를 통해 이해하는 네트워크 논블로킹 I/O와 Java NIO](./JAVA/network/nio/io-nio-example-server/io-nio-example-server.md)
   * HTTP
     * URLConnection
       * [URLConnection & HttpURLConnection](./JAVA/network/UrlConnection&HttpUrlConnection/UrlConnection&HttpUrlConnection.md)

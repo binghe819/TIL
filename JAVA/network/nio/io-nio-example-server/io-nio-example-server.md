@@ -3,7 +3,7 @@
 <br>
 
 - [목차](#목차)
-- [사례를 통해 이해하는 Java NIO와 Multiplexing 다중 접속 서버](#사례를-통해-이해하는-java-nio와-multiplexing-다중-접속-서버)
+- [사례를 통해 이해하는 네트워크 논블로킹 I/O와 Java NIO](#사례를-통해-이해하는-네트워크-논블로킹-io와-java-nio)
 - [1 간단한 Blocking 서버](#1-간단한-blocking-서버)
 - [2 Thread를 활용한 Blocking 서버](#2-thread를-활용한-blocking-서버)
 - [3 Thread Pool을 활용한 Blocking 서버](#3-thread-pool을-활용한-blocking-서버)
@@ -15,15 +15,44 @@
 
 <br>
 
-# 사례를 통해 이해하는 Java NIO와 Multiplexing 다중 접속 서버
 
-이번 글은 간단한 대문자 변환 서버를 직접 코드로 작성해보면서 Java NIO의 Multiplexing이 어떻게 동작하는지 정리한다.
+# 사례를 통해 이해하는 네트워크 논블로킹 I/O와 Java NIO
 
-Multiplexing 기반의 서버가 동작하는 방식을 이해하기위해 Blcoking I/O부터 시작해서 Non-Blocking I/O 방식까지 아래 순서로 구현하면서 관련 개념들을 정리한다.
+네트워크 소켓의 동작 방식은 크게 Blocking 모드와 Non-Blocking 모드로 나뉜다.
+
+* Blocking은 요청한 작업이 성공하거나 에러가 발생하기 전까지는 응답을 돌려주지 않는 것을 의미한다. (JDK 1.3. 기존 Java I/O)
+* Non-Blocking은 요청한 작업의 성공 여부와 상관없이 바로 결과를 돌려주는 것을 의미한다. (JDK 1.4 -> NIO)
+
+제어권 관점에서 Blocking/Non-Blocking은 호출되는 함수의 리턴여부가 관심이다.
+
+이렇게 글로만 작성하면 사실 이해하기가 쉽지않다. Blocking 방식이야 일반적으로 이해하기 쉬운 방식이기때문에 이해가 되지만, Non-Blocking은 어떻게 동작하는지 이해가 되지 않는다.
+
+그 이유는 **Non-Blocking을 구현하는 방식이 다양하기 때문인데, I/O 관점에선 Multiplexing 방식이 가장 많이 사용된다.**
+
+Multiplexing I/O를 이해하기 위해선 아래 개념들을 이해해야하는데, 사실 글로만 작성하면 이해하기 쉽지 않다.
+
+* 동기와 비동기
+* 블로킹과 논블로킹
+* 이벤트 기반 프로그래밍
+
+<br>
+
+그래서 이번 글은 간단히 대문자 변환 서버를 직접 코드로 작성해보면서 네트워크 논블로킹 I/O와 Multiplexing I/O 그리고 Java NIO의 동작원리는 이해해본다.
+
+아래 순서로 직접 구현하면서 Blocking I/O와 Non-Blocking I/O 그리고 Multiplexing I/O의 동작 방식을 살펴보면서 Java NIO를 정리해본다.
+
+<br>
+
+**(1) Blocking**
 
 1. 간단한 Blocking 서버 - 모든 요청을 메인 스레드에서 처리한다. (싱글 스레드 모델)
 2. Thread를 활용한 Blocking 서버 - 모든 요청을 서로 다른 스레드에서 처리한다. (멀티 스레드 모델)
 3. Thread Pool을 활용한 Blocking 서버 - 모든 요청을 미리 생성해둔 스레드 풀내 스레드에서 처리한다. (멀티 스레드 모델)
+
+<br>
+
+**(2) Non-Blocking**
+
 4. NIO Blocking 서버 - NIO를 사용하지만 싱글 스레드 모델로 처리한다.
    * Java I/O의 느린 첫번째 이유와 그 해결책인 NIO의 ByteBuffer에 대해서도 같이 알아본다.
 5. NIO Non-Blocking Pool 서버 - Non-Blocking 방식으로 NIO를 사용하지만 Bad Practice인 Polling 방식으로 처리한다.
@@ -32,9 +61,10 @@ Multiplexing 기반의 서버가 동작하는 방식을 이해하기위해 Blcok
 <br>
 
 # 1 간단한 Blocking 서버
-> 모든 요청을 메인 스레드에서 처리한다. (싱글 스레드 모델)
 
-가장 먼저 JAVA I/O를 이용하여 요청을 받으면 모든 문자를 대문자로 변경하여 반환하는 간단한 서버를 구현해본다.
+먼저 간단히 모든 요청을 메인 스레드에서 처리하는 Blocking 서버를 구현해본다.
+
+자바에선 JDK 1.3 부터 `ServerSocket`, `Socket`를 제공함으로써 Blocking 방식의 소켓을 지원한다.
 
 <br>
 
@@ -75,6 +105,8 @@ public class IoSimpleBlockingServerApplication {
 }
 ```
 
+코드에서 알 수 있듯이, 이는 모든 요청을 메인 스레드에서 처리한다. (싱글 스레드 모델)
+
 <br>
 
 💁‍♂️ **클라이언트 요청**
@@ -97,13 +129,15 @@ FDSAFDA
 
 💁‍♂️ **간단한 Blocking 서버 구조와 문제점**
 
-서버를 동작시키면 문제없이 클라이언트의 요청대로 대문자로 변환하여 응답하지만 아래와 같은 문제점을 가지고있다.
+위 서버는 요청하면 대문자로 잘 변환하여 응답하지만, Blocking 소켓의 특성상 데이터 입출력에서 스레드의 블로킹이 발생하기 때문에 동시에 여러 클라이언트에 대한 처리가 불가능하다.
 
-* Blocking 방식
-   * `accept()`, `read()`, `write()`등을 호출하면 해당 호출 스레드는 소켓 연결이 열릴 때까지 Blocking된다. 
-* 다중 클라이언트 요청 동시 처리 불가 (싱글 스레드 모델)
-   * 서버는 보통 하나의 킅라이언트가 아닌 여러 클라이언트의 요청을 동시에 처리한다. 하지만 위 서버 구조는 Main Thread만 동작하므로 동시에 하나의 클라이언트의 요청만 처리가능하다.
-   * 서버의 소켓이 닫혀있을 때만 새로운 클라이언트를 받아들일 수 있으므로 서버 구조로서 굉장히 Bad Practice다.
+즉, `accept()`, `read()`, `write()` 등을 호출하면 해당 호출 스레드는 소켓 연결이 열리거나 데이터 입출력이 완료될 때까지 해당 스레드를 Blocking한다.
+
+**당연히 메인 스레드가 Blocking되므로 다중 클라이언트 요청을 동시에 처리가 불가능하다.** (싱글 스레드 모델)
+
+서버는 보통 하나의 클라이언트가 아닌 다중 클라이언트의 요청을 동시에 처리한다. 하지만 위 서버 구조는 메인 스레드만 동작하므로 동시에 하나의 클라이언트의 요청만 처리가능하다.
+
+서버의 소켓이 사용되지않을때만 새로운 클라이언트를 받아들일 수 있으므로 서버 구조로서 굉장히 Bad Practice이다.
 
 사실상 위 구조는 사용할 수 없는 서버 구조라고 볼 수 있다.
 
@@ -112,9 +146,9 @@ FDSAFDA
 # 2 Thread를 활용한 Blocking 서버
 > 모든 요청을 서로 다른 스레드에서 처리한다. (멀티 스레드 모델)
 
-위 서버의 예시는 다중 커넥션 처리를 못하는 것이 가장 큰 문제인데, 이 문제를 해결하는 가장 간단한 방법은 멀티 스레드 모델을 사용하는 것이다.
+Blocking 소켓에서 다중 클라이언트의 접속 처리를 하지 못하는 문제점을 해결하기 위해서 등장한 모델이 연결된 클라이언트별로 각각 스레드를 할당하는 방식이다.
 
-즉, 커넥션 하나당 스레드 하나를 할당해서 요청을 처리하는 것이다.
+즉, 클라이언트 Connection 1 : 1 스레드를 할당하여 처리하는 멀티 스레드 방식을 의미한다.
 
 <br>
 
@@ -172,8 +206,8 @@ public class IoThreadBlockingServerApplication {
    * 스레드가 무한정으로 늘어나면서 서버가 쉽게 죽을 수도 있으며, 반대로 OS마다 프로세스에 대해 생성 가능한 스레드 수가 제한되어 더이상 요청을 받을 수 없게 될 수도 있다.
 * 스레드 컨텍스트 스위칭 비용
   * 커넥션별로 스레드를 생성하기때문에 스레드가 기하급수적으로 많아질 수도 있다. 이때 스레드간의 컨텍스트 스위칭 하는 과정에서 CPU 시간과 리소스를 소모한다.
-* 컴퓨터 리소스 (CPU, 메모리)를 십분 활용하지 못한다.
-  * 이와 관련해서는 아래 Thread Pool 활용한 서버부분에서 자세히 다룬다.
+* 매번 스레드 생성 비용이 발생한다.
+  * 새로운 커넥션마다 새로운 스레드를 생성하며, 이는 트래픽이 몰렸을 때 큰 장애로 이어질 가능성이 크다.
 
 다중 연결을 처리할 수 있는 가장 기본적인 서버 구조이나, 요청이 증가하면 선형적으로 서버의 부하가 걸리는 구조라는 치명적인 문제가있다.
 
@@ -181,13 +215,15 @@ public class IoThreadBlockingServerApplication {
 
 # 3 Thread Pool을 활용한 Blocking 서버
 
-요청이 증가함에따라 리소스가 선형적으로 증가되는 문제를 방지하는 가장 간편한 방법은 특정 개수의 Thread를 미리 만들어 줄 세워 요청을 처리하는 것이다.
+애플리케이션의 리소르르 제한하고 빠른 속도를 위해 스레드를 재활용하기위한 Thread Pool 방식이 탄생했다. (멀티 스레드 모델)
 
-바로 새로운 커넥션 요청이오면 Thread Pool에서 미리 생성해둔 Thread를 할당받아 처리하는 방식이며, Thread Pool의 사이즈를 초과하는 새로운 작업은 Thread Pool내 idle Thread가 나올 때까지 대기열에서 대기하고 자기 차례가되면 처리되는 구조이다.
+이는 특정 개수의 스레드를 미리 만들어두고 새로운 커넥션이 요청오면 미리 만들어준 스레드를 할당하는 방식이다. (여전히 커넥션 1 : 1 스레드지만, 스레드를 재활용한다)
 
-자바 웹 애플리케이션 서버의 대표적 구현체인 Tomcat도 이 방법을 디폴트로 사용한다.
+Thread Pool의 사이즈를 초과하는 새로운 작업은 Thread Pool내 idle Thread가 나올 때까지 대기열에서 대기하고 자기 차례가되면 처리되는 구조이다.
 
-> 실제 필자가 경험한 많은 서버가 이 방법을 채택하고있다.
+웹 MVC 구조의 기초가 되는 모델이며, 아마 현존하는 높은 비율의 서버가 이 방식을 사용한다.
+
+> 실제 필자가 경험한 많은 팀의 서버는 높은 확률로 Thread Pool 방식의 Blocking 서버다.
 
 <br>
 
@@ -242,21 +278,21 @@ public class IoThreadPoolBlockingServerApplication {
 
 하지만 여전히 아래와 같은 문제가 존재한다.
 
-* 특정 시점에 특정 개수의 요청만을 처리할 수 있다. (대용량 트래픽 대응에 효율적이지 않다.)
-  * 리소스의 과사용은 어느정도 방지되지만 Thread Pool이 가득차면 idle Thread가 나올 때까지 새 커넥션은 대기하거나 차단된다. 이는 대용량 트래픽을 처리하기엔 효율적이지 않다.
-* 트래픽이 적을 때 불필요한 리소스가 소비된다.
-  * 트래픽이 굉장히 적을 때, 굳이 스레드를 많이 만들어둘 필요가없음에도 Thread Pool로인해 미리 만들어둬서 리소스가 지속적으로 소비된다.
-  * 유연한 Thread Pool을 사용하여 min,max를 정해두고 자동으로 스케줄링해서 해결할 수 있긴하다.
-* 스레드 컨텍스트 스위칭 비용
-  * 특정 개수의 스레드만 생성된다고해도 스레드간의 컨텍스트 스위칭 비용을 무시할 순 없다.
-  * 물론 프로세스 대비 스레드의 스위칭 비용이 적지만, 대용량 트래픽을 받는 서버에선 이 비용도 무시하진 못할 듯 하다.
+* 동시에 접속 가능한 사용자가 스레드 풀에 지정된 스레드 수에 의존하는 현상이 발생한다.
+  * 리소스의 과사용은 어느정도 방지되지만 Thread Pool이 가득차면 idle Thread가 나올 때까지 새 커넥션은 대기하거나 차단된다. 이는 대용량 트래픽을 처리하기에 효율적이지 않다.
+* 동시 접속 수를 늘리기 위해 Thread Pool의 크기를 자바 Heap이 허용하는 최대 한도에 도달할 때까지 늘리는 것이 합당한지 두 가지 관점에서 생각해 볼 필요가 있다.
+  * GC
+    * GC는 stop-the-world가 발생하므로 모든 스레드가 잠시동안 멈추게 되는데, Heap 크기가 크면 클수록 GC에 소요되는 비용이 점차 커진다. CPU 사용량의 증가로 이어져 장애로 이어지기도한다.
+  * 컨텍스트 스위칭
+    * 수많은 스레드가 CPU 자원을 획득하기 위해서 경쟁하면서 CPU 자원을 소모하기 때문에 실제로 작업에 사용할 CPU 자원이 적어지게된다.
+    * 물론 프로세스 대비 스레드의 스위칭 비용이 적지만, 대용량 트래픽을 받는 서버에선 이 비용도 무시할 수 없다.
 * 가장 큰 문제는 Blocking 방식으로 동작함에따른 컴퓨터 리소스(CPU, 메모리)를 제대로 활용하지 못한다는 것이다.
   * 커넥션 하나당 Thread 하나가 할당되어 처리되면서 Blocking 된다. 이는 만약 서버 애플리케이션이 아닌 서드 파티 (ex. DB)의 응답을 기다리거나 비즈니스가 오래걸리면서 Thread가 Blocking되어 idle함에도 다른 커넥션을 처리하지못하는 문제가있다.
   * Thread를 제대로 활용하지못하고 필요이상의 Thread를 만들고 사용함으로써, 높은 트래픽을 효율적으로 처리하지 못한다.
 
 <p align="center"><img src="./image/reality_thoery.gif" width="300"><br>멀티 스레드 모델의 이론과 현실<br>출처: https://www.reddit.com/r/ProgrammerHumor/comments/o8584o/multithreading_is_hard/</p>
 
-위 문제를 해결하는 가장 근본적인 방법은 Non-Blocking으로 요청을 처리하는 것이다.
+위 문제를 해결하는 가장 근본적인 방법이 바로 Non-Blocking으로 소켓을 처리하는 것이다.
 
 <br>
 
@@ -276,6 +312,8 @@ Blocking 될 때의 해당 Thread의 기회 비용이 너무 크다는 의미이
 
 이제부터는 NIO가 어떻게 Non-Blocking을 지원하게 되었는지 단계별로 살펴본다.
 
+우선 NIO가 느린 이유중 하나인 메모리 부분을 살펴보고 Non-Blocking의 Bad-Practice를 살펴본다. 그리고 제대로된 이벤트 기반의 Non-Blocking을 살펴본다.
+
 <br>
 
 💁‍♂️ **NIO 이전의 기존 Java I/O가 느린 이유**
@@ -286,7 +324,7 @@ Blocking 될 때의 해당 Thread의 기회 비용이 너무 크다는 의미이
 
 소켓이나 파일에서 Stream이 들어오면 OS의 커널은 데이터를 커널 버퍼에 쓰게되는데, Java 코드상에서 이 커널 버퍼에 접근할 수 있는 방법이 없었다.
 
-따라서 처음엔 JVM 내부 메모리에 커널 버퍼 데이터를 복사해서 접근할 수 있도록했다. 즉, "커널에서 JVM 내부 메모리에 복사"하는 오버헤드가 존재했다.
+따라서 처음엔 JVM 내부 메모리에 커널 버퍼 데이터를 복사해서 접근할 수 있도록했다. 즉, **"커널에서 JVM 내부 메모리에 복사"하는 오버헤드가 존재했다.**
 
 > 여기서 말하는 JVM 내부 메모리는 프로세스별로 할당되는 스택이나 힙 메모리를 의미한다.
 
@@ -295,7 +333,7 @@ Blocking 될 때의 해당 Thread의 기회 비용이 너무 크다는 의미이
 조금 더 구체적으로 살펴보면 아래와 같다.
 
 * JVM (프로세스)이 file이나 socket으로부터 데이터를 읽기 위해 kernal에 명령을 전달한다.
-* kernel은 시스템 콜 (read())를 사용함으로써 디스크 컨트롤러가 물리적 디스크나 소켓으로부터 데이터를 읽어온다
+* kernel은 시스템 콜 (`read()`)를 사용함으로써 디스크 컨트롤러가 물리적 디스크나 소켓으로부터 데이터를 읽어온다
 * OS는 DMA를 이용하여 kernel 버퍼에 해당 데이터를 복사한다.
 * 그리고 JVM (프로세스) 내부 버퍼로 복사하고, JVM은 그제서야 해당 데이터를 사용한다.
 
@@ -354,43 +392,51 @@ ByteBuffer는 말 그대로 내부에 `byte[]` 배열로 구성되면서 버퍼�
 
 사용 방법은 간단한 테스트 코드와 설명으로 대신한다.
 
-```java
-@Test
-void read_and_write() {
-    ByteBuffer byteBuffer = ByteBuffer.allocateDirect(11);
-    assertThat(byteBuffer.position()).isEqualTo(0);
-    assertThat(byteBuffer.limit()).isEqualTo(11);
+<details>
+  <summary>ByteBuffer 테스트</summary>
+  
+  ---
+  
+  ```java
+    @Test
+    void read_and_write() {
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(11);
+        assertThat(byteBuffer.position()).isEqualTo(0);
+        assertThat(byteBuffer.limit()).isEqualTo(11);
 
-    byteBuffer.put((byte) 1);
-    byteBuffer.put((byte) 2);
-    byteBuffer.put((byte) 3);
-    byteBuffer.put((byte) 4);
-    assertThat(byteBuffer.position()).isEqualTo(4);
-    assertThat(byteBuffer.limit()).isEqualTo(11);
+        byteBuffer.put((byte) 1);
+        byteBuffer.put((byte) 2);
+        byteBuffer.put((byte) 3);
+        byteBuffer.put((byte) 4);
+        assertThat(byteBuffer.position()).isEqualTo(4);
+        assertThat(byteBuffer.limit()).isEqualTo(11);
 
-    // The limit is set to the current position and then the position is set to zero. If the mark is defined then it is discarded
-    byteBuffer.flip();
-    assertThat(byteBuffer.position()).isEqualTo(0);
-    assertThat(byteBuffer.limit()).isEqualTo(4);
+        // The limit is set to the current position and then the position is set to zero. If the mark is defined then it is discarded
+        byteBuffer.flip();
+        assertThat(byteBuffer.position()).isEqualTo(0);
+        assertThat(byteBuffer.limit()).isEqualTo(4);
 
-    // get(index)는 position을 올리지 않는다.
-    byteBuffer.get(3);
-    assertThat(byteBuffer.position()).isEqualTo(0);
+        // get(index)는 position을 올리지 않는다.
+        byteBuffer.get(3);
+        assertThat(byteBuffer.position()).isEqualTo(0);
 
-    // get()은 position의 값을 반환하고 position을 1만큼 올린다.
-    byteBuffer.get();
-    assertThat(byteBuffer.position()).isEqualTo(1);
-}
-```
+        // get()은 position의 값을 반환하고 position을 1만큼 올린다.
+        byteBuffer.get();
+        assertThat(byteBuffer.position()).isEqualTo(1);
+    }
+  ```
 
-* ByteBuffer 생성
-  * allocate - 힙 버퍼. JVM내 힙영역에 버퍼를 할당한다.
-  * allocateDirect - kernel 버퍼. JVM의 힙영역이 아닌 운영체제의 커널 영역에 버퍼를 할당한다. (생성 속도가 Heap 버퍼보다 비교적 느리다.)
-  * wrap - 입력된 바이트 배열을 사용하여 버퍼를 생성한다. 내부적으로 힙버퍼를 사용한다.
-* 읽기 모드
-  * flip - 작업후(읽기 혹은 쓰기) 데이터의 처음부터 읽을 수 있도록 limit을 현재 position 값으로 변경하고 position은 0으로 초기화.
-  * clear - 말그대로 버퍼를 초기화한다. position은 0으로 세팅하고, limit을 capacity값과 동일하게 초기화.
-  * rewind - position을 0으로 세팅한다. clear 메소드와 다른점은 limit값은 초기화 하지 않는다.
+  * ByteBuffer 생성
+    * allocate - 힙 버퍼. JVM내 힙영역에 버퍼를 할당한다.
+    * allocateDirect - kernel 버퍼. JVM의 힙영역이 아닌 운영체제의 커널 영역에 버퍼를 할당한다. (생성 속도가 Heap 버퍼보다 비교적 느리다.)
+    * wrap - 입력된 바이트 배열을 사용하여 버퍼를 생성한다. 내부적으로 힙버퍼를 사용한다.
+  * 읽기 모드
+    * flip - 작업후(읽기 혹은 쓰기) 데이터의 처음부터 읽을 수 있도록 limit을 현재 position 값으로 변경하고 position은 0으로 초기화.
+    * clear - 말그대로 버퍼를 초기화한다. position은 0으로 세팅하고, limit을 capacity값과 동일하게 초기화.
+    * rewind - position을 0으로 세팅한다. clear 메소드와 다른점은 limit값은 초기화 하지 않는다.
+  
+  ---
+</details>
 
 <br>
 
@@ -463,7 +509,7 @@ public class NioBlockingServerApplication {
 
 당연히 동일한 문제점이 그대로있으며, 사용하면 안되는 구조이다. 
 
-물론 앞서 살펴보았듯이 Thread Pool을 활용하면 조금 괜찮아지겠지만, NIO는 Non-Blocking을 목적으로 만들어진 것이기때문에 위 방식은 Bad Practice라고 볼 수 있다.
+물론 앞서 살펴보았듯이 Thread Pool을 활용하면 조금 괜찮아지겠지만, NIO는 Non-Blocking 기반의 Multiplexing I/O를 목적으로 만들어진 것이기때문에 위 방식은 Bad Practice라고 볼 수 있다.
 
 그저 ByteBuffer에 대한 개념과 위 방식이 Bad Practice라는 것만 알고가자.
 
@@ -471,9 +517,9 @@ public class NioBlockingServerApplication {
 
 # 5 NIO Non-Blocking Polling 서버 (Bad Practice)
 
-ByteBuffer에 대해서 알아보았으니, 이제 본격적으로 NIO를 이용한 Non-Blocking 서버를 구현해본다.
+이미 눈치챘겠지만, Blocking 모드였던 `ServerSocket`, `Socket`과 다르게 Non-Blocking 모드부턴 NIO의 `ServerSocketChannel`, `SocketChannel`를 사용한다.
 
-Non-Blocking을 구현하는 방식은 아래와 같이 NIO SocketChannel에 `configureBlocking`을 false로하면 쉽게 구현할 수 있다.
+이 두 클래스를 사용하면 Non-Blocking을 쉽게 구현할 수 있다. 바로 아래와 같이 NIO SocketChannel에 `configureBlocking`을 false로하면된다.
 
 ```java
 socket.configureBlocking(false);
@@ -587,7 +633,7 @@ public class NioNonBlockingServerApplication {
 
 💁‍♂️ **NIO Non-Blocking Polling 서버 구조와 문제점**
 
-위 서버 예시 코드는 아래와 같이 동작한다.
+위 서버 예시 코드는 I/O 관점에서보면 아래와 같이 동작한다.
 
 <p align="center"><img src="./image/non-blocking-i-o.png" width="400"><br>출처: https://stackoverflow.com/questions/17615272/java-selector-is-asynchronous-or-non-blocking-architecture </p>
 
@@ -606,16 +652,20 @@ public class NioNonBlockingServerApplication {
 
 지금까지의 예시에서 존재하던 컴퓨터 리소스 (CPU, 메모리)를 제대로 활용하지 못하는 문제는 여전히 해결되지 않은 것이다.
 
+결론적으로 위 문제를 해결하기위해선 이벤트 기반의 Non-Blocking 방식을 사용해야한다. 
+
 <br>
 
 # 6 NIO Non-Blocking Selector 서버 (Multiplexing 기반 다중 접속 서버)
-가장 마지막은 이 글의 핵심이기도한 부분이며 Non-Blocking의 Best Practice 형식인 Multiplexing I/O 방식이다.
+가장 마지막은 이 글의 핵심이기도한 부분이며 **Non-Blocking의 Best Practice 형식인 이벤트 기반의 Multiplexing I/O 방식이다.**
 
 앞서 Non-Blocking으로 동작하기는 했지만, 특정 Thread가 순회하며 모든 소켓에 시스템 콜 (`read()`)을 호출하면서 변경된 내용이 있는지 확인하는 방식을 Polling 방식이라고 부른다.
 
 그렇다면 어떻게해야 효율적으로 리소스를 사용할까?? 바로 Polling이 아닌 이벤트 기반의 Push 방식을 이용하는 것이다.
 
-즉, 직접 socket들을 순회하며 읽을 데이터가 있는지 체크하는 것이 아닌, 특정 socket이 변경되면 변경되었다고 이벤트를 만들어 알림을 해주는 것이다.
+즉, **직접 socket들을 순회하며 읽을 데이터가 있는지 체크하는 것이 아닌, 특정 socket이 변경되면 변경되었다고 이벤트를 만들어 알림을 해주는 것이다.**
+
+> 이러한 역할을 하는 녀석이 바로 `Selector`다.
 
 그리고 이벤트가 발생했을때만 Thread에서 관련 동작을하면 CPU의 리소스를 효율적으로 사용할 수 있게된다.
 
@@ -625,7 +675,7 @@ I/O 그림으로보면 아래와 같다.
 
 <br>
 
-간단한 예로 내가 게임을 하면서 3명으로부터 누구에게나 문자가오면 그 사람한테 내가 콜백해야한다고 가정해보자.
+간단한 예로 내가 게임을 하면서 n명으로부터 누구에게나 문자가오면 그 사람한테 내가 콜백 전화해야한다고 가정해보자.
 
 * Polling 방식의 Non-Blocking I/O
   * 누군가의 문자가 올 때까지 계속 문자창을 껐다 켰다 확인한다. 그동안 나는 게임을 못한다. 계속 문자가 왔는지 확인해야하기때문이다.
@@ -635,9 +685,9 @@ I/O 그림으로보면 아래와 같다.
     * 핸드폰 (다른스레드)이 알림이 오는지 확인한다.
   * 문자가와 알림이 울리면 그제서야 그 사람한테 콜백한다.
 
-이렇게 socket에서 변경이 감지되면 이벤트로 전송하고 처리할 수 있도록하는 역할로 Java NIO에선 Selector이라는 클래스를 제공한다.
+이렇게 socket에서 변경이 감지되면 이벤트로 전송하고 처리할 수 있도록하는 역할로 Java NIO에선 `Selector`라는 클래스를 제공한다.
 
-이러한 Selector가 있기때문에 하나의 스레드로 여러 채널을 모니터링하고 작업을 수행할 수 있는 것이다.
+`Selector`가 있기때문에 하나의 스레드로 여러 채널을 모니터링하고 작업을 수행할 수 있는 것이다.
 
 <br>
 
@@ -647,13 +697,14 @@ Selector는 시스템 이벤트 통지 API를 사용하여 하나의 스레드�
 
 <p align="center"><img src="./image/selector_channel_non_blocking_io.png"> </p>
 
-위 그림을 통해 알 수 있듯이, Selector는 이벤트 리스너 역할을하며, Non-blocking Channel에 Selector를 등록해놓으면 클라이언트의 커넥션 요청이 오거나 데이터 읽기/쓰기 작업이 필요한경우 Channel이 Selector에 이벤트를 통보한다.
+위 그림을 통해 알 수 있듯이, **Selector는 이벤트 리스너 역할을하며, Non-blocking Channel에 Selector를 등록해놓으면 클라이언트의 커넥션 요청이 오거나 데이터 읽기/쓰기 작업이 필요한경우 Channel이 Selector에 이벤트를 통보한다.**
 
-그럼 Selector는 미리 등록해둔 Key의 상태를 변경하여 특정 Channel에 대한 작업을 수행하도록 미리 등록된 콜백 메서드를 실행하면서 Thread에 비즈니스 로직 처리를 위임한다.
+**그럼 Selector는 미리 등록해둔 Key의 상태를 변경하여 특정 Channel에 대한 작업을 수행하도록 미리 등록된 콜백 메서드를 실행하면서 Thread에 비즈니스 로직 처리를 위임한다.**
 
 각각의 역할의 관점에서 살펴보면 아래와 같다.
 
 * Selector (멀티플렉서)
+  * 자신에게 등록된 채널에 변경 사항이 발생했는지 검사하고, 변경 사항이 발생한 채널에 대한 접근을 가능하게 해준다.
   * Linux I/O에 나오는 Multiplexing/IO Select와 같으며, 시스템 이벤트 리스너로서 준비된 I/O 채널을 선택(선별)하여 Thread에 작업을 위임하는 역할을 수행한다.
   * 내부적으로 `SelectorProvider`에서 운영체제와 버전에 따라 사용 가능한 멀티플렉싱 기술을 선택해 사용한다. (select, poll, epoll 등등)
 * SocketChannel, ByteBuffer
@@ -705,6 +756,10 @@ serverSocket.configureBlocking(false);
 
 이후 서버 소켓에 연결된 Selector에 등록할 채널을 Non-Blocking하게 동작시키기위해선 위 설정이 필요하다.
 
+**한 가지 기억해야할 점은 연결 요청 이벤트가 발생한 채널은 항상 ServerSocketChannel이라는 것이다. 그리고 이를 활용해 클라이언트의 연결을 수락하고 연결된 SocketChannel을 가져올 수 있다.**
+
+즉, **`ServerSocketChannel`을 selector에 등록함으로써, 새로운 연결에 대한 이벤트를 받을 수 있는 것이다.**
+
 <br>
 
 **2 - 셀렉터 생성**
@@ -755,9 +810,11 @@ selector.select(); // blocking
 Set<SelectionKey> selectionKeys = selector.selectedKeys();
 ```
 
-Selector에 하나 이상의 채널을 등록하면 `select()` 메서드를 사용해서 채널에 이벤트가 발생할 때까지 대기한다.
+Selector에 하나 이상의 채널을 등록하고, `select()` 메서드를 호출하면 등록된 채널에서 변경 사항이 발생했는지 검사한다. 아무런 I/O 이벤트도 발생하지 않으면 스레드는 이 부분에서 Blocking된다.
 
-그리고 처리할 준비가 된 채널이 존재한다면 blocking이 풀리고, `selectedKeys()` 메서드르르 통해 해당 채널의 집합을 반환받는다.
+처리할 준비가 된 채널이 존재한다면 Blocking이 풀리고, `selectedKeys()` 메서드르르 통해 해당 채널의 집합을 반환받을 수 있다.
+
+> 만약 I/O 이벤트가 발생하지 않았을 때 Blocking을 피하고싶다면 `selectNow()` 메서드를 사용하면 된다.
 
 그리고 해당 채널을 순회하며 처리해야할 부분을 아래와 같이 처리하면 된다.
 
@@ -926,9 +983,11 @@ public class NioNonBlockingSelectorServerApplication {
 
 # 마치며
 
-이번 글에선 간단한 예시인 대문자 변환 서버를 직접 구현하면서 Java의 Multiplexing 구현체인 NIO에 대해서 알아보았다.
+이번 글은 간단한 대문자 변환 서버를 직접 구현하면서 Blocking 방식의 소켓부터 Non-Blocking 방식의 소켓을 살펴보았다.
 
-직접 구현하면서 이해하는것에 초점을 맞춰 작성했기때문에 꼭 코드를 직접 작성하면서 이해하기를 추천한다. 
+이를 통해 Non-Blocking I/O의 가장 많이 사용되는 Multiplexing I/O를 살펴보았으며 자바의 구현체인 NIO에 대해서 알아보았따.
+
+직접 구현하면서 이해하는것에 초점을 맞춰 작성했기때문에 꼭 코드를 직접 작성하면서 이해하기를 추천한다.
 
 다음 글은 Multiplexing 방식으로 요청을 받은 후 이벤트를 처리하는 코드를 어떻게하면 더 효율적으로 처리할지에 대한 Reactor 패턴과 이벤트 루프에 대해서 정리해볼 예정이다.
 
