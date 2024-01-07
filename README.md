@@ -31,7 +31,6 @@
   * [Spring Cache Core (with 학습테스트)](./Spring/Cache/spring%20boot%20cache%20core/spring%20boot%20cache%20core.md)
 * Spring Data Redis
   * [Spring RedisTemplate Serializer 종류와 사용시 주의할 점](./Spring/Redis/redis%20serializer/serializer.md)
-  * [Jedis vs Lettuce - 캐싱 예시](./Spring/Redis/jedis%20vs%20lettuce%20-%20캐싱/jedis%20vs%20lettuce%20-%20캐싱.md)
   * [Spring으로 Redis를 사용하기 전 보면 좋은 글 (Redis Client, RedisTemplate, RedisRepository)](./Spring/Redis/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림/spring으로%20redis를%20사용하기%20전에%20보면%20좋은%20큰%20그림.md)
   * [내장 Redis 서버 - Embedded Redis](./Spring/Redis/spring%20boot%20embedded%20redis%20server/spring%20boot%20embedded%20redis%20server.md)
 * Spring Batch
@@ -220,6 +219,7 @@
 * Network
   * I/O
     * [사례를 통해 이해하는 네트워크 논블로킹 I/O와 Java NIO](./JAVA/network/nio/io-nio-example-server/io-nio-example-server.md)
+    * [사례를 통해 이해하는 Event Loop](./JAVA/network/nio/event_loop/event_loop.md)
   * HTTP
     * URLConnection
       * [URLConnection & HttpURLConnection](./JAVA/network/UrlConnection&HttpUrlConnection/UrlConnection&HttpUrlConnection.md)
