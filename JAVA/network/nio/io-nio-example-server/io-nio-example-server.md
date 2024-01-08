@@ -386,6 +386,8 @@ ByteBuffer는 말 그대로 내부에 `byte[]` 배열로 구성되면서 버퍼�
 
 주의해야할 점은 ByteBuffer는 버퍼 하나만을 가지고있으므로 읽기/쓰기의 position은 공유된다. 
 
+<p align="center"><img src="./image/byte_buffer_flip.png"> </p>
+
 **즉, 읽고 쓰기를 할 때 자칫 데이터가 꼬이는 경우가 있을 수 있어서 읽기든 쓰기든 해당 작업을 꼭 다 마무리하고 다음 작업으로 넘어가야한다.**
 
 <br>
