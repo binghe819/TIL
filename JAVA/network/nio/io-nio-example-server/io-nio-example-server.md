@@ -858,6 +858,12 @@ for (Iterator<SelectionKey> it = selectionKeys.iterator(); it.hasNext(); ) {
 }
 ```
 
+<br>
+
+위와 같이 코드를 작성하면 전반적인 구조는 아래와 같이 된다.
+
+<p align="center"><img src="./image/selector_channel_thread.png"> </p>
+
 전반적인 서버 예시 코드는 아래를 참고하면 된다.
 
 <br>
