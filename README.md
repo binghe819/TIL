@@ -220,6 +220,8 @@
   * I/O
     * [사례를 통해 이해하는 네트워크 논블로킹 I/O와 Java NIO](./JAVA/network/nio/io-nio-example-server/io-nio-example-server.md)
     * [사례를 통해 이해하는 Event Loop](./JAVA/network/nio/event_loop/event_loop.md)
+  * Netty
+    * [Netty가 빠른 이유와 동작 흐름](./JAVA/netty/example_netty_workflow/index.md)
   * HTTP
     * URLConnection
       * [URLConnection & HttpURLConnection](./JAVA/network/UrlConnection&HttpUrlConnection/UrlConnection&HttpUrlConnection.md)
