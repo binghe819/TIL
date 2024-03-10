@@ -2,9 +2,7 @@
 
 [![Blog](https://img.shields.io/badge/Blog-binghe.github.io-green.svg)](https://binghedev.tistory.com/) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbinghe819%2FTIL&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-기술과 지식을 나만의 언어로 정리하는 저장소입니다. 
-
-> 피드백 환영합니다 :) 이슈에 남겨주세요.
+❗️ 기술과 지식을 나만의 언어로 정제하지 않고 정리하는 저장소입니다. 비교적 정제된 내용은 [블로그](https://mark-kim.blog/)를 참고바랍니다.
 
 <br>
 
