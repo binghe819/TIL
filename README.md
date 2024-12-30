@@ -99,7 +99,6 @@
 * [운영체제와 정보기술의 원리](./OS/운영체제와%20정보기술의%20원리/README.md)
 * 리눅스
   * [리눅스 자주사용되는 명령어 정리](./OS/리눅스/리눅스%20명령어%20모음/linux_command_zip.md)
-* [Blocking, Non-Blocking and Synchronous, Asynchronous](./OS/blocking_nonblocking_%26_synchronous_asynchronous/blocking_nonblocking_%26_synchronous_asynchronous.md)
 
 <br>
 
